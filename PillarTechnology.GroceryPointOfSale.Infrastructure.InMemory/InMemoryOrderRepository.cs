@@ -17,12 +17,17 @@ namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
         {
             order.Id = GetNextId();
             _orders.Add(order);
-            return order;
+            return FindOrder(order.Id);
         }
 
         public Order FindOrder(long orderId)
         {
             return _orders.First(x => x.Id == orderId);
+        }
+
+        public Order UpdateOrder(Order order)
+        {
+            return FindOrder(order.Id);
         }
     }
 }

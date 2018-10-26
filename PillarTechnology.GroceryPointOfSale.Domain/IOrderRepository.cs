@@ -4,5 +4,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         Order CreateOrder(Order order);
         Order FindOrder(long id);
+        Order UpdateOrder(Order order);
     }
 }

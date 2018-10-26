@@ -20,8 +20,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateProduct_WhenProductDoesNotExist_AddsProductToStorage()
         {
             _productRepository.CreateProduct(_product);
-
             var storedProduct = _productRepository.FindProduct(_product.Name);
+            
             storedProduct.Should().Be(_product);
         }
 

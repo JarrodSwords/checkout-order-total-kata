@@ -8,17 +8,33 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IOrderRepositoryTest
     {
+        protected Order _order;
         protected IOrderRepository _orderRepository;
+
+        public IOrderRepositoryTest()
+        {
+            _order = new Order();
+        }
 
         [Fact]
         public void CreateOrder_AddsOrderToStorage()
         {
-            var order = new Order();
-
-            var storedOrder = _orderRepository.CreateOrder(order);
+            var storedOrder = _orderRepository.CreateOrder(_order);
 
             storedOrder.Should().NotBeNull();
             storedOrder.Id.Should().BePositive();
+        }
+
+        [Fact]
+        public void UpdateOrder_UpdatesNonIdentityOrderFieldsInStorage()
+        {
+            var order = _orderRepository.CreateOrder(_order);
+            var dummyPurchasable = new Mock<IPurchasable>().Object;
+            order.AddPurchasable(dummyPurchasable);
+
+            var storedOrder = _orderRepository.UpdateOrder(order);
+
+            storedOrder.ScannedItems.Should().Equal(order.ScannedItems);
         }
     }
 }
