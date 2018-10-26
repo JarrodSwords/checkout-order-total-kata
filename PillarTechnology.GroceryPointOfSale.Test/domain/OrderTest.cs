@@ -10,12 +10,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [Fact]
         public void AddPurchasable_PurchasableIsAddedToScannedItems()
         {
-            var stubPurchasable = new Mock<IPurchasable>().Object;
+            var dummyPurchasable = new Mock<IPurchasable>().Object;
             var order = new Order();
 
-            order.AddPurchasable(stubPurchasable);
+            order.AddPurchasable(dummyPurchasable);
 
-            order.ScannedItems.Should().Contain(stubPurchasable);
+            order.ScannedItems.Should().Contain(dummyPurchasable);
         }
     }
 }
