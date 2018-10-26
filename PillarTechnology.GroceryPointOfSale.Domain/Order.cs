@@ -6,6 +6,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         private ICollection<IPurchasable> _scannedItems = new List<IPurchasable>();
 
+        public long Id { get; set; }
         public IEnumerable<IPurchasable> ScannedItems { get { return _scannedItems; } }
 
         public Order AddPurchasable(IPurchasable purchasable)
