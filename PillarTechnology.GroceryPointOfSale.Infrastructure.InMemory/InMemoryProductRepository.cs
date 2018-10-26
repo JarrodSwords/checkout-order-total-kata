@@ -11,7 +11,15 @@ namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
 
         public void CreateProduct(Product product)
         {
+            if (Exists(product))
+                throw new ArgumentException("Product already exists");
+
             _products.Add(product);
+        }
+
+        private bool Exists(Product product)
+        {
+            return _products.Any(x => x.Name == product.Name);
         }
 
         public Product FindProduct(string productName)
