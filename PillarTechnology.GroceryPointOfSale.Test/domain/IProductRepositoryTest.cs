@@ -9,28 +9,31 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public abstract class IProductRepositoryTest
     {
         protected IProductRepository _productRepository;
+        protected Product _stubProduct;
 
-        [Fact]
-        public void CreateProduct_WhenProductAlreadyExists_ThrowsArgumentException()
+        public IProductRepositoryTest()
         {
-            var product = new Product { Name = "can of soup" };
-            _productRepository.CreateProduct(product);
-
-            Action addExistingProduct = () => _productRepository.CreateProduct(product);
-
-            addExistingProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product already exists");
+            _stubProduct = new Product { Name = "can of soup" };
         }
 
         [Fact]
         public void CreateProduct_WhenProductDoesNotExist_AddsProductToStorage()
         {
-            var product = new Product { Name = "can of soup" };
+            _productRepository.CreateProduct(_stubProduct);
 
-            _productRepository.CreateProduct(product);
+            var storedProduct = _productRepository.FindProduct(_stubProduct.Name);
+            storedProduct.Should().Be(_stubProduct);
+        }
 
-            var storedProduct = _productRepository.FindProduct(product.Name);
-            storedProduct.Should().Be(product);
+        [Fact]
+        public void CreateProduct_WhenProductExists_ThrowsArgumentException()
+        {
+            _productRepository.CreateProduct(_stubProduct);
+
+            Action addExistingProduct = () => _productRepository.CreateProduct(_stubProduct);
+
+            addExistingProduct.Should().Throw<ArgumentException>()
+                .WithMessage("Product already exists");
         }
     }
 }
