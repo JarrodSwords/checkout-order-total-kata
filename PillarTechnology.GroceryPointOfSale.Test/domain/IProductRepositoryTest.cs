@@ -11,23 +11,24 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IProductRepository _productRepository;
 
         [Fact]
-        public void CreateProduct_WhenProductDoesNotExist_AddsProductToStorage()
+        public void CreateProduct_CreatesPersistedProduct()
         {
             var product = new Product("milk");
             
             _productRepository.CreateProduct(product);
 
-            var storedProduct = _productRepository.FindProduct(product.Name);            
-            storedProduct.Should().Be(product);
+            var persistedProduct = _productRepository.FindProduct(product.Name);            
+            persistedProduct.Should().Be(product);
         }
 
         [Fact]
         public void CreateProduct_WhenProductExists_ThrowsArgumentException()
         {
-            var product = new Product("can of soup");
-            _productRepository.CreateProduct(product);
+            var products = new ProductTestData().GetEnumerator();
+            products.MoveNext();
+            _productRepository.CreateProduct(products.Current);
 
-            Action addExistingProduct = () => _productRepository.CreateProduct(product);
+            Action addExistingProduct = () => _productRepository.CreateProduct(products.Current);
 
             addExistingProduct.Should().Throw<ArgumentException>()
                 .WithMessage("Product already exists");

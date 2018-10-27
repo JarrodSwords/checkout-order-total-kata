@@ -26,7 +26,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Fact]
-        public void AddMultipleScannable_ScannedItemsHaveUniqueIds()
+        public void AddMultipleScannables_AllScannedItemIdsAreUnique()
         {
             var items = new ScannedItemTestData().GetEnumerator();
 

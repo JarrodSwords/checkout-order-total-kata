@@ -6,7 +6,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
     public interface ICheckoutService
     {
         IScannable RemoveScannedItem(long orderId, int itemId);
-        IScannable Scan(long orderId, string productName);
-        IScannable Scan(long orderId, string productName, decimal weight);
+        IScannable ScanItem(long orderId, string productName);
+        IScannable ScanItem(long orderId, string productName, decimal weight);
     }
 }
