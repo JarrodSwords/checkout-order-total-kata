@@ -52,6 +52,17 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage("Product name is required");
         }
 
+        [Fact]
+        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException()
+        {
+            var productDto = new ProductDto { Name = "milk" };
+
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+
+            addIncompleteProduct.Should().Throw<ArgumentException>()
+                .WithMessage("Product retail price is required");
+        }
+
         [Theory]
         [ClassData(typeof(ProductTestData))]
         public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)

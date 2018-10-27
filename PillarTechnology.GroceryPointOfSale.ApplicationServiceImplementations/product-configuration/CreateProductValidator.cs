@@ -18,6 +18,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             if (string.IsNullOrWhiteSpace(productDto.Name))
                 throw new ArgumentException("Product name is required");
 
+            if (productDto.RetailPrice == null)
+                throw new ArgumentException("Product retail price is required");
+
             if (_productRepository.Exists(productDto.Name))
                 throw new ArgumentException("Product already exists");
         }
