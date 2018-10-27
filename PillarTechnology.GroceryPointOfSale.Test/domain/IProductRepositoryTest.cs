@@ -17,9 +17,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var product = new Product("milk", Money.USDollar(1.99m));
 
-            _productRepository.CreateProduct(product);
-
-            var persistedProduct = _productRepository.FindProduct(product.Name);
+            var persistedProduct = _productRepository.CreateProduct(product);
             persistedProduct.Should().Be(product);
         }
 

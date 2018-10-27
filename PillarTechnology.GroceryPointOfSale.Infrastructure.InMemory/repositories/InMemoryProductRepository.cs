@@ -9,12 +9,13 @@ namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
     {
         private ICollection<Product> _products = new List<Product>();
 
-        public void CreateProduct(Product product)
+        public Product CreateProduct(Product product)
         {
             if (Exists(product))
                 throw new ArgumentException("Product already exists");
 
             _products.Add(product);
+            return FindProduct(product.Name);
         }
 
         private bool Exists(Product product)

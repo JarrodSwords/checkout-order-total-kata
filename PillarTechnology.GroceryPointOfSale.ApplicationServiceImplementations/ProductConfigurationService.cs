@@ -16,6 +16,14 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _productRepository = productRepository;
         }
 
+        public ProductDto CreateProduct(ProductDto productDto)
+        {
+            var product = _mapper.Map<ProductDto, Product>(productDto);
+            var persistedProduct = _productRepository.CreateProduct(product);
+            
+            return _mapper.Map<Product, ProductDto>(persistedProduct);
+        }
+
         public ProductDto UpdateProduct(ProductDto productDto)
         {
             var product = _productRepository.FindProduct(productDto.Name);
