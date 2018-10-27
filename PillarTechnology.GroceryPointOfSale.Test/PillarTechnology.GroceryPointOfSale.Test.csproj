@@ -7,13 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="fluentassertions" Version="5.4.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="moq" Version="4.10.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.Domain\PillarTechnology.GroceryPointOfSale.Domain.csproj" />
+    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.csproj" />
+    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.csproj" />
+    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.ApplicationServices\PillarTechnology.GroceryPointOfSale.ApplicationServices.csproj" />
   </ItemGroup>
 
 </Project>
