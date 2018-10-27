@@ -63,6 +63,17 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage("Product retail price is required");
         }
 
+        [Fact]
+        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException()
+        {
+            var productDto = new ProductDto { Name = "milk", RetailPrice = -1m };
+
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+
+            addIncompleteProduct.Should().Throw<ArgumentException>()
+                .WithMessage("Product retail price must not be negative");
+        }
+
         [Theory]
         [ClassData(typeof(ProductTestData))]
         public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
