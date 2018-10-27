@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentAssertions;
 using Moq;
 using PillarTechnology.GroceryPointOfSale.Domain;
@@ -33,6 +34,17 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 _order.AddScannable(items.Current);
 
             _order.ScannedItems.Should().OnlyHaveUniqueItems(x => x.Id);
+        }
+
+        [Fact]
+        public void RemoveScannable_ScannableIsRemovedFromScannedItems()
+        {
+            var order = OrderTestData.CreateOrderWithScannedItems();
+            var itemId = order.ScannedItems.Select(x => x.Id).First();
+
+            var removedItem = order.RemoveScannedItem(itemId);
+
+            order.ScannedItems.Should().NotContain(removedItem);
         }
     }
 }

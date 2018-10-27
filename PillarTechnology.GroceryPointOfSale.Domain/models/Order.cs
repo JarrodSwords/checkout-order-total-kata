@@ -12,17 +12,24 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Order AddScannable(IScannable scannable)
         {
-            scannable.Id = ScannableIdGenerator.Next(_scannedItems);
+            scannable.Id = ScannedItemIdGenerator.Next(_scannedItems);
             _scannedItems.Add(scannable);
             return this;
         }
-    }
 
-    public class ScannableIdGenerator
-    {
-        public static int Next(IEnumerable<IScannable> scannedItems)
+        public IScannable RemoveScannedItem(int itemId)
         {
-            return scannedItems.Count() == 0 ? 1 : scannedItems.Max(x => x.Id) + 1;
+            var itemToRemove = _scannedItems.Single(x => x.Id == itemId);
+            _scannedItems.Remove(itemToRemove);
+            return itemToRemove;
+        }
+
+        private class ScannedItemIdGenerator
+        {
+            public static int Next(IEnumerable<IScannable> scannedItems)
+            {
+                return scannedItems.Count() == 0 ? 1 : scannedItems.Max(x => x.Id) + 1;
+            }
         }
     }
 }
