@@ -6,12 +6,14 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class InMemoryProductRepositoryFactory : RepositoryFactory<InMemoryProductRepository>
     {
-        private string[] _productNames = { "can of soup", "frozen pizza", "milk", "lean ground beef" };
+        private string[] _productNames = { "can of soup", "frozen pizza", "milk" };
 
         protected override void Seed(ref InMemoryProductRepository repository)
         {
             foreach (var productName in _productNames)
                 repository.CreateProduct(new Product(productName));
+
+            repository.CreateProduct(new Product("lean ground beef", SellByType.Weight));
         }
     }
 }

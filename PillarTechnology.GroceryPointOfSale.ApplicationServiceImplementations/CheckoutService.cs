@@ -31,6 +31,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             var order = _orderRepository.FindOrder(orderId);
             var product = _productRepository.FindProduct(productName);
+
+            if (product.SellByType == SellByType.Unit)
+                throw new ArgumentException("Cannot add an item sold by unit as an item sold by weight");
             
             var item = new WeightedItem(product, weight);
             order.AddScannable(item);
