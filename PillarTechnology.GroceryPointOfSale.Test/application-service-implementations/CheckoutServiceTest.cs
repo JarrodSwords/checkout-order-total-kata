@@ -11,8 +11,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public CheckoutServiceTest()
         {
-            _orderRepository = new InMemoryOrderRepository();
-            _productRepository = new InMemoryProductRepository();
+            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
+            _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
             _checkoutService = new CheckoutService(_orderRepository, _productRepository);
         }
     }

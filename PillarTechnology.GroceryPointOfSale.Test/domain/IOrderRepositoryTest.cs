@@ -29,8 +29,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void UpdateOrder_UpdatesNonIdentityOrderFieldsInStorage()
         {
             var order = _orderRepository.CreateOrder(_order);
-            var dummyPurchasable = new Mock<IPurchasable>().Object;
-            order.AddPurchasable(dummyPurchasable);
+            var dummyScannable = new Mock<IScannable>().Object;
+            order.AddScannable(dummyScannable);
 
             var storedOrder = _orderRepository.UpdateOrder(order);
 

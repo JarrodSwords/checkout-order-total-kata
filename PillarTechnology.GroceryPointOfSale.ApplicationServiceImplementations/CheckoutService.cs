@@ -15,15 +15,16 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _productRepository = productRepository;
         }
 
-        public Order Scan(long orderId, string productName)
+        public IScannable Scan(long orderId, string productName)
         {
             var order = _orderRepository.FindOrder(orderId);
             var product = _productRepository.FindProduct(productName);
+            
             var item = new Item(product);
+            order.AddScannable(item);
+            _orderRepository.UpdateOrder(order);
 
-            order.AddPurchasable(item);
-
-            return _orderRepository.UpdateOrder(order);
+            return item;
         }
     }
 }

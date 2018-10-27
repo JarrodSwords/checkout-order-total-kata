@@ -8,14 +8,14 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public class OrderTest
     {
         [Fact]
-        public void AddPurchasable_PurchasableIsAddedToScannedItems()
+        public void AddScannable_ScannableIsAddedToScannedItems()
         {
-            var dummyPurchasable = new Mock<IPurchasable>().Object;
+            var dummyScannable = new Mock<IScannable>().Object;
             var order = new Order();
 
-            order.AddPurchasable(dummyPurchasable);
+            order.AddScannable(dummyScannable);
 
-            order.ScannedItems.Should().Contain(dummyPurchasable);
+            order.ScannedItems.Should().Contain(dummyScannable);
         }
     }
 }

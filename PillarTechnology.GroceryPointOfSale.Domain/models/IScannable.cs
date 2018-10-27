@@ -1,6 +1,6 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public interface IPurchasable
+    public interface IScannable
     {
         Product Product { get; }
     }

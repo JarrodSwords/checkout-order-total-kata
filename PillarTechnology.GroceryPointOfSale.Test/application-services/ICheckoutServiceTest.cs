@@ -9,20 +9,18 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class ICheckoutServiceTest
     {
-        protected ICheckoutService _checkoutService;
         protected IOrderRepository _orderRepository;
         protected IProductRepository _productRepository;
+        protected ICheckoutService _checkoutService;
 
-        [Fact]
-        public void ScanPurchasable_AddsPurchasableToOrder()
+        [Theory]
+        [InlineData(1, "can of soup")]
+        public void ScanItem_AddsItemToOrder(long orderId, string productName)
         {
-            var product = new Product { Name = "can of soup" };
-            _productRepository.CreateProduct(product);
-            _orderRepository.CreateOrder(new Order());
-            
-            var order = _checkoutService.Scan(1, product.Name);
+            var scannedItem = _checkoutService.Scan(orderId, productName);
 
-            order.ScannedItems.Should().Contain(x => x.Product == product);
+            var order = _orderRepository.FindOrder(orderId);
+            order.ScannedItems.Should().Contain(scannedItem);
         }
     }
 }
