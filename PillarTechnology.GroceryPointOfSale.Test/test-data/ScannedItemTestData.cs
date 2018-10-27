@@ -9,14 +9,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public IEnumerator<IScannable> GetEnumerator()
         {
-            var products = new ProductTestData().GetEnumerator();
             var weight = 0;
 
-            while (products.MoveNext())
+            foreach (var product in new ProductTestData().Products)
             {
-                yield return products.Current.GetType() == typeof(Item) ?
-                    new ItemFactory(products.Current).CreateScannable() :
-                    new WeightedItemFactory(products.Current, ++weight).CreateScannable();
+                yield return product.GetType() == typeof(Item) ?
+                    new ItemFactory(product).CreateScannable() :
+                    new WeightedItemFactory(product, ++weight).CreateScannable();
             }
         }
 

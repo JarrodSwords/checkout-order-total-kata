@@ -8,10 +8,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         protected override void Seed(ref InMemoryProductRepository repository)
         {
-            var products = new ProductTestData().GetEnumerator();
-
-            while (products.MoveNext())
-                repository.CreateProduct(products.Current);
+            foreach (var product in new ProductTestData().Products)
+                repository.CreateProduct(product);
         }
     }
 }

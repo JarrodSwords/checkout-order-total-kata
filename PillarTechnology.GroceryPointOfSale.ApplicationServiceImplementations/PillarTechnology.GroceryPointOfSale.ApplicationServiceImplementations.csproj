@@ -5,6 +5,10 @@
     <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.ApplicationServices\PillarTechnology.GroceryPointOfSale.ApplicationServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="automapper" Version="7.0.1" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
