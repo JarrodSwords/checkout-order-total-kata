@@ -4,5 +4,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         void CreateProduct(Product product);
         Product FindProduct(string productName);
+        Product UpdateProduct(Product product);
     }
 }

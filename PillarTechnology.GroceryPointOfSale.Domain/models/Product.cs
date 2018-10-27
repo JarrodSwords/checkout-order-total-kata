@@ -1,3 +1,5 @@
+using NodaMoney;
+
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     /// <summary>
@@ -9,11 +11,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         private SellByType _sellByType;
 
         public string Name { get { return _name; } }
+        public Money RetailPrice { get; set; }
         public SellByType SellByType { get { return _sellByType; } }
 
-        public Product(string name, SellByType sellByType = SellByType.Unit)
+        public Product(string name, Money retailPrice, SellByType sellByType = SellByType.Unit)
         {
             _name = name;
+            RetailPrice = retailPrice;
             _sellByType = sellByType;
         }
     }

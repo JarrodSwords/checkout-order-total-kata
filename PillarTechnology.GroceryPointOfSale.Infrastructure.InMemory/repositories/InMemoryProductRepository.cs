@@ -26,5 +26,10 @@ namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
         {
             return _products.First(x => x.Name == productName);
         }
+
+        public Product UpdateProduct(Product product)
+        {
+            return FindProduct(product.Name);
+        }
     }
 }
