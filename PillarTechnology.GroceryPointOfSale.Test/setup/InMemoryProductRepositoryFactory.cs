@@ -12,6 +12,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             foreach (var productName in _productNames)
                 repository.CreateProduct(new Product(productName));
+
+            repository.CreateProduct(new Product("lean ground beef", SellByType.Weight));
         }
     }
 }
