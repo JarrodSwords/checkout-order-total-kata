@@ -10,7 +10,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public abstract class ICheckoutServiceTest
     {
         protected IOrderRepository _orderRepository;
-        protected IProductRepository _productRepository;
         protected ICheckoutService _checkoutService;
 
         [Theory]

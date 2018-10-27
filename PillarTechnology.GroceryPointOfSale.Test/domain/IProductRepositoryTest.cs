@@ -16,8 +16,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var product = new Product("milk");
             
             _productRepository.CreateProduct(product);
-            var storedProduct = _productRepository.FindProduct(product.Name);
-            
+
+            var storedProduct = _productRepository.FindProduct(product.Name);            
             storedProduct.Should().Be(product);
         }
 
