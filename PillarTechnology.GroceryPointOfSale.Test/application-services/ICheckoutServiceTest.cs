@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using FluentAssertions;
 using Moq;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
@@ -13,13 +14,27 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected ICheckoutService _checkoutService;
 
         [Theory]
+        [InlineData(2, 1)]
+        public void RemoveItem_RemovesItemFromOrder(long orderId, int itemId)
+        {
+            var order = _orderRepository.FindOrder(orderId);
+            var scannableToRemove = order.ScannedItems.Single(x => x.Id == itemId);
+
+            var removedScannable = _checkoutService.RemoveScannedItem(orderId, itemId);
+
+            removedScannable.Should().Be(scannableToRemove);
+            var storedOrder = _orderRepository.FindOrder(orderId);
+            storedOrder.ScannedItems.Should().NotContain(scannableToRemove);
+        }
+
+        [Theory]
         [InlineData(1, "can of soup")]
         public void ScanItem_AddsItemToOrder(long orderId, string productName)
         {
             var scannedItem = _checkoutService.Scan(orderId, productName);
 
-            var order = _orderRepository.FindOrder(orderId);
-            order.ScannedItems.Should().Contain(scannedItem);
+            var storedOrder = _orderRepository.FindOrder(orderId);
+            storedOrder.ScannedItems.Should().Contain(scannedItem);
         }
 
         [Theory]
@@ -39,8 +54,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var scannedItem = _checkoutService.Scan(orderId, productName, weight);
 
             scannedItem.Should().BeOfType(typeof(WeightedItem));
-            var order = _orderRepository.FindOrder(orderId);
-            order.ScannedItems.Should().Contain(scannedItem);
+            var storedOrder = _orderRepository.FindOrder(orderId);
+            storedOrder.ScannedItems.Should().Contain(scannedItem);
         }
 
         [Theory]
