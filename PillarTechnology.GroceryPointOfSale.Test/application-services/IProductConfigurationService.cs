@@ -13,7 +13,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductConfigurationServiceTest
     {
-        private ProductTestData _productTestData = new ProductTestData();
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 
@@ -47,7 +46,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
         {
             var productDto = _productService.FindProduct(productName);
-            productDto.RetailPrice = 0.89m;
+            productDto.RetailPrice++;
 
             var persistedProductDto = _productConfigurationService.UpdateProduct(productDto);
 
