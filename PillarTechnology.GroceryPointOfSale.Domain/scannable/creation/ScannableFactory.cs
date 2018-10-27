@@ -1,10 +1,13 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public abstract class ScannableAbstractFactory
+    /// <remarks>
+    /// Abstract factory
+    /// </remarks>
+    public abstract class ScannableFactory
     {
         protected readonly Product _product;
 
-        public ScannableAbstractFactory(Product product)
+        public ScannableFactory(Product product)
         {
             _product = product;
         }

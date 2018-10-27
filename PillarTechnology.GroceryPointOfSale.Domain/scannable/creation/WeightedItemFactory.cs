@@ -1,6 +1,9 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class WeightedItemFactory : ScannableAbstractFactory
+    /// <remarks>
+    /// Concrete factory
+    /// </summary>
+    public class WeightedItemFactory : ScannableFactory
     {
         private readonly decimal _weight;
 

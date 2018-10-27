@@ -33,7 +33,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return Scan(orderId, product, validator, weightedItemFactory);
         }
 
-        private IScannable Scan(long orderId, Product product, IScanInputValidator validator, ScannableAbstractFactory scannableFactory)
+        private IScannable Scan(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
         {
             validator.Validate();
 

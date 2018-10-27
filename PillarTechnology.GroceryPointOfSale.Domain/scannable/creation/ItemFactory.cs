@@ -1,6 +1,9 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class ItemFactory : ScannableAbstractFactory
+    /// <remarks>
+    /// Concrete factory
+    /// </summary>
+    public class ItemFactory : ScannableFactory
     {
         public ItemFactory(Product product) : base(product) { }
 
