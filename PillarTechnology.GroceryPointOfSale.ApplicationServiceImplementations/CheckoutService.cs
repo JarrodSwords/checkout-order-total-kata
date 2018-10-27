@@ -17,32 +17,33 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public IScannable Scan(long orderId, string productName)
         {
-            var order = _orderRepository.FindOrder(orderId);
             var product = _productRepository.FindProduct(productName);
+            var validator = new SellByUnitScanInputValidator(product);
+            var itemFactory = new ItemFactory(product);
 
-            if (product.SellByType == SellByType.Weight)
-            throw new ArgumentException("Cannot add an item sold by weight without a weight");
-            
-            var item = new Item(product);
-            order.AddScannable(item);
-            _orderRepository.UpdateOrder(order);
-
-            return item;
+            return Scan(orderId, product, validator, itemFactory);
         }
 
         public IScannable Scan(long orderId, string productName, decimal weight)
         {
-            var order = _orderRepository.FindOrder(orderId);
             var product = _productRepository.FindProduct(productName);
+            var validator = new SellByWeightScanInputValidator(product, weight);
+            var weightedItemFactory = new WeightedItemFactory(product, weight);
 
-            if (product.SellByType == SellByType.Unit)
-                throw new ArgumentException("Cannot add an item sold by unit as an item sold by weight");
-            
-            var item = new WeightedItem(product, weight);
-            order.AddScannable(item);
+            return Scan(orderId, product, validator, weightedItemFactory);
+        }
+
+        private IScannable Scan(long orderId, Product product, IScanInputValidator validator, ScannableAbstractFactory scannableFactory)
+        {
+            validator.Validate();
+
+            var order = _orderRepository.FindOrder(orderId);
+            var scannable = scannableFactory.CreateScannable();
+
+            order.AddScannable(scannable);
             _orderRepository.UpdateOrder(order);
 
-            return item;
+            return scannable;
         }
     }
 }

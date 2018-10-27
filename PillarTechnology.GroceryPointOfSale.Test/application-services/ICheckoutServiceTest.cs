@@ -38,6 +38,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var scannedItem = _checkoutService.Scan(orderId, productName, weight);
 
+            scannedItem.Should().BeOfType(typeof(WeightedItem));
             var order = _orderRepository.FindOrder(orderId);
             order.ScannedItems.Should().Contain(scannedItem);
         }
