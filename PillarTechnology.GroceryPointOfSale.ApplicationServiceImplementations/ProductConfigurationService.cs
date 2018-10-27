@@ -18,9 +18,12 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateProduct(ProductDto productDto)
         {
+            if (_productRepository.Exists(productDto.Name))
+                throw new ArgumentException("Product already exists");
+
             var product = _mapper.Map<ProductDto, Product>(productDto);
             var persistedProduct = _productRepository.CreateProduct(product);
-            
+
             return _mapper.Map<Product, ProductDto>(persistedProduct);
         }
 

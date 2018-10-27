@@ -13,6 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductConfigurationServiceTest
     {
+        private ProductTestData _productTestData = new ProductTestData();
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 
@@ -27,6 +28,18 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             var persistedProductDto = _productConfigurationService.CreateProduct(productDto);
             persistedProductDto.Should().BeEquivalentTo(productDto);
+        }
+
+        [Theory]
+        [ClassData(typeof(ProductTestData))]
+        public void CreateProduct_WhenProductExists_ThrowsArgumentException(string productName)
+        {
+            var productDto = _productService.FindProduct(productName);
+
+            Action addExistingProduct = () => _productConfigurationService.CreateProduct(productDto);
+
+            addExistingProduct.Should().Throw<ArgumentException>()
+                .WithMessage("Product already exists");
         }
 
         [Theory]

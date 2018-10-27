@@ -21,18 +21,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             persistedProduct.Should().Be(product);
         }
 
-        [Fact]
-        public void CreateProduct_WhenProductExists_ThrowsArgumentException()
-        {
-            _productTestData.SeedRepository(ref _productRepository);
-            var existingProduct = _productTestData.GetProductSoldByUnit();
-
-            Action addExistingProduct = () => _productRepository.CreateProduct(existingProduct);
-
-            addExistingProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product already exists");
-        }
-
         [Theory]
         [ClassData(typeof(ProductTestData))]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
