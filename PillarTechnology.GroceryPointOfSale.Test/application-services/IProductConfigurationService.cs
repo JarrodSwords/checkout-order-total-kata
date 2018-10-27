@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using FluentAssertions;
@@ -41,10 +42,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage("Product already exists");
         }
 
-        [Fact]
-        public void CreateProduct_WithoutName_ThrowsArgumentException()
+        [Theory]
+        [InlineData(null, 1)]
+        [InlineData("", 1)]
+        [InlineData(" ", 1)]
+        public void CreateProduct_WithoutName_ThrowsArgumentException(string productName, double? retailPrice)
         {
-            var productDto = new ProductDto { RetailPrice = 1.99m };
+            var productDto = CreateProductDto(productName, retailPrice);
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
 
@@ -52,10 +56,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage("Product name is required");
         }
 
-        [Fact]
-        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException()
+        [Theory]
+        [InlineData("milk", null)]
+        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
         {
-            var productDto = new ProductDto { Name = "milk" };
+            var productDto = CreateProductDto(productName, retailPrice);
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
 
@@ -63,10 +68,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage("Product retail price is required");
         }
 
-        [Fact]
-        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException()
+        [Theory]
+        [InlineData("milk", -1)]
+        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
         {
-            var productDto = new ProductDto { Name = "milk", RetailPrice = -1m };
+            var productDto = CreateProductDto(productName, retailPrice);
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
 
@@ -84,6 +90,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var persistedProductDto = _productConfigurationService.UpdateProduct(productDto);
 
             persistedProductDto.Should().BeEquivalentTo(productDto);
+        }
+
+        private ProductDto CreateProductDto(string productName, double? retailPrice)
+        {
+            return new ProductDto
+            {
+                Name = productName,
+                    RetailPrice = (decimal?) retailPrice
+            };
         }
     }
 }
