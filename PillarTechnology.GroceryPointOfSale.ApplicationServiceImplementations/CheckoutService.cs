@@ -19,6 +19,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             var order = _orderRepository.FindOrder(orderId);
             var product = _productRepository.FindProduct(productName);
+
+            if (product.SellByType == SellByType.Weight)
+            throw new ArgumentException("Cannot add an item sold by weight without a weight");
             
             var item = new Item(product);
             order.AddScannable(item);
