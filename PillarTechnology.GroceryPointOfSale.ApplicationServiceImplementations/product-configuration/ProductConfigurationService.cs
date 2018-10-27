@@ -9,17 +9,18 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
+        private readonly ICreateProductValidator _productValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository)
+        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, ICreateProductValidator productValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
+            _productValidator = productValidator;
         }
 
         public ProductDto CreateProduct(ProductDto productDto)
         {
-            if (_productRepository.Exists(productDto.Name))
-                throw new ArgumentException("Product already exists");
+            _productValidator.Validate(productDto);
 
             var product = _mapper.Map<ProductDto, Product>(productDto);
             var persistedProduct = _productRepository.CreateProduct(product);
