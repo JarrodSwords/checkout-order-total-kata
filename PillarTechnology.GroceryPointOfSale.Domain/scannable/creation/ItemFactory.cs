@@ -9,7 +9,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public override IScannable CreateScannable()
         {
-            return new Item(_product);
+            return new Item(Product);
         }
     }
 }

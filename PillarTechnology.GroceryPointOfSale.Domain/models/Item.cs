@@ -4,6 +4,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         protected Product _product;
 
+        public int Id { get; set; }
+
         public Product Product { get { return _product; } }
 
         public Item(Product product)

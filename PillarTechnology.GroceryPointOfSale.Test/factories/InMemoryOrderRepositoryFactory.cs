@@ -7,7 +7,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         protected override void Seed(ref InMemoryOrderRepository repository)
         {
-            repository.CreateOrder(new Order());
+            var orders = new OrderTestData().GetEnumerator();
+
+            while (orders.MoveNext())
+                repository.CreateOrder(orders.Current);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public override IScannable CreateScannable()
         {
-            return new WeightedItem(_product, _weight);
+            return new WeightedItem(Product, _weight);
         }
     }
 }

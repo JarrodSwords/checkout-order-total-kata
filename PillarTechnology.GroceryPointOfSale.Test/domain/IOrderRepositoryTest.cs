@@ -17,24 +17,26 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Fact]
-        public void CreateOrder_AddsOrderToStorage()
+        public void CreateOrder_CreatesPersistedOrder()
         {
-            var storedOrder = _orderRepository.CreateOrder(_order);
+            var order = _orderRepository.CreateOrder(_order);
 
-            storedOrder.Should().NotBeNull();
-            storedOrder.Id.Should().BePositive();
+            var persistedOrder = _orderRepository.FindOrder(order.Id);
+            persistedOrder.Should().NotBeNull();
+            persistedOrder.Id.Should().BePositive();
         }
 
         [Fact]
-        public void UpdateOrder_UpdatesNonIdentityOrderFieldsInStorage()
+        public void UpdateOrder_UpdatesNonIdentityOrderFieldsInPersistedOrder()
         {
             var order = _orderRepository.CreateOrder(_order);
             var dummyScannable = new Mock<IScannable>().Object;
             order.AddScannable(dummyScannable);
 
-            var storedOrder = _orderRepository.UpdateOrder(order);
+            order = _orderRepository.UpdateOrder(order);
 
-            storedOrder.ScannedItems.Should().Equal(order.ScannedItems);
+            var persistedOrder = _orderRepository.FindOrder(order.Id);
+            persistedOrder.ScannedItems.Should().Equal(order.ScannedItems);
         }
     }
 }

@@ -15,25 +15,35 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _productRepository = productRepository;
         }
 
-        public IScannable Scan(long orderId, string productName)
+        public IScannable RemoveScannedItem(long orderId, int itemId)
+        {
+            var order = _orderRepository.FindOrder(orderId);
+
+            var removedItem = order.RemoveScannedItem(itemId);
+            _orderRepository.UpdateOrder(order);
+
+            return removedItem;
+        }
+
+        public IScannable ScanItem(long orderId, string productName)
         {
             var product = _productRepository.FindProduct(productName);
             var validator = new SellByUnitScanInputValidator(product);
             var itemFactory = new ItemFactory(product);
 
-            return Scan(orderId, product, validator, itemFactory);
+            return ScanItem(orderId, product, validator, itemFactory);
         }
 
-        public IScannable Scan(long orderId, string productName, decimal weight)
+        public IScannable ScanItem(long orderId, string productName, decimal weight)
         {
             var product = _productRepository.FindProduct(productName);
             var validator = new SellByWeightScanInputValidator(product, weight);
             var weightedItemFactory = new WeightedItemFactory(product, weight);
 
-            return Scan(orderId, product, validator, weightedItemFactory);
+            return ScanItem(orderId, product, validator, weightedItemFactory);
         }
 
-        private IScannable Scan(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
+        private IScannable ScanItem(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
         {
             validator.Validate();
 
