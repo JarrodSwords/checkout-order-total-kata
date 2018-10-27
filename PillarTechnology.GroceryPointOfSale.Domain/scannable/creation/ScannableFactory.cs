@@ -5,11 +5,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     /// </remarks>
     public abstract class ScannableFactory
     {
-        protected readonly Product _product;
+        public Product Product { get; set; }
 
         public ScannableFactory(Product product)
         {
-            _product = product;
+            Product = product;
         }
 
         public abstract IScannable CreateScannable();

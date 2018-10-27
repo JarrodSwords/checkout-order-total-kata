@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
@@ -11,8 +12,17 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Order AddScannable(IScannable scannable)
         {
+            scannable.Id = ScannableIdGenerator.Next(_scannedItems);
             _scannedItems.Add(scannable);
             return this;
+        }
+    }
+
+    public class ScannableIdGenerator
+    {
+        public static int Next(IEnumerable<IScannable> scannedItems)
+        {
+            return scannedItems.Count() == 0 ? 1 : scannedItems.Max(x => x.Id) + 1;
         }
     }
 }
