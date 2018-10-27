@@ -26,5 +26,17 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
             return item;
         }
+
+        public IScannable Scan(long orderId, string productName, decimal weight)
+        {
+            var order = _orderRepository.FindOrder(orderId);
+            var product = _productRepository.FindProduct(productName);
+            
+            var item = new WeightedItem(product, weight);
+            order.AddScannable(item);
+            _orderRepository.UpdateOrder(order);
+
+            return item;
+        }
     }
 }
