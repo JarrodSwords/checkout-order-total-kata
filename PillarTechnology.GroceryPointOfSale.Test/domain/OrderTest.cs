@@ -7,22 +7,19 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class OrderTest
     {
-        private Order _order;
+        private Order _order = OrderTestData.CreateOrderWithScannedItems();
         private ScannedItemTestData _scannedItemTestData = new ScannedItemTestData();
 
-        public OrderTest()
-        {
-            _order = new Order();
-        }
-
         [Fact]
-        public void AddScannable_ScannableIsAddedToScannedItems()
+        public void AddScannable_ScannableIsAddedToScannedItemsAndNewInvoiceIsCreated()
         {
+            var invoice = _order.Invoice;
             var scannedItem = _scannedItemTestData.GetScannable();
 
             _order.AddScannable(scannedItem);
 
             _order.ScannedItems.Should().Contain(scannedItem);
+            _order.Invoice.Should().NotBe(invoice);
         }
 
         [Fact]
@@ -37,22 +34,14 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Fact]
-        public void RemoveScannable_ScannableIsRemovedFromScannedItems()
-        {
-            var order = OrderTestData.CreateOrderWithScannedItems();
-            var itemId = order.ScannedItems.Select(x => x.Id).First();
-
-            var removedItem = order.RemoveScannedItem(itemId);
-
-            order.ScannedItems.Should().NotContain(removedItem);
-        }
-
-        [Fact]
-        public void OnScannedItemsCollectionChanged_CreatesNewInvoice()
+        public void RemoveScannable_ScannableIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
         {
             var invoice = _order.Invoice;
-            _order.AddScannable(_scannedItemTestData.GetScannable());
+            var itemId = _order.ScannedItems.Select(x => x.Id).First();
 
+            var removedItem = _order.RemoveScannedItem(itemId);
+
+            _order.ScannedItems.Should().NotContain(removedItem);
             _order.Invoice.Should().NotBe(invoice);
         }
     }
