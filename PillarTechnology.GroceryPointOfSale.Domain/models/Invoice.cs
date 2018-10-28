@@ -17,6 +17,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             PreTaxTotal = CalculatePreTaxTotal(LineItems);
         }
 
+        public override string ToString()
+        {
+            return $"Order: {OrderId}, Pre-tax total: {PreTaxTotal}";
+        }
+
         public static Money CalculatePreTaxTotal(ICollection<LineItem> lineItems)
         {
             return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));

@@ -25,7 +25,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
 
-            var lineItemScannedItemIds = lineItems.Select(x => x.ScannedItemId);
+            var lineItemScannedItemIds = lineItems.Select(x => x.ScannedItemId).ToList();
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }
