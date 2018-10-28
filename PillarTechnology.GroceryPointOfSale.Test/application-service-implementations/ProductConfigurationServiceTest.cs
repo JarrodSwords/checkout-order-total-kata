@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentAssertions;
-using Moq;
 using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;

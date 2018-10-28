@@ -1,6 +1,5 @@
 using System.Linq;
 using FluentAssertions;
-using Moq;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
@@ -9,6 +8,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public class OrderTest
     {
         private Order _order;
+        private ScannedItemTestData _scannedItemTestData = new ScannedItemTestData();
 
         public OrderTest()
         {
@@ -18,11 +18,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [Fact]
         public void AddScannable_ScannableIsAddedToScannedItems()
         {
-            var dummyScannable = new Mock<IScannable>().Object;
+            var scannedItem = _scannedItemTestData.GetScannable();
 
-            _order.AddScannable(dummyScannable);
+            _order.AddScannable(scannedItem);
 
-            _order.ScannedItems.Should().Contain(dummyScannable);
+            _order.ScannedItems.Should().Contain(scannedItem);
         }
 
         [Fact]
@@ -45,6 +45,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var removedItem = order.RemoveScannedItem(itemId);
 
             order.ScannedItems.Should().NotContain(removedItem);
+        }
+
+        [Fact]
+        public void OnScannedItemsCollectionChanged_CreatesNewInvoice()
+        {
+            var invoice = _order.Invoice;
+            _order.AddScannable(_scannedItemTestData.GetScannable());
+
+            _order.Invoice.Should().NotBe(invoice);
         }
     }
 }

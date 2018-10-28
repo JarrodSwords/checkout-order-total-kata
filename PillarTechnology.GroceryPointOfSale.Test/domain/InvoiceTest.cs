@@ -1,6 +1,5 @@
 using System.Linq;
 using FluentAssertions;
-using Moq;
 using NodaMoney;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
