@@ -8,11 +8,18 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         public long OrderId { get; }
         public ICollection<LineItem> LineItems { get; }
+        public Money PreTaxTotal { get; set; }
 
         public Invoice(Order order)
         {
             OrderId = order.Id;
             LineItems = CreateLineItems(order.ScannedItems);
+            PreTaxTotal = CalculatePreTaxTotal(LineItems);
+        }
+
+        public static Money CalculatePreTaxTotal(ICollection<LineItem> lineItems)
+        {
+            return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
         }
 
         public static ICollection<LineItem> CreateLineItems(IEnumerable<IScannable> scannedItems)
