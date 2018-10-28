@@ -1,6 +1,5 @@
 using System.Linq;
 using FluentAssertions;
-using Moq;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
@@ -8,21 +7,19 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class OrderTest
     {
-        private Order _order;
-
-        public OrderTest()
-        {
-            _order = new Order();
-        }
+        private Order _order = OrderTestData.CreateOrderWithScannedItems();
+        private ScannedItemTestData _scannedItemTestData = new ScannedItemTestData();
 
         [Fact]
-        public void AddScannable_ScannableIsAddedToScannedItems()
+        public void AddScannable_ScannableIsAddedToScannedItemsAndNewInvoiceIsCreated()
         {
-            var dummyScannable = new Mock<IScannable>().Object;
+            var invoice = _order.Invoice;
+            var scannedItem = _scannedItemTestData.GetScannable();
 
-            _order.AddScannable(dummyScannable);
+            _order.AddScannable(scannedItem);
 
-            _order.ScannedItems.Should().Contain(dummyScannable);
+            _order.ScannedItems.Should().Contain(scannedItem);
+            _order.Invoice.Should().NotBe(invoice);
         }
 
         [Fact]
@@ -37,14 +34,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Fact]
-        public void RemoveScannable_ScannableIsRemovedFromScannedItems()
+        public void RemoveScannable_ScannableIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
         {
-            var order = OrderTestData.CreateOrderWithScannedItems();
-            var itemId = order.ScannedItems.Select(x => x.Id).First();
+            var invoice = _order.Invoice;
+            var itemId = _order.ScannedItems.Select(x => x.Id).First();
 
-            var removedItem = order.RemoveScannedItem(itemId);
+            var removedItem = _order.RemoveScannedItem(itemId);
 
-            order.ScannedItems.Should().NotContain(removedItem);
+            _order.ScannedItems.Should().NotContain(removedItem);
+            _order.Invoice.Should().NotBe(invoice);
         }
     }
 }

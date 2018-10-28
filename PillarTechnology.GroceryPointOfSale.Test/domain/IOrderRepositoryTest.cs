@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Moq;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
@@ -30,7 +29,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void UpdateOrder_UpdatesNonIdentityOrderFieldsInPersistedOrder()
         {
             var order = _orderRepository.CreateOrder(_order);
-            var dummyScannable = new Mock<IScannable>().Object;
+            var dummyScannable = new ScannedItemTestData().GetScannable();
             order.AddScannable(dummyScannable);
 
             order = _orderRepository.UpdateOrder(order);

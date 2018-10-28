@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Moq;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;

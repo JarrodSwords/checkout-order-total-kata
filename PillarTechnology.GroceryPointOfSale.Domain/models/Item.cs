@@ -12,5 +12,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             _product = product;
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Product: {Product.Name}";
+        }
     }
 }
