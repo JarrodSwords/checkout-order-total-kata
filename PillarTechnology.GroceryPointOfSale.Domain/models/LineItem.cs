@@ -6,9 +6,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         public string ProductName { get; }
         public Money SalePrice { get; }
+        public int? ScannedItemId { get; set; }
 
-        public LineItem(string productName, Money salePrice)
+        public LineItem(string productName, Money salePrice, int? scannedItemId = null)
         {
+            ScannedItemId = scannedItemId;
             ProductName = productName;
             SalePrice = salePrice;
         }

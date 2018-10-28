@@ -11,7 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public override LineItem CreateLineItem()
         {
-            return new LineItem(_scannable.Product.Name, _scannable.Product.RetailPrice);
+            return new LineItem(_scannable.Product.Name, _scannable.Product.RetailPrice, _scannable.Id);
         }
     }
 }
