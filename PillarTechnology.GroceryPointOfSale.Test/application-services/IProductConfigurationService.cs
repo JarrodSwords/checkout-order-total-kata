@@ -17,16 +17,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("turkey", 1.5, "Weight")]
         public void CreateProduct_CreatesPersistedProduct(string productName, double retailPrice, string sellByType)
         {
-            var createProductDto = new CreateProductDto(productName, (decimal)retailPrice, sellByType);
+            var createProductDto = new CreateProductDto(productName, (decimal) retailPrice, sellByType);
 
             var persistedProductDto = _productConfigurationService.CreateProduct(createProductDto);
 
             persistedProductDto.Should().BeEquivalentTo(createProductDto);
         }
 
-        [Theory]
-        [ClassData(typeof(ProductTestData))]
-        public void CreateProduct_WhenProductExists_ThrowsArgumentException(string productName)
+        [Fact]
+        public void CreateProduct_WithExistingProduct_ThrowsArgumentException()
         {
             var productDto = new ProductTestData().GetProductSoldByUnit();
             var createProductDto = new CreateProductDto { Name = productDto.Name };
@@ -37,42 +36,40 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage($"*Product name \"{productDto.Name}\" already exists*");
         }
 
+        [Fact]
+        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException()
+        {
+            var productDto = new CreateProductDto("milk", -1m, "Unit");
+
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+
+            addIncompleteProduct.Should().Throw<ArgumentException>()
+                .WithMessage("*Product retail price cannot be negative*");
+        }
+
         [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
         public void CreateProduct_WithoutName_ThrowsArgumentException(string productName)
         {
-            var createProductDto = new CreateProductDto { Name = productName, RetailPrice = 1 };
+            var createProductDto = new CreateProductDto(productName, 1m, "Unit");
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
             addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage($"*Product name is required*");
+                .WithMessage("*Product name is required*");
         }
 
-        [Theory]
-        [InlineData("milk", null)]
-        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
+        [Fact]
+        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException()
         {
-            var productDto = CreateCreateProductDto(productName, retailPrice);
+            var productDto = new CreateProductDto("milk", null, "Unit");
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
 
             addIncompleteProduct.Should().Throw<ArgumentException>()
                 .WithMessage($"*Product retail price is required*");
-        }
-
-        [Theory]
-        [InlineData("milk", -1)]
-        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
-        {
-            var productDto = CreateCreateProductDto(productName, retailPrice);
-
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
-
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage($"*Product retail price cannot be negative*");
         }
 
         #endregion

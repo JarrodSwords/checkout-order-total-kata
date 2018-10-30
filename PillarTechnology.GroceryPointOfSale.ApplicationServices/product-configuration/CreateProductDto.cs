@@ -12,7 +12,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
         {
         }
 
-        public CreateProductDto(string name, decimal retailPrice, string sellByType)
+        public CreateProductDto(string name, decimal? retailPrice, string sellByType)
         {
             Name = name;
             RetailPrice = retailPrice;
