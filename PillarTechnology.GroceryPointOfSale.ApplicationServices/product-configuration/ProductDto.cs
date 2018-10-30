@@ -5,7 +5,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
     public class ProductDto
     {
         public string Name { get; set; }
-        public decimal? RetailPrice { get; set; }
-        public SellByType SellByType { get; set; }
+        public decimal RetailPrice { get; set; }
+        public string SellByType { get; set; }
     }
 }

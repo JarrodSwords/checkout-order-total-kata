@@ -1,6 +1,3 @@
-using PillarTechnology.GroceryPointOfSale.Domain;
-using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;
-
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class RepositoryFactory<T> where T : new()

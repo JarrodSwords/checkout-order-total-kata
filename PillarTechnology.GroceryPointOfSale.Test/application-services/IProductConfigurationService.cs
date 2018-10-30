@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using FluentAssertions;using NodaMoney;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
+using FluentAssertions;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
@@ -15,88 +10,116 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 
-        [Fact]
-        public void CreateProduct_CreatesPersistedProduct()
-        {
-            var productDto = new ProductDto
-            {
-                Name = "milk",
-                RetailPrice = 1.99m
-            };
+        #region Create product
 
-            var persistedProductDto = _productConfigurationService.CreateProduct(productDto);
-            persistedProductDto.Should().BeEquivalentTo(productDto);
+        [Theory]
+        [InlineData("milk", 1.99, "Unit")]
+        [InlineData("turkey", 1.5, "Weight")]
+        public void CreateProduct_CreatesPersistedProduct(string productName, double retailPrice, string sellByType)
+        {
+            var createProductDto = new UpsertProductDto(productName, (decimal) retailPrice, sellByType);
+
+            var persistedProductDto = _productConfigurationService.CreateProduct(createProductDto);
+
+            persistedProductDto.Should().BeEquivalentTo(createProductDto);
         }
 
         [Theory]
-        [ClassData(typeof(ProductTestData))]
-        public void CreateProduct_WhenProductExists_ThrowsArgumentException(string productName)
+        [InlineData(null, "*Product name is required*")]
+        [InlineData("", "*Product name is required*")]
+        [InlineData(" ", "*Product name is required*")]
+        [InlineData("can of soup", "*Product name \"can of soup\" already exists*")]
+        public void CreateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
-            var productDto = _productService.FindProduct(productName);
+            var createProductDto = new UpsertProductDto(productName, 1m, "Unit");
 
-            Action addExistingProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addExistingProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product already exists");
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
-        [InlineData(null, 1)]
-        [InlineData("", 1)]
-        [InlineData(" ", 1)]
-        public void CreateProduct_WithoutName_ThrowsArgumentException(string productName, double? retailPrice)
+        [InlineData(null, "*Product retail price is required*")]
+        [InlineData(-1, "*Product retail price cannot be negative*")]
+        public void CreateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var productDto = CreateProductDto(productName, retailPrice);
+            var createProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product name is required");
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
-        [InlineData("milk", null)]
-        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
+        [InlineData(null, "*Product sell by type is required*")]
+        [InlineData("", "*Product sell by type is required*")]
+        [InlineData(" ", "*Product sell by type is required*")]
+        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
+        public void CreateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            var productDto = CreateProductDto(productName, retailPrice);
+            var createProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product retail price is required");
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
+        #endregion
+
+        #region Update product
+
+        [Theory]
+        [InlineData("can of soup", 0.99, "Weight")]
+        [InlineData("lean ground beef", 2.5, "Unit")]
+        public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
+        {
+            var updateProductDto = new UpsertProductDto(productName, (decimal)retailPrice, sellByType);
+
+            var persistedProductDto = _productConfigurationService.UpdateProduct(updateProductDto);
+
+            persistedProductDto.Should().BeEquivalentTo(updateProductDto);
         }
 
         [Theory]
-        [InlineData("milk", -1)]
-        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException(string productName, double? retailPrice)
+        [InlineData(null, "*Product name is required*")]
+        [InlineData("", "*Product name is required*")]
+        [InlineData(" ", "*Product name is required*")]
+        [InlineData("milk", "*Product name \"milk\" does not exist*")]
+        public void UpdateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
-            var productDto = CreateProductDto(productName, retailPrice);
+            var updateProductDto = new UpsertProductDto(productName, 1m, "Unit");
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage("Product retail price must not be negative");
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
-        [ClassData(typeof(ProductTestData))]
-        public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
+        [InlineData(null, "*Product retail price is required*")]
+        [InlineData(-1, "*Product retail price cannot be negative*")]
+        public void UpdateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var productDto = _productService.FindProduct(productName);
-            productDto.RetailPrice++;
+            var updateProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
 
-            var persistedProductDto = _productConfigurationService.UpdateProduct(productDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
 
-            persistedProductDto.Should().BeEquivalentTo(productDto);
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        private ProductDto CreateProductDto(string productName, double? retailPrice)
+        [Theory]
+        [InlineData(null, "*Product sell by type is required*")]
+        [InlineData("", "*Product sell by type is required*")]
+        [InlineData(" ", "*Product sell by type is required*")]
+        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
+        public void UpdateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            return new ProductDto
-            {
-                Name = productName,
-                    RetailPrice = (decimal?) retailPrice
-            };
+            var updateProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
+
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
+
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
+
+        #endregion
     }
 }
