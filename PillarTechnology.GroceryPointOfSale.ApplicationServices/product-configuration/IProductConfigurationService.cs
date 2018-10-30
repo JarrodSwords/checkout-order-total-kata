@@ -5,7 +5,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
     public interface IProductConfigurationService
     {
-        ProductDto CreateProduct(ProductDto productDto);
+        ProductDto CreateProduct(CreateProductDto productDto);
         ProductDto UpdateProduct(ProductDto productDto);
     }
 }

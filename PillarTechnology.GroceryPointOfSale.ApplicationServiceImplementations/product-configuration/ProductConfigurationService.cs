@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using AutoMapper;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
@@ -9,20 +10,22 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly ICreateProductValidator _productValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, ICreateProductValidator productValidator)
+        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;
-            _productValidator = productValidator;
         }
 
-        public ProductDto CreateProduct(ProductDto productDto)
+        public ProductDto CreateProduct(CreateProductDto createProductDto)
         {
-            _productValidator.Validate(productDto);
-
-            var product = _mapper.Map<ProductDto, Product>(productDto);
+            var validator = new CreateProductDtoValidator(_productRepository);
+            var validationResult = validator.Validate(createProductDto);
+            
+            if (!validationResult.IsValid)
+                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
+            
+            var product = _mapper.Map<CreateProductDto, Product>(createProductDto);
             var persistedProduct = _productRepository.CreateProduct(product);
 
             return _mapper.Map<Product, ProductDto>(persistedProduct);
