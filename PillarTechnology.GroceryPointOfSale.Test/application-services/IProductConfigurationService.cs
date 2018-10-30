@@ -33,9 +33,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new CreateProductDto(productName, 1m, "Unit");
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action addProductWithInvalidName = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            addProductWithInvalidName.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -45,9 +45,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new CreateProductDto("milk", (decimal?)retailPrice, "Unit");
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action addProductWithInvalidRetailPrice = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            addProductWithInvalidRetailPrice.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -59,21 +59,22 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new CreateProductDto("milk", 1.99m, sellByType);
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action addProductWithInvalidSellByType = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
-        }
+            addProductWithInvalidSellByType.Should().Throw<ArgumentException>().WithMessage(message);
+        }   
 
         #endregion
 
         #region Update product
 
         [Theory]
-        [ClassData(typeof(ProductTestData))]
-        public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
+        [InlineData("can of soup", 0.99, "Weight")]
+        public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
         {
             var productDto = _productService.FindProduct(productName);
-            productDto.RetailPrice++;
+            productDto.RetailPrice = (decimal)retailPrice;
+            productDto.SellByType = sellByType;
 
             var persistedProductDto = _productConfigurationService.UpdateProduct(productDto);
 
