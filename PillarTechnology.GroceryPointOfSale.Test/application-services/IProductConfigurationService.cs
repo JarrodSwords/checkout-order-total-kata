@@ -72,6 +72,21 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage($"*Product retail price is required*");
         }
 
+        [Theory]
+        [InlineData(null, "*Product sell by type is required*")]
+        [InlineData("", "*Product sell by type is required*")]
+        [InlineData(" ", "*Product sell by type is required*")]
+        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
+        public void CreateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
+        {
+            var productDto = new CreateProductDto("milk", 1.99m, sellByType);
+
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+
+            addIncompleteProduct.Should().Throw<ArgumentException>()
+                .WithMessage(message);
+        }
+
         #endregion
 
         #region Update product

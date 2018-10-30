@@ -28,7 +28,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
                 .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
 
             RuleFor(x => x.SellByType)
-                .Must(x => sellByTypes.Contains(x)).WithMessage($"Sell by type \"{{PropertyValue}}\" not in: {string.Join(", ", sellByTypes)}");
+                .NotEmpty().WithMessage("Product sell by type is required")
+                .Must(x => sellByTypes.Contains(x)).WithMessage($"Product sell by type \"{{PropertyValue}}\" is not in: {string.Join(", ", sellByTypes)}");
         }
     }
 }
