@@ -24,52 +24,30 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             persistedProductDto.Should().BeEquivalentTo(createProductDto);
         }
 
-        [Fact]
-        public void CreateProduct_WithExistingProduct_ThrowsArgumentException()
-        {
-            var productDto = new ProductTestData().GetProductSoldByUnit();
-            var createProductDto = new CreateProductDto { Name = productDto.Name };
-
-            Action addExistingProduct = () => _productConfigurationService.CreateProduct(createProductDto);
-
-            addExistingProduct.Should().Throw<ArgumentException>()
-                .WithMessage($"*Product name \"{productDto.Name}\" already exists*");
-        }
-
-        [Fact]
-        public void CreateProduct_WithNegativeRetailPrice_ThrowsArgumentException()
-        {
-            var productDto = new CreateProductDto("milk", -1m, "Unit");
-
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
-
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage("*Product retail price cannot be negative*");
-        }
-
         [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void CreateProduct_WithoutName_ThrowsArgumentException(string productName)
+        [InlineData(null, "*Product name is required*")]
+        [InlineData("", "*Product name is required*")]
+        [InlineData(" ", "*Product name is required*")]
+        [InlineData("can of soup", "*Product name \"can of soup\" already exists*")]
+        public void CreateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
             var createProductDto = new CreateProductDto(productName, 1m, "Unit");
 
             Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage("*Product name is required*");
+            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        [Fact]
-        public void CreateProduct_WithoutRetailPrice_ThrowsArgumentException()
+        [Theory]
+        [InlineData(null, "*Product retail price is required*")]
+        [InlineData(-1, "*Product retail price cannot be negative*")]
+        public void CreateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var productDto = new CreateProductDto("milk", null, "Unit");
+            var createProductDto = new CreateProductDto("milk", (decimal?)retailPrice, "Unit");
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage($"*Product retail price is required*");
+            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -79,12 +57,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
         public void CreateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            var productDto = new CreateProductDto("milk", 1.99m, sellByType);
+            var createProductDto = new CreateProductDto("milk", 1.99m, sellByType);
 
-            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(productDto);
+            Action addIncompleteProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addIncompleteProduct.Should().Throw<ArgumentException>()
-                .WithMessage(message);
+            addIncompleteProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         #endregion
@@ -104,14 +81,5 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         #endregion
-
-        private CreateProductDto CreateCreateProductDto(string productName, double? retailPrice)
-        {
-            return new CreateProductDto
-            {
-                Name = productName,
-                    RetailPrice = (decimal?) retailPrice
-            };
-        }
     }
 }
