@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AutoMapper;
+using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
@@ -19,7 +20,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateProduct(UpsertProductDto dto)
         {
-            ValidateCreateProductDto(dto);
+            Validate(dto, new CreateProductDtoValidator(_productRepository));
 
             var product = _mapper.Map<UpsertProductDto, Product>(dto);
             var persistedProduct = _productRepository.CreateProduct(product);
@@ -29,7 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto UpdateProduct(UpsertProductDto dto)
         {
-            ValidateUpdateProductDto(dto);
+            Validate(dto, new UpdateProductDtoValidator(_productRepository));
 
             var product = _productRepository.FindProduct(dto.Name);
             _mapper.Map<UpsertProductDto, Product>(dto, product);
@@ -38,18 +39,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return _mapper.Map<Product, ProductDto>(persistedProduct);
         }
 
-        private void ValidateCreateProductDto(UpsertProductDto dto)
+        private void Validate(object dto, IValidator validator)
         {
-            var validator = new CreateProductDtoValidator(_productRepository);
-            var validationResult = validator.Validate(dto);
-
-            if (!validationResult.IsValid)
-                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
-        }
-
-        private void ValidateUpdateProductDto(UpsertProductDto dto)
-        {
-            var validator = new UpdateProductDtoValidator(_productRepository);
             var validationResult = validator.Validate(dto);
 
             if (!validationResult.IsValid)
