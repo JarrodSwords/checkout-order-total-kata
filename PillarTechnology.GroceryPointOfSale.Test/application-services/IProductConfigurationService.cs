@@ -83,6 +83,18 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
+        [InlineData(null, "*Product retail price is required*")]
+        [InlineData(-1, "*Product retail price cannot be negative*")]
+        public void UpdateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
+        {
+            var createProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
+
+            Action addProductWithInvalidRetailPrice = () => _productConfigurationService.UpdateProduct(createProductDto);
+
+            addProductWithInvalidRetailPrice.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
+        [Theory]
         [InlineData("can of soup", 0.99, "Weight")]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
         {
