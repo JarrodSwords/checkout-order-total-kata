@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
@@ -15,13 +17,18 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 
         private void CreateRules()
         {
+            var sellByTypes = Enum.GetNames(typeof(SellByType));
+
             RuleFor(x => x.Name).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product name is required")
-                .Must(x => !_productRepository.Exists(x)).WithMessage("Product \"{PropertyValue}\" already exists");
+                .Must(x => !_productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" already exists");
 
             RuleFor(x => x.RetailPrice).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Product retail price is required")
                 .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
+
+            RuleFor(x => x.SellByType)
+                .Must(x => sellByTypes.Contains(x)).WithMessage($"Sell by type \"{{PropertyValue}}\" not in: {string.Join(", ", sellByTypes)}");
         }
     }
 }

@@ -34,7 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             Action addExistingProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
             addExistingProduct.Should().Throw<ArgumentException>()
-                .WithMessage($"*Product \"{productDto.Name}\" already exists*");
+                .WithMessage($"*Product name \"{productDto.Name}\" already exists*");
         }
 
         [Theory]
