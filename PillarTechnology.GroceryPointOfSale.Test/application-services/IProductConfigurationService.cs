@@ -33,9 +33,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new UpsertProductDto(productName, 1m, "Unit");
 
-            Action addProductWithInvalidName = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addProductWithInvalidName.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -45,9 +45,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
 
-            Action addProductWithInvalidRetailPrice = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addProductWithInvalidRetailPrice.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -59,14 +59,26 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var createProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
 
-            Action addProductWithInvalidSellByType = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
 
-            addProductWithInvalidSellByType.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         #endregion
 
         #region Update product
+
+        [Theory]
+        [InlineData("can of soup", 0.99, "Weight")]
+        [InlineData("lean ground beef", 2.5, "Unit")]
+        public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
+        {
+            var updateProductDto = new UpsertProductDto(productName, (decimal)retailPrice, sellByType);
+
+            var persistedProductDto = _productConfigurationService.UpdateProduct(updateProductDto);
+
+            persistedProductDto.Should().BeEquivalentTo(updateProductDto);
+        }
 
         [Theory]
         [InlineData(null, "*Product name is required*")]
@@ -77,9 +89,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var updateProductDto = new UpsertProductDto(productName, 1m, "Unit");
 
-            Action addProductWithInvalidName = () => _productConfigurationService.UpdateProduct(updateProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
 
-            addProductWithInvalidName.Should().Throw<ArgumentException>().WithMessage(message);
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -87,22 +99,25 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(-1, "*Product retail price cannot be negative*")]
         public void UpdateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var createProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
+            var updateProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
 
-            Action addProductWithInvalidRetailPrice = () => _productConfigurationService.UpdateProduct(createProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
 
-            addProductWithInvalidRetailPrice.Should().Throw<ArgumentException>().WithMessage(message);
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
-        [InlineData("can of soup", 0.99, "Weight")]
-        public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
+        [InlineData(null, "*Product sell by type is required*")]
+        [InlineData("", "*Product sell by type is required*")]
+        [InlineData(" ", "*Product sell by type is required*")]
+        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
+        public void UpdateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            var updateProductDto = new UpsertProductDto(productName, 1m, "Unit");
+            var updateProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
 
-            var persistedProductDto = _productConfigurationService.UpdateProduct(updateProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
 
-            persistedProductDto.Should().BeEquivalentTo(updateProductDto);
+            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         #endregion
