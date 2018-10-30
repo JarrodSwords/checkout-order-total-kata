@@ -19,16 +19,21 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateProduct(CreateProductDto createProductDto)
         {
-            var validator = new CreateProductDtoValidator(_productRepository);
-            var validationResult = validator.Validate(createProductDto);
-            
-            if (!validationResult.IsValid)
-                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
+            ValidateCreateProductDto(createProductDto);
             
             var product = _mapper.Map<CreateProductDto, Product>(createProductDto);
             var persistedProduct = _productRepository.CreateProduct(product);
 
             return _mapper.Map<Product, ProductDto>(persistedProduct);
+        }
+
+        private void ValidateCreateProductDto(CreateProductDto createProductDto)
+        {
+            var validator = new CreateProductDtoValidator(_productRepository);
+            var validationResult = validator.Validate(createProductDto);
+            
+            if (!validationResult.IsValid)
+                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
         }
 
         public ProductDto UpdateProduct(ProductDto productDto)

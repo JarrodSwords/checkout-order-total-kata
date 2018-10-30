@@ -27,7 +27,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
                 .NotNull().WithMessage("Product retail price is required")
                 .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
 
-            RuleFor(x => x.SellByType)
+            RuleFor(x => x.SellByType).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product sell by type is required")
                 .Must(x => sellByTypes.Contains(x)).WithMessage($"Product sell by type \"{{PropertyValue}}\" is not in: {string.Join(", ", sellByTypes)}");
         }
