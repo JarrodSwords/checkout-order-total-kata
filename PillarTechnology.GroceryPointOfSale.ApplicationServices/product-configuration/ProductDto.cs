@@ -6,6 +6,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
     {
         public string Name { get; set; }
         public decimal RetailPrice { get; set; }
-        public SellByType SellByType { get; set; }
+        public string SellByType { get; set; }
     }
 }

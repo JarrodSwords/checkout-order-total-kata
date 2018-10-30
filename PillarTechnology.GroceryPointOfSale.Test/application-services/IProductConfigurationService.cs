@@ -10,13 +10,18 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 
-        [Fact]
-        public void CreateProduct_CreatesPersistedProduct()
-        {
-            var productDto = new CreateProductDto { Name = "milk", RetailPrice = 1.99m };
+        #region Create product
 
-            var persistedProductDto = _productConfigurationService.CreateProduct(productDto);
-            persistedProductDto.Should().BeEquivalentTo(productDto);
+        [Theory]
+        [InlineData("milk", 1.99, "Unit")]
+        [InlineData("turkey", 1.5, "Weight")]
+        public void CreateProduct_CreatesPersistedProduct(string productName, double retailPrice, string sellByType)
+        {
+            var createProductDto = new CreateProductDto(productName, (decimal)retailPrice, sellByType);
+
+            var persistedProductDto = _productConfigurationService.CreateProduct(createProductDto);
+
+            persistedProductDto.Should().BeEquivalentTo(createProductDto);
         }
 
         [Theory]
@@ -70,6 +75,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 .WithMessage($"*Product retail price cannot be negative*");
         }
 
+        #endregion
+
+        #region Update product
+
         [Theory]
         [ClassData(typeof(ProductTestData))]
         public void UpdateProduct_SetRetailPrice_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
@@ -81,6 +90,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             persistedProductDto.Should().BeEquivalentTo(productDto);
         }
+
+        #endregion
 
         private CreateProductDto CreateCreateProductDto(string productName, double? retailPrice)
         {
