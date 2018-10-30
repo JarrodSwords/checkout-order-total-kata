@@ -5,11 +5,11 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
-    public class CreateProductDtoValidator : AbstractValidator<UpsertProductDto>
+    public class UpdateProductDtoValidator : AbstractValidator<UpsertProductDto>
     {
         private readonly IProductRepository _productRepository;
 
-        public CreateProductDtoValidator(IProductRepository productRepository)
+        public UpdateProductDtoValidator(IProductRepository productRepository)
         {
             _productRepository = productRepository;
             CreateRules();
@@ -21,7 +21,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 
             RuleFor(x => x.Name).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product name is required")
-                .Must(x => !_productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" already exists");
+                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist");
 
             RuleFor(x => x.RetailPrice).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Product retail price is required")

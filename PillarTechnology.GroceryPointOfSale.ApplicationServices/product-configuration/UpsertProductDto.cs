@@ -2,17 +2,17 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
-    public class CreateProductDto
+    public class UpsertProductDto
     {
         public string Name { get; set; }
         public decimal? RetailPrice { get; set; }
         public string SellByType { get; set; }
 
-        public CreateProductDto()
+        public UpsertProductDto()
         {
         }
 
-        public CreateProductDto(string name, decimal? retailPrice, string sellByType)
+        public UpsertProductDto(string name, decimal? retailPrice, string sellByType)
         {
             Name = name;
             RetailPrice = retailPrice;
