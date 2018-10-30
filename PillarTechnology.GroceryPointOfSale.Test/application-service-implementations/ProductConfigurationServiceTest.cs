@@ -1,9 +1,5 @@
 using AutoMapper;
-using FluentAssertions;
 using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
-using PillarTechnology.GroceryPointOfSale.Domain;
-using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;
-using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {

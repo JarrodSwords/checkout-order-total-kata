@@ -16,12 +16,12 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
         private void CreateRules()
         {
             RuleFor(x => x.Name).Cascade(CascadeMode.StopOnFirstFailure)
-                .Must(x => !_productRepository.Exists(x)).WithMessage(ErrorMessages.GetMessage(Error.CannotCreateExistingProduct))
-                .NotEmpty().WithMessage(ErrorMessages.GetMessage(Error.ProductNameRequired));
+                .NotEmpty().WithMessage("Product name is required")
+                .Must(x => !_productRepository.Exists(x)).WithMessage("Product \"{PropertyValue}\" already exists");
 
             RuleFor(x => x.RetailPrice).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage(ErrorMessages.GetMessage(Error.ProductRetailPriceRequired))
-                .GreaterThanOrEqualTo(0).WithMessage(ErrorMessages.GetMessage(Error.ProductRetailPriceCannotBeNegative));
+                .NotNull().WithMessage("Product retail price is required")
+                .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
         }
     }
 }
