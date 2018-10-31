@@ -1,4 +1,6 @@
 using AutoMapper;
+using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
@@ -6,6 +8,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         public MappingProfile()
         {
+            CreateMap<Markdown, MarkdownDto>();
+            CreateMap<UpsertProductDto, Product>();
+            CreateMap<UpsertProductMarkdownDto, Markdown>();
         }
     }
 }

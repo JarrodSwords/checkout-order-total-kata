@@ -39,6 +39,22 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return _mapper.Map<Product, ProductDto>(persistedProduct);
         }
 
+        public ProductDto UpsertProductMarkdown(UpsertProductMarkdownDto dto)
+        {
+            Validate(dto, new UpsertProductMarkdownDtoValidator(_productRepository));
+
+            var product = _productRepository.FindProduct(dto.ProductName);
+            
+            if (product.Markdown == null)
+                product.Markdown = _mapper.Map<UpsertProductMarkdownDto, Markdown>(dto);
+            else
+                _mapper.Map<UpsertProductMarkdownDto, Markdown>(dto, product.Markdown);
+
+            var persistedProduct = _productRepository.UpdateProduct(product);
+
+            return _mapper.Map<Product, ProductDto>(persistedProduct);
+        }
+
         private void Validate(object dto, IValidator validator)
         {
             var validationResult = validator.Validate(dto);

@@ -12,17 +12,19 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public string Name { get { return _name; } }
         public Money RetailPrice { get; set; }
         public SellByType SellByType { get; set; }
+        public Markdown Markdown { get; set; }
 
         public Product()
         {
 
         }
 
-        public Product(string name, Money retailPrice, SellByType sellByType = SellByType.Unit)
+        public Product(string name, Money retailPrice, SellByType sellByType = SellByType.Unit, Markdown markdown = null)
         {
             _name = name;
             RetailPrice = retailPrice;
             SellByType = sellByType;
+            Markdown = markdown;
         }
     }
 }
