@@ -6,7 +6,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public InMemoryProductRepositoryTest()
         {
-            _productRepository = new InMemoryProductRepository();
+            _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
         }
     }
 }

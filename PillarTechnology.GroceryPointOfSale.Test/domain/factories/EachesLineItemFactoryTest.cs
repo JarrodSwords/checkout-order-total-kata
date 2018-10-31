@@ -7,12 +7,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class EachesLineItemFactoryTest : LineItemFactoryTest
     {
-        private ProductTestData _productTestData = new ProductTestData();
-
         [Fact]
         public override void CreateLineItem_ReturnsLineItem()
         {
-            var item = new Item(_productTestData.GetProductSoldByUnit());
+            var item = new Item(ProductProvider.GetProductSoldByUnit());
             var lineItem = new EachesLineItemFactory(item).CreateLineItem();
 
             lineItem.SalePrice.Should().Be(item.Product.RetailPrice);

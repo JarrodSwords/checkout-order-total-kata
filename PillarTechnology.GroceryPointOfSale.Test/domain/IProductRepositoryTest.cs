@@ -9,7 +9,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public abstract class IProductRepositoryTest
     {
         protected IProductRepository _productRepository;
-        private ProductTestData _productTestData = new ProductTestData();
 
         [Fact]
         public void CreateProduct_CreatesPersistedProduct()
@@ -21,10 +20,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
-        [ClassData(typeof(ProductTestData))]
+        [ClassData(typeof(ProductProvider))]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName)
         {
-            _productTestData.SeedRepository(ref _productRepository);
             var retailPrice = Money.USDollar(0.89m);
 
             var product = _productRepository.FindProduct(productName);
