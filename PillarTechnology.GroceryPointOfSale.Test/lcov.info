@@ -58,21 +58,29 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\product-configuration\validators\UpsertProductMarkdownDtoValidator.cs
 FN:18,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::CreateRules()
-FNDA:7,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::CreateRules()
-DA:19,7
-DA:20,7
-DA:21,7
-DA:22,11
-DA:24,7
+FNDA:10,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::CreateRules()
+DA:19,10
+DA:20,10
+DA:21,10
+DA:22,17
+DA:23,10
+DA:24,20
+DA:25,20
+DA:26,20
+DA:27,20
+DA:28,20
+DA:29,20
+DA:30,20
+DA:31,10
 FN:11,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-FNDA:7,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-DA:12,7
-DA:13,7
-DA:14,7
-DA:15,7
-DA:16,7
-LF:10
-LH:10
+FNDA:10,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDtoValidator::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
+DA:12,10
+DA:13,10
+DA:14,10
+DA:15,10
+DA:16,10
+LF:18
+LH:18
 BRF:0
 BRH:0
 FNF:2
@@ -104,13 +112,13 @@ FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\automapper\MappingProfile.cs
 FN:8,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.MappingProfile::.ctor()
-FNDA:31,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.MappingProfile::.ctor()
-DA:9,31
-DA:10,31
-DA:11,31
-DA:12,31
-DA:13,31
-DA:14,31
+FNDA:34,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.MappingProfile::.ctor()
+DA:9,34
+DA:10,34
+DA:11,34
+DA:12,34
+DA:13,34
+DA:14,34
 LF:6
 LH:6
 BRF:0
@@ -219,12 +227,12 @@ DA:21,0
 DA:22,0
 DA:23,0
 FN:12,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-FNDA:31,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-DA:13,31
-DA:14,31
-DA:15,31
-DA:16,31
-DA:17,31
+FNDA:34,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
+DA:13,34
+DA:14,34
+DA:15,34
+DA:16,34
+DA:17,34
 LF:9
 LH:5
 BRF:0
@@ -251,9 +259,9 @@ DA:37,2
 DA:39,2
 DA:40,2
 FN:42,PillarTechnology.GroceryPointOfSale.ApplicationServices.ProductDto PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::UpsertProductMarkdown(PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto)
-FNDA:7,PillarTechnology.GroceryPointOfSale.ApplicationServices.ProductDto PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::UpsertProductMarkdown(PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto)
-DA:43,7
-DA:44,7
+FNDA:10,PillarTechnology.GroceryPointOfSale.ApplicationServices.ProductDto PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::UpsertProductMarkdown(PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto)
+DA:43,10
+DA:44,10
 DA:46,3
 DA:48,3
 DA:49,3
@@ -264,23 +272,23 @@ DA:56,3
 BRDA:48,49,0,3
 BRDA:48,49,1,0
 FN:58,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::Validate(System.Object,FluentValidation.IValidator)
-FNDA:31,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::Validate(System.Object,FluentValidation.IValidator)
-DA:59,31
-DA:60,31
-DA:62,31
-DA:63,54
+FNDA:34,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::Validate(System.Object,FluentValidation.IValidator)
+DA:59,34
+DA:60,34
+DA:62,34
+DA:63,60
 DA:64,7
-BRDA:62,20,0,24
+BRDA:62,20,0,27
 BRDA:63,39,0,1
-BRDA:63,39,1,24
+BRDA:63,39,1,27
 BRDA:62,20,1,7
 FN:14,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-FNDA:31,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
-DA:15,31
-DA:16,31
-DA:17,31
-DA:18,31
-DA:19,31
+FNDA:34,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.ProductConfigurationService::.ctor(AutoMapper.IMapper,PillarTechnology.GroceryPointOfSale.Domain.IProductRepository)
+DA:15,34
+DA:16,34
+DA:17,34
+DA:18,34
+DA:19,34
 LF:32
 LH:31
 BRF:6
@@ -357,31 +365,31 @@ FNH:4
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.ApplicationServices\product-configuration\UpsertProductMarkdownDto.cs
 FN:6,System.String PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_ProductName()
-FNDA:21,System.String PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_ProductName()
-DA:7,21
+FNDA:35,System.String PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_ProductName()
+DA:7,35
 FN:7,System.Nullable`1<System.Decimal> PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_AmountOffRetail()
-FNDA:10,System.Nullable`1<System.Decimal> PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_AmountOffRetail()
-DA:8,10
+FNDA:31,System.Nullable`1<System.Decimal> PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_AmountOffRetail()
+DA:8,31
 FN:8,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_StartTime()
-FNDA:10,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_StartTime()
-DA:9,10
+FNDA:13,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_StartTime()
+DA:9,13
 FN:9,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_EndTime()
-FNDA:10,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_EndTime()
-DA:10,10
+FNDA:13,System.DateTime PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::get_EndTime()
+DA:10,13
 FN:11,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::.ctor()
 FNDA:0,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::.ctor()
 DA:12,0
 DA:13,0
 DA:14,0
 FN:15,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::.ctor(System.String,System.Nullable`1<System.Decimal>,System.DateTime,System.DateTime)
-FNDA:7,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::.ctor(System.String,System.Nullable`1<System.Decimal>,System.DateTime,System.DateTime)
-DA:16,7
-DA:17,7
-DA:18,7
-DA:19,7
-DA:20,7
-DA:21,7
-DA:22,7
+FNDA:10,System.Void PillarTechnology.GroceryPointOfSale.ApplicationServices.UpsertProductMarkdownDto::.ctor(System.String,System.Nullable`1<System.Decimal>,System.DateTime,System.DateTime)
+DA:16,10
+DA:17,10
+DA:18,10
+DA:19,10
+DA:20,10
+DA:21,10
+DA:22,10
 LF:14
 LH:11
 BRF:0
@@ -391,16 +399,16 @@ FNH:5
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\factories\EachesLineItemFactory.cs
 FN:12,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::CreateLineItem()
-FNDA:396,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::CreateLineItem()
-DA:13,396
-DA:14,396
+FNDA:394,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::CreateLineItem()
+DA:13,394
+DA:14,394
 DA:15,391
 FN:6,System.Void PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
-FNDA:392,System.Void PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
-DA:7,392
-DA:8,392
-DA:9,391
-DA:10,394
+FNDA:391,System.Void PillarTechnology.GroceryPointOfSale.Domain.EachesLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
+DA:7,391
+DA:8,389
+DA:9,389
+DA:10,391
 LF:7
 LH:7
 BRF:0
@@ -410,15 +418,15 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\factories\WeightedLineItemFactory.cs
 FN:12,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::CreateLineItem()
-FNDA:105,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::CreateLineItem()
-DA:13,105
-DA:14,105
+FNDA:106,PillarTechnology.GroceryPointOfSale.Domain.LineItem PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::CreateLineItem()
+DA:13,106
+DA:14,106
 DA:15,104
 FN:6,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.WeightedItem)
-FNDA:103,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.WeightedItem)
-DA:7,103
-DA:8,103
-DA:9,104
+FNDA:107,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedLineItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.WeightedItem)
+DA:7,107
+DA:8,107
+DA:9,107
 DA:10,106
 LF:7
 LH:7
@@ -435,8 +443,8 @@ FN:9,System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSal
 FNDA:91,System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem> PillarTechnology.GroceryPointOfSale.Domain.Invoice::get_LineItems()
 DA:10,91
 FN:10,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Invoice::get_PreTaxTotal()
-FNDA:94,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Invoice::get_PreTaxTotal()
-DA:11,94
+FNDA:92,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Invoice::get_PreTaxTotal()
+DA:11,92
 FN:20,System.String PillarTechnology.GroceryPointOfSale.Domain.Invoice::ToString()
 FNDA:0,System.String PillarTechnology.GroceryPointOfSale.Domain.Invoice::ToString()
 DA:21,0
@@ -445,36 +453,36 @@ DA:23,0
 FN:25,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Invoice::CalculatePreTaxTotal(System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem>)
 FNDA:93,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Invoice::CalculatePreTaxTotal(System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem>)
 DA:26,93
-DA:27,573
-DA:28,95
+DA:27,580
+DA:28,93
 BRDA:27,8,0,1
-BRDA:27,8,1,93
+BRDA:27,8,1,94
 FN:30,System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem> PillarTechnology.GroceryPointOfSale.Domain.Invoice::CreateLineItems(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
-FNDA:92,System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem> PillarTechnology.GroceryPointOfSale.Domain.Invoice::CreateLineItems(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
-DA:31,92
-DA:32,588
-DA:33,480
-DA:35,585
-DA:36,197
-DA:37,95
+FNDA:94,System.Collections.Generic.ICollection`1<PillarTechnology.GroceryPointOfSale.Domain.LineItem> PillarTechnology.GroceryPointOfSale.Domain.Invoice::CreateLineItems(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
+DA:31,94
+DA:32,583
+DA:33,481
+DA:35,595
+DA:36,201
+DA:37,96
 DA:39,92
-DA:40,94
-BRDA:32,8,0,2
-BRDA:32,8,1,93
-BRDA:32,44,0,1
-BRDA:32,44,1,95
+DA:40,92
+BRDA:32,8,0,1
+BRDA:32,8,1,94
+BRDA:32,44,0,2
+BRDA:32,44,1,93
 BRDA:35,88,0,1
-BRDA:35,88,1,95
+BRDA:35,88,1,96
 BRDA:35,124,0,1
-BRDA:35,124,1,93
+BRDA:35,124,1,94
 FN:12,System.Void PillarTechnology.GroceryPointOfSale.Domain.Invoice::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Order)
-FNDA:88,System.Void PillarTechnology.GroceryPointOfSale.Domain.Invoice::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Order)
-DA:13,88
-DA:14,89
-DA:15,88
-DA:16,90
-DA:17,90
-DA:18,94
+FNDA:90,System.Void PillarTechnology.GroceryPointOfSale.Domain.Invoice::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Order)
+DA:13,90
+DA:14,90
+DA:15,91
+DA:16,89
+DA:17,91
+DA:18,92
 LF:23
 LH:19
 BRF:10
@@ -484,22 +492,22 @@ FNH:5
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\models\Item.cs
 FN:6,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Item::get_Id()
-FNDA:997,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Item::get_Id()
-DA:7,997
+FNDA:1001,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Item::get_Id()
+DA:7,1001
 FN:8,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.Item::get_Product()
-FNDA:5876,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.Item::get_Product()
-DA:9,5876
+FNDA:5905,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.Item::get_Product()
+DA:9,5905
 FN:16,System.String PillarTechnology.GroceryPointOfSale.Domain.Item::ToString()
 FNDA:0,System.String PillarTechnology.GroceryPointOfSale.Domain.Item::ToString()
 DA:17,0
 DA:18,0
 DA:19,0
 FN:10,System.Void PillarTechnology.GroceryPointOfSale.Domain.Item::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-FNDA:121,System.Void PillarTechnology.GroceryPointOfSale.Domain.Item::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-DA:11,121
-DA:12,121
-DA:13,121
-DA:14,122
+FNDA:124,System.Void PillarTechnology.GroceryPointOfSale.Domain.Item::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
+DA:11,124
+DA:12,124
+DA:13,124
+DA:14,124
 LF:9
 LH:6
 BRF:0
@@ -512,24 +520,24 @@ FN:6,System.String PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_Prod
 FNDA:0,System.String PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_ProductName()
 DA:7,0
 FN:7,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_SalePrice()
-FNDA:491,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_SalePrice()
-DA:8,491
+FNDA:493,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_SalePrice()
+DA:8,493
 FN:8,System.Nullable`1<System.Int32> PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_ScannedItemId()
-FNDA:503,System.Nullable`1<System.Int32> PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_ScannedItemId()
-DA:9,503
+FNDA:507,System.Nullable`1<System.Int32> PillarTechnology.GroceryPointOfSale.Domain.LineItem::get_ScannedItemId()
+DA:9,507
 FN:18,System.String PillarTechnology.GroceryPointOfSale.Domain.LineItem::ToString()
 FNDA:0,System.String PillarTechnology.GroceryPointOfSale.Domain.LineItem::ToString()
 DA:19,0
 DA:20,0
 DA:21,0
 FN:10,System.Void PillarTechnology.GroceryPointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money,System.Nullable`1<System.Int32>)
-FNDA:503,System.Void PillarTechnology.GroceryPointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money,System.Nullable`1<System.Int32>)
-DA:11,503
+FNDA:498,System.Void PillarTechnology.GroceryPointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money,System.Nullable`1<System.Int32>)
+DA:11,498
 DA:12,500
-DA:13,502
-DA:14,497
+DA:13,501
+DA:14,498
 DA:15,498
-DA:16,497
+DA:16,498
 LF:12
 LH:8
 BRF:0
@@ -559,18 +567,18 @@ FN:11,System.Int64 PillarTechnology.GroceryPointOfSale.Domain.Order::get_Id()
 FNDA:159,System.Int64 PillarTechnology.GroceryPointOfSale.Domain.Order::get_Id()
 DA:12,159
 FN:12,System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable> PillarTechnology.GroceryPointOfSale.Domain.Order::get_ScannedItems()
-FNDA:315,System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable> PillarTechnology.GroceryPointOfSale.Domain.Order::get_ScannedItems()
-DA:13,315
+FNDA:311,System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable> PillarTechnology.GroceryPointOfSale.Domain.Order::get_ScannedItems()
+DA:13,311
 FN:13,PillarTechnology.GroceryPointOfSale.Domain.Invoice PillarTechnology.GroceryPointOfSale.Domain.Order::get_Invoice()
-FNDA:98,PillarTechnology.GroceryPointOfSale.Domain.Invoice PillarTechnology.GroceryPointOfSale.Domain.Order::get_Invoice()
-DA:14,98
+FNDA:96,PillarTechnology.GroceryPointOfSale.Domain.Invoice PillarTechnology.GroceryPointOfSale.Domain.Order::get_Invoice()
+DA:14,96
 FN:21,PillarTechnology.GroceryPointOfSale.Domain.Order PillarTechnology.GroceryPointOfSale.Domain.Order::AddScannable(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
-FNDA:92,PillarTechnology.GroceryPointOfSale.Domain.Order PillarTechnology.GroceryPointOfSale.Domain.Order::AddScannable(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
-DA:22,92
+FNDA:90,PillarTechnology.GroceryPointOfSale.Domain.Order PillarTechnology.GroceryPointOfSale.Domain.Order::AddScannable(PillarTechnology.GroceryPointOfSale.Domain.IScannable)
+DA:22,90
 DA:23,92
-DA:24,91
-DA:25,92
-DA:26,92
+DA:24,88
+DA:25,90
+DA:26,90
 FN:28,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
 FNDA:2,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
 DA:29,2
@@ -579,26 +587,26 @@ DA:31,2
 DA:32,2
 DA:33,2
 FN:35,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::ScannedItemsChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-FNDA:91,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::ScannedItemsChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-DA:36,91
-DA:37,91
-DA:38,94
+FNDA:89,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::ScannedItemsChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)
+DA:36,89
+DA:37,89
+DA:38,92
 FN:9,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::.ctor()
-FNDA:16,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::.ctor()
-DA:10,16
-DA:16,16
+FNDA:17,System.Void PillarTechnology.GroceryPointOfSale.Domain.Order::.ctor()
+DA:10,17
+DA:16,17
 DA:17,17
 DA:18,17
-DA:19,16
+DA:19,17
 FN:42,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
-FNDA:92,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
-DA:43,92
+FNDA:91,System.Int32 PillarTechnology.GroceryPointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PillarTechnology.GroceryPointOfSale.Domain.IScannable>)
+DA:43,91
 DA:44,463
-DA:45,90
-BRDA:44,7,0,79
+DA:45,89
+BRDA:44,7,0,78
 BRDA:44,16,0,1
-BRDA:44,16,1,79
-BRDA:44,7,1,13
+BRDA:44,16,1,78
+BRDA:44,7,1,12
 LF:24
 LH:24
 BRF:4
@@ -608,31 +616,31 @@ FNH:8
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\models\Product.cs
 FN:11,System.String PillarTechnology.GroceryPointOfSale.Domain.Product::get_Name()
-FNDA:2910,System.String PillarTechnology.GroceryPointOfSale.Domain.Product::get_Name()
-DA:12,2910
+FNDA:3031,System.String PillarTechnology.GroceryPointOfSale.Domain.Product::get_Name()
+DA:12,3031
 FN:12,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Product::get_RetailPrice()
-FNDA:687,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Product::get_RetailPrice()
-DA:13,687
+FNDA:706,NodaMoney.Money PillarTechnology.GroceryPointOfSale.Domain.Product::get_RetailPrice()
+DA:13,706
 FN:13,PillarTechnology.GroceryPointOfSale.Domain.SellByType PillarTechnology.GroceryPointOfSale.Domain.Product::get_SellByType()
-FNDA:1374,PillarTechnology.GroceryPointOfSale.Domain.SellByType PillarTechnology.GroceryPointOfSale.Domain.Product::get_SellByType()
-DA:14,1374
+FNDA:1397,PillarTechnology.GroceryPointOfSale.Domain.SellByType PillarTechnology.GroceryPointOfSale.Domain.Product::get_SellByType()
+DA:14,1397
 FN:14,PillarTechnology.GroceryPointOfSale.Domain.Markdown PillarTechnology.GroceryPointOfSale.Domain.Product::get_Markdown()
-FNDA:190,PillarTechnology.GroceryPointOfSale.Domain.Markdown PillarTechnology.GroceryPointOfSale.Domain.Product::get_Markdown()
-DA:15,190
+FNDA:199,PillarTechnology.GroceryPointOfSale.Domain.Markdown PillarTechnology.GroceryPointOfSale.Domain.Product::get_Markdown()
+DA:15,199
 FN:16,System.Void PillarTechnology.GroceryPointOfSale.Domain.Product::.ctor()
 FNDA:0,System.Void PillarTechnology.GroceryPointOfSale.Domain.Product::.ctor()
 DA:17,0
 DA:18,0
 DA:20,0
 FN:21,System.Void PillarTechnology.GroceryPointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PillarTechnology.GroceryPointOfSale.Domain.SellByType,PillarTechnology.GroceryPointOfSale.Domain.Markdown)
-FNDA:177,System.Void PillarTechnology.GroceryPointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PillarTechnology.GroceryPointOfSale.Domain.SellByType,PillarTechnology.GroceryPointOfSale.Domain.Markdown)
-DA:22,177
-DA:23,177
-DA:24,177
-DA:25,176
-DA:26,175
-DA:27,176
-DA:28,176
+FNDA:186,System.Void PillarTechnology.GroceryPointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PillarTechnology.GroceryPointOfSale.Domain.SellByType,PillarTechnology.GroceryPointOfSale.Domain.Markdown)
+DA:22,186
+DA:23,186
+DA:24,186
+DA:25,186
+DA:26,186
+DA:27,186
+DA:28,186
 LF:14
 LH:11
 BRF:0
@@ -642,14 +650,14 @@ FNH:5
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\models\WeightedItem.cs
 FN:6,System.Decimal PillarTechnology.GroceryPointOfSale.Domain.WeightedItem::get_Weight()
-FNDA:309,System.Decimal PillarTechnology.GroceryPointOfSale.Domain.WeightedItem::get_Weight()
-DA:7,309
+FNDA:316,System.Decimal PillarTechnology.GroceryPointOfSale.Domain.WeightedItem::get_Weight()
+DA:7,316
 FN:8,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedItem::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product,System.Decimal)
 FNDA:47,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedItem::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product,System.Decimal)
 DA:9,47
-DA:10,46
-DA:11,45
-DA:12,46
+DA:10,47
+DA:11,47
+DA:12,47
 LF:5
 LH:5
 BRF:0
@@ -659,13 +667,13 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\scannable\creation\ItemFactory.cs
 FN:10,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::CreateScannable()
-FNDA:75,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::CreateScannable()
-DA:11,75
-DA:12,75
+FNDA:76,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::CreateScannable()
+DA:11,76
+DA:12,76
 DA:13,76
 FN:7,System.Void PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-FNDA:229,System.Void PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-DA:8,229
+FNDA:230,System.Void PillarTechnology.GroceryPointOfSale.Domain.ItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
+DA:8,230
 LF:4
 LH:4
 BRF:0
@@ -675,14 +683,14 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\scannable\creation\ScannableFactory.cs
 FN:7,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::get_Product()
-FNDA:243,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::get_Product()
-DA:8,243
+FNDA:246,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::get_Product()
+DA:8,246
 FN:9,System.Void PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-FNDA:122,System.Void PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
-DA:10,122
-DA:11,123
-DA:12,122
-DA:13,121
+FNDA:124,System.Void PillarTechnology.GroceryPointOfSale.Domain.ScannableFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product)
+DA:10,124
+DA:11,124
+DA:12,124
+DA:13,124
 LF:5
 LH:5
 BRF:0
@@ -692,16 +700,16 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Domain\scannable\creation\WeightedItemFactory.cs
 FN:15,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::CreateScannable()
-FNDA:45,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::CreateScannable()
-DA:16,45
+FNDA:46,PillarTechnology.GroceryPointOfSale.Domain.IScannable PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::CreateScannable()
+DA:16,46
 DA:17,46
-DA:18,45
+DA:18,46
 FN:9,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product,System.Decimal)
-FNDA:45,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product,System.Decimal)
-DA:10,45
-DA:11,45
-DA:12,45
-DA:13,45
+FNDA:47,System.Void PillarTechnology.GroceryPointOfSale.Domain.WeightedItemFactory::.ctor(PillarTechnology.GroceryPointOfSale.Domain.Product,System.Decimal)
+DA:10,47
+DA:11,47
+DA:12,47
+DA:13,47
 LF:7
 LH:7
 BRF:0
@@ -748,29 +756,29 @@ FNH:5
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory\repositories\InMemoryProductRepository.cs
 FN:12,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PillarTechnology.GroceryPointOfSale.Domain.Product)
-FNDA:120,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PillarTechnology.GroceryPointOfSale.Domain.Product)
-DA:13,120
-DA:14,120
-DA:15,120
-DA:16,120
+FNDA:129,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PillarTechnology.GroceryPointOfSale.Domain.Product)
+DA:13,129
+DA:14,129
+DA:15,129
+DA:16,129
 FN:18,System.Boolean PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::Exists(System.String)
-FNDA:22,System.Boolean PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::Exists(System.String)
-DA:19,22
-DA:20,78
-DA:21,22
+FNDA:25,System.Boolean PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::Exists(System.String)
+DA:19,25
+DA:20,84
+DA:21,25
 FN:23,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
-FNDA:143,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
-DA:24,143
-DA:25,426
-DA:26,143
+FNDA:157,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
+DA:24,157
+DA:25,463
+DA:26,157
 FN:28,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::UpdateProduct(PillarTechnology.GroceryPointOfSale.Domain.Product)
 FNDA:8,PillarTechnology.GroceryPointOfSale.Domain.Product PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::UpdateProduct(PillarTechnology.GroceryPointOfSale.Domain.Product)
 DA:29,8
 DA:30,8
 DA:31,8
 FN:9,System.Void PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::.ctor()
-FNDA:40,System.Void PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::.ctor()
-DA:10,40
+FNDA:43,System.Void PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.InMemoryProductRepository::.ctor()
+DA:10,43
 LF:14
 LH:14
 BRF:0

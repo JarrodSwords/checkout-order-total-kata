@@ -152,6 +152,19 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
+        [Theory]
+        [InlineData(null, "*Markdown amount off retail is required*")]
+        [InlineData(0, "*Markdown amount off retail must be greater than zero*")]
+        [InlineData(10, "*Markdown amount off retail must be less than or equal to product retail price*")]
+        public void UpsertProductMarkdown_WithInvalidMarkdownAmountOffRetail_ThrowsArgumentException(double? amountOffRetail, string message)
+        {
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", (decimal?)amountOffRetail, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek());
+
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+
+            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
         public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
         {
             new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() },

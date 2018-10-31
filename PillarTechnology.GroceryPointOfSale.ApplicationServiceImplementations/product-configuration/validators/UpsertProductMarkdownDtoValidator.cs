@@ -19,8 +19,15 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
         {
             RuleFor(x => x.ProductName).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Markdown product name is required")
-                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist");
-
+                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
+                .DependentRules(() =>
+                {
+                    RuleFor(x => x.AmountOffRetail)
+                        .NotNull().WithMessage("Markdown amount off retail is required")
+                        .GreaterThan(0).WithMessage("Markdown amount off retail must be greater than zero")
+                        .LessThanOrEqualTo(x => _productRepository.FindProduct(x.ProductName).RetailPrice.Amount)
+                        .WithMessage("Markdown amount off retail must be less than or equal to product retail price");
+                });
         }
     }
 }
