@@ -8,10 +8,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class InvoiceTest
     {
-        private readonly Order _order = OrderTestData.CreateOrderWithScannedItems();
+        private readonly Order _order = OrderProvider.CreateOrderWithScannedItems();
 
         [Fact]
-        public void CalculatePreTaxTotal_ReturnsSumOfAllLineItems()
+        public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal()
         {
             var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
             var preTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);

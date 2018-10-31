@@ -8,7 +8,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class ProductProvider : IEnumerable<object[]>
     {
-        public static readonly ICollection<Product> Products = new List<Product>
+        private static readonly ICollection<Product> _products = new List<Product>
         {
             new Product("can of soup", Money.USDollar(0.89m), SellByType.Unit),
             new Product("frozen pizza", Money.USDollar(3m), SellByType.Unit, MarkdownProvider.ActiveMarkdown(0.25m)),
@@ -23,6 +23,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public static Product FindProduct(string productName) => ProductProvider.Products.Single(x => x.Name == productName);
         public static Product GetProductSoldByUnit() => ProductProvider.Products.First(x => x.SellByType == SellByType.Unit);
         public static Product GetProductSoldByWeight() => ProductProvider.Products.First(x => x.SellByType == SellByType.Weight);
+        public static ICollection<Product> Products => _products;
 
         public IEnumerator<object[]> GetEnumerator()
         {

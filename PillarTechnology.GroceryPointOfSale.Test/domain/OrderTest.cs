@@ -7,14 +7,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class OrderTest
     {
-        private Order _order = OrderTestData.CreateOrderWithScannedItems();
-        private ScannedItemTestData _scannedItemTestData = new ScannedItemTestData();
+        private Order _order = OrderProvider.CreateOrderWithScannedItems();
 
         [Fact]
         public void AddScannable_ScannableIsAddedToScannedItemsAndNewInvoiceIsCreated()
         {
             var invoice = _order.Invoice;
-            var scannedItem = _scannedItemTestData.GetScannable();
+            var scannedItem = ScannedItemProvider.GetScannable();
 
             _order.AddScannable(scannedItem);
 
@@ -25,12 +24,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [Fact]
         public void AddMultipleScannables_AllScannedItemIdsAreUnique()
         {
-            var items = new ScannedItemTestData().GetEnumerator();
+            var order = new Order();
 
-            while (items.MoveNext())
-                _order.AddScannable(items.Current);
+            ScannedItemProvider.ScannedItems.ToList().ForEach(x => order.AddScannable(x));
 
-            _order.ScannedItems.Should().OnlyHaveUniqueItems(x => x.Id);
+            order.ScannedItems.Should().OnlyHaveUniqueItems(x => x.Id);
         }
 
         [Fact]
