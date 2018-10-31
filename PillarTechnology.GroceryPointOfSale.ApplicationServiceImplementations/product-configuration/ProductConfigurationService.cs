@@ -41,6 +41,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto UpsertProductMarkdown(UpsertProductMarkdownDto dto)
         {
+            Validate(dto, new UpsertProductMarkdownDtoValidator(_productRepository));
+
             var product = _productRepository.FindProduct(dto.ProductName);
             
             if (product.Markdown == null)

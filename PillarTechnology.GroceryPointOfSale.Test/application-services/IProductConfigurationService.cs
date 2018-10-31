@@ -123,7 +123,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         #endregion
 
-        #region 
+        #region Upsert markdown
 
         [Theory]
         [MemberData(nameof(UpsertProductMarkdownData))]
@@ -136,6 +136,20 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             persistedProduct.Markdown.AmountOffRetail.Should().Be(amountOffRetail);
             persistedProduct.Markdown.StartTime.Should().Be(startTime);
             persistedProduct.Markdown.EndTime.Should().Be(endTime);
+        }
+
+        [Theory]
+        [InlineData(null, "*Markdown product name is required*")]
+        [InlineData("", "*Markdown product name is required*")]
+        [InlineData(" ", "*Markdown product name is required*")]
+        [InlineData("milk", "*Product name \"milk\" does not exist*")]
+        public void UpsertProductMarkdown_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
+        {
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek());
+
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+
+            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
