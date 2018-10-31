@@ -4,5 +4,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
     {
         ProductDto CreateProduct(UpsertProductDto dto);
         ProductDto UpdateProduct(UpsertProductDto dto);
+        ProductDto UpsertProductMarkdown(UpsertProductMarkdownDto dto);
     }
 }

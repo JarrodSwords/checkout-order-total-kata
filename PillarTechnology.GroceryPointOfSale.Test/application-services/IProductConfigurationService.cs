@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using Xunit;
@@ -73,7 +74,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("lean ground beef", 2.5, "Unit")]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
         {
-            var updateProductDto = new UpsertProductDto(productName, (decimal)retailPrice, sellByType);
+            var updateProductDto = new UpsertProductDto(productName, (decimal) retailPrice, sellByType);
 
             var persistedProductDto = _productConfigurationService.UpdateProduct(updateProductDto);
 
@@ -119,6 +120,30 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
+
+        #endregion
+
+        #region 
+
+        [Theory]
+        [MemberData(nameof(UpsertProductMarkdownData))]
+        public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime startTime, DateTime endTime)
+        {
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, amountOffRetail, startTime, endTime);
+
+            var persistedProduct = _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+
+            persistedProduct.Markdown.AmountOffRetail.Should().Be(amountOffRetail);
+            persistedProduct.Markdown.StartTime.Should().Be(startTime);
+            persistedProduct.Markdown.EndTime.Should().Be(endTime);
+        }
+
+        public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
+        {
+            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() },
+            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfLastWeek(), DateTimeProvider.Now().EndOfLastWeek() },
+            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfNextWeek(), DateTimeProvider.Now().EndOfNextWeek() }
+        };
 
         #endregion
     }
