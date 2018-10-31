@@ -125,6 +125,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         #region Upsert markdown
 
+        public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
+        {
+            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() },
+            new object[] { "lean ground beef", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() }
+        };
+
         [Theory]
         [MemberData(nameof(UpsertProductMarkdownData))]
         public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime startTime, DateTime endTime)
@@ -165,12 +171,23 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
+        public static IEnumerable<object[]> InvalidTimeRangeUpsertProductMarkdownData => new List<object[]>
         {
-            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() },
-            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfLastWeek(), DateTimeProvider.Now().EndOfLastWeek() },
-            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfNextWeek(), DateTimeProvider.Now().EndOfNextWeek() }
+            new object[] { null, DateTimeProvider.Now().EndOfWeek(), "Markdown start time is required" },
+            new object[] { DateTimeProvider.Now().StartOfWeek(), null, "Markdown end time is required" },
+            new object[] { DateTimeProvider.Now().EndOfWeek(), DateTimeProvider.Now().StartOfWeek(), "Markdown start time must be less than end time" }
         };
+
+        [Theory]
+        [MemberData(nameof(InvalidTimeRangeUpsertProductMarkdownData))]
+        public void UpsertProductMarkdown_WithInvalidTimeRange_ThrowsArgumentException(DateTime? startTime, DateTime? endTime, string message)
+        {
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", 0.1m, startTime, endTime);
+
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+
+            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+        }
 
         #endregion
     }
