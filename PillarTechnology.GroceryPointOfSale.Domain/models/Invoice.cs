@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NodaMoney;
@@ -30,36 +31,44 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public static ICollection<LineItem> CreateLineItems(IEnumerable<IScannable> scannedItems)
         {
             var lineItems = new List<LineItem>();
-            var eachesLineItemFactory = new EachesLineItemFactory();
-            var weightedLineItemFactory = new WeightedLineItemFactory();
-            var markdownLineItemFactory = new MarkdownLineItemFactory();
-            var weightedMarkdownLineItemFactory = new WeightedMarkdownLineItemFactory();
 
-            foreach (var scannable in scannedItems.Where(x => x.Product.SellByType == SellByType.Unit))
+            foreach (var product in scannedItems.Select(x => x.Product).Distinct())
             {
-                eachesLineItemFactory.Configure(scannable);
-                lineItems.Add(eachesLineItemFactory.CreateLineItem());
+                var items = scannedItems.Where(x => x.Product == product);
 
-                if (scannable.Product.Markdown == null || scannable.Product.Markdown.IsActive == false)
+                lineItems.AddRange(CreateScannedItemLineItems(items));
+
+                if (product.Markdown == null || !product.Markdown.IsActive)
                     continue;
 
-                markdownLineItemFactory.Configure(scannable);
-                lineItems.Add(markdownLineItemFactory.CreateLineItem());
-            }
-
-            foreach (var scannable in scannedItems.Where(x => x.Product.SellByType == SellByType.Weight))
-            {
-                weightedLineItemFactory.Configure((WeightedItem)scannable);
-                lineItems.Add(weightedLineItemFactory.CreateLineItem());
-
-                if (scannable.Product.Markdown == null || scannable.Product.Markdown.IsActive == false)
-                    continue;
-
-                weightedMarkdownLineItemFactory.Configure((WeightedItem)scannable);
-                lineItems.Add(weightedMarkdownLineItemFactory.CreateLineItem());
+                lineItems.AddRange(CreateMarkdownLineItems(items));
             }
 
             return lineItems;
+        }
+
+        private static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<IScannable> scannedItems)
+        {
+            foreach (var scannable in scannedItems)
+            {
+                var salePrice = scannable.Product.SellByType == SellByType.Unit ?
+                    scannable.Product.RetailPrice :
+                    scannable.Product.RetailPrice * ((WeightedItem) scannable).Weight;
+
+                yield return new LineItem(scannable.Product.Name, salePrice, scannable.Id);
+            }
+        }
+
+        private static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<IScannable> scannedItems)
+        {
+            foreach (var scannable in scannedItems)
+            {
+                var salePrice = scannable.Product.SellByType == SellByType.Unit ?
+                    scannable.Product.Markdown.AmountOffRetail :
+                    scannable.Product.Markdown.AmountOffRetail * ((WeightedItem) scannable).Weight;
+
+                yield return new LineItem(scannable.Product.Name + " markdown", -scannable.Product.Markdown.AmountOffRetail);
+            }
         }
     }
 }
