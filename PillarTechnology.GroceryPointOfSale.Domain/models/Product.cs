@@ -14,10 +14,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public SellByType SellByType { get; set; }
         public Markdown Markdown { get; set; }
 
-        public Product()
-        {
-
-        }
+        public Product() { }
 
         public Product(string name, Money retailPrice, SellByType sellByType = SellByType.Unit, Markdown markdown = null)
         {

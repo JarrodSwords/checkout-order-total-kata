@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class OrderProvider : IEnumerable<object[]>
     {
-        private static ICollection<Order> _orders = new List<Order>
+        private readonly static ICollection<Order> _orders;
+
+        static OrderProvider()
         {
-            CreateOrderWithScannedItems()
-        };
+            _orders = new List<Order>
+            {
+                CreateOrderWithScannedItems()
+            };
+        }
 
         public static ICollection<Order> Orders => _orders;
 
@@ -17,7 +23,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var order = new Order { Id = 1 };
 
-            foreach (var scannable in ScannedItemProvider.ScannedItems)
+            foreach (var scannable in new ScannedItemProvider().ScannedItems)
                 order.AddScannable(scannable);
 
             return order;
@@ -25,8 +31,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public IEnumerator<object[]> GetEnumerator()
         {
-            foreach (var order in OrderProvider.Orders)
-                yield return new object[] { order };
+            foreach(var order in OrderProvider.Orders)
+                yield return new object[] { order.Id, 14.75m };
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

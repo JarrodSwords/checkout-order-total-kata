@@ -29,12 +29,35 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public static ICollection<LineItem> CreateLineItems(IEnumerable<IScannable> scannedItems)
         {
-            var lineItems = scannedItems.Where(x => x.Product.SellByType == SellByType.Unit)
-                .Select(x => new EachesLineItemFactory(x).CreateLineItem()).ToList();
+            var lineItems = new List<LineItem>();
+            var eachesLineItemFactory = new EachesLineItemFactory();
+            var weightedLineItemFactory = new WeightedLineItemFactory();
+            var markdownLineItemFactory = new MarkdownLineItemFactory();
+            var weightedMarkdownLineItemFactory = new WeightedMarkdownLineItemFactory();
 
-            lineItems.AddRange(scannedItems.Where(x => x.Product.SellByType == SellByType.Weight)
-                .Select(x => new WeightedLineItemFactory((WeightedItem) x).CreateLineItem()).ToList()
-            );
+            foreach (var scannable in scannedItems.Where(x => x.Product.SellByType == SellByType.Unit))
+            {
+                eachesLineItemFactory.Configure(scannable);
+                lineItems.Add(eachesLineItemFactory.CreateLineItem());
+
+                if (scannable.Product.Markdown == null || scannable.Product.Markdown.IsActive == false)
+                    continue;
+
+                markdownLineItemFactory.Configure(scannable);
+                lineItems.Add(markdownLineItemFactory.CreateLineItem());
+            }
+
+            foreach (var scannable in scannedItems.Where(x => x.Product.SellByType == SellByType.Weight))
+            {
+                weightedLineItemFactory.Configure((WeightedItem)scannable);
+                lineItems.Add(weightedLineItemFactory.CreateLineItem());
+
+                if (scannable.Product.Markdown == null || scannable.Product.Markdown.IsActive == false)
+                    continue;
+
+                weightedMarkdownLineItemFactory.Configure((WeightedItem)scannable);
+                lineItems.Add(weightedMarkdownLineItemFactory.CreateLineItem());
+            }
 
             return lineItems;
         }

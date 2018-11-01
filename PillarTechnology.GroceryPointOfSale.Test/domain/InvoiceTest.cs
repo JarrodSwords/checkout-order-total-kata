@@ -10,13 +10,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         private readonly Order _order = OrderProvider.CreateOrderWithScannedItems();
 
-        [Fact]
-        public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal()
+        [Theory]
+        [ClassData(typeof(OrderProvider))]
+        public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal(long orderId, decimal preTaxTotal)
         {
             var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
-            var preTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);
+            
+            var calculatedPreTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);
 
-            preTaxTotal.Should().Be(Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount)));
+            calculatedPreTaxTotal.Should().Be(Money.USDollar(preTaxTotal));
         }
 
         [Fact]
@@ -24,7 +26,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
 
-            var lineItemScannedItemIds = lineItems.Select(x => x.ScannedItemId).ToList();
+            var lineItemScannedItemIds = lineItems.Where(x => x.ScannedItemId != null).Select(x => x.ScannedItemId).ToList();
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }

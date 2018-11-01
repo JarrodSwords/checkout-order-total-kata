@@ -8,16 +8,16 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class ScannedItemProvider : IEnumerable<IScannable>
     {
-        private static ICollection<IScannable> _scannedItems = new List<IScannable>();
+        private ICollection<IScannable> _scannedItems = new List<IScannable>();
 
-        public static ICollection<IScannable> ScannedItems => _scannedItems;
+        public ICollection<IScannable> ScannedItems => _scannedItems;
 
-        static ScannedItemProvider()
+        public ScannedItemProvider()
         {
             CreateScannedItems();
         }
 
-        private static void CreateScannedItems()
+        private void CreateScannedItems()
         {
             var itemFactory = new ItemFactory();
             var weightedItemFactory = new WeightedItemFactory();
@@ -39,9 +39,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             }
         }
 
-        public static IScannable GetScannable()
+        public IScannable GetScannable()
         {
-            return ScannedItemProvider.ScannedItems.First();
+            return _scannedItems.First();
         }
 
         public IEnumerator<IScannable> GetEnumerator() => _scannedItems.GetEnumerator();

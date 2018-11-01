@@ -10,7 +10,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         private static readonly ICollection<Product> _products = new List<Product>
         {
-            new Product("can of soup", Money.USDollar(0.89m), SellByType.Unit),
+            new Product("can of soup", Money.USDollar(0.5m), SellByType.Unit),
             new Product("frozen pizza", Money.USDollar(3m), SellByType.Unit, MarkdownProvider.ActiveMarkdown(0.25m)),
             new Product("peanut butter", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.ExpiredMarkdown(0.5m)),
             new Product("jelly", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.FutureMarkdown(0.75m)),

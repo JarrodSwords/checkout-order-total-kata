@@ -2,16 +2,17 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class WeightedLineItemFactory : LineItemFactory
     {
-        private readonly WeightedItem _weightedItem;
+        public WeightedItem WeightedItem { get; private set; }
 
-        public WeightedLineItemFactory(WeightedItem weightedItem)
-        {
-            _weightedItem = weightedItem;
-        }
+        public WeightedLineItemFactory() { }
+
+        public WeightedLineItemFactory(WeightedItem weightedItem) => WeightedItem = weightedItem;
+
+        public void Configure(WeightedItem weightedItem) => WeightedItem = weightedItem;
 
         public override LineItem CreateLineItem()
         {
-            return new LineItem(_weightedItem.Product.Name, _weightedItem.Product.RetailPrice * _weightedItem.Weight, _weightedItem.Id);
+            return new LineItem(WeightedItem.Product.Name, WeightedItem.Product.RetailPrice * WeightedItem.Weight, WeightedItem.Id);
         }
     }
 }

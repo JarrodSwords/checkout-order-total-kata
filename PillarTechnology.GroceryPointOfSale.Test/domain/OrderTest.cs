@@ -13,7 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void AddScannable_ScannableIsAddedToScannedItemsAndNewInvoiceIsCreated()
         {
             var invoice = _order.Invoice;
-            var scannedItem = ScannedItemProvider.GetScannable();
+            var scannedItem = new ScannedItemProvider().GetScannable();
 
             _order.AddScannable(scannedItem);
 
@@ -26,7 +26,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var order = new Order();
 
-            ScannedItemProvider.ScannedItems.ToList().ForEach(x => order.AddScannable(x));
+            new ScannedItemProvider().ScannedItems.ToList().ForEach(x => order.AddScannable(x));
 
             order.ScannedItems.Should().OnlyHaveUniqueItems(x => x.Id);
         }

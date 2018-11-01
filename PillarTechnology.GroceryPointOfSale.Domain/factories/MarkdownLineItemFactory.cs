@@ -1,12 +1,12 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class EachesLineItemFactory : LineItemFactory
+    public class MarkdownLineItemFactory : LineItemFactory
     {
         public IScannable Scannable { get; private set; }
 
-        public EachesLineItemFactory() { }
+        public MarkdownLineItemFactory() { }
 
-        public EachesLineItemFactory(IScannable scannable)
+        public MarkdownLineItemFactory(IScannable scannable)
         {
             Scannable = scannable;
         }
@@ -15,7 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public override LineItem CreateLineItem()
         {
-            return new LineItem(Scannable.Product.Name, Scannable.Product.RetailPrice, Scannable.Id);
+            return new LineItem(Scannable.Product.Name + " Markdown", -Scannable.Product.Markdown.AmountOffRetail);
         }
     }
 }

@@ -8,9 +8,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public Money AmountOffRetail { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-
-        public Markdown()
+        public bool IsActive
         {
+            get
+            {
+                var now = DateTime.Now;
+                return now >= StartTime && now <= EndTime;
+            }
         }
 
         public Markdown(Money amountOffRetail, DateTime startTime, DateTime endTime)

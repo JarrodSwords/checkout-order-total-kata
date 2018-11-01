@@ -1,17 +1,25 @@
 using System;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public static class DateTimeProvider
+    public interface IDateTimeNowProvider
     {
-        public static DateTime Now() => new DateTime(2018, 10, 30);
+        DateTime Now();
+    }
 
+    public class BasicDateTimeNowProvider : IDateTimeNowProvider
+    {
+        public DateTime Now() => DateTime.Now;
+    }
+
+    public static class DateTimeExtensions
+    {
         public static DateTime StartOfWeek(this DateTime date)
         {
             var diff = (7 + (date.DayOfWeek - DayOfWeek.Sunday)) % 7;
             return date.AddDays(-diff).Date;
         }
-        
+
         public static DateTime StartOfLastWeek(this DateTime date) => date.StartOfWeek().AddDays(-7).Date;
         public static DateTime StartOfNextWeek(this DateTime date) => date.StartOfWeek().AddDays(7).Date;
         public static DateTime EndOfWeek(this DateTime date) => date.StartOfWeek().AddDays(6).Date;
