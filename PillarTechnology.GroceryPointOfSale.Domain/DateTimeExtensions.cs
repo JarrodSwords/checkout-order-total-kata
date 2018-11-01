@@ -2,16 +2,6 @@ using System;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public interface IDateTimeNowProvider
-    {
-        DateTime Now();
-    }
-
-    public class BasicDateTimeNowProvider : IDateTimeNowProvider
-    {
-        public DateTime Now() => DateTime.Now;
-    }
-
     public static class DateTimeExtensions
     {
         public static DateTime StartOfWeek(this DateTime date)
