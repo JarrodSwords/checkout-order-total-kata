@@ -12,12 +12,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected ICheckoutService _checkoutService;
         protected IOrderRepository _orderRepository;
 
-        [Theory]
-        [InlineData(1)]
-        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(int itemId)
+        [Fact]
+        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder()
         {
             var orderId = 1;
             var order = _orderRepository.FindOrder(orderId);
+            var itemId = 1;
             var scannedItemToRemove = order.ScannedItems.Single(x => x.Id == itemId);
 
             var removedScannedItem = _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(orderId, itemId));
@@ -37,11 +37,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        [Theory]
-        [InlineData(1, "can of soup")]
-        public void ScanItem_ScannedItemIsAddedToPersistedOrder(long orderId, string productName)
+        [Fact]
+        public void ScanItem_ScannedItemIsAddedToPersistedOrder()
         {
-            var scannedItem = _checkoutService.ScanItem(new ScanItemArgs { OrderId = orderId, ProductName = productName });
+            var orderId = 1;
+            var scannedItem = _checkoutService.ScanItem(new ScanItemArgs(orderId, "can of soup"));
 
             var persistedOrder = _orderRepository.FindOrder(orderId);
             persistedOrder.ScannedItems.Should().Contain(scannedItem);
