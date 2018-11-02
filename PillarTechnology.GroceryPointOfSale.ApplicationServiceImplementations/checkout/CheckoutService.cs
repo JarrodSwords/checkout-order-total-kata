@@ -41,7 +41,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _scanItemArgsValidator.ValidateAndThrow<ScanItemArgs>(args);
 
-            return ScanItem(args.OrderId, args.ProductName, product => new ScannedItem(product));
+            return ScanItem((long)args.OrderId, args.ProductName, product => new ScannedItem(product));
         }
 
         public ScannedItem ScanWeightedItem(ScanWeightedItemArgs args)

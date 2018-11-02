@@ -38,15 +38,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
-        [InlineData(1, "lean ground beef")]
-        public void ScanItem_ForWeightedItem_ThrowsArgumentException(long orderId, string productName)
+        [InlineData("milk", "Product name \"milk\" does not exist")]
+        [InlineData("lean ground beef", "Product name \"lean ground beef\" cannot be sold by unit")]
+        public void ScanItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var args = new ScanItemArgs { OrderId = orderId, ProductName = productName };
+            Action scanItem = () => _checkoutService.ScanItem(new ScanItemArgs(1, productName));
 
-            Action scanInvalidItem = () => _checkoutService.ScanItem(args);
-
-            scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage($"Product name \"{productName}\" cannot be sold by unit");
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
