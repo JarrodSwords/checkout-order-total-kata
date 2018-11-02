@@ -29,9 +29,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _removeScannedItemArgsValidator.ValidateAndThrow<RemoveScannedItemArgs>(args);
 
-            var order = _orderRepository.FindOrder(args.OrderId);
+            var order = _orderRepository.FindOrder(args.OrderId.Value);
 
-            var removedItem = order.RemoveScannedItem(args.ItemId);
+            var removedItem = order.RemoveScannedItem(args.ItemId.Value);
             _orderRepository.UpdateOrder(order);
 
             return removedItem;
@@ -41,14 +41,14 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _scanItemArgsValidator.ValidateAndThrow<ScanItemArgs>(args);
 
-            return ScanItem((long)args.OrderId, args.ProductName, product => new ScannedItem(product));
+            return ScanItem(args.OrderId.Value, args.ProductName, product => new ScannedItem(product));
         }
 
         public ScannedItem ScanWeightedItem(ScanWeightedItemArgs args)
         {
             _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return ScanItem((long)args.OrderId, args.ProductName, product => new WeightedScannedItem(product, (decimal)args.Weight));
+            return ScanItem(args.OrderId.Value, args.ProductName, product => new WeightedScannedItem(product, args.Weight.Value));
         }
 
         private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)

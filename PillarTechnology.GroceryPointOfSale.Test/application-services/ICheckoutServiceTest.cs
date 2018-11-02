@@ -13,18 +13,28 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IOrderRepository _orderRepository;
 
         [Theory]
-        [InlineData(1, 1)]
-        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(long orderId, int itemId)
+        [InlineData(1)]
+        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(int itemId)
         {
-            var args = new RemoveScannedItemArgs { OrderId = orderId, ItemId = itemId };
+            var orderId = 1;
             var order = _orderRepository.FindOrder(orderId);
             var scannedItemToRemove = order.ScannedItems.Single(x => x.Id == itemId);
 
-            var removedScannedItem = _checkoutService.RemoveScannedItem(args);
+            var removedScannedItem = _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(orderId, itemId));
 
             removedScannedItem.Should().Be(scannedItemToRemove);
             var persistedOrder = _orderRepository.FindOrder(orderId);
             persistedOrder.ScannedItems.Should().NotContain(scannedItemToRemove);
+        }
+
+        [Theory]
+        [InlineData(null, "Scanned item id is required")]
+        [InlineData(0, "Scanned item id \"0\" does not exist")]
+        public void RemoveScannedItem_WithInvalidProductName_ThrowsArgumentException(int? itemId, string message)
+        {
+            Action scanItem = () => _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(1, itemId));
+
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
         [Theory]
@@ -50,13 +60,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        [Theory]
-        [InlineData(1, "lean ground beef", 1)]
-        public void ScanItemAndWeight_WeightedItemIsAddedToPersistedOrder(long orderId, string productName, decimal weight)
+        [Fact]
+        public void ScanWeightedItem_WeightedItemIsAddedToPersistedOrder()
         {
-            var args = new ScanWeightedItemArgs { OrderId = orderId, ProductName = productName, Weight = weight };
-
-            var scannedItem = _checkoutService.ScanWeightedItem(args);
+            var orderId = 1;
+            var scannedItem = _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(orderId, "lean ground beef", 1m));
 
             scannedItem.Should().BeOfType(typeof(WeightedScannedItem));
             var persistedOrder = _orderRepository.FindOrder(orderId);
@@ -69,7 +77,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(" ", "Product name is required")]
         [InlineData("milk", "Product name \"milk\" does not exist")]
         [InlineData("can of soup", "Product name \"can of soup\" cannot be sold by weight")]
-        public void ScanItemAndWeight_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
+        public void ScanWeightedItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             Action scanItem = () => _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(1, productName, 1m));
 
