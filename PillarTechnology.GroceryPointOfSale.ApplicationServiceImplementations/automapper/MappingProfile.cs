@@ -9,8 +9,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         public MappingProfile()
         {
             CreateMap<Markdown, MarkdownDto>();
-            CreateMap<UpsertProductDto, Product>();
-            CreateMap<UpsertProductMarkdownDto, Markdown>();
+            CreateMap<UpsertProductArgs, Product>();
+            CreateMap<UpsertProductMarkdownArgs, Markdown>();
         }
     }
 }
