@@ -8,19 +8,36 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public class Invoice
     {
         public long OrderId { get; }
-        public ICollection<LineItem> LineItems { get; }
-        public Money PreTaxTotal { get; set; }
+        public IEnumerable<LineItem> LineItems { get; }
+        public Money PreTaxTotal { get; }
 
-        public Invoice(Order order)
+        public Invoice(long orderId, IEnumerable<LineItem> lineItems, Money preTaxTotal)
         {
-            OrderId = order.Id;
-            LineItems = CreateLineItems(order.ScannedItems);
-            PreTaxTotal = CalculatePreTaxTotal(LineItems);
+            OrderId = orderId;
+            LineItems = lineItems;
+            PreTaxTotal = preTaxTotal;
         }
 
         public override string ToString()
         {
             return $"Order: {OrderId}, Pre-tax total: {PreTaxTotal}";
+        }
+    }
+
+    public class InvoiceFactory
+    {
+        public Order Order { get; set; }
+
+        public InvoiceFactory(Order order)
+        {
+            Order = order;
+        }
+
+        public Invoice CreateInvoice()
+        {
+            var lineItems = CreateLineItems();
+            var preTaxTotal = InvoiceFactory.CalculatePreTaxTotal(lineItems);
+            return new Invoice(Order.Id, lineItems, preTaxTotal);
         }
 
         public static Money CalculatePreTaxTotal(ICollection<LineItem> lineItems)
@@ -28,13 +45,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
         }
 
-        public static ICollection<LineItem> CreateLineItems(IEnumerable<IScannable> scannedItems)
+        public ICollection<LineItem> CreateLineItems()
         {
             var lineItems = new List<LineItem>();
 
-            foreach (var product in scannedItems.Select(x => x.Product).Distinct())
+            foreach (var product in Order.ScannedItems.Select(x => x.Product).Distinct())
             {
-                var items = scannedItems.Where(x => x.Product == product);
+                var items = Order.ScannedItems.Where(x => x.Product == product);
 
                 lineItems.AddRange(CreateScannedItemLineItems(items));
 

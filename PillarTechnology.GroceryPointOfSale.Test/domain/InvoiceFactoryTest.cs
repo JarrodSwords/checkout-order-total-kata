@@ -6,7 +6,7 @@ using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class InvoiceTest
+    public class InvoiceFactoryTest
     {
         private readonly Order _order = OrderProvider.CreateOrderWithScannedItems();
 
@@ -14,19 +14,17 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [ClassData(typeof(OrderProvider))]
         public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal(long orderId, decimal preTaxTotal)
         {
-            var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
-            
-            var calculatedPreTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);
+            var invoice = new InvoiceFactory(_order).CreateInvoice();
 
-            calculatedPreTaxTotal.Should().Be(Money.USDollar(preTaxTotal));
+            invoice.PreTaxTotal.Should().Be(Money.USDollar(preTaxTotal));
         }
 
         [Fact]
         public void CreateLineItems_CreatesALineItemPerScannedItem()
         {
-            var lineItems = Invoice.CreateLineItems(_order.ScannedItems);
+            var invoice = new InvoiceFactory(_order).CreateInvoice();
 
-            var lineItemScannedItemIds = lineItems.Where(x => x.ScannedItemId != null).Select(x => x.ScannedItemId).ToList();
+            var lineItemScannedItemIds = invoice.LineItems.Where(x => x.ScannedItemId != null).Select(x => x.ScannedItemId).ToList();
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }
