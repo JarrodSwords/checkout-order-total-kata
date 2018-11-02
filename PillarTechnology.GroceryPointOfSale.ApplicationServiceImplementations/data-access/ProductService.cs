@@ -19,7 +19,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         public ProductDto FindProduct(string productName)
         {
             var product = _productRepository.FindProduct(productName);
-            return _mapper.Map<Product, ProductDto>(product);
+            return _mapper.Map<ProductDto>(product);
         }
     }
 }

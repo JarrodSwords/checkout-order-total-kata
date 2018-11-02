@@ -9,6 +9,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class ProductConfigurationService : IProductConfigurationService
     {
+        #region Dependencies
+
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
         private CreateProductArgsValidator _createProductArgsValidator;
@@ -23,6 +25,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _updateProductArgsValidator = updateProductArgsValidator;
             _upsertProductMarkdownArgsValidator = upsertProductMarkdownArgsValidator;
         }
+
+        #endregion Dependencies
 
         public ProductDto CreateProduct(UpsertProductArgs args)
         {
@@ -52,7 +56,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             var product = _productRepository.FindProduct(args.ProductName);
 
             if (product.Markdown == null)
-                product.Markdown = _mapper.Map<UpsertProductMarkdownArgs, Markdown>(args);
+                product.Markdown = _mapper.Map<Markdown>(args);
             else
                 _mapper.Map<UpsertProductMarkdownArgs, Markdown>(args, product.Markdown);
 
