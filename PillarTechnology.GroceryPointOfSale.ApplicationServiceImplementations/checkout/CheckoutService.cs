@@ -40,7 +40,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return ScanItem(args.OrderId, args.ProductName, product => new ScannedWeightedItem(product, args.Weight));
+            return ScanItem(args.OrderId, args.ProductName, product => new WeightedScannedItem(product, args.Weight));
         }
 
         private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)

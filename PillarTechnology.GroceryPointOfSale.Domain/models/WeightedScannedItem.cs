@@ -1,12 +1,12 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class ScannedWeightedItem : ScannedItem
+    public class WeightedScannedItem : ScannedItem
     {
         private decimal _weight;
 
         public decimal Weight { get { return _weight; } }
 
-        public ScannedWeightedItem(Product product, decimal weight) : base(product)
+        public WeightedScannedItem(Product product, decimal weight) : base(product)
         {
             _weight = weight;
         }

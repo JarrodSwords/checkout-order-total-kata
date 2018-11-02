@@ -50,7 +50,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             {
                 var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
                     scannedItem.Product.RetailPrice :
-                    scannedItem.Product.RetailPrice * ((ScannedWeightedItem) scannedItem).Weight;
+                    scannedItem.Product.RetailPrice * ((WeightedScannedItem) scannedItem).Weight;
 
                 yield return new LineItem(scannedItem.Product.Name, salePrice, scannedItem.Id);
             }
@@ -62,7 +62,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             {
                 var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
                     scannedItem.Product.Markdown.AmountOffRetail :
-                    scannedItem.Product.Markdown.AmountOffRetail * ((ScannedWeightedItem) scannedItem).Weight;
+                    scannedItem.Product.Markdown.AmountOffRetail * ((WeightedScannedItem) scannedItem).Weight;
 
                 yield return new LineItem(scannedItem.Product.Name + " markdown", -scannedItem.Product.Markdown.AmountOffRetail);
             }

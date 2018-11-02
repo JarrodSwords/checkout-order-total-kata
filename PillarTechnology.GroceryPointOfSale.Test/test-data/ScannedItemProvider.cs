@@ -30,7 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                     continue;
                 }
 
-                _scannedItems.Add(new ScannedWeightedItem(product, weight));
+                _scannedItems.Add(new WeightedScannedItem(product, weight));
                 weight += weightIncrement;
             }
         }
