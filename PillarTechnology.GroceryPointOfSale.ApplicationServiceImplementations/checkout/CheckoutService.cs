@@ -6,6 +6,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class CheckoutService : ICheckoutService
     {
+        #region Dependencies
+
         private IOrderRepository _orderRepository;
         private IProductRepository _productRepository;
         private RemoveScannedItemArgsValidator _removeScannedItemArgsValidator;
@@ -20,6 +22,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _scanItemArgsValidator = scanItemArgsValidator;
             _scanWeightedItemArgsValidator = scanWeightedItemArgsValidator;
         }
+
+        #endregion Dependencies
 
         public ScannedItem RemoveScannedItem(RemoveScannedItemArgs args)
         {
