@@ -44,7 +44,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return lineItems;
         }
 
-        private static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<ScannedItem> scannedItems)
+        public static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<ScannedItem> scannedItems)
         {
             foreach (var scannedItem in scannedItems)
             {
@@ -56,7 +56,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             }
         }
 
-        private static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
+        public static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
         {
             foreach (var scannedItem in scannedItems)
             {
