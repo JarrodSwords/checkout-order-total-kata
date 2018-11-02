@@ -64,15 +64,16 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
-        [InlineData(1, "can of soup", 1)]
-        public void ScanItemAndWeight_ForEachesItem_ThrowsArgumentException(long orderId, string productName, decimal weight)
+        [InlineData(null, "Product name is required")]
+        [InlineData("", "Product name is required")]
+        [InlineData(" ", "Product name is required")]
+        [InlineData("milk", "Product name \"milk\" does not exist")]
+        [InlineData("can of soup", "Product name \"can of soup\" cannot be sold by weight")]
+        public void ScanItemAndWeight_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var args = new ScanWeightedItemArgs { OrderId = orderId, ProductName = productName, Weight = weight };
+            Action scanItem = () => _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(1, productName, 1m));
 
-            Action scanInvalidItem = () => _checkoutService.ScanWeightedItem(args);
-
-            scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage($"Product name \"{productName}\" cannot be sold by weight");
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
     }
 }
