@@ -8,10 +8,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
             var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(_orderRepository);
             var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
             var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
 
-            _checkoutService = new CheckoutService(_orderRepository, productRepository, scanItemArgsValidator, scanWeightedItemArgsValidator);
+            _checkoutService = new CheckoutService(_orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
         }
     }
 }

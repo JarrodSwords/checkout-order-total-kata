@@ -16,10 +16,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(1, 1)]
         public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(long orderId, int itemId)
         {
+            var args = new RemoveScannedItemArgs { OrderId = orderId, ItemId = itemId };
             var order = _orderRepository.FindOrder(orderId);
             var scannedItemToRemove = order.ScannedItems.Single(x => x.Id == itemId);
 
-            var removedScannedItem = _checkoutService.RemoveScannedItem(orderId, itemId);
+            var removedScannedItem = _checkoutService.RemoveScannedItem(args);
 
             removedScannedItem.Should().Be(scannedItemToRemove);
             var persistedOrder = _orderRepository.FindOrder(orderId);

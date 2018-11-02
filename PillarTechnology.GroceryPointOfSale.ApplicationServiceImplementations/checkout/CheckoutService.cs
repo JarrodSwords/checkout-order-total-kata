@@ -8,22 +8,26 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private IOrderRepository _orderRepository;
         private IProductRepository _productRepository;
+        private RemoveScannedItemArgsValidator _removeScannedItemArgsValidator;
         private ScanItemArgsValidator _scanItemArgsValidator;
         private ScanWeightedItemArgsValidator _scanWeightedItemArgsValidator;
 
-        public CheckoutService(IOrderRepository orderRepository, IProductRepository productRepository, ScanItemArgsValidator scanItemArgsValidator, ScanWeightedItemArgsValidator scanWeightedItemArgsValidator)
+        public CheckoutService(IOrderRepository orderRepository, IProductRepository productRepository, RemoveScannedItemArgsValidator removeScannedItemArgsValidator, ScanItemArgsValidator scanItemArgsValidator, ScanWeightedItemArgsValidator scanWeightedItemArgsValidator)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _removeScannedItemArgsValidator = removeScannedItemArgsValidator;
             _scanItemArgsValidator = scanItemArgsValidator;
             _scanWeightedItemArgsValidator = scanWeightedItemArgsValidator;
         }
 
-        public ScannedItem RemoveScannedItem(long orderId, int itemId)
+        public ScannedItem RemoveScannedItem(RemoveScannedItemArgs args)
         {
-            var order = _orderRepository.FindOrder(orderId);
+            _removeScannedItemArgsValidator.ValidateAndThrow<RemoveScannedItemArgs>(args);
 
-            var removedItem = order.RemoveScannedItem(itemId);
+            var order = _orderRepository.FindOrder(args.OrderId);
+
+            var removedItem = order.RemoveScannedItem(args.ItemId);
             _orderRepository.UpdateOrder(order);
 
             return removedItem;

@@ -5,7 +5,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
     public interface ICheckoutService
     {
-        ScannedItem RemoveScannedItem(long orderId, int itemId);
+        ScannedItem RemoveScannedItem(RemoveScannedItemArgs args);
         ScannedItem ScanItem(ScanItemArgs args);
         ScannedItem ScanWeightedItem(ScanWeightedItemArgs args);
     }
