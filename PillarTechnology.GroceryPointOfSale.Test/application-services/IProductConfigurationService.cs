@@ -21,11 +21,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("turkey", 1.5, "Weight")]
         public void CreateProduct_CreatesPersistedProduct(string productName, double retailPrice, string sellByType)
         {
-            var createProductDto = new UpsertProductDto(productName, (decimal) retailPrice, sellByType);
+            var args = new UpsertProductArgs(productName, (decimal) retailPrice, sellByType);
 
-            var persistedProductDto = _productConfigurationService.CreateProduct(createProductDto);
+            var persistedProductDto = _productConfigurationService.CreateProduct(args);
 
-            persistedProductDto.Should().BeEquivalentTo(createProductDto);
+            persistedProductDto.Name.Should().Be(args.Name);
+            persistedProductDto.RetailPrice.Should().Be(args.RetailPrice);
+            persistedProductDto.SellByType.Should().Be(args.SellByType);
         }
 
         [Theory]
@@ -35,9 +37,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("can of soup", "*Product name \"can of soup\" already exists*")]
         public void CreateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
-            var createProductDto = new UpsertProductDto(productName, 1m, "Unit");
-
-            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs(productName, 1m, "Unit"));
 
             createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -47,9 +47,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(-1, "*Product retail price cannot be negative*")]
         public void CreateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var createProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
-
-            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "Unit"));
 
             createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -61,9 +59,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
         public void CreateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            var createProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
-
-            Action createProduct = () => _productConfigurationService.CreateProduct(createProductDto);
+            Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));
 
             createProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -77,11 +73,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("lean ground beef", 2.5, "Unit")]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(string productName, double retailPrice, string sellByType)
         {
-            var updateProductDto = new UpsertProductDto(productName, (decimal) retailPrice, sellByType);
+            var args = new UpsertProductArgs(productName, (decimal) retailPrice, sellByType);
 
-            var persistedProductDto = _productConfigurationService.UpdateProduct(updateProductDto);
+            var persistedProductDto = _productConfigurationService.UpdateProduct(args);
 
-            persistedProductDto.Should().BeEquivalentTo(updateProductDto);
+            persistedProductDto.Name.Should().Be(args.Name);
+            persistedProductDto.RetailPrice.Should().Be(args.RetailPrice);
+            persistedProductDto.SellByType.Should().Be(args.SellByType);
         }
 
         [Theory]
@@ -91,9 +89,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
         public void UpdateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
-            var updateProductDto = new UpsertProductDto(productName, 1m, "Unit");
-
-            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs(productName, 1m, "Unit"));
 
             updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -103,9 +99,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(-1, "*Product retail price cannot be negative*")]
         public void UpdateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
-            var updateProductDto = new UpsertProductDto("milk", (decimal?) retailPrice, "Unit");
-
-            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "Unit"));
 
             updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -117,9 +111,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("Volume", "*Product sell by type \"Volume\" is not in: Unit, Weight*")]
         public void UpdateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
-            var updateProductDto = new UpsertProductDto("milk", 1.99m, sellByType);
-
-            Action updateProduct = () => _productConfigurationService.UpdateProduct(updateProductDto);
+            Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));
 
             updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -130,15 +122,16 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         [Theory]
         [ClassData(typeof(UpsertProductMarkdownData))]
-        public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime startTime, DateTime endTime)
+        public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime? startTime, DateTime? endTime)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, amountOffRetail, startTime, endTime);
+            var args = new UpsertProductMarkdownArgs(productName, amountOffRetail, startTime, endTime);
 
-            var persistedProduct = _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+            var persistedProduct = _productConfigurationService.UpsertProductMarkdown(args);
 
-            persistedProduct.Markdown.AmountOffRetail.Should().Be(amountOffRetail);
-            persistedProduct.Markdown.StartTime.Should().Be(startTime);
-            persistedProduct.Markdown.EndTime.Should().Be(endTime);
+            persistedProduct.Name.Should().Be(args.ProductName);
+            persistedProduct.Markdown.AmountOffRetail.Should().Be(args.AmountOffRetail);
+            persistedProduct.Markdown.StartTime.Should().Be(args.StartTime.Value);
+            persistedProduct.Markdown.EndTime.Should().Be(args.EndTime.Value);
         }
 
         [Theory]
@@ -148,9 +141,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
         public void UpsertProductMarkdown_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, 0.1m, _now.StartOfWeek(), _now.EndOfWeek());
-
-            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs(productName, 0.1m, _now.StartOfWeek(), _now.EndOfWeek()));
 
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -161,9 +152,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(10, "*Markdown amount off retail must be less than or equal to product retail price*")]
         public void UpsertProductMarkdown_WithInvalidMarkdownAmountOffRetail_ThrowsArgumentException(double? amountOffRetail, string message)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", (decimal?) amountOffRetail, _now.StartOfWeek(), _now.EndOfWeek());
-
-            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", (decimal?) amountOffRetail, _now.StartOfWeek(), _now.EndOfWeek()));
 
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -172,9 +161,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [ClassData(typeof(InvalidTimeRangeUpsertProductMarkdownData))]
         public void UpsertProductMarkdown_WithInvalidTimeRange_ThrowsArgumentException(DateTime? startTime, DateTime? endTime, string message)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", 0.1m, startTime, endTime);
-
-            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
+            Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", 0.1m, startTime, endTime));
 
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
@@ -199,7 +186,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
         {
             private readonly DateTime _now = DateTime.Now;
-            
+
             public IEnumerator<object[]> GetEnumerator()
             {
                 yield return new object[] { null, _now.EndOfWeek(), "Markdown start time is required" };

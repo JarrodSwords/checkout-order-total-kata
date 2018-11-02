@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
@@ -6,54 +7,63 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class CheckoutService : ICheckoutService
     {
+        #region Dependencies
+
+        private IMapper _mapper;
         private IOrderRepository _orderRepository;
         private IProductRepository _productRepository;
+        private RemoveScannedItemArgsValidator _removeScannedItemArgsValidator;
+        private ScanItemArgsValidator _scanItemArgsValidator;
+        private ScanWeightedItemArgsValidator _scanWeightedItemArgsValidator;
 
-        public CheckoutService(IOrderRepository orderRepository, IProductRepository productRepository)
+        public CheckoutService(IMapper mapper, IOrderRepository orderRepository, IProductRepository productRepository, RemoveScannedItemArgsValidator removeScannedItemArgsValidator, ScanItemArgsValidator scanItemArgsValidator, ScanWeightedItemArgsValidator scanWeightedItemArgsValidator)
         {
+            _mapper = mapper;
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _removeScannedItemArgsValidator = removeScannedItemArgsValidator;
+            _scanItemArgsValidator = scanItemArgsValidator;
+            _scanWeightedItemArgsValidator = scanWeightedItemArgsValidator;
         }
 
-        public IScannable RemoveScannedItem(long orderId, int itemId)
-        {
-            var order = _orderRepository.FindOrder(orderId);
+        #endregion Dependencies
 
-            var removedItem = order.RemoveScannedItem(itemId);
+        public ScannedItemDto RemoveScannedItem(RemoveScannedItemArgs args)
+        {
+            _removeScannedItemArgsValidator.ValidateAndThrow<RemoveScannedItemArgs>(args);
+
+            var order = _orderRepository.FindOrder(args.OrderId.Value);
+
+            var removedItem = _mapper.Map<ScannedItemDto>(order.RemoveScannedItem(args.ItemId.Value));
             _orderRepository.UpdateOrder(order);
 
             return removedItem;
         }
 
-        public IScannable ScanItem(long orderId, string productName)
+        public ScannedItemDto ScanItem(ScanItemArgs args)
         {
-            var product = _productRepository.FindProduct(productName);
-            var validator = new SellByUnitScanInputValidator(product);
-            var itemFactory = new ItemFactory(product);
+            _scanItemArgsValidator.ValidateAndThrow<ScanItemArgs>(args);
 
-            return ScanItem(orderId, product, validator, itemFactory);
+            return _mapper.Map<ScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new ScannedItem(product)));
         }
 
-        public IScannable ScanItem(long orderId, string productName, decimal weight)
+        public ScannedItemDto ScanWeightedItem(ScanWeightedItemArgs args)
         {
-            var product = _productRepository.FindProduct(productName);
-            var validator = new SellByWeightScanInputValidator(product, weight);
-            var weightedItemFactory = new WeightedItemFactory(product, weight);
+            _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return ScanItem(orderId, product, validator, weightedItemFactory);
+            return _mapper.Map<WeightedScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new WeightedScannedItem(product, args.Weight.Value)));
         }
 
-        private IScannable ScanItem(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
+        private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)
         {
-            validator.Validate();
-
             var order = _orderRepository.FindOrder(orderId);
-            var scannable = scannableFactory.CreateScannable();
+            var product = _productRepository.FindProduct(productName);
+            var scannedItem = createScannedItem(product);
 
-            order.AddScannable(scannable);
+            order.AddScannedItem(scannedItem);
             _orderRepository.UpdateOrder(order);
 
-            return scannable;
+            return scannedItem;
         }
     }
 }

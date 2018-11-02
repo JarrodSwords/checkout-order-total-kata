@@ -6,11 +6,11 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class ScannedItemProvider : IEnumerable<IScannable>
+    public class ScannedItemProvider : IEnumerable<ScannedItem>
     {
-        private ICollection<IScannable> _scannedItems = new List<IScannable>();
+        private ICollection<ScannedItem> _scannedItems = new List<ScannedItem>();
 
-        public ICollection<IScannable> ScannedItems => _scannedItems;
+        public ICollection<ScannedItem> ScannedItems => _scannedItems;
 
         public ScannedItemProvider()
         {
@@ -19,8 +19,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         private void CreateScannedItems()
         {
-            var itemFactory = new ItemFactory();
-            var weightedItemFactory = new WeightedItemFactory();
             var weight = 0.5m;
             var weightIncrement = 0.5m;
 
@@ -28,23 +26,21 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             {
                 if (product.SellByType == SellByType.Unit)
                 {
-                    itemFactory.Configure(product);
-                    _scannedItems.Add(itemFactory.CreateScannable());
+                    _scannedItems.Add(new ScannedItem(product));
                     continue;
                 }
 
-                weightedItemFactory.Configure(product, weight);
-                _scannedItems.Add(weightedItemFactory.CreateScannable());
+                _scannedItems.Add(new WeightedScannedItem(product, weight));
                 weight += weightIncrement;
             }
         }
 
-        public IScannable GetScannable()
+        public ScannedItem GetScannedItem()
         {
             return _scannedItems.First();
         }
 
-        public IEnumerator<IScannable> GetEnumerator() => _scannedItems.GetEnumerator();
+        public IEnumerator<ScannedItem> GetEnumerator() => _scannedItems.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

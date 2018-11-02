@@ -1,15 +1,16 @@
 using System;
 using System.Linq;
 using FluentValidation;
+using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
+namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class UpdateProductDtoValidator : AbstractValidator<UpsertProductDto>
+    public class CreateProductArgsValidator : AbstractValidator<UpsertProductArgs>
     {
         private readonly IProductRepository _productRepository;
 
-        public UpdateProductDtoValidator(IProductRepository productRepository)
+        public CreateProductArgsValidator(IProductRepository productRepository)
         {
             _productRepository = productRepository;
             CreateRules();
@@ -21,7 +22,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 
             RuleFor(x => x.Name).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product name is required")
-                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist");
+                .Must(x => !_productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" already exists");
 
             RuleFor(x => x.RetailPrice).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Product retail price is required")

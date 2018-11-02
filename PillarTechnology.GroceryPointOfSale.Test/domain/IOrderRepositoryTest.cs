@@ -29,8 +29,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void UpdateOrder_UpdatesNonIdentityOrderFieldsInPersistedOrder()
         {
             var order = _orderRepository.CreateOrder(_order);
-            var dummyScannable = new ScannedItemProvider().GetScannable();
-            order.AddScannable(dummyScannable);
+            var dummyScannedItem = new ScannedItemProvider().GetScannedItem();
+            order.AddScannedItem(dummyScannedItem);
 
             order = _orderRepository.UpdateOrder(order);
 

@@ -9,58 +9,60 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class ProductConfigurationService : IProductConfigurationService
     {
+        #region Dependencies
+
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
+        private CreateProductArgsValidator _createProductArgsValidator;
+        private UpdateProductArgsValidator _updateProductArgsValidator;
+        private UpsertProductMarkdownArgsValidator _upsertProductMarkdownArgsValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository)
+        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, CreateProductArgsValidator createProductArgsValidator, UpdateProductArgsValidator updateProductArgsValidator, UpsertProductMarkdownArgsValidator upsertProductMarkdownArgsValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
+            _createProductArgsValidator = createProductArgsValidator;
+            _updateProductArgsValidator = updateProductArgsValidator;
+            _upsertProductMarkdownArgsValidator = upsertProductMarkdownArgsValidator;
         }
 
-        public ProductDto CreateProduct(UpsertProductDto dto)
-        {
-            Validate(dto, new CreateProductDtoValidator(_productRepository));
+        #endregion Dependencies
 
-            var product = _mapper.Map<UpsertProductDto, Product>(dto);
+        public ProductDto CreateProduct(UpsertProductArgs args)
+        {
+            _createProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
+
+            var product = _mapper.Map<Product>(args);
             var persistedProduct = _productRepository.CreateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
 
-        public ProductDto UpdateProduct(UpsertProductDto dto)
+        public ProductDto UpdateProduct(UpsertProductArgs args)
         {
-            Validate(dto, new UpdateProductDtoValidator(_productRepository));
+            _updateProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
 
-            var product = _productRepository.FindProduct(dto.Name);
-            _mapper.Map<UpsertProductDto, Product>(dto, product);
+            var product = _productRepository.FindProduct(args.Name);
+            _mapper.Map<UpsertProductArgs, Product>(args, product);
             var persistedProduct = _productRepository.UpdateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
 
-        public ProductDto UpsertProductMarkdown(UpsertProductMarkdownDto dto)
+        public ProductDto UpsertProductMarkdown(UpsertProductMarkdownArgs args)
         {
-            Validate(dto, new UpsertProductMarkdownDtoValidator(_productRepository));
+            _upsertProductMarkdownArgsValidator.ValidateAndThrow<UpsertProductMarkdownArgs>(args);
 
-            var product = _productRepository.FindProduct(dto.ProductName);
-            
+            var product = _productRepository.FindProduct(args.ProductName);
+
             if (product.Markdown == null)
-                product.Markdown = _mapper.Map<UpsertProductMarkdownDto, Markdown>(dto);
+                product.Markdown = _mapper.Map<Markdown>(args);
             else
-                _mapper.Map<UpsertProductMarkdownDto, Markdown>(dto, product.Markdown);
+                _mapper.Map<UpsertProductMarkdownArgs, Markdown>(args, product.Markdown);
 
             var persistedProduct = _productRepository.UpdateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
-        }
-
-        private void Validate(object dto, IValidator validator)
-        {
-            var validationResult = validator.Validate(dto);
-
-            if (!validationResult.IsValid)
-                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
     }
 }

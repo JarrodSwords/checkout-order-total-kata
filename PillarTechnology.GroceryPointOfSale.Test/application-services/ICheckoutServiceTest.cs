@@ -1,70 +1,98 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using FluentAssertions;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public abstract class ICheckoutServiceTest
+    public class ICheckoutServiceTest
     {
         protected ICheckoutService _checkoutService;
         protected IOrderRepository _orderRepository;
-
-        [Theory]
-        [InlineData(1, 1)]
-        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(long orderId, int itemId)
+        public ICheckoutServiceTest()
         {
+            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
+            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
+            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(_orderRepository);
+            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
+            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
+
+            _checkoutService = new CheckoutService(mapper, _orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
+        }
+
+        [Fact]
+        public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder()
+        {
+            var orderId = 1;
             var order = _orderRepository.FindOrder(orderId);
-            var scannableToRemove = order.ScannedItems.Single(x => x.Id == itemId);
+            var itemId = 1;
+            var scannedItemToRemove = order.ScannedItems.Single(x => x.Id == itemId);
 
-            var removedScannable = _checkoutService.RemoveScannedItem(orderId, itemId);
+            var removedScannedItem = _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(orderId, itemId));
 
-            removedScannable.Should().Be(scannableToRemove);
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().NotContain(scannableToRemove);
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().NotContain(scannedItemToRemove.Id);
         }
 
         [Theory]
-        [InlineData(1, "can of soup")]
-        public void ScanItem_ScannedItemIsAddedToPersistedOrder(long orderId, string productName)
+        [InlineData(null, "Scanned item id is required")]
+        [InlineData(0, "Scanned item id \"0\" does not exist")]
+        public void RemoveScannedItem_WithInvalidProductName_ThrowsArgumentException(int? itemId, string message)
         {
-            var scannedItem = _checkoutService.ScanItem(orderId, productName);
+            Action scanItem = () => _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(1, itemId));
 
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().Contain(scannedItem);
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
+        [Fact]
+        public void ScanItem_ScannedItemIsAddedToPersistedOrder()
+        {
+            var orderId = 1;
+            var scannedItem = _checkoutService.ScanItem(new ScanItemArgs(orderId, "can of soup"));
+
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().Contain(scannedItem.Id);
         }
 
         [Theory]
-        [InlineData(1, "lean ground beef")]
-        public void ScanItem_ForWeightedItem_ThrowsArgumentException(long orderId, string productName)
+        [InlineData(null, "Product name is required")]
+        [InlineData("", "Product name is required")]
+        [InlineData(" ", "Product name is required")]
+        [InlineData("milk", "Product name \"milk\" does not exist")]
+        [InlineData("lean ground beef", "Product name \"lean ground beef\" cannot be sold by unit")]
+        public void ScanItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            Action scanInvalidItem = () => _checkoutService.ScanItem(orderId, productName);
+            Action scanItem = () => _checkoutService.ScanItem(new ScanItemArgs(1, productName));
 
-            scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage("Cannot add an item sold by weight without a weight");
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
+        [Fact]
+        public void ScanWeightedItem_WeightedItemIsAddedToPersistedOrder()
+        {
+            var orderId = 1;
+            var scannedItem = _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(orderId, "lean ground beef", 1m));
+
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().Contain(scannedItem.Id);
         }
 
         [Theory]
-        [InlineData(1, "lean ground beef", 1)]
-        public void ScanItemAndWeight_WeightedItemIsAddedToPersistedOrder(long orderId, string productName, decimal weight)
+        [InlineData(null, "Product name is required")]
+        [InlineData("", "Product name is required")]
+        [InlineData(" ", "Product name is required")]
+        [InlineData("milk", "Product name \"milk\" does not exist")]
+        [InlineData("can of soup", "Product name \"can of soup\" cannot be sold by weight")]
+        public void ScanWeightedItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var scannedItem = _checkoutService.ScanItem(orderId, productName, weight);
+            Action scanItem = () => _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(1, productName, 1m));
 
-            scannedItem.Should().BeOfType(typeof(WeightedItem));
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().Contain(scannedItem);
-        }
-
-        [Theory]
-        [InlineData(1, "can of soup", 1)]
-        public void ScanItemAndWeight_ForNonweightedItem_ThrowsArgumentException(long orderId, string productName, decimal weight)
-        {
-            Action scanInvalidItem = () => _checkoutService.ScanItem(orderId, productName, weight);
-
-            scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage("Cannot add an item sold by unit as an item sold by weight");
+            scanItem.Should().Throw<ArgumentException>().WithMessage(message);
         }
     }
 }

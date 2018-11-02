@@ -7,10 +7,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class Order
     {
-        private readonly ObservableCollection<IScannable> _scannedItems = new ObservableCollection<IScannable>();
+        private readonly ObservableCollection<ScannedItem> _scannedItems = new ObservableCollection<ScannedItem>();
 
         public long Id { get; set; }
-        public IEnumerable<IScannable> ScannedItems { get { return _scannedItems; } }
+        public IEnumerable<ScannedItem> ScannedItems { get { return _scannedItems; } }
         public Invoice Invoice { get; private set; }
 
         public Order()
@@ -18,14 +18,14 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             _scannedItems.CollectionChanged += ScannedItemsChanged;
         }
 
-        public Order AddScannable(IScannable scannable)
+        public Order AddScannedItem(ScannedItem scannedItem)
         {
-            scannable.Id = ScannedItemIdGenerator.Next(_scannedItems);
-            _scannedItems.Add(scannable);
+            scannedItem.Id = ScannedItemIdGenerator.Next(_scannedItems);
+            _scannedItems.Add(scannedItem);
             return this;
         }
 
-        public IScannable RemoveScannedItem(int itemId)
+        public ScannedItem RemoveScannedItem(int itemId)
         {
             var itemToRemove = _scannedItems.Single(x => x.Id == itemId);
             _scannedItems.Remove(itemToRemove);
@@ -34,12 +34,12 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public void ScannedItemsChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            Invoice = new Invoice(this);
+            Invoice = new InvoiceFactory(this).CreateInvoice();
         }
 
         private class ScannedItemIdGenerator
         {
-            public static int Next(IEnumerable<IScannable> scannedItems)
+            public static int Next(IEnumerable<ScannedItem> scannedItems)
             {
                 return scannedItems.Count() == 0 ? 1 : scannedItems.Max(x => x.Id) + 1;
             }

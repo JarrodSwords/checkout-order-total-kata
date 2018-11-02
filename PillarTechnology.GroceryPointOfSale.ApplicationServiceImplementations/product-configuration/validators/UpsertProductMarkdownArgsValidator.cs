@@ -1,15 +1,16 @@
 using System;
 using System.Linq;
 using FluentValidation;
+using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
+namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class UpsertProductMarkdownDtoValidator : AbstractValidator<UpsertProductMarkdownDto>
+    public class UpsertProductMarkdownArgsValidator : AbstractValidator<UpsertProductMarkdownArgs>
     {
         private readonly IProductRepository _productRepository;
 
-        public UpsertProductMarkdownDtoValidator(IProductRepository productRepository)
+        public UpsertProductMarkdownArgsValidator(IProductRepository productRepository)
         {
             _productRepository = productRepository;
             CreateRules();
@@ -31,7 +32,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 
             RuleFor(x => x.StartTime).NotNull().WithMessage("Markdown start time is required")
                 .LessThan(x => x.EndTime).When(x => x.EndTime != null).WithMessage("Markdown start time must be less than end time");
-                
+
             RuleFor(x => x.EndTime).NotNull().WithMessage("Markdown end time is required");
         }
     }
