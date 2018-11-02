@@ -23,5 +23,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             SellByType = sellByType;
             Markdown = markdown;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}: {RetailPrice}";
+        }
     }
 }

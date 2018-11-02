@@ -1,16 +1,29 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using FluentAssertions;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public abstract class ICheckoutServiceTest
+    public class ICheckoutServiceTest
     {
         protected ICheckoutService _checkoutService;
         protected IOrderRepository _orderRepository;
+        public ICheckoutServiceTest()
+        {
+            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
+            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
+            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(_orderRepository);
+            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
+            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
+
+            _checkoutService = new CheckoutService(mapper, _orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
+        }
 
         [Fact]
         public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder()
@@ -22,9 +35,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             var removedScannedItem = _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(orderId, itemId));
 
-            removedScannedItem.Should().Be(scannedItemToRemove);
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().NotContain(scannedItemToRemove);
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().NotContain(scannedItemToRemove.Id);
         }
 
         [Theory]
@@ -43,8 +55,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var orderId = 1;
             var scannedItem = _checkoutService.ScanItem(new ScanItemArgs(orderId, "can of soup"));
 
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().Contain(scannedItem);
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().Contain(scannedItem.Id);
         }
 
         [Theory]
@@ -66,9 +78,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var orderId = 1;
             var scannedItem = _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(orderId, "lean ground beef", 1m));
 
-            scannedItem.Should().BeOfType(typeof(WeightedScannedItem));
-            var persistedOrder = _orderRepository.FindOrder(orderId);
-            persistedOrder.ScannedItems.Should().Contain(scannedItem);
+            var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
+            persistedScannedItems.Should().Contain(scannedItem.Id);
         }
 
         [Theory]

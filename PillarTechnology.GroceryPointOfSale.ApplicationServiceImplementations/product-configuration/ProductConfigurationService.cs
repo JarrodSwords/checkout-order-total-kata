@@ -28,10 +28,10 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _createProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
 
-            var product = _mapper.Map<UpsertProductArgs, Product>(args);
+            var product = _mapper.Map<Product>(args);
             var persistedProduct = _productRepository.CreateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
@@ -42,7 +42,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _mapper.Map<UpsertProductArgs, Product>(args, product);
             var persistedProduct = _productRepository.UpdateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
 
         public ProductDto UpsertProductMarkdown(UpsertProductMarkdownArgs args)
@@ -58,7 +58,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
             var persistedProduct = _productRepository.UpdateProduct(product);
 
-            return _mapper.Map<Product, ProductDto>(persistedProduct);
+            return _mapper.Map<ProductDto>(persistedProduct);
         }
     }
 }
