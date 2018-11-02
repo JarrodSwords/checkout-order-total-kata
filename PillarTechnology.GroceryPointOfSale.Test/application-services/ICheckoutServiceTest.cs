@@ -38,6 +38,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
+        [InlineData(null, "Product name is required")]
+        [InlineData("", "Product name is required")]
+        [InlineData(" ", "Product name is required")]
         [InlineData("milk", "Product name \"milk\" does not exist")]
         [InlineData("lean ground beef", "Product name \"lean ground beef\" cannot be sold by unit")]
         public void ScanItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
