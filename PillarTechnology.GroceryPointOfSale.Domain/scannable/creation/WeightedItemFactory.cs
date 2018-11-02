@@ -5,16 +5,24 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     /// </summary>
     public class WeightedItemFactory : ScannableFactory
     {
-        private readonly decimal _weight;
+        public decimal Weight { get; private set; }
+
+        public WeightedItemFactory() { }
 
         public WeightedItemFactory(Product product, decimal weight) : base(product)
         {
-            _weight = weight;
+            Weight = weight;
         }
 
         public override IScannable CreateScannable()
         {
-            return new WeightedItem(Product, _weight);
+            return new WeightedItem(Product, Weight);
+        }
+
+        public void Configure(Product product, decimal weight)
+        {
+            Product = product;
+            Weight = weight;
         }
     }
 }

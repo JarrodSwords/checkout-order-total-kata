@@ -7,6 +7,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         public Product Product { get; set; }
 
+        public ScannableFactory() { }
+
         public ScannableFactory(Product product)
         {
             Product = product;

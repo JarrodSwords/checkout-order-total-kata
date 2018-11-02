@@ -8,7 +8,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         protected override void Seed(ref InMemoryProductRepository repository)
         {
-            foreach (var product in new ProductTestData().Products)
+            foreach (var product in ProductProvider.Products)
                 repository.CreateProduct(product);
         }
     }

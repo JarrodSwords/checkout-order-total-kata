@@ -13,7 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IOrderRepository _orderRepository;
 
         [Theory]
-        [InlineData(2, 1)]
+        [InlineData(1, 1)]
         public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder(long orderId, int itemId)
         {
             var order = _orderRepository.FindOrder(orderId);

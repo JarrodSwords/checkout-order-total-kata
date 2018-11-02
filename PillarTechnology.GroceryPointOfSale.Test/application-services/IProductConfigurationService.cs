@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductConfigurationServiceTest
     {
+        private readonly DateTime _now = DateTime.Now;
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 
@@ -125,14 +128,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         #region Upsert markdown
 
-        public static IEnumerable<object[]> UpsertProductMarkdownData => new List<object[]>
-        {
-            new object[] { "can of soup", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() },
-            new object[] { "lean ground beef", 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek() }
-        };
-
         [Theory]
-        [MemberData(nameof(UpsertProductMarkdownData))]
+        [ClassData(typeof(UpsertProductMarkdownData))]
         public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime startTime, DateTime endTime)
         {
             var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, amountOffRetail, startTime, endTime);
@@ -151,7 +148,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
         public void UpsertProductMarkdown_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, 0.1m, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek());
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto(productName, 0.1m, _now.StartOfWeek(), _now.EndOfWeek());
 
             Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
 
@@ -164,22 +161,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(10, "*Markdown amount off retail must be less than or equal to product retail price*")]
         public void UpsertProductMarkdown_WithInvalidMarkdownAmountOffRetail_ThrowsArgumentException(double? amountOffRetail, string message)
         {
-            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", (decimal?)amountOffRetail, DateTimeProvider.Now().StartOfWeek(), DateTimeProvider.Now().EndOfWeek());
+            var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", (decimal?) amountOffRetail, _now.StartOfWeek(), _now.EndOfWeek());
 
             Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
 
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
         }
 
-        public static IEnumerable<object[]> InvalidTimeRangeUpsertProductMarkdownData => new List<object[]>
-        {
-            new object[] { null, DateTimeProvider.Now().EndOfWeek(), "Markdown start time is required" },
-            new object[] { DateTimeProvider.Now().StartOfWeek(), null, "Markdown end time is required" },
-            new object[] { DateTimeProvider.Now().EndOfWeek(), DateTimeProvider.Now().StartOfWeek(), "Markdown start time must be less than end time" }
-        };
-
         [Theory]
-        [MemberData(nameof(InvalidTimeRangeUpsertProductMarkdownData))]
+        [ClassData(typeof(InvalidTimeRangeUpsertProductMarkdownData))]
         public void UpsertProductMarkdown_WithInvalidTimeRange_ThrowsArgumentException(DateTime? startTime, DateTime? endTime, string message)
         {
             var updateProductMarkdownDto = new UpsertProductMarkdownDto("can of soup", 0.1m, startTime, endTime);
@@ -187,6 +177,37 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             Action upsertMarkdown = () => _productConfigurationService.UpsertProductMarkdown(updateProductMarkdownDto);
 
             upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+        }
+
+        #endregion
+
+        #region Test data
+
+        public class UpsertProductMarkdownData : IEnumerable<object[]>
+        {
+            private readonly DateTime _now = DateTime.Now;
+
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return new object[] { "can of soup", 0.1m, _now.StartOfWeek(), _now.EndOfWeek() };
+                yield return new object[] { "lean ground beef", 0.1m, _now.StartOfWeek(), _now.EndOfWeek() };
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        }
+
+        public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
+        {
+            private readonly DateTime _now = DateTime.Now;
+            
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                yield return new object[] { null, _now.EndOfWeek(), "Markdown start time is required" };
+                yield return new object[] { _now.StartOfWeek(), null, "Markdown end time is required" };
+                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "Markdown start time must be less than end time" };
+            }
+
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
 
         #endregion
