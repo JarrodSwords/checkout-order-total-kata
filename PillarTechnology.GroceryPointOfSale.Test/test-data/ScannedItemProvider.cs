@@ -19,8 +19,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         private void CreateScannedItems()
         {
-            var itemFactory = new ItemFactory();
-            var weightedItemFactory = new WeightedItemFactory();
             var weight = 0.5m;
             var weightIncrement = 0.5m;
 
@@ -28,13 +26,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             {
                 if (product.SellByType == SellByType.Unit)
                 {
-                    itemFactory.Configure(product);
-                    _scannedItems.Add(itemFactory.CreateScannable());
+                    _scannedItems.Add(new ScannedItem(product));
                     continue;
                 }
 
-                weightedItemFactory.Configure(product, weight);
-                _scannedItems.Add(weightedItemFactory.CreateScannable());
+                _scannedItems.Add(new ScannedWeightedItem(product, weight));
                 weight += weightIncrement;
             }
         }
