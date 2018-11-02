@@ -1,6 +1,6 @@
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class Item : IScannable
+    public class ScannedItem
     {
         protected Product _product;
 
@@ -8,7 +8,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Product Product { get { return _product; } }
 
-        public Item(Product product)
+        public ScannedItem(Product product)
         {
             _product = product;
         }

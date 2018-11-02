@@ -14,9 +14,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Weight = weight;
         }
 
-        public override IScannable CreateScannable()
+        public override ScannedItem CreateScannable()
         {
-            return new WeightedItem(Product, Weight);
+            return new ScannedWeightedItem(Product, Weight);
         }
 
         public void Configure(Product product, decimal weight)

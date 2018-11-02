@@ -44,27 +44,27 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return lineItems;
         }
 
-        private static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<IScannable> scannedItems)
+        private static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<ScannedItem> scannedItems)
         {
-            foreach (var scannable in scannedItems)
+            foreach (var scannedItem in scannedItems)
             {
-                var salePrice = scannable.Product.SellByType == SellByType.Unit ?
-                    scannable.Product.RetailPrice :
-                    scannable.Product.RetailPrice * ((WeightedItem) scannable).Weight;
+                var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
+                    scannedItem.Product.RetailPrice :
+                    scannedItem.Product.RetailPrice * ((ScannedWeightedItem) scannedItem).Weight;
 
-                yield return new LineItem(scannable.Product.Name, salePrice, scannable.Id);
+                yield return new LineItem(scannedItem.Product.Name, salePrice, scannedItem.Id);
             }
         }
 
-        private static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<IScannable> scannedItems)
+        private static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
         {
-            foreach (var scannable in scannedItems)
+            foreach (var scannedItem in scannedItems)
             {
-                var salePrice = scannable.Product.SellByType == SellByType.Unit ?
-                    scannable.Product.Markdown.AmountOffRetail :
-                    scannable.Product.Markdown.AmountOffRetail * ((WeightedItem) scannable).Weight;
+                var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
+                    scannedItem.Product.Markdown.AmountOffRetail :
+                    scannedItem.Product.Markdown.AmountOffRetail * ((ScannedWeightedItem) scannedItem).Weight;
 
-                yield return new LineItem(scannable.Product.Name + " markdown", -scannable.Product.Markdown.AmountOffRetail);
+                yield return new LineItem(scannedItem.Product.Name + " markdown", -scannedItem.Product.Markdown.AmountOffRetail);
             }
         }
     }

@@ -10,29 +10,29 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         private Order _order = OrderProvider.CreateOrderWithScannedItems();
 
         [Fact]
-        public void AddScannable_ScannableIsAddedToScannedItemsAndNewInvoiceIsCreated()
+        public void AddScannedItem_ScannedItemIsAddedToScannedItemsAndNewInvoiceIsCreated()
         {
             var invoice = _order.Invoice;
-            var scannedItem = new ScannedItemProvider().GetScannable();
+            var scannedItem = new ScannedItemProvider().GetScannedItem();
 
-            _order.AddScannable(scannedItem);
+            _order.AddScannedItem(scannedItem);
 
             _order.ScannedItems.Should().Contain(scannedItem);
             _order.Invoice.Should().NotBe(invoice);
         }
 
         [Fact]
-        public void AddMultipleScannables_AllScannedItemIdsAreUnique()
+        public void AddMultipleScannedItems_AllScannedItemIdsAreUnique()
         {
             var order = new Order();
 
-            new ScannedItemProvider().ScannedItems.ToList().ForEach(x => order.AddScannable(x));
+            new ScannedItemProvider().ScannedItems.ToList().ForEach(x => order.AddScannedItem(x));
 
             order.ScannedItems.Should().OnlyHaveUniqueItems(x => x.Id);
         }
 
         [Fact]
-        public void RemoveScannable_ScannableIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
+        public void RemoveScannedItem_ScannedItemIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
         {
             var invoice = _order.Invoice;
             var itemId = _order.ScannedItems.Select(x => x.Id).First();

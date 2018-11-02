@@ -23,8 +23,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var order = new Order { Id = 1 };
 
-            foreach (var scannable in new ScannedItemProvider().ScannedItems)
-                order.AddScannable(scannable);
+            foreach (var scannedItem in new ScannedItemProvider().ScannedItems)
+                order.AddScannedItem(scannedItem);
 
             return order;
         }

@@ -6,11 +6,11 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class ScannedItemProvider : IEnumerable<IScannable>
+    public class ScannedItemProvider : IEnumerable<ScannedItem>
     {
-        private ICollection<IScannable> _scannedItems = new List<IScannable>();
+        private ICollection<ScannedItem> _scannedItems = new List<ScannedItem>();
 
-        public ICollection<IScannable> ScannedItems => _scannedItems;
+        public ICollection<ScannedItem> ScannedItems => _scannedItems;
 
         public ScannedItemProvider()
         {
@@ -39,12 +39,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             }
         }
 
-        public IScannable GetScannable()
+        public ScannedItem GetScannedItem()
         {
             return _scannedItems.First();
         }
 
-        public IEnumerator<IScannable> GetEnumerator() => _scannedItems.GetEnumerator();
+        public IEnumerator<ScannedItem> GetEnumerator() => _scannedItems.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }

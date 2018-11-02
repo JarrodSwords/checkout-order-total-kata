@@ -9,9 +9,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public ItemFactory(Product product) : base(product) { }
 
-        public override IScannable CreateScannable()
+        public override ScannedItem CreateScannable()
         {
-            return new Item(Product);
+            return new ScannedItem(Product);
         }
 
         public void Configure(Product product)

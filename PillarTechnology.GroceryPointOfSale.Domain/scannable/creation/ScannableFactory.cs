@@ -14,6 +14,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Product = product;
         }
 
-        public abstract IScannable CreateScannable();
+        public abstract ScannedItem CreateScannable();
     }
 }

@@ -15,7 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _productRepository = productRepository;
         }
 
-        public IScannable RemoveScannedItem(long orderId, int itemId)
+        public ScannedItem RemoveScannedItem(long orderId, int itemId)
         {
             var order = _orderRepository.FindOrder(orderId);
 
@@ -25,7 +25,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return removedItem;
         }
 
-        public IScannable ScanItem(long orderId, string productName)
+        public ScannedItem ScanItem(long orderId, string productName)
         {
             var product = _productRepository.FindProduct(productName);
             var validator = new SellByUnitScanInputValidator(product);
@@ -34,7 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return ScanItem(orderId, product, validator, itemFactory);
         }
 
-        public IScannable ScanItem(long orderId, string productName, decimal weight)
+        public ScannedItem ScanItem(long orderId, string productName, decimal weight)
         {
             var product = _productRepository.FindProduct(productName);
             var validator = new SellByWeightScanInputValidator(product, weight);
@@ -43,14 +43,14 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return ScanItem(orderId, product, validator, weightedItemFactory);
         }
 
-        private IScannable ScanItem(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
+        private ScannedItem ScanItem(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
         {
             validator.Validate();
 
             var order = _orderRepository.FindOrder(orderId);
             var scannable = scannableFactory.CreateScannable();
 
-            order.AddScannable(scannable);
+            order.AddScannedItem(scannable);
             _orderRepository.UpdateOrder(order);
 
             return scannable;
