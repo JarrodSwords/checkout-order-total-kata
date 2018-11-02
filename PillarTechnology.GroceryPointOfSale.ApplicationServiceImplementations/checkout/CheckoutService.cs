@@ -8,11 +8,15 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private IOrderRepository _orderRepository;
         private IProductRepository _productRepository;
+        private ScanItemArgsValidator _scanItemArgsValidator;
+        private ScanWeightedItemArgsValidator _scanWeightedItemArgsValidator;
 
-        public CheckoutService(IOrderRepository orderRepository, IProductRepository productRepository)
+        public CheckoutService(IOrderRepository orderRepository, IProductRepository productRepository, ScanItemArgsValidator scanItemArgsValidator, ScanWeightedItemArgsValidator scanWeightedItemArgsValidator)
         {
             _orderRepository = orderRepository;
             _productRepository = productRepository;
+            _scanItemArgsValidator = scanItemArgsValidator;
+            _scanWeightedItemArgsValidator = scanWeightedItemArgsValidator;
         }
 
         public ScannedItem RemoveScannedItem(long orderId, int itemId)
@@ -25,35 +29,30 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return removedItem;
         }
 
-        public ScannedItem ScanItem(long orderId, string productName)
+        public ScannedItem ScanItem(ScanItemArgs args)
         {
-            var product = _productRepository.FindProduct(productName);
-            var validator = new SellByUnitScanInputValidator(product);
-            var itemFactory = new ItemFactory(product);
+            _scanItemArgsValidator.ValidateAndThrow<ScanItemArgs>(args);
 
-            return ScanItem(orderId, product, validator, itemFactory);
+            return ScanItem(args.OrderId, args.ProductName, product => new ScannedItem(product));
         }
 
-        public ScannedItem ScanItem(long orderId, string productName, decimal weight)
+        public ScannedItem ScanWeightedItem(ScanWeightedItemArgs args)
         {
-            var product = _productRepository.FindProduct(productName);
-            var validator = new SellByWeightScanInputValidator(product, weight);
-            var weightedItemFactory = new WeightedItemFactory(product, weight);
+            _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return ScanItem(orderId, product, validator, weightedItemFactory);
+            return ScanItem(args.OrderId, args.ProductName, product => new ScannedWeightedItem(product, args.Weight));
         }
 
-        private ScannedItem ScanItem(long orderId, Product product, IScanInputValidator validator, ScannableFactory scannableFactory)
+        private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)
         {
-            validator.Validate();
-
             var order = _orderRepository.FindOrder(orderId);
-            var scannable = scannableFactory.CreateScannable();
+            var product = _productRepository.FindProduct(productName);
+            var scannedItem = createScannedItem(product);
 
-            order.AddScannedItem(scannable);
+            order.AddScannedItem(scannedItem);
             _orderRepository.UpdateOrder(order);
 
-            return scannable;
+            return scannedItem;
         }
     }
 }

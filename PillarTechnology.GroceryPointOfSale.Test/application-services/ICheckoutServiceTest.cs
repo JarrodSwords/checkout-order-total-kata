@@ -30,7 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(1, "can of soup")]
         public void ScanItem_ScannedItemIsAddedToPersistedOrder(long orderId, string productName)
         {
-            var scannedItem = _checkoutService.ScanItem(orderId, productName);
+            var scannedItem = _checkoutService.ScanItem(new ScanItemArgs { OrderId = orderId, ProductName = productName });
 
             var persistedOrder = _orderRepository.FindOrder(orderId);
             persistedOrder.ScannedItems.Should().Contain(scannedItem);
@@ -40,17 +40,21 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(1, "lean ground beef")]
         public void ScanItem_ForWeightedItem_ThrowsArgumentException(long orderId, string productName)
         {
-            Action scanInvalidItem = () => _checkoutService.ScanItem(orderId, productName);
+            var args = new ScanItemArgs { OrderId = orderId, ProductName = productName };
+
+            Action scanInvalidItem = () => _checkoutService.ScanItem(args);
 
             scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage("Cannot add an item sold by weight without a weight");
+                .WithMessage($"Product name \"{productName}\" cannot be sold by unit");
         }
 
         [Theory]
         [InlineData(1, "lean ground beef", 1)]
         public void ScanItemAndWeight_WeightedItemIsAddedToPersistedOrder(long orderId, string productName, decimal weight)
         {
-            var scannedItem = _checkoutService.ScanItem(orderId, productName, weight);
+            var args = new ScanWeightedItemArgs { OrderId = orderId, ProductName = productName, Weight = weight };
+
+            var scannedItem = _checkoutService.ScanWeightedItem(args);
 
             scannedItem.Should().BeOfType(typeof(ScannedWeightedItem));
             var persistedOrder = _orderRepository.FindOrder(orderId);
@@ -59,12 +63,14 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         [Theory]
         [InlineData(1, "can of soup", 1)]
-        public void ScanItemAndWeight_ForNonweightedItem_ThrowsArgumentException(long orderId, string productName, decimal weight)
+        public void ScanItemAndWeight_ForEachesItem_ThrowsArgumentException(long orderId, string productName, decimal weight)
         {
-            Action scanInvalidItem = () => _checkoutService.ScanItem(orderId, productName, weight);
+            var args = new ScanWeightedItemArgs { OrderId = orderId, ProductName = productName, Weight = weight };
+
+            Action scanInvalidItem = () => _checkoutService.ScanWeightedItem(args);
 
             scanInvalidItem.Should().Throw<ArgumentException>()
-                .WithMessage("Cannot add an item sold by unit as an item sold by weight");
+                .WithMessage($"Product name \"{productName}\" cannot be sold by weight");
         }
     }
 }

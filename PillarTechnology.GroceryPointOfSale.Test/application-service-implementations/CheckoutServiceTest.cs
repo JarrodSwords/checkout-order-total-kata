@@ -8,7 +8,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
             var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            _checkoutService = new CheckoutService(_orderRepository, productRepository);
+            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
+            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
+
+            _checkoutService = new CheckoutService(_orderRepository, productRepository, scanItemArgsValidator, scanWeightedItemArgsValidator);
         }
     }
 }

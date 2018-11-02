@@ -11,12 +11,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         private readonly Order _order = OrderProvider.CreateOrderWithScannedItems();
 
         [Theory]
-        [ClassData(typeof(OrderProvider))]
-        public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal(long orderId, decimal preTaxTotal)
+        [InlineData(14.75)]
+        public void CalculatePreTaxTotal_ReturnsCorrectPreTaxTotal(double preTaxTotal)
         {
             var invoice = new InvoiceFactory(_order).CreateInvoice();
 
-            invoice.PreTaxTotal.Should().Be(Money.USDollar(preTaxTotal));
+            invoice.PreTaxTotal.Should().Be(Money.USDollar((decimal)preTaxTotal));
         }
 
         [Fact]
