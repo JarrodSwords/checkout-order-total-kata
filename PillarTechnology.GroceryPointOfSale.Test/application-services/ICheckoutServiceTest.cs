@@ -9,21 +9,10 @@ using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class ICheckoutServiceTest
+    public abstract class ICheckoutServiceTest
     {
         protected ICheckoutService _checkoutService;
         protected IOrderRepository _orderRepository;
-        public ICheckoutServiceTest()
-        {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(_orderRepository);
-            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
-            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
-
-            _checkoutService = new CheckoutService(mapper, _orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
-        }
 
         [Fact]
         public void RemoveScannedItem_ScannedItemIsRemovedFromPersistedOrder()
