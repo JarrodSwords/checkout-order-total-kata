@@ -13,7 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         [Theory]
         [ClassData(typeof(BuyNItemsGetMAtXPercentOffTestData))]
-        public void ApplySpecial_ForBuyNItemsGetMAtXPercentOff_CreatesCorrectSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems, int specialLineItemsCount, Money totalSalePrice)
+        public void CreateLineItems_CreatesCorrectSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems, int specialLineItemsCount, Money totalSalePrice)
         {
             var lineItems = product.Special.CreateLineItems(scannedItems);
 

@@ -23,7 +23,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var lineItems = new InvoiceFactory(_order).CreateLineItems();
 
-            var lineItemScannedItemIds = lineItems.Where(x => x.GetType() == typeof(RetailLineItem)).Select(x => ((RetailLineItem)x).ScannedItemId).ToList();
+            var lineItemScannedItemIds = lineItems
+                .Where(x => x.GetType() == typeof(RetailLineItem))
+                .Select(x => ((RetailLineItem) x).ScannedItemId).ToList();
+
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }
