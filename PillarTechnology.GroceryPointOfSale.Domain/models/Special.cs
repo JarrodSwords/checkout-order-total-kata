@@ -18,6 +18,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             EndTime = endTime;
         }
 
-        public abstract IEnumerable<LineItem> CreateSpecialLineItems(IEnumerable<ScannedItem> scannedItems);
+        public abstract IEnumerable<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems);
     }
 }

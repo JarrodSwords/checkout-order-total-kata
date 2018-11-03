@@ -13,9 +13,16 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             _product = product;
         }
 
-        public override string ToString()
+        public override string ToString() => $"Id: {Id}, Product: {Product.Name}";
+
+        public virtual LineItem CreateLineItem()
         {
-            return $"Id: {Id}, Product: {Product.Name}";
+            return new LineItem(Product.Name, Product.RetailPrice, Id);
+        }
+
+        public virtual LineItem CreateMarkdownLineItem()
+        {
+            return new LineItem($"{Product.Name} markdown", -Product.Markdown.AmountOffRetail);
         }
     }
 }

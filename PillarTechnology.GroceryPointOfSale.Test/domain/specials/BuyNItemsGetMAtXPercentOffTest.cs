@@ -15,7 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [ClassData(typeof(BuyNItemsGetMAtXPercentOffTestData))]
         public void ApplySpecial_ForBuyNItemsGetMAtXPercentOff_CreatesCorrectSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems, int specialLineItemsCount, Money totalSalePrice)
         {
-            var lineItems = product.Special.CreateSpecialLineItems(scannedItems);
+            var lineItems = product.Special.CreateLineItems(scannedItems);
 
             lineItems.Count().Should().Be(specialLineItemsCount);
             var lineItemsTotalSalePrice = Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));

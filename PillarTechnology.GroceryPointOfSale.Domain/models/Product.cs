@@ -25,9 +25,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Markdown = markdown;
         }
 
-        public override string ToString()
-        {
-            return $"{Name}: {RetailPrice}";
-        }
+        public override string ToString() => $"{Name}; {RetailPrice}; {Markdown}";
     }
 }

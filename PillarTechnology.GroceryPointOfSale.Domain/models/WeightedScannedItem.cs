@@ -10,5 +10,15 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             _weight = weight;
         }
+        
+        public override LineItem CreateLineItem()
+        {
+            return new LineItem(Product.Name, Product.RetailPrice * Weight, Id);
+        }
+
+        public override LineItem CreateMarkdownLineItem()
+        {
+            return new LineItem($"{Product.Name} markdown", -Product.Markdown.AmountOffRetail * Weight);
+        }
     }
 }

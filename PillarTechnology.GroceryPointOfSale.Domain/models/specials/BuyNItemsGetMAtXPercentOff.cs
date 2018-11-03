@@ -20,7 +20,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Multiplier = multiplier;
         }
 
-        public override IEnumerable<LineItem> CreateSpecialLineItems(IEnumerable<ScannedItem> scannedItems)
+        public override IEnumerable<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems)
         {
             var specialsApplied = scannedItems.Count() / (PreDiscountItems + DiscountedItems);
 

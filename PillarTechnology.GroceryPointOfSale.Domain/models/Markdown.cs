@@ -23,5 +23,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             StartTime = startTime;
             EndTime = endTime;
         }
+
+        public override string ToString() => $"{AmountOffRetail}; {StartTime}-{EndTime}";
     }
 }

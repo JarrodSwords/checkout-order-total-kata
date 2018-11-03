@@ -14,10 +14,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             ProductName = productName;
             SalePrice = salePrice;
         }
-        
-        public override string ToString()
-        {
-            return $"Scanned item: {ScannedItemId}, Product: {ProductName}, Sale price: {SalePrice}";
-        }
+
+        public override string ToString() => $"Scanned item: {ScannedItemId}, Product: {ProductName}, Sale price: {SalePrice}";
     }
 }
