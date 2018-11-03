@@ -13,6 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public Money RetailPrice { get; set; }
         public SellByType SellByType { get; set; }
         public Markdown Markdown { get; set; }
+        public Special Special { get; set; }
 
         public Product() { }
 
