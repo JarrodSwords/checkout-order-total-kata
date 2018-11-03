@@ -10,6 +10,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public int PreDiscountItems { get; set; }
         public int DiscountedItems { get; set; }
         public decimal Multiplier { get; set; }
+        public string Description { get { return $"{Product.Name} - special buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P}"; } }
 
         public BuyNItemsGetMAtXPercentOff() { }
 
@@ -25,7 +26,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             var specialsApplied = scannedItems.Count() / (PreDiscountItems + DiscountedItems);
 
             for (var i = 0; i < specialsApplied; i++)
-                yield return new LineItem(Product.Name, -Money.USDollar(DiscountedItems * Product.RetailPrice.Amount * Multiplier));
+                yield return new SpecialLineItem(Description, -Money.USDollar(DiscountedItems * Product.RetailPrice.Amount * Multiplier));
         }
     }
 }

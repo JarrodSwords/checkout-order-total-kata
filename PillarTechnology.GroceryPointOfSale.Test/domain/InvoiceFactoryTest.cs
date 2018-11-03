@@ -19,11 +19,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Fact]
-        public void CreateLineItems_CreatesALineItemPerScannedItem()
+        public void CreateLineItems_CreatesARetailLineItemPerScannedItem()
         {
             var lineItems = new InvoiceFactory(_order).CreateLineItems();
 
-            var lineItemScannedItemIds = lineItems.Where(x => x.ScannedItemId != null).Select(x => x.ScannedItemId).ToList();
+            var lineItemScannedItemIds = lineItems.Where(x => x.GetType() == typeof(RetailLineItem)).Select(x => ((RetailLineItem)x).ScannedItemId).ToList();
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }

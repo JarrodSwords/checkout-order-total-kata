@@ -2,19 +2,17 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class LineItem
+    public abstract class LineItem
     {
-        public string ProductName { get; }
+        public string Description { get; }
         public Money SalePrice { get; }
-        public int? ScannedItemId { get; set; }
 
-        public LineItem(string productName, Money salePrice, int? scannedItemId = null)
+        public LineItem(string description, Money salePrice)
         {
-            ScannedItemId = scannedItemId;
-            ProductName = productName;
+            Description = description;
             SalePrice = salePrice;
         }
 
-        public override string ToString() => $"Scanned item: {ScannedItemId}, Product: {ProductName}, Sale price: {SalePrice}";
+        public override string ToString() => $"{Description} - {SalePrice}";
     }
 }

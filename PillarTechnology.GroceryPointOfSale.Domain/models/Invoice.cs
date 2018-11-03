@@ -17,6 +17,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             PreTaxTotal = preTaxTotal;
         }
 
-        public override string ToString() => $"Order: {OrderId}, Pre-tax total: {PreTaxTotal}";
+        public override string ToString() => $"Order: {OrderId}; Pre-tax total: {PreTaxTotal}";
     }
 }
