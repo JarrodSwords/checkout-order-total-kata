@@ -25,7 +25,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             var specialsApplied = scannedItems.Count() / (PreDiscountItems + DiscountedItems);
 
             for (var i = 0; i < specialsApplied; i++)
-                yield return new LineItem(Product.Name, Money.USDollar(DiscountedItems * Multiplier));
+                yield return new LineItem(Product.Name, -Money.USDollar(DiscountedItems * Product.RetailPrice.Amount * Multiplier));
         }
     }
 }
