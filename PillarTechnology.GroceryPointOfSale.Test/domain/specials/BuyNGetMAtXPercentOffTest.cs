@@ -12,11 +12,20 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     public class BuyNGetMAtXPercentOffSpecialTest
     {
         private DateTime _now = DateTime.Now;
+        private IEnumerable<LineItem> _lineItems;
 
         private IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
         {
             for (var i = 0; i < count; i++)
                 yield return new ScannedItem(product) { Id = i + 1 };
+        }
+
+        private void CreateLineItems(Product product, Special special, int scannedItemCount)
+        {
+            var scannedItems = CreateScannedItems(product, scannedItemCount);
+            var productSpecial = new ProductSpecial(product, special);
+
+            _lineItems = productSpecial.CreateLineItems(scannedItems);
         }
 
         [Theory]
@@ -33,12 +42,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
             var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, 100);
-            var scannedItems = CreateScannedItems(product, scannedItemCount);
-            var productSpecial = new ProductSpecial(product, special);
 
-            var lineItems = productSpecial.CreateLineItems(scannedItems);
+            CreateLineItems(product, special, scannedItemCount);
 
-            lineItems.Count().Should().Be(expectedLineItemCount);
+            _lineItems.Count().Should().Be(expectedLineItemCount);
         }
 
         [Theory]
@@ -54,13 +61,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
         {
             var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
-            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal)percentageOff);
-            var scannedItems = CreateScannedItems(product, scannedItemCount);
-            var productSpecial = new ProductSpecial(product, special);
+            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal) percentageOff);
 
-            var lineItems = productSpecial.CreateLineItems(scannedItems);
+            CreateLineItems(product, special, scannedItemCount);
 
-            var totalValue = Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
+            var totalValue = Money.USDollar(_lineItems.Sum(x => x.SalePrice.Amount));
             totalValue.Should().BeEquivalentTo(Money.USDollar(expectedTotalValue));
         }
     }
