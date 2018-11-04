@@ -28,7 +28,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(2, 1, 1, 0)]
         [InlineData(2, 1, 3, 1)]
         [InlineData(2, 1, 4, 1)]
-        public void CreateLineItems_CreatesCorrectLineItemCount(int preDiscountItems, int discountedItems, int scannedItemCount, int validSpecialCount)
+        [InlineData(2, 2, 4, 1)]
+        public void CreateLineItems_CreatesCorrectLineItemCount(int preDiscountItems, int discountedItems, int scannedItemCount, int expectedLineItemCount)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
             var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, 100);
@@ -37,7 +38,30 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             var lineItems = productSpecial.CreateLineItems(scannedItems);
 
-            lineItems.Count().Should().Be(validSpecialCount);
+            lineItems.Count().Should().Be(expectedLineItemCount);
+        }
+
+        [Theory]
+        [InlineData(1, 1, 1, 100, 2, -1)]
+        [InlineData(2, 1, 1, 100, 2, -2)]
+        [InlineData(2, 1, 1, 100, 3, -2)]
+        [InlineData(2, 1, 1, 100, 4, -4)]
+        [InlineData(2, 1, 1, 100, 5, -4)]
+        [InlineData(1, 2, 1, 50, 3, -0.5)]
+        [InlineData(2, 2, 1, 50, 3, -1)]
+        [InlineData(2, 2, 1, 50, 6, -2)]
+        [InlineData(2, 2, 2, 50, 4, -2)]
+        public void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
+        {
+            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
+            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal)percentageOff);
+            var scannedItems = CreateScannedItems(product, scannedItemCount);
+            var productSpecial = new ProductSpecial(product, special);
+
+            var lineItems = productSpecial.CreateLineItems(scannedItems);
+
+            var totalValue = Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
+            totalValue.Should().BeEquivalentTo(Money.USDollar(expectedTotalValue));
         }
     }
 }
