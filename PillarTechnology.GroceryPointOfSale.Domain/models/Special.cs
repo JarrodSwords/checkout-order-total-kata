@@ -1,23 +1,24 @@
 using System;
-using System.Collections.Generic;
+using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public abstract class Special
     {
-        public Product Product { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int ScannedItemsRequired { get { return GetScannedItemsRequired(); } }
 
         public Special() { }
 
-        public Special(Product product, DateTime startTime, DateTime endTime)
+        public Special(DateTime startTime, DateTime endTime)
         {
-            Product = product;
             StartTime = startTime;
             EndTime = endTime;
         }
 
-        public abstract IEnumerable<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems);
+        public abstract Money CalculateSalePrice(Product product);
+        public abstract string GetLineItemDescription(Product product);
+        public abstract int GetScannedItemsRequired();
     }
 }

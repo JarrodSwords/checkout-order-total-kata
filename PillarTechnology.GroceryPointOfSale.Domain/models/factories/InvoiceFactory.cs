@@ -30,7 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
                 lineItems.AddRange(scannedItems.Select(x => x.CreateRetailLineItem()));
 
                 if (product.Special != null)
-                    lineItems.AddRange(product.Special.CreateLineItems(scannedItems));
+                    lineItems.AddRange(new ProductSpecial(product, product.Special).CreateLineItems(scannedItems));
                 else if (product.Markdown != null && product.Markdown.IsActive)
                     lineItems.AddRange(scannedItems.Select(x => x.CreateMarkdownLineItem()));
             }
