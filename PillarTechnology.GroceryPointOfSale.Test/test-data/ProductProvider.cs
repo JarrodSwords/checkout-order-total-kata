@@ -30,8 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             ///     E, W - eaches/weighted product
             ///     M - markdown
             ///     S - special
-            ///     xM, xS - expired markdown/special
-            ///     fM, fS - future markdown/special
+            ///     nM, nS - invalid (expired/future) markdown/special
             /// </remarks>
             return new List<Product>
             {
@@ -40,26 +39,34 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 {
                     Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Active)
                 },
-                new Product("E xM", retailPrice, SellByType.Unit)
+                new Product("E nM", retailPrice, SellByType.Unit)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Expired)
                 },
-                new Product("E fM", retailPrice, SellByType.Unit)
+                new Product("E S", retailPrice, SellByType.Unit)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Future)
+                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active)
+                },
+                new Product("E nS", retailPrice, SellByType.Unit)
+                {
+                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired)
                 },
                 new Product("W", retailPrice, SellByType.Weight),
                 new Product("W M", retailPrice, SellByType.Weight)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Active)
                 },
-                new Product("W xM", retailPrice, SellByType.Weight)
+                new Product("W nM", retailPrice, SellByType.Weight)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Expired)
                 },
-                new Product("W fM", retailPrice, SellByType.Weight)
+                new Product("W S", retailPrice, SellByType.Weight)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Future)
+                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active)
+                },
+                new Product("W nS", retailPrice, SellByType.Weight)
+                {
+                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired)
                 }
             };
         }
