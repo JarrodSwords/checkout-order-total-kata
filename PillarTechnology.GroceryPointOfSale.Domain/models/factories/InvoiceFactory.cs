@@ -31,41 +31,17 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
             foreach (var product in Order.ScannedItems.Select(x => x.Product).Distinct())
             {
-                var items = Order.ScannedItems.Where(x => x.Product == product);
+                var scannedItems = Order.ScannedItems.Where(x => x.Product == product).ToList();
 
-                lineItems.AddRange(CreateScannedItemLineItems(items));
+                lineItems.AddRange(scannedItems.Select(x => x.CreateRetailLineItem()));
 
-                if (product.Markdown == null || !product.Markdown.IsActive)
-                    continue;
-
-                lineItems.AddRange(CreateMarkdownLineItems(items));
+                if (product.Special != null)
+                    lineItems.AddRange(product.Special.CreateLineItems(scannedItems));
+                else if (product.Markdown != null && product.Markdown.IsActive)
+                    lineItems.AddRange(scannedItems.Select(x => x.CreateMarkdownLineItem()));
             }
 
             return lineItems;
-        }
-
-        private static IEnumerable<LineItem> CreateScannedItemLineItems(IEnumerable<ScannedItem> scannedItems)
-        {
-            foreach (var scannedItem in scannedItems)
-            {
-                var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
-                    scannedItem.Product.RetailPrice :
-                    scannedItem.Product.RetailPrice * ((WeightedScannedItem) scannedItem).Weight;
-
-                yield return new LineItem(scannedItem.Product.Name, salePrice, scannedItem.Id);
-            }
-        }
-
-        private static IEnumerable<LineItem> CreateMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
-        {
-            foreach (var scannedItem in scannedItems)
-            {
-                var salePrice = scannedItem.Product.SellByType == SellByType.Unit ?
-                    scannedItem.Product.Markdown.AmountOffRetail :
-                    scannedItem.Product.Markdown.AmountOffRetail * ((WeightedScannedItem) scannedItem).Weight;
-
-                yield return new LineItem(scannedItem.Product.Name + " markdown", -scannedItem.Product.Markdown.AmountOffRetail);
-            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public Money RetailPrice { get; set; }
         public SellByType SellByType { get; set; }
         public Markdown Markdown { get; set; }
+        public Special Special { get; set; }
 
         public Product() { }
 
@@ -24,9 +25,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Markdown = markdown;
         }
 
-        public override string ToString()
-        {
-            return $"{Name}: {RetailPrice}";
-        }
+        public override string ToString() => $"{Name}; {RetailPrice}; {Markdown}";
     }
 }

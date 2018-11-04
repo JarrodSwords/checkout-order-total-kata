@@ -10,10 +10,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return date.AddDays(-diff).Date;
         }
 
-        public static DateTime StartOfLastWeek(this DateTime date) => date.StartOfWeek().AddDays(-7).Date;
-        public static DateTime StartOfNextWeek(this DateTime date) => date.StartOfWeek().AddDays(7).Date;
-        public static DateTime EndOfWeek(this DateTime date) => date.StartOfWeek().AddDays(6).Date;
-        public static DateTime EndOfLastWeek(this DateTime date) => date.StartOfWeek().AddDays(-1).Date;
-        public static DateTime EndOfNextWeek(this DateTime date) => date.StartOfWeek().AddDays(13).Date;
+        public static DateTime StartOfLastWeek(this DateTime date) => date.StartOfWeek().AddDays(-7);
+        public static DateTime StartOfNextWeek(this DateTime date) => date.StartOfWeek().AddDays(7);
+        public static DateTime EndOfWeek(this DateTime date) => date.StartOfWeek().AddDays(7).AddSeconds(-1);
+        public static DateTime EndOfLastWeek(this DateTime date) => date.StartOfWeek().AddSeconds(-1);
+        public static DateTime EndOfNextWeek(this DateTime date) => date.StartOfWeek().AddDays(14).AddSeconds(-1);
     }
 }
