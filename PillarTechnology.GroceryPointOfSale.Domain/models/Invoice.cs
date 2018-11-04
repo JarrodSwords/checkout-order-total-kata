@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
@@ -10,11 +11,16 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public IEnumerable<LineItem> LineItems { get; }
         public Money PreTaxTotal { get; }
 
-        public Invoice(long orderId, IEnumerable<LineItem> lineItems, Money preTaxTotal)
+        public Invoice(long orderId, IEnumerable<LineItem> lineItems)
         {
             OrderId = orderId;
             LineItems = lineItems;
-            PreTaxTotal = preTaxTotal;
+            PreTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);
+        }
+
+        public static Money CalculatePreTaxTotal(IEnumerable<LineItem> lineItems)
+        {
+            return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
         }
 
         public override string ToString() => $"Order: {OrderId}; Pre-tax total: {PreTaxTotal}";

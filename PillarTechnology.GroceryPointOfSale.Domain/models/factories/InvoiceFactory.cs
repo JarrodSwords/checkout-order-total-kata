@@ -16,13 +16,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public Invoice CreateInvoice()
         {
             var lineItems = CreateLineItems();
-            var preTaxTotal = InvoiceFactory.CalculatePreTaxTotal(lineItems);
-            return new Invoice(Order.Id, lineItems, preTaxTotal);
-        }
-
-        public static Money CalculatePreTaxTotal(ICollection<LineItem> lineItems)
-        {
-            return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
+            return new Invoice(Order.Id, lineItems);
         }
 
         public ICollection<LineItem> CreateLineItems()
