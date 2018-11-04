@@ -22,5 +22,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             return scannedItems.Select(x => x.CreateRetailLineItem());
         }
+
+        public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
+        {
+            return scannedItems.Select(x => x.CreateMarkdownLineItem());
+        }
     }
 }
