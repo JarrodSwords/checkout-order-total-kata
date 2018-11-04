@@ -15,25 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Invoice CreateInvoice()
         {
-            var lineItems = CreateLineItems();
-            return new Invoice(Order.Id, lineItems);
-        }
-
-        public ICollection<LineItem> CreateLineItems()
-        {
-            var lineItems = InvoiceFactory.CreateRetailLineItems(Order.ScannedItems).ToList();
-
-            foreach (var product in Order.ScannedItems.Select(x => x.Product).Distinct())
-            {
-                var scannedItems = Order.ScannedItems.Where(x => x.Product == product).ToList();
-
-                if (product.Special != null)
-                    lineItems.AddRange(new ProductSpecial(product, product.Special).CreateLineItems(scannedItems));
-                else if (product.Markdown != null && product.Markdown.IsActive)
-                    lineItems.AddRange(scannedItems.Select(x => x.CreateMarkdownLineItem()));
-            }
-
-            return lineItems;
+            return new Invoice(Order.Id, new List<LineItem>());
         }
 
         public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems)
