@@ -6,10 +6,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public static class MarkdownProvider
     {
-        public static Markdown GetMarkdown(Money amountOffRetail, DateRange dateRange)
+        public static Markdown GetMarkdown(DateRange dateRange, decimal amountOffRetail = 0.5m)
         {
             var now = DateTime.Now;
-            return new Markdown(amountOffRetail, dateRange.GetStart(now), dateRange.GetEnd(now));
+            return new Markdown(Money.USDollar(amountOffRetail), dateRange.GetStart(now), dateRange.GetEnd(now));
         }
     }
 

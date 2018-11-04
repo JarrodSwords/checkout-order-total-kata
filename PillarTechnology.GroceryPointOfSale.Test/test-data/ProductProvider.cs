@@ -11,13 +11,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public static ICollection<Product> Products => new List<Product>
         {
             new Product("can of soup", Money.USDollar(0.5m), SellByType.Unit),
-            new Product("frozen pizza", Money.USDollar(3m), SellByType.Unit, MarkdownProvider.GetMarkdown(Money.USDollar(0.25m), DateRange.Active)),
-            new Product("peanut butter", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(Money.USDollar(0.50m), DateRange.Expired)),
-            new Product("jelly", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(Money.USDollar(0.75m), DateRange.Future)),
+            new Product("frozen pizza", Money.USDollar(3m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m)),
+            new Product("peanut butter", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m)),
+            new Product("jelly", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m)),
             new Product("lean ground beef", Money.USDollar(2m), SellByType.Weight),
-            new Product("honey ham", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(Money.USDollar(0.25m), DateRange.Active)),
-            new Product("sausage", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(Money.USDollar(0.50m), DateRange.Active)),
-            new Product("pepperoni", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(Money.USDollar(0.75m), DateRange.Active))
+            new Product("honey ham", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m)),
+            new Product("sausage", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m)),
+            new Product("pepperoni", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m))
         };
 
         public static ICollection<Product> GetOneOfEachProduct(decimal retailPriceAmount = 1m, decimal markdownAmount = 0.5m)
@@ -37,11 +37,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 new Product("E", retailPrice, SellByType.Unit),
                 new Product("E M", retailPrice, SellByType.Unit)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Active)
+                    Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, markdownAmount)
                 },
                 new Product("E nM", retailPrice, SellByType.Unit)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Expired)
+                    Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, markdownAmount)
                 },
                 new Product("E S", retailPrice, SellByType.Unit)
                 {
@@ -54,11 +54,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 new Product("W", retailPrice, SellByType.Weight),
                 new Product("W M", retailPrice, SellByType.Weight)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Active)
+                    Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, markdownAmount)
                 },
                 new Product("W nM", retailPrice, SellByType.Weight)
                 {
-                    Markdown = MarkdownProvider.GetMarkdown(markdown, DateRange.Expired)
+                    Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, markdownAmount)
                 },
                 new Product("W S", retailPrice, SellByType.Weight)
                 {

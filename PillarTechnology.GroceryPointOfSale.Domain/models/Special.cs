@@ -8,6 +8,14 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ScannedItemsRequired { get { return GetScannedItemsRequired(); } }
+        public bool IsActive
+        {
+            get
+            {
+                var now = DateTime.Now;
+                return now >= StartTime && now <= EndTime;
+            }
+        }
 
         public Special() { }
 
