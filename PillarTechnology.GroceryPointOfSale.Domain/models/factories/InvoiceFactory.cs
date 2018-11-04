@@ -21,13 +21,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public ICollection<LineItem> CreateLineItems()
         {
-            var lineItems = new List<LineItem>();
+            var lineItems = InvoiceFactory.CreateRetailLineItems(Order.ScannedItems).ToList();
 
             foreach (var product in Order.ScannedItems.Select(x => x.Product).Distinct())
             {
                 var scannedItems = Order.ScannedItems.Where(x => x.Product == product).ToList();
-
-                lineItems.AddRange(scannedItems.Select(x => x.CreateRetailLineItem()));
 
                 if (product.Special != null)
                     lineItems.AddRange(new ProductSpecial(product, product.Special).CreateLineItems(scannedItems));
@@ -36,6 +34,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             }
 
             return lineItems;
+        }
+
+        public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems)
+        {
+            return scannedItems.Select(x => x.CreateRetailLineItem());
         }
     }
 }
