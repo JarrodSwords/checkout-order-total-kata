@@ -20,12 +20,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
+        [InlineData(1, 1, 0, 0)]
         [InlineData(1, 1, 1, 0)]
         [InlineData(1, 1, 2, 1)]
         [InlineData(1, 1, 3, 1)]
         [InlineData(1, 1, 4, 2)]
         [InlineData(2, 1, 1, 0)]
-        [InlineData(2, 1, 2, 0)]
         [InlineData(2, 1, 3, 1)]
         [InlineData(2, 1, 4, 1)]
         public void CreateLineItems_CreatesCorrectLineItemCount(int preDiscountItems, int discountedItems, int scannedItemCount, int validSpecialCount)
