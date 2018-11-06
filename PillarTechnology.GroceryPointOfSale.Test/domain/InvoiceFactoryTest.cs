@@ -49,9 +49,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         [Theory]
         [MemberData(nameof(MarkdownsSpecialsAndExpectedLineItems))]
-        public void CreateProductDiscountLineItems_CreatesMarkdownLineItems(decimal retailPrice, Markdown markdown, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
+        public void CreateProductDiscountLineItems_CreatesMarkdownLineItems(Markdown markdown, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
         {
-            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
+            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit)
             {
                 Markdown = markdown,
                 Special = special
@@ -124,9 +124,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
             var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);
 
-            // yield return new object[] { 1, null, special, 3, 0, 0 };
-            // yield return new object[] { 1, markdown, special, 3, 0, 0 };
-            yield return new object[] { 1, markdown, special, 5, 2, -1m };
+            yield return new object[] { null, special, 3, 0, 0 };
+            yield return new object[] { markdown, special, 3, 0, 0 };
+            yield return new object[] { markdown, special, 5, 2, -1m };
         }
 
         #endregion
