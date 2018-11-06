@@ -27,10 +27,24 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [MemberData(nameof(InvalidDiscountProducts))]
         public void CreateProductDiscountLineItems_WithInvalidDiscounts_CreatesZeroLineItems(Product product)
         {
-            PopulateOrder(product, 5);            
+            PopulateOrder(product, 5);
 
             var lineItems = InvoiceFactory.CreateProductDiscountLineItems(product, _order.ScannedItems);
             lineItems.Count().Should().Be(0);
+        }
+
+        [Theory]
+        [MemberData(nameof(SpecialsAndExpectedLineItems))]
+        public void CreateProductDiscountLineItems_CreatesSpecialLineItems(decimal retailPrice, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
+        {
+            var product = new Product("product with special", Money.USDollar(retailPrice), SellByType.Unit) { Special = special };
+            
+            PopulateOrder(product, scannedItemCount);
+            var discountLineItems = InvoiceFactory.CreateProductDiscountLineItems(product, _order.ScannedItems);
+            var specialLineItems = discountLineItems.Where(x => x.GetType() == typeof(SpecialLineItem)).ToList();
+
+            specialLineItems.Count().Should().Be(expectedLineItemCount);
+            specialLineItems.Sum(x => x.SalePrice.Amount).Should().Be(expectedValue);
         }
 
         [Theory]
@@ -65,7 +79,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         #region Test data
-        
+
         public static IEnumerable<object[]> InvalidDiscountProducts()
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
@@ -76,9 +90,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             product.Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired);
             yield return new object[] { product };
-            
+
             product.Markdown = null;
             yield return new object[] { product };
+        }
+
+        public static IEnumerable<object[]> SpecialsAndExpectedLineItems()
+        {
+            yield return new object[] { 1, SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m), 3, 1, -0.5m };
+            yield return new object[] { 2, SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 3, 10m), 10, 2, -1.2m };
         }
 
         #endregion

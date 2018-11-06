@@ -18,11 +18,18 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return new Invoice(Order.Id, new List<LineItem>());
         }
 
-        public static IEnumerable<LineItem> CreateProductDiscountLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
+        public static ICollection<LineItem> CreateProductDiscountLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
         {
+            var lineItems = new List<LineItem>();
+
             if ((product.Markdown == null || !product.Markdown.IsActive) &&
                 (product.Special == null || !product.Special.IsActive))
-                yield break;
+                return lineItems;
+
+            if (product.Special != null && product.Special.IsActive)
+                lineItems.AddRange(InvoiceFactory.CreateProductSpecialLineItems(product, scannedItems));
+
+            return lineItems;
         }
 
         public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
@@ -30,9 +37,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return scannedItems.Select(x => x.CreateMarkdownLineItem());
         }
 
-        public static IEnumerable<LineItem> CreateProductSpecialLineItems(IEnumerable<ScannedItem> scannedItems)
+        public static IEnumerable<LineItem> CreateProductSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
         {
-            return scannedItems.Select(x => x.CreateMarkdownLineItem());
+            var productSpecial = new ProductSpecial(product, product.Special);
+            return productSpecial.CreateLineItems(scannedItems);
         }
 
         public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems)
