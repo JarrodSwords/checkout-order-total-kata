@@ -23,25 +23,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 _order.AddScannedItem(new ScannedItem(product));
         }
 
-        public static IEnumerable<object[]> InvalidDiscountProducts()
-        {
-            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            yield return new object[] { product };
-
-            product.Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired);
-            yield return new object[] { product };
-
-            product.Markdown = MarkdownProvider.GetMarkdown(DateRange.Future);
-            yield return new object[] { product };
-
-            product.Markdown = null;
-            product.Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired);
-            yield return new object[] { product };
-
-            product.Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Future);
-            yield return new object[] { product };
-        }
-
         [Theory]
         [MemberData(nameof(InvalidDiscountProducts))]
         public void CreateProductDiscountLineItems_WithInvalidDiscounts_CreatesZeroLineItems(Product product)
@@ -82,5 +63,24 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             lineItemScannedItemIds.Should().OnlyHaveUniqueItems();
             lineItemScannedItemIds.Should().BeEquivalentTo(_order.ScannedItems.Select(x => x.Id));
         }
+
+        #region Test data
+        
+        public static IEnumerable<object[]> InvalidDiscountProducts()
+        {
+            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
+            yield return new object[] { product };
+
+            product.Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired);
+            yield return new object[] { product };
+
+            product.Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired);
+            yield return new object[] { product };
+            
+            product.Markdown = null;
+            yield return new object[] { product };
+        }
+
+        #endregion
     }
 }
