@@ -34,5 +34,15 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             return PreDiscountItems + DiscountedItems;
         }
+
+        public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
+        {
+            var scannedItemsRequired = GetScannedItemsRequired();
+
+            return scannedItems
+                .Skip(scannedItemsRequired * skipMultiplier)
+                .Take(scannedItemsRequired)
+                .Select(x => x.Id);
+        }
     }
 }

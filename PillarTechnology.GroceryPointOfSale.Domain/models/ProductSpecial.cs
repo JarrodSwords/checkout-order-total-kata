@@ -21,7 +21,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             var salePrice = Special.CalculateSalePrice(Product);
 
             for (var i = 0; i < validSpecials; i++)
-                yield return new SpecialLineItem(description, salePrice);
+            {
+                var scannedItemIds = Special.GetScannedItemIds(scannedItems, i);
+                yield return new SpecialLineItem(description, salePrice, scannedItemIds);
+            }
         }
     }
 }

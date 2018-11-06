@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
@@ -27,6 +28,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public abstract Money CalculateSalePrice(Product product);
         public abstract string GetLineItemDescription(Product product);
+        public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
         public abstract int GetScannedItemsRequired();
     }
 }

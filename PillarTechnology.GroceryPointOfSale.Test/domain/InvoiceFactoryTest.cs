@@ -38,13 +38,31 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateProductDiscountLineItems_CreatesSpecialLineItems(decimal retailPrice, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
         {
             var product = new Product("product with special", Money.USDollar(retailPrice), SellByType.Unit) { Special = special };
-            
+
             PopulateOrder(product, scannedItemCount);
             var discountLineItems = InvoiceFactory.CreateProductDiscountLineItems(product, _order.ScannedItems);
             var specialLineItems = discountLineItems.Where(x => x.GetType() == typeof(SpecialLineItem)).ToList();
 
             specialLineItems.Count().Should().Be(expectedLineItemCount);
             specialLineItems.Sum(x => x.SalePrice.Amount).Should().Be(expectedValue);
+        }
+
+        [Theory]
+        [MemberData(nameof(MarkdownsSpecialsAndExpectedLineItems))]
+        public void CreateProductDiscountLineItems_CreatesMarkdownLineItems(decimal retailPrice, Markdown markdown, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
+        {
+            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
+            {
+                Markdown = markdown,
+                Special = special
+            };
+
+            PopulateOrder(product, scannedItemCount);
+            var discountLineItems = InvoiceFactory.CreateProductDiscountLineItems(product, _order.ScannedItems);
+            var markdownLineItems = discountLineItems.Where(x => x.GetType() == typeof(MarkdownLineItem)).ToList();
+
+            markdownLineItems.Count().Should().Be(expectedLineItemCount);
+            markdownLineItems.Sum(x => x.SalePrice.Amount).Should().Be(expectedValue);
         }
 
         [Theory]
@@ -99,6 +117,16 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             yield return new object[] { 1, SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m), 3, 1, -0.5m };
             yield return new object[] { 2, SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 3, 10m), 10, 2, -1.2m };
+        }
+
+        public static IEnumerable<object[]> MarkdownsSpecialsAndExpectedLineItems()
+        {
+            var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
+            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);
+
+            // yield return new object[] { 1, null, special, 3, 0, 0 };
+            // yield return new object[] { 1, markdown, special, 3, 0, 0 };
+            yield return new object[] { 1, markdown, special, 5, 2, -1m };
         }
 
         #endregion

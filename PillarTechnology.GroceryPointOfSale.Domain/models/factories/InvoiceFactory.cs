@@ -29,6 +29,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             if (product.Special != null && product.Special.IsActive)
                 lineItems.AddRange(InvoiceFactory.CreateProductSpecialLineItems(product, scannedItems));
 
+            if (product.Markdown != null && product.Markdown.IsActive)
+            {
+                var discountedScannedItemIds = lineItems.SelectMany(x => ((SpecialLineItem) x).LineItemIds).ToList();
+                var remainingItems = scannedItems.Where(x => !discountedScannedItemIds.Contains(x.Id));
+                lineItems.AddRange(InvoiceFactory.CreateProductMarkdownLineItems(remainingItems));
+            }
+
             return lineItems;
         }
 
