@@ -25,6 +25,17 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             StartTime = startTime;
             EndTime = endTime;
         }
+        
+        public bool GetIsBestDiscount(Product product)
+        {
+            if (product.Markdown == null || !product.Markdown.IsActive)
+                return true;
+
+            var discount = CalculateSalePrice(product);
+            var markdown = GetScannedItemsRequired() * -product.Markdown.AmountOffRetail;
+
+            return discount < markdown;
+        }
 
         public abstract Money CalculateSalePrice(Product product);
         public abstract string GetLineItemDescription(Product product);

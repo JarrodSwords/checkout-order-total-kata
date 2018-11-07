@@ -143,21 +143,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public static IEnumerable<object[]> MarkdownsSpecialsAndExpectedLineItems()
         {
             var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
-            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);
+            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.1m);
 
             yield return new object[] { null, special, 3, 0, 0 };
             yield return new object[] { markdown, special, 3, 0, 0 };
-            yield return new object[] { markdown, special, 5, 2, -1m };
-        }
-
-        public static IEnumerable<object[]> SampleOrder()
-        {
-            var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
-            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);
-
-            yield return new object[] { null, special, 3, 0, 0 };
-            yield return new object[] { markdown, special, 3, 0, 0 };
-            yield return new object[] { markdown, special, 5, 2, -1m };
+            yield return new object[] { markdown, special, 5, 2, -0.2m };
         }
 
         #endregion

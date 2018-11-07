@@ -49,12 +49,30 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_CreatesCorrectLineItemTotalValue(int discountedItems, double groupSalePrice, int scannedItemCount, int expectedTotalValue)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal)groupSalePrice));
+            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
 
             CreateLineItems(product, special, scannedItemCount);
 
             var totalValue = Money.USDollar(_lineItems.Sum(x => x.SalePrice.Amount));
             totalValue.Should().BeEquivalentTo(Money.USDollar(expectedTotalValue));
+        }
+
+        [Theory]
+        [InlineData(1, 0.2, 3, 2.5, 3)]
+        [InlineData(2, 0.5, 2, 3.5, 3)]
+        [InlineData(2, 0.5, 2, 3.5, 6)]
+        public void CreateLineItems_WithBetterMarkdown_CreatesZeroLineItems(double retailPrice, double markdown, int discountedItems, double groupSalePrice, int scannedItemCount)
+        {
+            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
+            {
+                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal)markdown)
+            };
+
+            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
+
+            CreateLineItems(product, special, scannedItemCount);
+
+            _lineItems.Count().Should().Be(0);
         }
     }
 }
