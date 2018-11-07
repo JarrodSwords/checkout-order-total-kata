@@ -33,14 +33,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             var lineItems = new List<LineItem>();
 
-            if ((product.Markdown == null || !product.Markdown.IsActive) &&
-                (product.Special == null || !product.Special.IsActive))
+            if (!product.HasActiveMarkdown && !product.HasActiveSpecial)
                 return lineItems;
 
-            if (product.Special != null && product.Special.IsActive)
+            if (product.HasActiveSpecial)
                 lineItems.AddRange(CreateProductSpecialLineItems(product, scannedItems));
 
-            if (product.Markdown != null && product.Markdown.IsActive)
+            if (product.HasActiveMarkdown)
             {
                 var discountedScannedItemIds = lineItems.SelectMany(x => ((SpecialLineItem) x).LineItemIds).ToList();
                 var remainingItems = scannedItems.Where(x => !discountedScannedItemIds.Contains(x.Id));

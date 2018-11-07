@@ -35,7 +35,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             if (discount > 0)
                 return false;
 
-            if (product.Markdown == null || !product.Markdown.IsActive)
+            if (!product.HasActiveMarkdown)
                 return true;
 
             var markdown = GetScannedItemsRequired() * -product.Markdown.AmountOffRetail;

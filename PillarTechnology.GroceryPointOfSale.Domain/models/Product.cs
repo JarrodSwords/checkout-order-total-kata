@@ -7,19 +7,19 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     /// </summary>
     public class Product
     {
-        private string _name;
-
-        public string Name { get { return _name; } }
+        public Markdown Markdown { get; set; }
+        public string Name { get; }
         public Money RetailPrice { get; set; }
         public SellByType SellByType { get; set; }
-        public Markdown Markdown { get; set; }
         public Special Special { get; set; }
+        public bool HasActiveMarkdown { get { return Markdown != null && Markdown.IsActive; } }
+        public bool HasActiveSpecial { get { return Special != null && Special.IsActive; } }
 
         public Product() { }
 
         public Product(string name, Money retailPrice, SellByType sellByType = SellByType.Unit, Markdown markdown = null)
         {
-            _name = name;
+            Name = name;
             RetailPrice = retailPrice;
             SellByType = sellByType;
             Markdown = markdown;
