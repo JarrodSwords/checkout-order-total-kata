@@ -5,7 +5,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class SpecialLineItem : LineItem
     {
-        public override string Description { get { return $"{ProductName} - special - {SpecialDescription}"; }}
+        public override string Description => $"{ProductName} - special - {SpecialDescription}";
         public IEnumerable<int> LineItemIds { get; }
         public string SpecialDescription { get; }
 

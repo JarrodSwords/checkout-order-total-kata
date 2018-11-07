@@ -5,9 +5,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public class ScannedItem
     {
         public int Id { get; set; }
-        public virtual Money MarkdownDiscount { get { return -Product.Markdown.AmountOffRetail; } }
+        public virtual Money MarkdownDiscount => -Product.Markdown.AmountOffRetail;
         public Product Product { get; }
-        public virtual Money RetailPrice { get { return Product.RetailPrice; } }
+        public virtual Money RetailPrice => Product.RetailPrice;
 
         public ScannedItem(Product product)
         {

@@ -8,9 +8,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public class BuyNGetMAtXPercentOffSpecial : Special
     {
         public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P0} off";
-        public int DiscountedItems { get; set; }
-        public decimal Multiplier { get; set; }
-        public int PreDiscountItems { get; set; }
+        public int DiscountedItems { get; }
+        public decimal Multiplier { get; }
+        public int PreDiscountItems { get; }
         public override int ScannedItemsRequired => PreDiscountItems + DiscountedItems;
 
         public BuyNGetMAtXPercentOffSpecial() { }

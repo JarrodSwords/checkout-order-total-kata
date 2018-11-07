@@ -7,10 +7,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public abstract class Special
     {
         public abstract string Description { get; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime StartTime { get; }
+        public DateTime EndTime { get; }
         public abstract int ScannedItemsRequired { get; }
-        public int? Limit { get; set; }
+        public int? Limit { get; }
         public bool IsActive
         {
             get

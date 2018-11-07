@@ -10,7 +10,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         private readonly ObservableCollection<ScannedItem> _scannedItems = new ObservableCollection<ScannedItem>();
 
         public long Id { get; set; }
-        public IEnumerable<ScannedItem> ScannedItems { get { return _scannedItems; } }
+        public IEnumerable<ScannedItem> ScannedItems => _scannedItems;
         public Invoice Invoice { get; private set; }
 
         public Order()

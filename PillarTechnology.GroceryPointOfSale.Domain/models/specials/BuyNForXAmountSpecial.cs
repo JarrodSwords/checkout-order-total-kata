@@ -8,8 +8,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public class BuyNForXAmountSpecial : Special
     {
         public override string Description => $"buy {DiscountedItems} for {GroupSalePrice}";
-        public int DiscountedItems { get; set; }
-        public Money GroupSalePrice { get; set; }
+        public int DiscountedItems { get; }
+        public Money GroupSalePrice { get; }
         public override int ScannedItemsRequired => DiscountedItems;
 
         public BuyNForXAmountSpecial() { }

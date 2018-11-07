@@ -4,9 +4,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class WeightedScannedItem : ScannedItem
     {
-        public override Money MarkdownDiscount { get { return Product.Markdown.AmountOffRetail * Weight; } }
+        public override Money MarkdownDiscount => Product.Markdown.AmountOffRetail * Weight;
         public decimal Weight { get; }
-        public override Money RetailPrice { get { return Product.RetailPrice * Weight; } }
+        public override Money RetailPrice => Product.RetailPrice * Weight;
 
         public WeightedScannedItem(Product product, decimal weight) : base(product)
         {

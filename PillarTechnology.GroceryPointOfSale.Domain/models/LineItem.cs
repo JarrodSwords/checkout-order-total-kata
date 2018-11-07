@@ -4,7 +4,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public abstract class LineItem
     {
-        public virtual string Description { get { return ProductName; } }
+        public virtual string Description => ProductName;
         public string ProductName { get; }
         public Money SalePrice { get; }
 
