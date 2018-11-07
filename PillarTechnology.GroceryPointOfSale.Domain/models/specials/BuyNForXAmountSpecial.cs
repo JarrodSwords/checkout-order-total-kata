@@ -8,25 +8,25 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     public class BuyNForXAmountSpecial : Special
     {
         public int DiscountedItems { get; set; }
-        public Money SalePrice { get; set; }
+        public Money GroupSalePrice { get; set; }
 
         public BuyNForXAmountSpecial() { }
 
-        public BuyNForXAmountSpecial(DateTime startTime, DateTime endTime, int discountedItems, Money salePrice) : base(startTime, endTime)
+        public BuyNForXAmountSpecial(DateTime startTime, DateTime endTime, int discountedItems, Money groupSalePrice) : base(startTime, endTime)
         {
             DiscountedItems = discountedItems;
-            SalePrice = salePrice;
+            GroupSalePrice = groupSalePrice;
         }
 
         public override Money CalculateSalePrice(Product product)
         {
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
-            return SalePrice - totalRetailPrice;
+            return GroupSalePrice - totalRetailPrice;
         }
 
         public override string GetLineItemDescription(Product product)
         {
-            return $"{product.Name} - special - buy {DiscountedItems} for {SalePrice}";
+            return $"{product.Name} - special - buy {DiscountedItems} for {GroupSalePrice}";
         }
 
         public override int GetScannedItemsRequired()
