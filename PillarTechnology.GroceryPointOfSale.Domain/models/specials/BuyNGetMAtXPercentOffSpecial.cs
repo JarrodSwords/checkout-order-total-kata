@@ -22,7 +22,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Multiplier = percentageOff / 100;
         }
 
-        public override Money CalculateSalePrice(Product product)
+        public override Money CalculateTotalDiscount(Product product)
         {
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
         }

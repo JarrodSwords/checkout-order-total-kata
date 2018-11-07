@@ -20,7 +20,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             GroupSalePrice = groupSalePrice;
         }
 
-        public override Money CalculateSalePrice(Product product)
+        public override Money CalculateTotalDiscount(Product product)
         {
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
             return GroupSalePrice - totalRetailPrice;

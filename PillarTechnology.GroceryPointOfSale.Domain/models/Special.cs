@@ -31,7 +31,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public bool GetIsBestDiscount(Product product)
         {
-            var discount = CalculateSalePrice(product);
+            var discount = CalculateTotalDiscount(product);
 
             if (discount > 0)
                 return false;
@@ -44,11 +44,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return discount < markdown;
         }
 
-        public abstract Money CalculateSalePrice(Product product);
-        public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
+        public abstract Money CalculateTotalDiscount(Product product);
+
         public virtual LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            return new SpecialLineItem(product.Name, CalculateSalePrice(product), GetScannedItemIds(scannedItems, skipMultiplier), Description);
+            return new SpecialLineItem(product.Name, CalculateTotalDiscount(product), GetScannedItemIds(scannedItems, skipMultiplier), Description);
         }
+        
+        public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
     }
 }

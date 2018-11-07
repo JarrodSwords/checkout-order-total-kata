@@ -13,11 +13,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, preDiscountItems, discountedItems, percentageOff, limit) { }
 
-        public override Money CalculateSalePrice(Product product)
-        {
-            return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
-        }
-
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
             return scannedItems.OrderByDescending(x => ((WeightedScannedItem) x).Weight)
