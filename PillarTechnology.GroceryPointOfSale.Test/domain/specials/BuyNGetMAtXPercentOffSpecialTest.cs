@@ -68,5 +68,22 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var totalValue = Money.USDollar(_lineItems.Sum(x => x.SalePrice.Amount));
             totalValue.Should().BeEquivalentTo(Money.USDollar(expectedTotalValue));
         }
+
+        [Theory]
+        [InlineData(1, 0.25, 2, 1, 50, 3)]
+        [InlineData(2, 0.5, 3, 1, 100, 5)]
+        public void CreateLineItems_WithBetterMarkdown_CreatesZeroLineItems(double retailPrice, double markdown, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount)
+        {
+            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
+            {
+                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal)markdown)
+            };
+
+            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal)percentageOff);
+
+            CreateLineItems(product, special, scannedItemCount);
+
+            _lineItems.Count().Should().Be(0);
+        }
     }
 }
