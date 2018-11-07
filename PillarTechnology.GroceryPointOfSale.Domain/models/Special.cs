@@ -47,5 +47,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public abstract string GetLineItemDescription(Product product);
         public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
         public abstract int GetScannedItemsRequired();
+        public virtual LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
+        {
+            return new SpecialLineItem(GetLineItemDescription(product), CalculateSalePrice(product), GetScannedItemIds(scannedItems, skipMultiplier));
+        }
     }
 }

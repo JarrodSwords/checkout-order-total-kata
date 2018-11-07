@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -9,23 +8,11 @@ using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class BuyNGetMAtXPercentOffSpecialTest
+    public class BuyNGetMAtXPercentOffSpecialTest : SpecialTest
     {
-        private DateTime _now = DateTime.Now;
-        private IEnumerable<LineItem> _lineItems;
-
-        private IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
+        public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit)
         {
-            for (var i = 0; i < count; i++)
-                yield return new ScannedItem(product) { Id = i + 1 };
-        }
-
-        private void CreateLineItems(Product product, Special special, int scannedItemCount)
-        {
-            var scannedItems = CreateScannedItems(product, scannedItemCount);
-            var productSpecial = new ProductSpecial(product, special);
-
-            _lineItems = productSpecial.CreateLineItems(scannedItems);
+            return new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, percentOff, limit);
         }
 
         [Theory]
@@ -43,7 +30,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_CreatesCorrectLineItemCount(int preDiscountItems, int discountedItems, int scannedItemCount, int expectedLineItemCount, int? limit = null)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, 100, limit);
+            var special = CreateSpecial(preDiscountItems, discountedItems, 100, limit);
 
             CreateLineItems(product, special, scannedItemCount);
 
@@ -60,10 +47,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(2, 2, 1, 50, 3, -1)]
         [InlineData(2, 2, 1, 50, 6, -2)]
         [InlineData(2, 2, 2, 50, 4, -2)]
-        public void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
+        public virtual void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
         {
             var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
-            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal) percentageOff);
+            var special = CreateSpecial(preDiscountItems, discountedItems, (decimal) percentageOff, null);
 
             CreateLineItems(product, special, scannedItemCount);
 
@@ -78,10 +65,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
             {
-                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal)markdown)
+                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal) markdown)
             };
 
-            var special = new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, (decimal)percentageOff);
+            var special = CreateSpecial(preDiscountItems, discountedItems, (decimal) percentageOff, null);
 
             CreateLineItems(product, special, scannedItemCount);
 
