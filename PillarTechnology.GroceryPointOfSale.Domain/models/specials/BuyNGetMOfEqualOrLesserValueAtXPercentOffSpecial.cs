@@ -18,28 +18,20 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
         }
 
-        public override int GetScannedItemsRequired()
-        {
-            return PreDiscountItems + DiscountedItems;
-        }
-
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            var scannedItemsRequired = GetScannedItemsRequired();
-
             return scannedItems.OrderByDescending(x => ((WeightedScannedItem) x).Weight)
-                .Skip(scannedItemsRequired * skipMultiplier)
-                .Take(scannedItemsRequired)
+                .Skip(ScannedItemsRequired * skipMultiplier)
+                .Take(ScannedItemsRequired)
                 .Select(x => x.Id);
         }
 
         public override LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            var scannedItemsRequired = GetScannedItemsRequired();
             var itemsInSpecial = scannedItems
                 .OrderByDescending(x => ((WeightedScannedItem) x).Weight)
-                .Skip(scannedItemsRequired * skipMultiplier)
-                .Take(scannedItemsRequired)
+                .Skip(ScannedItemsRequired * skipMultiplier)
+                .Take(ScannedItemsRequired)
                 .ToList();
 
             var discountedItems = itemsInSpecial.Skip(PreDiscountItems).ToList();
