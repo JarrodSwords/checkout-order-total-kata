@@ -12,7 +12,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public BuyNForXAmountSpecial() { }
 
-        public BuyNForXAmountSpecial(DateTime startTime, DateTime endTime, int discountedItems, Money groupSalePrice) : base(startTime, endTime)
+        public BuyNForXAmountSpecial(DateTime startTime, DateTime endTime, int discountedItems, Money groupSalePrice, int? limit = null) : base(startTime, endTime, limit)
         {
             DiscountedItems = discountedItems;
             GroupSalePrice = groupSalePrice;
