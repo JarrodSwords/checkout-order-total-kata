@@ -66,6 +66,27 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         [Theory]
+        [InlineData(2, 1, 4, 4, 9.8)]
+        [InlineData(1, 2, 6, 5, 12.1)]
+        public void CreateInvoice_CalculatesPreTaxTotal(int product1Count, int product2Count, int product3Count, int product4Count, double expectedTotal)
+        {
+            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.10m);
+            var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
+
+            var product1 = new Product("product", Money.USDollar(1m), SellByType.Unit);
+            var product2 = new Product("product with markdown", Money.USDollar(1m), SellByType.Unit) { Markdown = markdown };
+            var product3 = new Product("product with special", Money.USDollar(1m), SellByType.Unit) { Special = special };
+            var product4 = new Product("product with markdown and special", Money.USDollar(1m), SellByType.Unit) { Markdown = markdown, Special = special };
+
+            PopulateOrder(product1, product1Count);
+            PopulateOrder(product2, product2Count);
+            PopulateOrder(product3, product3Count);
+            PopulateOrder(product4, product4Count);
+
+            _order.Invoice.PreTaxTotal.Amount.Should().Be((decimal)expectedTotal);
+        }
+
+        [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(10)]
@@ -120,6 +141,16 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         }
 
         public static IEnumerable<object[]> MarkdownsSpecialsAndExpectedLineItems()
+        {
+            var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
+            var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);
+
+            yield return new object[] { null, special, 3, 0, 0 };
+            yield return new object[] { markdown, special, 3, 0, 0 };
+            yield return new object[] { markdown, special, 5, 2, -1m };
+        }
+
+        public static IEnumerable<object[]> SampleOrder()
         {
             var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
             var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.5m);

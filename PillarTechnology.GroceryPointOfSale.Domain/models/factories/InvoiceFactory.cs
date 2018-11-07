@@ -15,7 +15,18 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Invoice CreateInvoice()
         {
-            return new Invoice(Order.Id, new List<LineItem>());
+            var lineItems = CreateLineItems(Order.ScannedItems);
+            return new Invoice(Order.Id, lineItems);
+        }
+
+        public static ICollection<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems)
+        {
+            var lineItems = CreateRetailLineItems(scannedItems).ToList();
+
+            foreach (var product in scannedItems.Select(x => x.Product).Distinct())
+                lineItems.AddRange(CreateProductDiscountLineItems(product, scannedItems.Where(x => x.Product == product)));
+
+            return lineItems;
         }
 
         public static ICollection<LineItem> CreateProductDiscountLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
@@ -27,13 +38,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
                 return lineItems;
 
             if (product.Special != null && product.Special.IsActive)
-                lineItems.AddRange(InvoiceFactory.CreateProductSpecialLineItems(product, scannedItems));
+                lineItems.AddRange(CreateProductSpecialLineItems(product, scannedItems));
 
             if (product.Markdown != null && product.Markdown.IsActive)
             {
                 var discountedScannedItemIds = lineItems.SelectMany(x => ((SpecialLineItem) x).LineItemIds).ToList();
                 var remainingItems = scannedItems.Where(x => !discountedScannedItemIds.Contains(x.Id));
-                lineItems.AddRange(InvoiceFactory.CreateProductMarkdownLineItems(remainingItems));
+                lineItems.AddRange(CreateProductMarkdownLineItems(remainingItems));
             }
 
             return lineItems;
