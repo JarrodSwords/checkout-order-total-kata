@@ -8,10 +8,11 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         public MappingProfile()
         {
+            CreateMap<BuyNForXAmountSpecial, BuyNForXAmountSpecialDto>();
+            CreateMap<BuyNGetMAtXPercentOffSpecial, BuyNGetMAtXPercentOffSpecialDto>();
             CreateMap<Markdown, MarkdownDto>();
             CreateMap<UpsertProductArgs, Product>();
             CreateMap<UpsertProductMarkdownArgs, Markdown>();
-            CreateMap<BuyNGetMAtXPercentOffSpecial, BuyNGetMAtXPercentOffSpecialDto>();
         }
     }
 }

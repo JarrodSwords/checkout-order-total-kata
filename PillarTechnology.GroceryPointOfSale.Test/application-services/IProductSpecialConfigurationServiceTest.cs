@@ -16,7 +16,31 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected IProductSpecialConfigurationService _productSpecialConfigurationService;
 
         [Fact]
-        public void UpsertProductMarkdown_UpsertsProductMarkdown()
+        public void CreateBuyNForXAmountSpecial_CreatesSpecial()
+        {
+            var args = new CreateBuyNForXAmountSpecialArgs
+            {
+                DiscountedItems = 3,
+                EndTime = _now.EndOfWeek(),
+                GroupSalePrice = 2m,
+                Limit = 6,
+                ProductName = "can of soup",
+                StartTime = _now.StartOfWeek()
+            };
+
+            var productDto = _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
+            var specialDto = (BuyNForXAmountSpecialDto) productDto.Special;
+
+            productDto.Name.Should().Be(args.ProductName);
+            specialDto.DiscountedItems.Should().Be(args.DiscountedItems);
+            specialDto.EndTime.Should().Be(args.EndTime);
+            specialDto.GroupSalePrice.Should().Be(args.GroupSalePrice);
+            specialDto.Limit.Should().Be(args.Limit);
+            specialDto.StartTime.Should().Be(args.StartTime);
+        }
+
+        [Fact]
+        public void CreateBuyNGetMAtXPercentOffSpecial_CreatesSpecial()
         {
             var args = new CreateBuyNGetMAtXPercentOffSpecialArgs
             {

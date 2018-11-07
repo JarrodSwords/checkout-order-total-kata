@@ -15,6 +15,16 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _productRepository = productRepository;
         }
 
+        public ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args)
+        {
+            var product = _productRepository.FindProduct(args.ProductName);
+            product.Special = new BuyNForXAmountSpecial(args.StartTime, args.EndTime, args.DiscountedItems.Value, args.GroupSalePrice.Value, args.Limit);
+            var persistedProduct = _productRepository.UpdateProduct(product);
+            var productDto = _mapper.Map<ProductDto>(persistedProduct);
+            productDto.Special = _mapper.Map<BuyNForXAmountSpecialDto>(persistedProduct.Special);
+            return productDto;
+        }
+
         public ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
             var product = _productRepository.FindProduct(args.ProductName);
