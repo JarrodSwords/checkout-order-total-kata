@@ -4,5 +4,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
     {
         ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args);
         ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args);
+        ProductDto CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args);
     }
 }

@@ -30,6 +30,13 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return CreateSpecial(args, createSpecial, mapToSpecialDto);
         }
 
+        public ProductDto CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
+        {
+            Func<Special> createSpecial = () => new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args.StartTime, args.EndTime, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
+            Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
+            return CreateSpecial(args, createSpecial, mapToSpecialDto);
+        }
+
         private ProductDto CreateSpecial(CreateSpecialArgs args, Func<Special> createSpecial, Func<Special, ISpecialDto> mapToSpecialDto)
         {
             var product = _productRepository.FindProduct(args.ProductName);
