@@ -7,8 +7,10 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class BuyNForXAmountSpecial : Special
     {
-        public int DiscountedItems { get; set; }
-        public Money GroupSalePrice { get; set; }
+        public override string Description => $"buy {DiscountedItems} for {GroupSalePrice}";
+        public int DiscountedItems { get; }
+        public Money GroupSalePrice { get; }
+        public override int ScannedItemsRequired => DiscountedItems;
 
         public BuyNForXAmountSpecial() { }
 
@@ -18,29 +20,17 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             GroupSalePrice = groupSalePrice;
         }
 
-        public override Money CalculateSalePrice(Product product)
+        public override Money CalculateTotalDiscount(Product product)
         {
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
             return GroupSalePrice - totalRetailPrice;
         }
 
-        public override string GetLineItemDescription(Product product)
-        {
-            return $"{product.Name} - special - buy {DiscountedItems} for {GroupSalePrice}";
-        }
-
-        public override int GetScannedItemsRequired()
-        {
-            return DiscountedItems;
-        }
-
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            var scannedItemsRequired = GetScannedItemsRequired();
-
             return scannedItems
-                .Skip(scannedItemsRequired * skipMultiplier)
-                .Take(scannedItemsRequired)
+                .Skip(ScannedItemsRequired * skipMultiplier)
+                .Take(ScannedItemsRequired)
                 .Select(x => x.Id);
         }
     }

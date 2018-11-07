@@ -15,7 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             OrderId = orderId;
             LineItems = lineItems;
-            PreTaxTotal = Invoice.CalculatePreTaxTotal(lineItems);
+            PreTaxTotal = CalculatePreTaxTotal(lineItems);
         }
 
         public static Money CalculatePreTaxTotal(IEnumerable<LineItem> lineItems)

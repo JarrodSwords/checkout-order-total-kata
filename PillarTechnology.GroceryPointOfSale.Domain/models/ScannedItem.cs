@@ -1,28 +1,29 @@
+using NodaMoney;
+
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class ScannedItem
     {
-        protected Product _product;
-
         public int Id { get; set; }
-
-        public Product Product { get { return _product; } }
+        public virtual Money MarkdownDiscount => -Product.Markdown.AmountOffRetail;
+        public Product Product { get; }
+        public virtual Money RetailPrice => Product.RetailPrice;
 
         public ScannedItem(Product product)
         {
-            _product = product;
-        }
-
-        public override string ToString() => $"Id: {Id}, Product: {Product.Name}";
-
-        public virtual LineItem CreateRetailLineItem()
-        {
-            return new RetailLineItem(Product.Name, Product.RetailPrice, Id);
+            Product = product;
         }
 
         public virtual LineItem CreateMarkdownLineItem()
         {
-            return new MarkdownLineItem(Product.Name, -Product.Markdown.AmountOffRetail, Id);
+            return new MarkdownLineItem(Product.Name, MarkdownDiscount, Id);
         }
+
+        public LineItem CreateRetailLineItem()
+        {
+            return new RetailLineItem(Product.Name, RetailPrice, Id);
+        }
+
+        public override string ToString() => $"Id: {Id}, Product: {Product.Name}";
     }
 }

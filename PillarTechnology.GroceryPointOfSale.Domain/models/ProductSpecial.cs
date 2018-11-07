@@ -16,19 +16,33 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public IEnumerable<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems)
         {
-            if (!Special.GetIsBestDiscount(Product))
+            if (!GetIsBestDiscount())
                 yield break;
 
-            var itemsRequired = Special.GetScannedItemsRequired();
-            var validSpecials = scannedItems.Count() / itemsRequired;
+            var validSpecials = scannedItems.Count() / Special.ScannedItemsRequired;
 
             for (var i = 0; i < validSpecials; i++)
             {
-                if (Special.Limit != null && Special.Limit < (i + 1) * itemsRequired)
+                if (Special.Limit != null && Special.Limit < (i + 1) * Special.ScannedItemsRequired)
                     yield break;
 
                 yield return Special.CreateLineItem(Product, scannedItems, i);
             }
+        }
+        
+        public bool GetIsBestDiscount()
+        {
+            var specialDiscount = Special.CalculateTotalDiscount(Product);
+
+            if (specialDiscount > 0)
+                return false;
+
+            if (!Product.HasActiveMarkdown)
+                return true;
+
+            var markdownDiscount = Special.ScannedItemsRequired * -Product.Markdown.AmountOffRetail;
+
+            return specialDiscount < markdownDiscount;
         }
     }
 }

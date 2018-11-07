@@ -5,10 +5,14 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class SpecialLineItem : LineItem
     {
-        public IEnumerable<int> LineItemIds { get; set; }
-        public SpecialLineItem(string description, Money salePrice, IEnumerable<int> lineItemIds) : base(description, salePrice)
+        public override string Description => $"{ProductName} - special - {SpecialDescription}";
+        public IEnumerable<int> LineItemIds { get; }
+        public string SpecialDescription { get; }
+
+        public SpecialLineItem(string productName, Money salePrice, IEnumerable<int> lineItemIds, string specialDescription) : base(productName, salePrice)
         {
             LineItemIds = lineItemIds;
+            SpecialDescription = specialDescription;
         }
     }
 }

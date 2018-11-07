@@ -6,10 +6,11 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public abstract class Special
     {
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public int ScannedItemsRequired { get { return GetScannedItemsRequired(); } }
-        public int? Limit { get; set; }
+        public abstract string Description { get; }
+        public DateTime StartTime { get; }
+        public DateTime EndTime { get; }
+        public abstract int ScannedItemsRequired { get; }
+        public int? Limit { get; }
         public bool IsActive
         {
             get
@@ -28,28 +29,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Limit = limit;
         }
 
-        public bool GetIsBestDiscount(Product product)
-        {
-            var discount = CalculateSalePrice(product);
+        public abstract Money CalculateTotalDiscount(Product product);
 
-            if (discount > 0)
-                return false;
-
-            if (product.Markdown == null || !product.Markdown.IsActive)
-                return true;
-
-            var markdown = GetScannedItemsRequired() * -product.Markdown.AmountOffRetail;
-
-            return discount < markdown;
-        }
-
-        public abstract Money CalculateSalePrice(Product product);
-        public abstract string GetLineItemDescription(Product product);
-        public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
-        public abstract int GetScannedItemsRequired();
         public virtual LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            return new SpecialLineItem(GetLineItemDescription(product), CalculateSalePrice(product), GetScannedItemIds(scannedItems, skipMultiplier));
+            return new SpecialLineItem(product.Name, CalculateTotalDiscount(product), GetScannedItemIds(scannedItems, skipMultiplier), Description);
         }
+        
+        public abstract IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier);
     }
 }
