@@ -11,6 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             CreateMap<Markdown, MarkdownDto>();
             CreateMap<UpsertProductArgs, Product>();
             CreateMap<UpsertProductMarkdownArgs, Markdown>();
+            CreateMap<BuyNGetMAtXPercentOffSpecial, BuyNGetMAtXPercentOffSpecialDto>();
         }
     }
 }
