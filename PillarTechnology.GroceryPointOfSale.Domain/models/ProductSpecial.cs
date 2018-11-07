@@ -19,12 +19,16 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             if (!Special.GetIsBestDiscount(Product))
                 yield break;
 
-            var validSpecials = scannedItems.Count() / Special.GetScannedItemsRequired();
+            var itemsRequired = Special.GetScannedItemsRequired();
+            var validSpecials = scannedItems.Count() / itemsRequired;
             var description = Special.GetLineItemDescription(Product);
             var salePrice = Special.CalculateSalePrice(Product);
 
             for (var i = 0; i < validSpecials; i++)
             {
+                if (Special.Limit != null && Special.Limit < (i + 1) * itemsRequired)
+                    yield break;
+                
                 var scannedItemIds = Special.GetScannedItemIds(scannedItems, i);
                 yield return new SpecialLineItem(description, salePrice, scannedItemIds);
             }

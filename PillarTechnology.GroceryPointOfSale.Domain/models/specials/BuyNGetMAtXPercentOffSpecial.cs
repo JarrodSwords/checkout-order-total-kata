@@ -13,7 +13,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public BuyNGetMAtXPercentOffSpecial() { }
 
-        public BuyNGetMAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff) : base(startTime, endTime)
+        public BuyNGetMAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, limit)
         {
             PreDiscountItems = preDiscountItems;
             DiscountedItems = discountedItems;

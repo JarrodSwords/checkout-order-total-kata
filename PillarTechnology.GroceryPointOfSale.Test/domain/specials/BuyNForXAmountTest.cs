@@ -32,10 +32,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData(3, 0, 0)]
         [InlineData(3, 3, 1)]
         [InlineData(3, 7, 2)]
-        public void CreateLineItems_CreatesCorrectLineItemCount(int discountedItems, int scannedItemCount, int expectedLineItemCount)
+        [InlineData(3, 7, 1, 3)]
+        public void CreateLineItems_CreatesCorrectLineItemCount(int discountedItems, int scannedItemCount, int expectedLineItemCount, int? limit = null)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar(1.5m));
+            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar(1.5m), limit);
 
             CreateLineItems(product, special, scannedItemCount);
 

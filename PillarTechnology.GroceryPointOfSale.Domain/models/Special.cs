@@ -9,6 +9,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int ScannedItemsRequired { get { return GetScannedItemsRequired(); } }
+        public int? Limit { get; set; }
         public bool IsActive
         {
             get
@@ -20,12 +21,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Special() { }
 
-        public Special(DateTime startTime, DateTime endTime)
+        public Special(DateTime startTime, DateTime endTime, int? limit = null)
         {
             StartTime = startTime;
             EndTime = endTime;
+            Limit = limit;
         }
-        
+
         public bool GetIsBestDiscount(Product product)
         {
             var discount = CalculateSalePrice(product);
