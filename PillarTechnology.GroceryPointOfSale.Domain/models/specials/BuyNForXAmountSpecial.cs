@@ -20,7 +20,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public override Money CalculateSalePrice(Product product)
         {
-            return -SalePrice;
+            var totalRetailPrice = product.RetailPrice * DiscountedItems;
+            return SalePrice - totalRetailPrice;
         }
 
         public override string GetLineItemDescription(Product product)
