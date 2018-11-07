@@ -15,33 +15,55 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public Invoice CreateInvoice()
         {
-            var lineItems = CreateLineItems();
-            var preTaxTotal = InvoiceFactory.CalculatePreTaxTotal(lineItems);
-            return new Invoice(Order.Id, lineItems, preTaxTotal);
+            var lineItems = CreateLineItems(Order.ScannedItems);
+            return new Invoice(Order.Id, lineItems);
         }
 
-        public static Money CalculatePreTaxTotal(ICollection<LineItem> lineItems)
+        public static ICollection<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems)
         {
-            return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
+            var lineItems = CreateRetailLineItems(scannedItems).ToList();
+
+            foreach (var product in scannedItems.Select(x => x.Product).Distinct())
+                lineItems.AddRange(CreateProductDiscountLineItems(product, scannedItems.Where(x => x.Product == product)));
+
+            return lineItems;
         }
 
-        public ICollection<LineItem> CreateLineItems()
+        public static ICollection<LineItem> CreateProductDiscountLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
         {
             var lineItems = new List<LineItem>();
 
-            foreach (var product in Order.ScannedItems.Select(x => x.Product).Distinct())
+            if ((product.Markdown == null || !product.Markdown.IsActive) &&
+                (product.Special == null || !product.Special.IsActive))
+                return lineItems;
+
+            if (product.Special != null && product.Special.IsActive)
+                lineItems.AddRange(CreateProductSpecialLineItems(product, scannedItems));
+
+            if (product.Markdown != null && product.Markdown.IsActive)
             {
-                var scannedItems = Order.ScannedItems.Where(x => x.Product == product).ToList();
-
-                lineItems.AddRange(scannedItems.Select(x => x.CreateRetailLineItem()));
-
-                if (product.Special != null)
-                    lineItems.AddRange(product.Special.CreateLineItems(scannedItems));
-                else if (product.Markdown != null && product.Markdown.IsActive)
-                    lineItems.AddRange(scannedItems.Select(x => x.CreateMarkdownLineItem()));
+                var discountedScannedItemIds = lineItems.SelectMany(x => ((SpecialLineItem) x).LineItemIds).ToList();
+                var remainingItems = scannedItems.Where(x => !discountedScannedItemIds.Contains(x.Id));
+                lineItems.AddRange(CreateProductMarkdownLineItems(remainingItems));
             }
 
             return lineItems;
+        }
+
+        public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
+        {
+            return scannedItems.Select(x => x.CreateMarkdownLineItem());
+        }
+
+        public static IEnumerable<LineItem> CreateProductSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
+        {
+            var productSpecial = new ProductSpecial(product, product.Special);
+            return productSpecial.CreateLineItems(scannedItems);
+        }
+
+        public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems)
+        {
+            return scannedItems.Select(x => x.CreateRetailLineItem());
         }
     }
 }
