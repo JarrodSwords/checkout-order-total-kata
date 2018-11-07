@@ -74,5 +74,18 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             _lineItems.Count().Should().Be(0);
         }
+
+        [Theory]
+        [InlineData(1, 3, 3.5, 3)]
+        [InlineData(2, 2, 5, 4)]
+        public void CreateLineItems_WithBetterRetailPrice_CreatesZeroLineItems(double retailPrice, int discountedItems, double groupSalePrice, int scannedItemCount)
+        {
+            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
+            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
+
+            CreateLineItems(product, special, scannedItemCount);
+
+            _lineItems.Count().Should().Be(0);
+        }
     }
 }

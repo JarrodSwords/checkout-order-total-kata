@@ -28,10 +28,14 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         
         public bool GetIsBestDiscount(Product product)
         {
+            var discount = CalculateSalePrice(product);
+
+            if (discount > 0)
+                return false;
+
             if (product.Markdown == null || !product.Markdown.IsActive)
                 return true;
 
-            var discount = CalculateSalePrice(product);
             var markdown = GetScannedItemsRequired() * -product.Markdown.AmountOffRetail;
 
             return discount < markdown;
