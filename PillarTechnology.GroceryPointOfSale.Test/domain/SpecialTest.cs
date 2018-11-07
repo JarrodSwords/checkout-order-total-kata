@@ -9,7 +9,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         protected DateTime _now = DateTime.Now;
         protected IEnumerable<LineItem> _lineItems;
 
-        protected IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
+        protected virtual IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
         {
             for (var i = 0; i < count; i++)
                 yield return new ScannedItem(product) { Id = i + 1 };

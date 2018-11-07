@@ -46,7 +46,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
                 .ToList();
 
             var discountedItems = itemsInSpecial.Skip(PreDiscountItems).ToList();
-            var totalDiscount = Money.USDollar(discountedItems.Sum(x => CalculateSalePrice(product).Amount * ((WeightedScannedItem) x).Weight));
+            var totalDiscount = Money.USDollar(discountedItems.Sum(x =>
+            {
+                var weight = ((WeightedScannedItem) x).Weight;
+                var retailPrice = x.Product.RetailPrice * weight;
+                var discount = -(retailPrice * Multiplier);
+                return discount.Amount;
+            }));
 
             return new SpecialLineItem(GetLineItemDescription(product), totalDiscount, discountedItems.Select(x => x.Id));
         }
