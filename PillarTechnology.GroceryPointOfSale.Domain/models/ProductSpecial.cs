@@ -16,6 +16,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public IEnumerable<LineItem> CreateLineItems(IEnumerable<ScannedItem> scannedItems)
         {
+            if (!Special.GetIsBestDiscount(Product))
+                yield break;
+
             var validSpecials = scannedItems.Count() / Special.GetScannedItemsRequired();
             var description = Special.GetLineItemDescription(Product);
             var salePrice = Special.CalculateSalePrice(Product);
