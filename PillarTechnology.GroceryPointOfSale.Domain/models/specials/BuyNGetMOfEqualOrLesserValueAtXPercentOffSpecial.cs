@@ -7,6 +7,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial : BuyNGetMAtXPercentOffSpecial
     {
+        public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} of equal or lesser value at {Multiplier:P} off";
+
         public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial() { }
 
         public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, preDiscountItems, discountedItems, percentageOff, limit) { }
@@ -14,11 +16,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public override Money CalculateSalePrice(Product product)
         {
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
-        }
-
-        public override string GetLineItemDescription(Product product)
-        {
-            return $"{product.Name} - special - buy {PreDiscountItems} get {DiscountedItems} of equal or lesser value at {Multiplier:P} off";
         }
 
         public override int GetScannedItemsRequired()
@@ -48,7 +45,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             var discountedItems = itemsInSpecial.Skip(PreDiscountItems).ToList();
             var totalDiscount = Money.USDollar(discountedItems.Sum(x => -(x.RetailPrice * Multiplier).Amount));
 
-            return new SpecialLineItem(GetLineItemDescription(product), totalDiscount, discountedItems.Select(x => x.Id));
+            return new SpecialLineItem(product.Name, totalDiscount, discountedItems.Select(x => x.Id), Description);
         }
     }
 }

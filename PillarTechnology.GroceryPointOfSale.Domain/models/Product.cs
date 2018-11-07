@@ -7,13 +7,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     /// </summary>
     public class Product
     {
+        public bool HasActiveMarkdown { get { return Markdown != null && Markdown.IsActive; } }
+        public bool HasActiveSpecial { get { return Special != null && Special.IsActive; } }
         public Markdown Markdown { get; set; }
         public string Name { get; }
         public Money RetailPrice { get; set; }
         public SellByType SellByType { get; set; }
         public Special Special { get; set; }
-        public bool HasActiveMarkdown { get { return Markdown != null && Markdown.IsActive; } }
-        public bool HasActiveSpecial { get { return Special != null && Special.IsActive; } }
 
         public Product() { }
 

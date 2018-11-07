@@ -11,6 +11,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public int DiscountedItems { get; set; }
         public decimal Multiplier { get; set; }
 
+        public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P0} off";
+
         public BuyNGetMAtXPercentOffSpecial() { }
 
         public BuyNGetMAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, limit)
@@ -23,11 +25,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public override Money CalculateSalePrice(Product product)
         {
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
-        }
-
-        public override string GetLineItemDescription(Product product)
-        {
-            return $"{product.Name} - special - buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P} off";
         }
 
         public override int GetScannedItemsRequired()

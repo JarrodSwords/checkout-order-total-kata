@@ -7,6 +7,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public class BuyNForXAmountSpecial : Special
     {
+        public override string Description => $"buy {DiscountedItems} for {GroupSalePrice}";
         public int DiscountedItems { get; set; }
         public Money GroupSalePrice { get; set; }
 
@@ -22,11 +23,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
             return GroupSalePrice - totalRetailPrice;
-        }
-
-        public override string GetLineItemDescription(Product product)
-        {
-            return $"{product.Name} - special - buy {DiscountedItems} for {GroupSalePrice}";
         }
 
         public override int GetScannedItemsRequired()
