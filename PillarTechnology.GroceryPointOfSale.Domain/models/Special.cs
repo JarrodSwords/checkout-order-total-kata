@@ -29,21 +29,6 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
             Limit = limit;
         }
 
-        public bool GetIsBestDiscount(Product product)
-        {
-            var discount = CalculateTotalDiscount(product);
-
-            if (discount > 0)
-                return false;
-
-            if (!product.HasActiveMarkdown)
-                return true;
-
-            var markdown = ScannedItemsRequired * -product.Markdown.AmountOffRetail;
-
-            return discount < markdown;
-        }
-
         public abstract Money CalculateTotalDiscount(Product product);
 
         public virtual LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
