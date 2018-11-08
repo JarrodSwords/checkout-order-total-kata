@@ -9,7 +9,8 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
     {
         public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P0} off";
         public int DiscountedItems { get; }
-        public decimal Multiplier { get; }
+        public decimal PercentageOff { get; }
+        public decimal Multiplier => PercentageOff / 100;
         public int PreDiscountItems { get; }
         public override int ScannedItemsRequired => PreDiscountItems + DiscountedItems;
 
@@ -19,7 +20,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         {
             PreDiscountItems = preDiscountItems;
             DiscountedItems = discountedItems;
-            Multiplier = percentageOff / 100;
+            PercentageOff = percentageOff;
         }
 
         public override Money CalculateTotalDiscount(Product product)
