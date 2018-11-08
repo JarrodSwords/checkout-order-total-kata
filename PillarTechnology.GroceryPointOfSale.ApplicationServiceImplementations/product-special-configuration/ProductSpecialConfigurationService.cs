@@ -9,11 +9,13 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
+        private readonly CreateBuyNGetMAtXPercentOffArgsValidator _createBuyNGetMAtXPercentOffArgsValidator;
 
-        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository)
+        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, CreateBuyNGetMAtXPercentOffArgsValidator createBuyNGetMAtXPercentOffArgsValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
+            _createBuyNGetMAtXPercentOffArgsValidator = createBuyNGetMAtXPercentOffArgsValidator;
         }
 
         public ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args)
@@ -25,6 +27,8 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
+            _createBuyNGetMAtXPercentOffArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
+
             Func<Special> createSpecial = () => new BuyNGetMAtXPercentOffSpecial(args.StartTime, args.EndTime, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
             return CreateSpecial(args, createSpecial, mapToSpecialDto);
