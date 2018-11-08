@@ -9,7 +9,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
             var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var createBuyNGetMAtXPercentOffArgsValidator = new CreateBuyNGetMAtXPercentOffArgsValidator(productRepository);
+            var createBuyNGetMAtXPercentOffArgsValidator = new CreateSpecialArgsValidator(productRepository);
 
             _productSpecialConfigurationService = new ProductSpecialConfigurationService(mapper, productRepository, createBuyNGetMAtXPercentOffArgsValidator);
         }

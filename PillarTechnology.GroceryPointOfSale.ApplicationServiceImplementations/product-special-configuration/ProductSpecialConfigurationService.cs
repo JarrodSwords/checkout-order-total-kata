@@ -9,17 +9,19 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly CreateBuyNGetMAtXPercentOffArgsValidator _createBuyNGetMAtXPercentOffArgsValidator;
+        private readonly CreateSpecialArgsValidator _createSpecialArgsValidator;
 
-        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, CreateBuyNGetMAtXPercentOffArgsValidator createBuyNGetMAtXPercentOffArgsValidator)
+        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, CreateSpecialArgsValidator createSpecialArgsValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
-            _createBuyNGetMAtXPercentOffArgsValidator = createBuyNGetMAtXPercentOffArgsValidator;
+            _createSpecialArgsValidator = createSpecialArgsValidator;
         }
 
         public ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args)
         {
+            _createSpecialArgsValidator.ValidateAndThrow<CreateBuyNForXAmountSpecialArgs>(args);
+
             Func<Special> createSpecial = () => new BuyNForXAmountSpecial(args.StartTime, args.EndTime, args.DiscountedItems.Value, args.GroupSalePrice.Value, args.Limit);
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNForXAmountSpecialDto>(special);
             return CreateSpecial(args, createSpecial, mapToSpecialDto);
@@ -27,7 +29,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
-            _createBuyNGetMAtXPercentOffArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
+            _createSpecialArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
 
             Func<Special> createSpecial = () => new BuyNGetMAtXPercentOffSpecial(args.StartTime, args.EndTime, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);

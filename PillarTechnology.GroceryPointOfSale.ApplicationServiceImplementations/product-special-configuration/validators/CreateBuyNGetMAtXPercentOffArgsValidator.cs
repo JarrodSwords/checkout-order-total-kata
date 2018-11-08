@@ -6,11 +6,11 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class CreateBuyNGetMAtXPercentOffArgsValidator : AbstractValidator<CreateBuyNGetMAtXPercentOffSpecialArgs>
+    public class CreateSpecialArgsValidator : AbstractValidator<CreateSpecialArgs>
     {
         private readonly IProductRepository _productRepository;
 
-        public CreateBuyNGetMAtXPercentOffArgsValidator(IProductRepository productRepository)
+        public CreateSpecialArgsValidator(IProductRepository productRepository)
         {
             _productRepository = productRepository;
             CreateRules();
