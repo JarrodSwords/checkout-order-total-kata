@@ -8,7 +8,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductSpecialConfigurationServiceTest
     {
-        private DateTime _now = DateTime.Now;
+        protected DateTime _now = DateTime.Now;
         protected IProductSpecialConfigurationService _productSpecialConfigurationService;
 
         [Fact]
@@ -33,20 +33,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             specialDto.GroupSalePrice.Should().Be(args.GroupSalePrice);
             specialDto.Limit.Should().Be(args.Limit);
             specialDto.StartTime.Should().Be(args.StartTime);
-        }
-
-        [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        public void CreateBuyNForXAmountSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
-        {
-            var args = new CreateBuyNForXAmountSpecialArgs { ProductName = productName };
-
-            Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
-            
-            createSpecial.Should().Throw<ArgumentException>(message);
         }
 
         [Fact]
@@ -75,20 +61,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             specialDto.StartTime.Should().Be(args.StartTime);
         }
 
-        [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        public void CreateBuyNGetMAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
-        {
-            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs { ProductName = productName };
-
-            Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNGetMAtXPercentOffSpecial(args);
-            
-            createSpecial.Should().Throw<ArgumentException>(message);
-        }
-
         [Fact]
         public void CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial_CreatesSpecial()
         {
@@ -113,20 +85,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             specialDto.PercentageOff.Should().Be(args.PercentageOff);
             specialDto.PreDiscountItems.Should().Be(args.PreDiscountItems);
             specialDto.StartTime.Should().Be(args.StartTime);
-        }
-
-        [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        public void CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
-        {
-            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs { ProductName = productName };
-
-            Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args);
-            
-            createSpecial.Should().Throw<ArgumentException>(message);
         }
     }
 }
