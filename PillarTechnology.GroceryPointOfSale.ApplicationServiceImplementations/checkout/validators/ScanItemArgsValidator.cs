@@ -1,4 +1,3 @@
-using System;
 using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;

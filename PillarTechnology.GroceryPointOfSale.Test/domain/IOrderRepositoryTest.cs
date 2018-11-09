@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;

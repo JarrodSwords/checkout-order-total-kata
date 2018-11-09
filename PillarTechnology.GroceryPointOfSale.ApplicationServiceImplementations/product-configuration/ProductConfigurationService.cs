@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
 using AutoMapper;
-using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 

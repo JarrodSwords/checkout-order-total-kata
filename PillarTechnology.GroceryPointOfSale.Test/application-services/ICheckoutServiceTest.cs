@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
-using AutoMapper;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;

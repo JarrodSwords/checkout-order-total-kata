@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using NodaMoney;
 using PillarTechnology.GroceryPointOfSale.Domain;
 
