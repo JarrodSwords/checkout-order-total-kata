@@ -12,15 +12,13 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         private readonly IProductRepository _productRepository;
         private CreateProductArgsValidator _createProductArgsValidator;
         private UpdateProductArgsValidator _updateProductArgsValidator;
-        private UpsertProductMarkdownArgsValidator _upsertProductMarkdownArgsValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, CreateProductArgsValidator createProductArgsValidator, UpdateProductArgsValidator updateProductArgsValidator, UpsertProductMarkdownArgsValidator upsertProductMarkdownArgsValidator)
+        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, CreateProductArgsValidator createProductArgsValidator, UpdateProductArgsValidator updateProductArgsValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
             _createProductArgsValidator = createProductArgsValidator;
             _updateProductArgsValidator = updateProductArgsValidator;
-            _upsertProductMarkdownArgsValidator = upsertProductMarkdownArgsValidator;
         }
 
         #endregion Dependencies
@@ -41,22 +39,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
             var product = _productRepository.FindProduct(args.Name);
             _mapper.Map<UpsertProductArgs, Product>(args, product);
-            var persistedProduct = _productRepository.UpdateProduct(product);
-
-            return _mapper.Map<ProductDto>(persistedProduct);
-        }
-
-        public ProductDto UpsertProductMarkdown(UpsertProductMarkdownArgs args)
-        {
-            _upsertProductMarkdownArgsValidator.ValidateAndThrow<UpsertProductMarkdownArgs>(args);
-
-            var product = _productRepository.FindProduct(args.ProductName);
-
-            if (product.Markdown == null)
-                product.Markdown = _mapper.Map<Markdown>(args);
-            else
-                _mapper.Map<UpsertProductMarkdownArgs, Markdown>(args, product.Markdown);
-
             var persistedProduct = _productRepository.UpdateProduct(product);
 
             return _mapper.Map<ProductDto>(persistedProduct);
