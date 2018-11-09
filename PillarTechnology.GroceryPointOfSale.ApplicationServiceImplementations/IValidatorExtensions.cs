@@ -11,7 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             var validationResult = validator.Validate(args);
 
             if (!validationResult.IsValid)
-                throw new ArgumentException(String.Join(";\n", validationResult.Errors.Select(x => x.ErrorMessage)));
+                throw new ArgumentException(validationResult.ToString());
         }
     }
 }
