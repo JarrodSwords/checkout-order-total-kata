@@ -152,6 +152,6 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         #endregion
 
-        #endregion Upsert product
+        #endregion Upsert product markdown
     }
 }

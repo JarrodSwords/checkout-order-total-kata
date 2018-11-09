@@ -29,10 +29,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             productDto.Name.Should().Be(args.ProductName);
             specialDto.DiscountedItems.Should().Be(args.DiscountedItems);
-            specialDto.EndTime.Should().Be(args.EndTime);
+            specialDto.EndTime.Should().Be(args.EndTime.Value);
             specialDto.GroupSalePrice.Should().Be(args.GroupSalePrice);
             specialDto.Limit.Should().Be(args.Limit);
-            specialDto.StartTime.Should().Be(args.StartTime);
+            specialDto.StartTime.Should().Be(args.StartTime.Value);
         }
 
         [Fact]
@@ -54,11 +54,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             productDto.Name.Should().Be(args.ProductName);
             specialDto.DiscountedItems.Should().Be(args.DiscountedItems);
-            specialDto.EndTime.Should().Be(args.EndTime);
+            specialDto.EndTime.Should().Be(args.EndTime.Value);
             specialDto.Limit.Should().Be(args.Limit);
             specialDto.PercentageOff.Should().Be(args.PercentageOff);
             specialDto.PreDiscountItems.Should().Be(args.PreDiscountItems);
-            specialDto.StartTime.Should().Be(args.StartTime);
+            specialDto.StartTime.Should().Be(args.StartTime.Value);
         }
 
         [Fact]
@@ -80,11 +80,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             productDto.Name.Should().Be(args.ProductName);
             specialDto.DiscountedItems.Should().Be(args.DiscountedItems);
-            specialDto.EndTime.Should().Be(args.EndTime);
+            specialDto.EndTime.Should().Be(args.EndTime.Value);
             specialDto.Limit.Should().Be(args.Limit);
             specialDto.PercentageOff.Should().Be(args.PercentageOff);
             specialDto.PreDiscountItems.Should().Be(args.PreDiscountItems);
-            specialDto.StartTime.Should().Be(args.StartTime);
+            specialDto.StartTime.Should().Be(args.StartTime.Value);
         }
     }
 }

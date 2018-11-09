@@ -28,7 +28,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var args = new CreateBuyNForXAmountSpecialArgs { ProductName = productName };
 
             Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
-            
+
             createSpecial.Should().Throw<ArgumentException>(message);
         }
 
@@ -42,7 +42,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var args = new CreateBuyNGetMAtXPercentOffSpecialArgs { ProductName = productName };
 
             Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNGetMAtXPercentOffSpecial(args);
-            
+
             createSpecial.Should().Throw<ArgumentException>(message);
         }
 
@@ -56,7 +56,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var args = new CreateBuyNGetMAtXPercentOffSpecialArgs { ProductName = productName };
 
             Action createSpecial = () => _productSpecialConfigurationService.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args);
-            
+
             createSpecial.Should().Throw<ArgumentException>(message);
         }
     }
