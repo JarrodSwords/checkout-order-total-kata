@@ -1,5 +1,3 @@
-using PillarTechnology.GroceryPointOfSale.Domain;
-
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
     public class UpsertProductArgs

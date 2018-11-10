@@ -1,5 +1,3 @@
-using System;
-using System.Linq;
 using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;

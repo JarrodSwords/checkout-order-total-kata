@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using AutoMapper;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
