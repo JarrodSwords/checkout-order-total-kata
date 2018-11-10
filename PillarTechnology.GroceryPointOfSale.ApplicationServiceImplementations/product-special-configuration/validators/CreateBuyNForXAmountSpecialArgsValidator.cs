@@ -1,13 +1,10 @@
 using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class CreateBuyNForXAmountSpecialArgsValidator : AbstractValidator<CreateBuyNForXAmountSpecialArgs>
     {
-        private readonly IProductRepository _productRepository;
-
         public CreateBuyNForXAmountSpecialArgsValidator(CreateSpecialArgsValidator _createSpecialArgsValidator)
         {
             Include(_createSpecialArgsValidator);
