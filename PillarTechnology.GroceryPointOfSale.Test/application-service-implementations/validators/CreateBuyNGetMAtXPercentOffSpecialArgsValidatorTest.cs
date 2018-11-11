@@ -17,7 +17,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(baseValidator);
+            _validator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -42,6 +42,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             args.StartTime = DateTime.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
+
+            args.ProductName = "lean ground beef";
+            args.EndTime = DateTime.Now;
+            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
         }
     }
 }

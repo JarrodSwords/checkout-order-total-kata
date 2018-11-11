@@ -1,12 +1,16 @@
 using FluentValidation;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class CreateBuyNGetMAtXPercentOffSpecialArgsValidator : AbstractValidator<CreateBuyNGetMAtXPercentOffSpecialArgs>
     {
-        public CreateBuyNGetMAtXPercentOffSpecialArgsValidator(CreateSpecialArgsValidator _createSpecialArgsValidator)
+        private readonly IProductRepository _productRepository;
+
+        public CreateBuyNGetMAtXPercentOffSpecialArgsValidator(IProductRepository productRepository, CreateSpecialArgsValidator _createSpecialArgsValidator)
         {
+            _productRepository = productRepository;
             Include(_createSpecialArgsValidator);
             CreateRules();
         }
@@ -25,6 +29,17 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             RuleFor(x => x.PreDiscountItems)
                 .NotNull().WithMessage("Special pre-discount items is required")
                 .GreaterThan(0).WithMessage("Special pre-discount items must be greater than zero");
+
+            CreateProductValidation();
+        }
+
+        protected virtual void CreateProductValidation()
+        {
+            RuleFor(x => x.ProductName).Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("Product name is required")
+                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
+                .Must(x => _productRepository.FindProduct(x).SellByType == SellByType.Unit)
+                .WithMessage("Special can only be applied to a product with the Unit sell by type");
         }
     }
 }
