@@ -23,6 +23,13 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             return _orderService.FindOrder(orderId);
         }
 
+        [Route("{orderId}/preTaxTotal")]
+        [HttpGet]
+        public ActionResult<decimal> GetOrderPreTaxTotal(long orderId)
+        {
+            return _orderService.FindOrder(orderId).Invoice.PreTaxTotal;
+        }
+
         [Route("{orderId}/scannedItems")]
         [HttpPost]
         public ActionResult<ScannedItemDto> AddScannedItem(long orderId, [FromBody] ScanItemArgs args)
