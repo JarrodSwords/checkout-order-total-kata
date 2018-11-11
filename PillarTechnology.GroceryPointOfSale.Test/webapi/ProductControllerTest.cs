@@ -12,7 +12,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public ProductControllerTest()
         {
             var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
-            _productController = new ProductController(productConfigurationService);
+            var productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
+            var productService = DependencyProvider.CreateProductService();
+            _productController = new ProductController(productConfigurationService, productMarkdownConfigurationService, productService);
         }
 
         [Fact]
