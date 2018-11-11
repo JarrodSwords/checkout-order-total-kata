@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using AutoMapper;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
@@ -14,13 +9,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public ProductConfigurationServiceTest()
         {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var createProductArgsValidator = new CreateProductArgsValidator(productRepository);
-            var updateProductArgsValidator = new UpdateProductArgsValidator(productRepository);
-
-            _productConfigurationService = new ProductConfigurationService(mapper, productRepository, createProductArgsValidator, updateProductArgsValidator);
-            _productService = new ProductService(mapper, productRepository);
+            _productConfigurationService = DependencyProvider.CreateProductConfigurationService();
+            _productService = DependencyProvider.CreateProductService();
         }
 
         #region Create product

@@ -1,7 +1,4 @@
-using AutoMapper;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.WebApi;
 using Xunit;
@@ -14,11 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public ProductControllerTest()
         {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var createProductArgsValidator = new CreateProductArgsValidator(productRepository);
-            var updateProductArgsValidator = new UpdateProductArgsValidator(productRepository);
-            var productConfigurationService = new ProductConfigurationService(mapper, productRepository, createProductArgsValidator, updateProductArgsValidator);
+            var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
             _productController = new ProductController(productConfigurationService);
         }
 

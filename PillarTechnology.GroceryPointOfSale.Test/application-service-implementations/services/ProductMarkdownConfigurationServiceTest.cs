@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using AutoMapper;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.Domain;
 using Xunit;
@@ -14,11 +12,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public ProductMarkdownConfigurationServiceTest()
         {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository);
-
-            _productMarkdownConfigurationService = new ProductMarkdownConfigurationService(mapper, productRepository, upsertProductMarkdownArgsValidator);
+            _productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
         }
 
         [Theory]

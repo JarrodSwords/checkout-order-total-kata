@@ -1,7 +1,5 @@
 using System;
-using AutoMapper;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using Xunit;
 
@@ -11,13 +9,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public ProductSpecialConfigurationServiceTest()
         {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
-            var createBuyNForXAmountSpecialArgsValidator = new CreateBuyNForXAmountSpecialArgsValidator(createSpecialArgsValidator);
-            var createBuyNGetMAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(createSpecialArgsValidator);
-
-            _productSpecialConfigurationService = new ProductSpecialConfigurationService(mapper, productRepository, createBuyNForXAmountSpecialArgsValidator, createBuyNGetMAtXPercentOffSpecialArgsValidator);
+            _productSpecialConfigurationService = DependencyProvider.CreateProductSpecialConfigurationService();
         }
 
         [Theory]

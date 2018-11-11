@@ -1,12 +1,10 @@
-using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;
-
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class InMemoryOrderRepositoryTest : IOrderRepositoryTest
     {
         public InMemoryOrderRepositoryTest()
         {
-            _orderRepository = new InMemoryOrderRepository();
+            _orderRepository = DependencyProvider.CreateOrderRepository();
         }
     }
 }
