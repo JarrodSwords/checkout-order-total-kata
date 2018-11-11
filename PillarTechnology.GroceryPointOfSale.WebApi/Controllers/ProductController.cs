@@ -19,5 +19,11 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         {
             return _productConfigurationService.CreateProduct(upsertProductArgs);
         }
+
+        [HttpPut]
+        public ActionResult<ProductDto> UpdateProduct([FromBody] UpsertProductArgs upsertProductArgs)
+        {
+            return _productConfigurationService.UpdateProduct(upsertProductArgs);
+        }
     }
 }

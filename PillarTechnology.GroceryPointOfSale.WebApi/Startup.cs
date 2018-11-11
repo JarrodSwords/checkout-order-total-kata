@@ -32,12 +32,30 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>())));
+
+            services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());
+            services.AddSingleton<IProductRepository>(new InMemoryProductRepository());
+
+            services.AddTransient<ICheckoutService, CheckoutService>();
+            services.AddTransient<IProductService, ProductService>();
+
+            services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
+            services.AddTransient<IProductMarkdownConfigurationService, ProductMarkdownConfigurationService>();
+            services.AddTransient<IProductSpecialConfigurationService, ProductSpecialConfigurationService>();
+
+            services.AddTransient<RemoveScannedItemArgsValidator>();
+            services.AddTransient<ScanItemArgsValidator>();
+            services.AddTransient<ScanWeightedItemArgsValidator>();
+
             services.AddTransient<CreateProductArgsValidator>();
             services.AddTransient<UpdateProductArgsValidator>();
+
             services.AddTransient<UpsertProductMarkdownArgsValidator>();
-            services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>())));
-            services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
-            services.AddTransient<IProductRepository, InMemoryProductRepository>();
+
+            services.AddTransient<CreateBuyNForXAmountSpecialArgsValidator>();
+            services.AddTransient<CreateBuyNGetMAtXPercentOffSpecialArgsValidator>();
+            services.AddTransient<CreateSpecialArgsValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
