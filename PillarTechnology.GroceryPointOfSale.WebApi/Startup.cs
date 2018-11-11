@@ -49,6 +49,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
 
             services.AddTransient<CreateBuyNForXAmountSpecialArgsValidator>();
             services.AddTransient<CreateBuyNGetMAtXPercentOffSpecialArgsValidator>();
+            services.AddTransient<CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator>();
             services.AddTransient<CreateSpecialArgsValidator>();
         }
 

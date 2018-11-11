@@ -71,7 +71,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
                 Limit = 6,
                 PercentageOff = 50m,
                 PreDiscountItems = 2,
-                ProductName = "can of soup",
+                ProductName = "lean ground beef",
                 StartTime = _now.StartOfWeek()
             };
 

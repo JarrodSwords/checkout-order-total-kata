@@ -53,10 +53,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var productRepository = CreateProductRepository();
             var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
-            var createBuyNForXAmountSpecialArgsValidator = new CreateBuyNForXAmountSpecialArgsValidator(createSpecialArgsValidator);
-            var createBuyNGetMAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(createSpecialArgsValidator);
+            var createBuyNForXAmountSpecialArgsValidator = new CreateBuyNForXAmountSpecialArgsValidator(productRepository, createSpecialArgsValidator);
+            var createBuyNGetMAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
+            var createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
 
-            return new ProductSpecialConfigurationService(CreateMapper(), productRepository, createBuyNForXAmountSpecialArgsValidator, createBuyNGetMAtXPercentOffSpecialArgsValidator);
+            return new ProductSpecialConfigurationService(CreateMapper(), productRepository, createBuyNForXAmountSpecialArgsValidator, createBuyNGetMAtXPercentOffSpecialArgsValidator, createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator);
         }
     }
 }

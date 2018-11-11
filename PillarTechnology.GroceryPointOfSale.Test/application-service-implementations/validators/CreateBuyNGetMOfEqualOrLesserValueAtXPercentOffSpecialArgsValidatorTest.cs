@@ -9,15 +9,15 @@ using Xunit;
 
 namespace PillarTechnology.GroceryPointOfSale.Test
 {
-    public class CreateBuyNForXAmountSpecialArgsValidatorTest
+    public class CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest
     {
-        private IProductRepository _productRepository = DependencyProvider.CreateProductRepository();
-        private CreateBuyNForXAmountSpecialArgsValidator _validator;
+        private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+        private CreateBuyNGetMAtXPercentOffSpecialArgsValidator _validator;
 
-        public CreateBuyNForXAmountSpecialArgsValidatorTest()
+        public CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNForXAmountSpecialArgsValidator(_productRepository, baseValidator);
+            _validator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -30,19 +30,21 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, (int?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, 0);
-            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, (decimal?) null);
-            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, 0);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, (decimal?) null);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 0);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 101);
+            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, (int?) null);
+            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, 0);
 
-            var args = new CreateBuyNForXAmountSpecialArgs() { ProductName = "can of soup", EndTime = DateTime.Now };
+            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs() { ProductName = "can of soup", EndTime = DateTime.Now };
             Action validate = () => _validator.ValidateAndThrow(args);
             validate.Should().Throw<ValidationException>("*Special start time is required*");
 
             args.StartTime = DateTime.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
 
-            args.ProductName = "lean ground beef";
             args.EndTime = DateTime.Now;
-            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
+            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Weight sell by type*");
         }
     }
 }
