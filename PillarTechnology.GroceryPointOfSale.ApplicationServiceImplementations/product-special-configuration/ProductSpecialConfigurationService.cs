@@ -11,13 +11,20 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         private readonly IProductRepository _productRepository;
         private readonly CreateBuyNForXAmountSpecialArgsValidator _createBuyNForXAmountSpecialArgsValidator;
         private readonly CreateBuyNGetMAtXPercentOffSpecialArgsValidator _createBuyNGetMAtXPercentOffSpecialArgsValidator;
+        private readonly CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator _createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator;
 
-        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, CreateBuyNForXAmountSpecialArgsValidator createBuyNForXAmountSpecialArgsValidator, CreateBuyNGetMAtXPercentOffSpecialArgsValidator createBuyNGetMAtXPercentOffSpecialArgsValidator)
+        public ProductSpecialConfigurationService(
+            IMapper mapper,
+            IProductRepository productRepository,
+            CreateBuyNForXAmountSpecialArgsValidator createBuyNForXAmountSpecialArgsValidator,
+            CreateBuyNGetMAtXPercentOffSpecialArgsValidator createBuyNGetMAtXPercentOffSpecialArgsValidator,
+            CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
             _createBuyNForXAmountSpecialArgsValidator = createBuyNForXAmountSpecialArgsValidator;
             _createBuyNGetMAtXPercentOffSpecialArgsValidator = createBuyNGetMAtXPercentOffSpecialArgsValidator;
+            _createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator = createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator;
         }
 
         public ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args)
@@ -40,7 +47,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductDto CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
-            _createBuyNGetMAtXPercentOffSpecialArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
+            _createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
             
             Func<Special> createSpecial = () => new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args.StartTime.Value, args.EndTime.Value, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
