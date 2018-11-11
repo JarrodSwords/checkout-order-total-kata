@@ -6,7 +6,7 @@ namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
 {
     public class InMemoryOrderRepository : IOrderRepository
     {
-        private ICollection<Order> _orders = new List<Order>();
+        private ICollection<Order> _orders = new List<Order> { new Order { Id = 0 } };
         private long GetNextId()
         {
             return _orders.Count == 0 ? 1 : _orders.Select(x => x.Id).Max() + 1;
