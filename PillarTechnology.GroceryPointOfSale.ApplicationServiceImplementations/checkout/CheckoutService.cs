@@ -34,7 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
             var order = _orderRepository.FindOrder(args.OrderId.Value);
 
-            var removedItem = _mapper.Map<ScannedItemDto>(order.RemoveScannedItem(args.ItemId.Value));
+            var removedItem = _mapper.Map<ScannedItemDto>(order.RemoveScannedItem(args.ScannedItemId.Value));
             _orderRepository.UpdateOrder(order);
 
             return removedItem;

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPoi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations", "PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.csproj", "{232233AA-8AB3-449A-B373-BEBB03EF00FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.WebApi", "PillarTechnology.GroceryPointOfSale.WebApi\PillarTechnology.GroceryPointOfSale.WebApi.csproj", "{1C5371FA-50FE-45FA-9BE1-DDE96250F014}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{232233AA-8AB3-449A-B373-BEBB03EF00FC}.Release|x64.Build.0 = Release|Any CPU
 		{232233AA-8AB3-449A-B373-BEBB03EF00FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{232233AA-8AB3-449A-B373-BEBB03EF00FC}.Release|x86.Build.0 = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|x64.Build.0 = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|x64.Build.0 = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C5371FA-50FE-45FA-9BE1-DDE96250F014}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

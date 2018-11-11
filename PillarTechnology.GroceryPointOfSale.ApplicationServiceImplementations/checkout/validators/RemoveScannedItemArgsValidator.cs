@@ -17,7 +17,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         private void CreateRules()
         {
-            RuleFor(x => x.ItemId).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.ScannedItemId).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull().WithMessage("Scanned item id is required")
                 .Must((args, x) => _orderRepository.FindOrder(args.OrderId.Value).ScannedItems.Select(y => y.Id).Contains(x.Value))
                 .WithMessage("Scanned item id \"{PropertyValue}\" does not exist");

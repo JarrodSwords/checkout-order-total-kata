@@ -1,7 +1,5 @@
 using System;
-using AutoMapper;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using Xunit;
 
@@ -11,14 +9,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public CheckoutServiceTest()
         {
-            var mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
-            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
-            var productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(_orderRepository);
-            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
-            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
-
-            _checkoutService = new CheckoutService(mapper, _orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
+            _orderRepository = DependencyProvider.CreateOrderRepository();
+            _checkoutService = DependencyProvider.CreateCheckoutService(_orderRepository);
         }
 
         [Theory]
