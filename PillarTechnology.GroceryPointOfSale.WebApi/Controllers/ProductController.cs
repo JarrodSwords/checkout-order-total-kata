@@ -38,9 +38,11 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             return _productService.FindProduct(productName);
         }
 
+        [Route("{productName}")]
         [HttpPut]
-        public ActionResult<ProductDto> UpdateProduct([FromBody] UpsertProductArgs args)
+        public ActionResult<ProductDto> UpdateProduct(string productName, [FromBody] UpsertProductArgs args)
         {
+            args.Name = productName;
             return _productConfigurationService.UpdateProduct(args);
         }
 
@@ -48,6 +50,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateMarkdown(string productName, [FromBody] UpsertProductMarkdownArgs args)
         {
+            args.ProductName = productName;
             return _productMarkdownConfigurationService.UpsertProductMarkdown(args);
         }
 
@@ -55,6 +58,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateBuyNForXAmountSpecial(string productName, [FromBody] CreateBuyNForXAmountSpecialArgs args)
         {
+            args.ProductName = productName;
             return _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
         }
 
@@ -62,6 +66,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateBuyNGetMAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
+            args.ProductName = productName;
             return _productSpecialConfigurationService.CreateBuyNGetMAtXPercentOffSpecial(args);
         }
 
@@ -69,6 +74,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
+            args.ProductName = productName;
             return _productSpecialConfigurationService.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args);
         }
     }

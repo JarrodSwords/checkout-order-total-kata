@@ -34,6 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPost]
         public ActionResult<ScannedItemDto> AddScannedItem(long orderId, [FromBody] ScanItemArgs args)
         {
+            args.OrderId = orderId;
             return _checkoutService.ScanItem(args);
         }
 
@@ -41,6 +42,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpPost]
         public ActionResult<ScannedItemDto> AddWeightedScannedItem(long orderId, [FromBody] ScanWeightedItemArgs args)
         {
+            args.OrderId = orderId;
             return _checkoutService.ScanWeightedItem(args);
         }
 
@@ -48,6 +50,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         [HttpDelete]
         public ActionResult<ScannedItemDto> RemoveScannedItem(long orderId, [FromBody] RemoveScannedItemArgs args)
         {
+            args.OrderId = orderId;
             return _checkoutService.RemoveScannedItem(args);
         }
     }
