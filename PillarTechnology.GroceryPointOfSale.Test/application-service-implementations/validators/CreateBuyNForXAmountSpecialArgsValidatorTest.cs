@@ -11,13 +11,13 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class CreateBuyNForXAmountSpecialArgsValidatorTest
     {
-        private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+        private IProductRepository _productRepository = DependencyProvider.CreateProductRepository();
         private CreateBuyNForXAmountSpecialArgsValidator _validator;
 
         public CreateBuyNForXAmountSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNForXAmountSpecialArgsValidator(baseValidator);
+            _validator = new CreateBuyNForXAmountSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -39,6 +39,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
             args.StartTime = DateTime.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
+
+            args.ProductName = "lean ground beef";
+            args.EndTime = DateTime.Now;
+            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
         }
     }
 }
