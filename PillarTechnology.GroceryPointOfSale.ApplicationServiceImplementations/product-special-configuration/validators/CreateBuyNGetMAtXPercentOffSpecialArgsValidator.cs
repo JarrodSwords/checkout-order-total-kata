@@ -6,12 +6,12 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class CreateBuyNGetMAtXPercentOffSpecialArgsValidator : AbstractValidator<CreateBuyNGetMAtXPercentOffSpecialArgs>
     {
-        private readonly IProductRepository _productRepository;
+        protected readonly IProductRepository _productRepository;
 
-        public CreateBuyNGetMAtXPercentOffSpecialArgsValidator(IProductRepository productRepository, CreateSpecialArgsValidator _createSpecialArgsValidator)
+        public CreateBuyNGetMAtXPercentOffSpecialArgsValidator(IProductRepository productRepository, CreateSpecialArgsValidator createSpecialArgsValidator)
         {
             _productRepository = productRepository;
-            Include(_createSpecialArgsValidator);
+            Include(createSpecialArgsValidator);
             CreateRules();
         }
 
