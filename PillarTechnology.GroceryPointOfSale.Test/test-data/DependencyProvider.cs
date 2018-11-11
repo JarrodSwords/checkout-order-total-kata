@@ -21,6 +21,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public static IOrderRepository CreateOrderRepository() => new InMemoryOrderRepositoryFactory().CreateSeededRepository();
 
+        public static IOrderService CreateOrderService()
+        {
+            return new OrderService(CreateMapper(), CreateOrderRepository());
+        }
+
         public static IProductConfigurationService CreateProductConfigurationService()
         {
             var productRepository = CreateProductRepository();
