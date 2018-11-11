@@ -8,10 +8,19 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
     public class OrderController : ControllerBase
     {
         private readonly ICheckoutService _checkoutService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(ICheckoutService checkoutService)
+        public OrderController(ICheckoutService checkoutService, IOrderService orderService)
         {
             _checkoutService = checkoutService;
+            _orderService = orderService;
+        }
+
+        [Route("{orderId}")]
+        [HttpGet]
+        public ActionResult<OrderDto> FindOrder(long orderId)
+        {
+            return _orderService.FindOrder(orderId);
         }
 
         [Route("{orderId}/scannedItems")]

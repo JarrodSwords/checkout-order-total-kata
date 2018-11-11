@@ -38,6 +38,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             services.AddSingleton<IProductRepository>(new InMemoryProductRepository());
 
             services.AddTransient<ICheckoutService, CheckoutService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IProductService, ProductService>();
 
             services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
