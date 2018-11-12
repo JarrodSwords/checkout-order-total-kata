@@ -27,6 +27,8 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
 
             services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>())));
 
+            services.AddTransient<IMarkdownFactory, Markdown.Factory>();
+
             services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());
             services.AddSingleton<IProductRepository>(new InMemoryProductRepository());
 

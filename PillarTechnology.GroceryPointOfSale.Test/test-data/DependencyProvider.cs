@@ -36,10 +36,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public static IProductMarkdownConfigurationService CreateProductMarkdownConfigurationService()
         {
+            var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
             var productRepository = CreateProductRepository();
             var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository);
 
-            return new ProductMarkdownConfigurationService(CreateMapper(), productRepository, upsertProductMarkdownArgsValidator);
+            return new ProductMarkdownConfigurationService(CreateMapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
         }
 
         public static IProductRepository CreateProductRepository() => new InMemoryProductRepositoryFactory().CreateSeededRepository();
