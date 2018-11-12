@@ -5,7 +5,7 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class BuyNGetMAtXPercentOffSpecial : Special
+    public partial class BuyNGetMAtXPercentOffSpecial : Special
     {
         public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} at {Multiplier:P0} off";
         public int DiscountedItems { get; }
@@ -14,9 +14,13 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public int PreDiscountItems { get; }
         public override int ScannedItemsRequired => PreDiscountItems + DiscountedItems;
 
-        public BuyNGetMAtXPercentOffSpecial() { }
-
-        public BuyNGetMAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, limit)
+        protected BuyNGetMAtXPercentOffSpecial(
+            ITemporal temporal,
+            int preDiscountItems,
+            int discountedItems,
+            decimal percentageOff,
+            int? limit = null
+        ) : base(temporal, limit)
         {
             PreDiscountItems = preDiscountItems;
             DiscountedItems = discountedItems;

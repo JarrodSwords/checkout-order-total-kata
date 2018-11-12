@@ -5,13 +5,17 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial : BuyNGetMAtXPercentOffSpecial
+    public partial class BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial : BuyNGetMAtXPercentOffSpecial
     {
         public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} of equal or lesser value at {Multiplier:P} off";
 
-        public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial() { }
-
-        public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateTime startTime, DateTime endTime, int preDiscountItems, int discountedItems, decimal percentageOff, int? limit = null) : base(startTime, endTime, preDiscountItems, discountedItems, percentageOff, limit) { }
+        public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(
+            ITemporal temporal,
+            int preDiscountItems,
+            int discountedItems,
+            decimal percentageOff,
+            int? limit = null
+        ) : base(temporal, preDiscountItems, discountedItems, percentageOff, limit) { }
 
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {

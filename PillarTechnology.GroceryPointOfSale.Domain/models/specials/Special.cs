@@ -4,7 +4,7 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public abstract class Special : ITemporal
+    public abstract partial class Special : ITemporal
     {
         private readonly ITemporal _temporal;
         public abstract string Description { get; }
@@ -14,11 +14,9 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
         public abstract int ScannedItemsRequired { get; }
         public DateTime StartTime => _temporal.StartTime;
 
-        public Special() { }
-
-        public Special(DateTime startTime, DateTime endTime, int? limit = null)
+        protected Special(ITemporal temporal, int? limit = null)
         {
-            _temporal = new BasicTemporal(endTime, startTime);
+            _temporal = temporal;
             Limit = limit;
         }
 

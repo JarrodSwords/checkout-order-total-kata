@@ -8,6 +8,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class BuyNForXAmountTest : SpecialTest
     {
+        private BuyNForXAmountSpecial.Factory _factory = new BuyNForXAmountSpecial.Factory(new BasicDateTimeProvider());
+
         [Theory]
         [InlineData(3, 0, 0)]
         [InlineData(3, 3, 1)]
@@ -16,7 +18,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_CreatesCorrectLineItemCount(int discountedItems, int scannedItemCount, int expectedLineItemCount, int? limit = null)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar(1.5m), limit);
+
+            var special = _factory
+                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar(1.5m), _now.StartOfWeek(), limit)
+                .CreateSpecial();
 
             CreateLineItems(product, special, scannedItemCount);
 
@@ -30,7 +35,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_CreatesCorrectLineItemTotalValue(int discountedItems, double groupSalePrice, int scannedItemCount, int expectedTotalValue)
         {
             var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
+
+            var special = _factory
+                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
+                .CreateSpecial();
 
             CreateLineItems(product, special, scannedItemCount);
 
@@ -46,10 +54,12 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         {
             var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
             {
-                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal)markdown)
+                Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal) markdown)
             };
 
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
+            var special = _factory
+                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
+                .CreateSpecial();
 
             CreateLineItems(product, special, scannedItemCount);
 
@@ -62,7 +72,10 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         public void CreateLineItems_WithBetterRetailPrice_CreatesZeroLineItems(double retailPrice, int discountedItems, double groupSalePrice, int scannedItemCount)
         {
             var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
-            var special = new BuyNForXAmountSpecial(_now.StartOfWeek(), _now.EndOfWeek(), discountedItems, Money.USDollar((decimal) groupSalePrice));
+
+            var special = _factory
+                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
+                .CreateSpecial();
 
             CreateLineItems(product, special, scannedItemCount);
 

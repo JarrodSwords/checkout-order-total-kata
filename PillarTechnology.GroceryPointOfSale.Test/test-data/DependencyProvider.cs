@@ -52,13 +52,26 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public static IProductSpecialConfigurationService CreateProductSpecialConfigurationService()
         {
+            var dateTimeProvider = new BasicDateTimeProvider();
+            var buyNForXAmountSpecialFactory = new BuyNForXAmountSpecial.Factory(dateTimeProvider);
+            var buyNGetMAtXPercentOffSpecialFactory = new BuyNGetMAtXPercentOffSpecial.Factory(dateTimeProvider);
+            var buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory = new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(dateTimeProvider);
             var productRepository = CreateProductRepository();
             var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
             var createBuyNForXAmountSpecialArgsValidator = new CreateBuyNForXAmountSpecialArgsValidator(productRepository, createSpecialArgsValidator);
             var createBuyNGetMAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
             var createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
 
-            return new ProductSpecialConfigurationService(CreateMapper(), productRepository, createBuyNForXAmountSpecialArgsValidator, createBuyNGetMAtXPercentOffSpecialArgsValidator, createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator);
+            return new ProductSpecialConfigurationService(
+                CreateMapper(),
+                buyNForXAmountSpecialFactory,
+                buyNGetMAtXPercentOffSpecialFactory,
+                buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory,
+                productRepository,
+                createBuyNForXAmountSpecialArgsValidator,
+                createBuyNGetMAtXPercentOffSpecialArgsValidator,
+                createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator
+            );
         }
     }
 }

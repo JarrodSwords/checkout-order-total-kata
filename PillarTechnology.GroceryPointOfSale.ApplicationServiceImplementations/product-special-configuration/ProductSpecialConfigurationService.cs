@@ -8,6 +8,9 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
     public class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {
         private readonly IMapper _mapper;
+        private readonly BuyNForXAmountSpecial.Factory _buyNForXAmountSpecialFactory;
+        private readonly BuyNGetMAtXPercentOffSpecial.Factory _buyNGetMAtXPercentOffSpecialFactory;
+        private readonly BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory _buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory;
         private readonly IProductRepository _productRepository;
         private readonly CreateBuyNForXAmountSpecialArgsValidator _createBuyNForXAmountSpecialArgsValidator;
         private readonly CreateBuyNGetMAtXPercentOffSpecialArgsValidator _createBuyNGetMAtXPercentOffSpecialArgsValidator;
@@ -15,12 +18,18 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 
         public ProductSpecialConfigurationService(
             IMapper mapper,
+            BuyNForXAmountSpecial.Factory buyNForXAmountSpecialFactory,
+            BuyNGetMAtXPercentOffSpecial.Factory buyNGetMAtXPercentOffSpecialFactory,
+            BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory,
             IProductRepository productRepository,
             CreateBuyNForXAmountSpecialArgsValidator createBuyNForXAmountSpecialArgsValidator,
             CreateBuyNGetMAtXPercentOffSpecialArgsValidator createBuyNGetMAtXPercentOffSpecialArgsValidator,
             CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator)
         {
             _mapper = mapper;
+            _buyNForXAmountSpecialFactory = buyNForXAmountSpecialFactory;
+            _buyNGetMAtXPercentOffSpecialFactory = buyNGetMAtXPercentOffSpecialFactory;
+            _buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory = buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory;
             _productRepository = productRepository;
             _createBuyNForXAmountSpecialArgsValidator = createBuyNForXAmountSpecialArgsValidator;
             _createBuyNGetMAtXPercentOffSpecialArgsValidator = createBuyNGetMAtXPercentOffSpecialArgsValidator;
@@ -31,34 +40,57 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         {
             _createBuyNForXAmountSpecialArgsValidator.ValidateAndThrow<CreateBuyNForXAmountSpecialArgs>(args);
 
-            Func<Special> createSpecial = () => new BuyNForXAmountSpecial(args.StartTime.Value, args.EndTime.Value, args.DiscountedItems.Value, args.GroupSalePrice.Value, args.Limit);
+            _buyNForXAmountSpecialFactory.Configure(
+                args.DiscountedItems.Value,
+                args.EndTime.Value,
+                args.GroupSalePrice.Value,
+                args.StartTime.Value,
+                args.Limit
+            );
+
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNForXAmountSpecialDto>(special);
-            return CreateSpecial(args, createSpecial, mapToSpecialDto);
+            return CreateSpecial(args, _buyNForXAmountSpecialFactory, mapToSpecialDto);
         }
 
         public ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
             _createBuyNGetMAtXPercentOffSpecialArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
 
-            Func<Special> createSpecial = () => new BuyNGetMAtXPercentOffSpecial(args.StartTime.Value, args.EndTime.Value, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
+            _buyNGetMAtXPercentOffSpecialFactory.Configure(
+                args.DiscountedItems.Value,
+                args.EndTime.Value,
+                args.PercentageOff.Value,
+                args.PreDiscountItems.Value,
+                args.StartTime.Value,
+                args.Limit
+            );
+
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
-            return CreateSpecial(args, createSpecial, mapToSpecialDto);
+            return CreateSpecial(args, _buyNGetMAtXPercentOffSpecialFactory, mapToSpecialDto);
         }
 
         public ProductDto CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
             _createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator.ValidateAndThrow<CreateBuyNGetMAtXPercentOffSpecialArgs>(args);
             
-            Func<Special> createSpecial = () => new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args.StartTime.Value, args.EndTime.Value, args.PreDiscountItems.Value, args.DiscountedItems.Value, args.PercentageOff.Value, args.Limit);
+            _buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory.Configure(
+                args.DiscountedItems.Value,
+                args.EndTime.Value,
+                args.PercentageOff.Value,
+                args.PreDiscountItems.Value,
+                args.StartTime.Value,
+                args.Limit
+            );
+
             Func<Special, ISpecialDto> mapToSpecialDto = special => _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
-            return CreateSpecial(args, createSpecial, mapToSpecialDto);
+            return CreateSpecial(args, _buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory, mapToSpecialDto);
         }
 
-        private ProductDto CreateSpecial(CreateSpecialArgs args, Func<Special> createSpecial, Func<Special, ISpecialDto> mapToSpecialDto)
+        private ProductDto CreateSpecial(CreateSpecialArgs args, ISpecialFactory specialFactory, Func<Special, ISpecialDto> mapToSpecialDto)
         {
             var product = _productRepository.FindProduct(args.ProductName);
 
-            product.Special = createSpecial();
+            product.Special = specialFactory.CreateSpecial();
             var persistedProduct = _productRepository.UpdateProduct(product);
 
             var productDto = _mapper.Map<ProductDto>(persistedProduct);
