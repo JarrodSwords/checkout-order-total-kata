@@ -7,7 +7,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 {
     public partial class BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial : BuyNGetMAtXPercentOffSpecial
     {
-        public class Factory : BuyNGetMAtXPercentOffSpecial.Factory
+        public new class Factory : BuyNGetMAtXPercentOffSpecial.Factory
         {
             public Factory(IDateTimeProvider dateTimeProvider) : base(dateTimeProvider) { }
 
