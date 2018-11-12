@@ -3,25 +3,19 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class Markdown
+    public class Markdown : ITemporal
     {
+        private readonly ITemporal _temporal;
+
         public Money AmountOffRetail { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public bool IsActive
-        {
-            get
-            {
-                var now = DateTime.Now;
-                return now >= StartTime && now <= EndTime;
-            }
-        }
+        public DateTime EndTime => _temporal.EndTime;
+        public bool IsActive => _temporal.IsActive;
+        public DateTime StartTime => _temporal.StartTime;
 
         public Markdown(Money amountOffRetail, DateTime startTime, DateTime endTime)
         {
             AmountOffRetail = amountOffRetail;
-            StartTime = startTime;
-            EndTime = endTime;
+            _temporal = new BasicTemporal(endTime, startTime);
         }
 
         public override string ToString() => $"{AmountOffRetail}; {StartTime}-{EndTime}";
