@@ -12,7 +12,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             IMapper mapper,
             IProductRepository productRepository,
             BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory factory,
-            CreateBuyNGetMAtXPercentOffSpecialArgsValidator validator
+            CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator validator
         ) : base(mapper, productRepository, validator)
         {
             _factory = factory;
