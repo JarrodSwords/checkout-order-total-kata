@@ -4,41 +4,35 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService
-        : ProductSpecialConfigurationService<CreateBuyNGetMAtXPercentOffSpecialArgs>
+    public class BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService : ProductSpecialConfigurationService
+    {
+        private readonly BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory _factory;
+
+        public BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
+            IMapper mapper,
+            IProductRepository productRepository,
+            BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory factory,
+            CreateBuyNGetMAtXPercentOffSpecialArgsValidator validator
+        ) : base(mapper, productRepository, validator)
         {
-            private readonly BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory _factory;
-
-            public BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
-                IMapper mapper,
-                IProductRepository productRepository,
-                BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory factory,
-                CreateBuyNGetMAtXPercentOffSpecialArgsValidator validator
-            ) : base(mapper, productRepository, validator)
-            {
-                _factory = factory;
-            }
-
-            public override ISpecialFactory GetConfiguredSpecialFactory(CreateBuyNGetMAtXPercentOffSpecialArgs args)
-            {
-                return _factory.Configure(
-                    args.DiscountedItems.Value,
-                    args.EndTime.Value,
-                    args.PercentageOff.Value,
-                    args.PreDiscountItems.Value,
-                    args.StartTime.Value,
-                    args.Limit
-                );
-            }
-
-            public override ISpecialDto CreateSpecialDto(Special special)
-            {
-                return _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
-            }
-
-            public override string GetProductName(CreateBuyNGetMAtXPercentOffSpecialArgs args)
-            {
-                return args.ProductName;
-            }
+            _factory = factory;
         }
+
+        public override ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args)
+        {
+            return _factory.Configure(
+                args.DiscountedItems.Value,
+                args.EndTime.Value,
+                args.PercentageOff.Value,
+                args.PreDiscountItems.Value,
+                args.StartTime.Value,
+                args.Limit
+            );
+        }
+
+        public override ISpecialDto CreateSpecialDto(Special special)
+        {
+            return _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
+        }
+    }
 }

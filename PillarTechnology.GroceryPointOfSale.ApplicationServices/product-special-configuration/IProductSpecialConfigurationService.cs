@@ -1,7 +1,7 @@
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
-    public interface IProductSpecialConfigurationService<T>
+    public interface IProductSpecialConfigurationService
     {
-        ProductDto CreateSpecial(T args);
+        ProductDto CreateSpecial(CreateSpecialArgs args);
     }
 }

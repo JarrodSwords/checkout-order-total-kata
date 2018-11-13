@@ -37,7 +37,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, (int?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, 0);
 
-            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
+            var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
             Action validate = () => _validator.ValidateAndThrow(args);
             validate.Should().Throw<ValidationException>("*Special start time is required*");
 

@@ -4,7 +4,7 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class BuyNForXAmountConfigurationService : ProductSpecialConfigurationService<CreateBuyNForXAmountSpecialArgs>
+    public class BuyNForXAmountConfigurationService : ProductSpecialConfigurationService
     {
         private readonly BuyNForXAmountSpecial.Factory _factory;
 
@@ -18,7 +18,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _factory = factory;
         }
 
-        public override ISpecialFactory GetConfiguredSpecialFactory(CreateBuyNForXAmountSpecialArgs args)
+        public override ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args)
         {
             return _factory.Configure(
                 args.DiscountedItems.Value,
@@ -32,11 +32,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         public override ISpecialDto CreateSpecialDto(Special special)
         {
             return _mapper.Map<BuyNForXAmountSpecialDto>(special);
-        }
-
-        public override string GetProductName(CreateBuyNForXAmountSpecialArgs args)
-        {
-            return args.ProductName;
         }
     }
 }

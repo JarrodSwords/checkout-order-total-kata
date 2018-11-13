@@ -33,6 +33,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory>();
 
             services.AddTransient<IDateTimeProvider, BasicDateTimeProvider>();
+            services.AddTransient<ProductSpecialConfigurationServiceProvider>();
 
             services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());
             services.AddSingleton<IProductRepository>(new InMemoryProductRepository());

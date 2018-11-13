@@ -1,4 +1,5 @@
 using FluentAssertions;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.WebApi;
 using Xunit;
@@ -14,16 +15,19 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             var buyNForXAmountConfigurationService = DependencyProvider.CreateBuyNForXAmountConfigurationService();
             var buyNGetMAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
             var buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService();
+            var productSpecialConfigurationServiceProvider = new ProductSpecialConfigurationServiceProvider(
+                buyNForXAmountConfigurationService,
+                buyNGetMAtXPercentOffConfigurationService,
+                buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService
+            );
             var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
             var productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
             var productService = DependencyProvider.CreateProductService();
             _productController = new ProductController(
-                buyNForXAmountConfigurationService,
-                buyNGetMAtXPercentOffConfigurationService,
-                buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService,
                 productConfigurationService,
                 productMarkdownConfigurationService,
-                productService
+                productService,
+                productSpecialConfigurationServiceProvider
             );
         }
 

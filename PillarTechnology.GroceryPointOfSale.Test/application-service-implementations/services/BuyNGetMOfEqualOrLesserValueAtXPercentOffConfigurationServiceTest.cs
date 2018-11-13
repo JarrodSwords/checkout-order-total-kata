@@ -15,7 +15,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [Fact]
         public void CreateBuyNForXAmountSpecial_CreatesSpecial()
         {
-            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs
+            var args = new CreateSpecialArgs
             {
                 DiscountedItems = 1,
                 EndTime = _now.EndOfWeek(),
@@ -45,7 +45,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
         public void CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            var args = new CreateBuyNGetMAtXPercentOffSpecialArgs { ProductName = productName };
+            var args = new CreateSpecialArgs { ProductName = productName };
 
             Action createSpecial = () => _service.CreateSpecial(args);
 

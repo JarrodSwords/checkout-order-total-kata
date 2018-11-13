@@ -6,24 +6,24 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public abstract class ProductSpecialConfigurationService<T> : IProductSpecialConfigurationService<T>
+    public abstract partial class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {
         protected readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly IValidator<T> _validator;
+        private readonly IValidator<CreateSpecialArgs> _validator;
 
-        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, IValidator<T> validator)
+        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, IValidator<CreateSpecialArgs> validator)
         {
             _mapper = mapper;
             _productRepository = productRepository;
             _validator = validator;
         }
 
-        public ProductDto CreateSpecial(T args)
+        public ProductDto CreateSpecial(CreateSpecialArgs args)
         {
-            _validator.ValidateAndThrow<T>(args);
+            _validator.ValidateAndThrow<CreateSpecialArgs>(args);
 
-            var product = _productRepository.FindProduct(GetProductName(args));
+            var product = _productRepository.FindProduct(args.ProductName);
             var specialFactory = GetConfiguredSpecialFactory(args);
             product.Special = specialFactory.CreateSpecial();
 
@@ -34,8 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             return productDto;
         }
 
-        public abstract ISpecialFactory GetConfiguredSpecialFactory(T args);
+        public abstract ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args);
         public abstract ISpecialDto CreateSpecialDto(Special special);
-        public abstract string GetProductName(T args);
     }
 }

@@ -4,7 +4,7 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class BuyNGetMAtXPercentOffConfigurationService : ProductSpecialConfigurationService<CreateBuyNGetMAtXPercentOffSpecialArgs>
+    public class BuyNGetMAtXPercentOffConfigurationService : ProductSpecialConfigurationService
     {
         private readonly BuyNGetMAtXPercentOffSpecial.Factory _factory;
 
@@ -18,7 +18,7 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
             _factory = factory;
         }
 
-        public override ISpecialFactory GetConfiguredSpecialFactory(CreateBuyNGetMAtXPercentOffSpecialArgs args)
+        public override ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args)
         {
             return _factory.Configure(
                 args.DiscountedItems.Value,
@@ -33,11 +33,6 @@ namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
         public override ISpecialDto CreateSpecialDto(Special special)
         {
             return _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
-        }
-
-        public override string GetProductName(CreateBuyNGetMAtXPercentOffSpecialArgs args)
-        {
-            return args.ProductName;
         }
     }
 }

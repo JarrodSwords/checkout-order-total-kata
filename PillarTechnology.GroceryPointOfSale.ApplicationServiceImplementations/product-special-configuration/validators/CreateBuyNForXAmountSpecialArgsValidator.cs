@@ -4,7 +4,7 @@ using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
 {
-    public class CreateBuyNForXAmountSpecialArgsValidator : AbstractValidator<CreateBuyNForXAmountSpecialArgs>
+    public class CreateBuyNForXAmountSpecialArgsValidator : AbstractValidator<CreateSpecialArgs>
     {
         private readonly IProductRepository _productRepository;
 
