@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 
 namespace PillarTechnology.GroceryPointOfSale.WebApi
@@ -7,23 +8,33 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
     [ApiController]
     public class ProductController : ControllerBase
     {
+        #region Dependencies
+
+        private readonly BuyNForXAmountConfigurationService _buyNForXAmountOffConfigurationService;
+        private readonly BuyNGetMAtXPercentOffConfigurationService _buyNGetMAtXPercentOffConfigurationService;
+        private readonly BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService _buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService;
         private readonly IProductConfigurationService _productConfigurationService;
         private readonly IProductMarkdownConfigurationService _productMarkdownConfigurationService;
         private readonly IProductService _productService;
-        private readonly IProductSpecialConfigurationService _productSpecialConfigurationService;
 
         public ProductController(
+            BuyNForXAmountConfigurationService buyNForXAmountOffConfigurationService,
+            BuyNGetMAtXPercentOffConfigurationService buyNGetMAtXPercentOffConfigurationService,
+            BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService,
             IProductConfigurationService productConfigurationService,
             IProductMarkdownConfigurationService productMarkdownConfigurationService,
-            IProductService productService,
-            IProductSpecialConfigurationService productSpecialConfigurationService
+            IProductService productService
         )
         {
+            _buyNForXAmountOffConfigurationService = buyNForXAmountOffConfigurationService;
+            _buyNGetMAtXPercentOffConfigurationService = buyNGetMAtXPercentOffConfigurationService;
+            _buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService = buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService;
             _productConfigurationService = productConfigurationService;
             _productMarkdownConfigurationService = productMarkdownConfigurationService;
             _productService = productService;
-            _productSpecialConfigurationService = productSpecialConfigurationService;
         }
+
+        #endregion Dependencies
 
         [HttpPost]
         public ActionResult<ProductDto> CreateProduct([FromBody] UpsertProductArgs args)
@@ -59,7 +70,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         public ActionResult<ProductDto> CreateBuyNForXAmountSpecial(string productName, [FromBody] CreateBuyNForXAmountSpecialArgs args)
         {
             args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
+            return _buyNForXAmountOffConfigurationService.CreateSpecial(args);
         }
 
         [Route("{productName}/buyNGetMAtXPercentOffSpecial")]
@@ -67,7 +78,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         public ActionResult<ProductDto> CreateBuyNGetMAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
             args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNGetMAtXPercentOffSpecial(args);
+            return _buyNGetMAtXPercentOffConfigurationService.CreateSpecial(args);
         }
 
         [Route("{productName}/buyNGetMOfEqualOrLesserValueAtXPercentOffSpecial")]
@@ -75,7 +86,7 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
         public ActionResult<ProductDto> CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
         {
             args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args);
+            return _buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService.CreateSpecial(args);
         }
     }
 }

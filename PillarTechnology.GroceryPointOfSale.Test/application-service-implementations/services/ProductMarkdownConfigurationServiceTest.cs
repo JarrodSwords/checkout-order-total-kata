@@ -49,7 +49,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
         {
-            private readonly DateTime _now = DateTime.Now;
+            private readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
 
             public IEnumerator<object[]> GetEnumerator()
             {

@@ -1,9 +1,7 @@
 namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
 {
-    public interface IProductSpecialConfigurationService
+    public interface IProductSpecialConfigurationService<T>
     {
-        ProductDto CreateBuyNForXAmountSpecial(CreateBuyNForXAmountSpecialArgs args);
-        ProductDto CreateBuyNGetMAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args);
-        ProductDto CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(CreateBuyNGetMAtXPercentOffSpecialArgs args);
+        ProductDto CreateSpecial(T args);
     }
 }

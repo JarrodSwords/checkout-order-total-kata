@@ -11,11 +11,20 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public ProductControllerTest()
         {
+            var buyNForXAmountConfigurationService = DependencyProvider.CreateBuyNForXAmountConfigurationService();
+            var buyNGetMAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
+            var buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService();
             var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
             var productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
             var productService = DependencyProvider.CreateProductService();
-            var productSpecialConfigurationService = DependencyProvider.CreateProductSpecialConfigurationService();
-            _productController = new ProductController(productConfigurationService, productMarkdownConfigurationService, productService, productSpecialConfigurationService);
+            _productController = new ProductController(
+                buyNForXAmountConfigurationService,
+                buyNGetMAtXPercentOffConfigurationService,
+                buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService,
+                productConfigurationService,
+                productMarkdownConfigurationService,
+                productService
+            );
         }
 
         [Fact]
@@ -29,7 +38,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             };
 
             var productDto = _productController.CreateProduct(args).Value;
-            
+
             productDto.Name.Should().Be(args.Name);
             productDto.RetailPrice.Should().Be(args.RetailPrice);
             productDto.SellByType.Should().Be(args.SellByType);

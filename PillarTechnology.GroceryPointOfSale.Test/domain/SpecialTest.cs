@@ -6,7 +6,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class SpecialTest
     {
-        protected DateTime _now = DateTime.Now;
+        protected DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
         protected IEnumerable<LineItem> _lineItems;
 
         protected virtual IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)

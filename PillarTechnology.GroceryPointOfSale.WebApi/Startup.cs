@@ -43,7 +43,9 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
 
             services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
             services.AddTransient<IProductMarkdownConfigurationService, ProductMarkdownConfigurationService>();
-            services.AddTransient<IProductSpecialConfigurationService, ProductSpecialConfigurationService>();
+            services.AddTransient<BuyNForXAmountConfigurationService>();
+            services.AddTransient<BuyNGetMAtXPercentOffConfigurationService>();
+            services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService>();
 
             services.AddTransient<RemoveScannedItemArgsValidator>();
             services.AddTransient<ScanItemArgsValidator>();

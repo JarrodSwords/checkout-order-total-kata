@@ -17,6 +17,8 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             return new CheckoutService(CreateMapper(), orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
         }
 
+        public static IDateTimeProvider CreateDateTimeProvider() => new BasicDateTimeProvider();
+
         public static IMapper CreateMapper() => new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
 
         public static IOrderRepository CreateOrderRepository() => new InMemoryOrderRepositoryFactory().CreateSeededRepository();
@@ -50,27 +52,42 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             return new ProductService(CreateMapper(), CreateProductRepository());
         }
 
-        public static IProductSpecialConfigurationService CreateProductSpecialConfigurationService()
+        public static BuyNForXAmountConfigurationService CreateBuyNForXAmountConfigurationService()
         {
-            var dateTimeProvider = new BasicDateTimeProvider();
-            var buyNForXAmountSpecialFactory = new BuyNForXAmountSpecial.Factory(dateTimeProvider);
-            var buyNGetMAtXPercentOffSpecialFactory = new BuyNGetMAtXPercentOffSpecial.Factory(dateTimeProvider);
-            var buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory = new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(dateTimeProvider);
             var productRepository = CreateProductRepository();
             var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
-            var createBuyNForXAmountSpecialArgsValidator = new CreateBuyNForXAmountSpecialArgsValidator(productRepository, createSpecialArgsValidator);
-            var createBuyNGetMAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
-            var createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator);
-
-            return new ProductSpecialConfigurationService(
+            
+            return new BuyNForXAmountConfigurationService(
                 CreateMapper(),
-                buyNForXAmountSpecialFactory,
-                buyNGetMAtXPercentOffSpecialFactory,
-                buyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory,
                 productRepository,
-                createBuyNForXAmountSpecialArgsValidator,
-                createBuyNGetMAtXPercentOffSpecialArgsValidator,
-                createBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator
+                new BuyNForXAmountSpecial.Factory(new BasicDateTimeProvider()),
+                new CreateBuyNForXAmountSpecialArgsValidator(productRepository, createSpecialArgsValidator)
+            );
+        }
+
+        public static BuyNGetMAtXPercentOffConfigurationService CreateBuyNGetMAtXPercentOffConfigurationService()
+        {
+            var productRepository = CreateProductRepository();
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
+
+            return new BuyNGetMAtXPercentOffConfigurationService(
+                CreateMapper(),
+                productRepository,
+                new BuyNGetMAtXPercentOffSpecial.Factory(new BasicDateTimeProvider()),
+                new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator)
+            );
+        }
+
+        public static BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
+        {
+            var productRepository = CreateProductRepository();
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
+
+            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
+                CreateMapper(),
+                productRepository,
+                new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(new BasicDateTimeProvider()),
+                new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator)
             );
         }
     }

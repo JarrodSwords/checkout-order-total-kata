@@ -11,6 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class CreateBuyNForXAmountSpecialArgsValidatorTest
     {
+        private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
         private IProductRepository _productRepository = DependencyProvider.CreateProductRepository();
         private CreateBuyNForXAmountSpecialArgsValidator _validator;
 
@@ -33,15 +34,15 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, (decimal?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, 0);
 
-            var args = new CreateBuyNForXAmountSpecialArgs() { ProductName = "can of soup", EndTime = DateTime.Now };
+            var args = new CreateBuyNForXAmountSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
             Action validate = () => _validator.ValidateAndThrow(args);
             validate.Should().Throw<ValidationException>("*Special start time is required*");
 
-            args.StartTime = DateTime.Now;
+            args.StartTime = _dateTimeProvider.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
 
             args.ProductName = "lean ground beef";
-            args.EndTime = DateTime.Now;
+            args.EndTime = _dateTimeProvider.Now;
             validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
         }
     }
