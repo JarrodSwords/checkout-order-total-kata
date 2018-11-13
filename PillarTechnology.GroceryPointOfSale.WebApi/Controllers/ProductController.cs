@@ -1,5 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using PillarTechnology.GroceryPointOfSale.Domain;
 
 namespace PillarTechnology.GroceryPointOfSale.WebApi
 {
@@ -7,23 +10,27 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
     [ApiController]
     public class ProductController : ControllerBase
     {
+        #region Dependencies
+        
         private readonly IProductConfigurationService _productConfigurationService;
         private readonly IProductMarkdownConfigurationService _productMarkdownConfigurationService;
         private readonly IProductService _productService;
-        private readonly IProductSpecialConfigurationService _productSpecialConfigurationService;
+        private readonly ProductSpecialConfigurationServiceProvider _productSpecialConfigurationServiceProvider;
 
         public ProductController(
             IProductConfigurationService productConfigurationService,
             IProductMarkdownConfigurationService productMarkdownConfigurationService,
             IProductService productService,
-            IProductSpecialConfigurationService productSpecialConfigurationService
+            ProductSpecialConfigurationServiceProvider productSpecialConfigurationServiceProvider
         )
         {
             _productConfigurationService = productConfigurationService;
             _productMarkdownConfigurationService = productMarkdownConfigurationService;
             _productService = productService;
-            _productSpecialConfigurationService = productSpecialConfigurationService;
+            _productSpecialConfigurationServiceProvider = productSpecialConfigurationServiceProvider;
         }
+
+        #endregion Dependencies
 
         [HttpPost]
         public ActionResult<ProductDto> CreateProduct([FromBody] UpsertProductArgs args)
@@ -54,28 +61,15 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             return _productMarkdownConfigurationService.UpsertProductMarkdown(args);
         }
 
-        [Route("{productName}/buyNForXAmountSpecial")]
+        [Route("{productName}/special")]
         [HttpPut]
-        public ActionResult<ProductDto> CreateBuyNForXAmountSpecial(string productName, [FromBody] CreateBuyNForXAmountSpecialArgs args)
+        public ActionResult<ProductDto> CreateSpecial(string productName, [FromBody] CreateSpecialArgs args)
         {
-            args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNForXAmountSpecial(args);
-        }
+            var specialType = (SpecialType)Enum.Parse(typeof(SpecialType), args.SpecialType);
+            var productSpecialConfigurationService = _productSpecialConfigurationServiceProvider.GetConfigurationService(specialType);
 
-        [Route("{productName}/buyNGetMAtXPercentOffSpecial")]
-        [HttpPut]
-        public ActionResult<ProductDto> CreateBuyNGetMAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
-        {
             args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNGetMAtXPercentOffSpecial(args);
-        }
-
-        [Route("{productName}/buyNGetMOfEqualOrLesserValueAtXPercentOffSpecial")]
-        [HttpPut]
-        public ActionResult<ProductDto> CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(string productName, [FromBody] CreateBuyNGetMAtXPercentOffSpecialArgs args)
-        {
-            args.ProductName = productName;
-            return _productSpecialConfigurationService.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(args);
+            return productSpecialConfigurationService.CreateSpecial(args);
         }
     }
 }

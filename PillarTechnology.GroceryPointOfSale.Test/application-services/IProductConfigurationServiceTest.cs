@@ -10,7 +10,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductConfigurationServiceTest
     {
-        protected readonly DateTime _now = DateTime.Now;
+        protected readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
         protected IProductConfigurationService _productConfigurationService;
         protected IProductService _productService;
 

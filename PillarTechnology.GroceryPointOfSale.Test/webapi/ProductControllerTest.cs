@@ -1,4 +1,5 @@
 using FluentAssertions;
+using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
 using PillarTechnology.GroceryPointOfSale.ApplicationServices;
 using PillarTechnology.GroceryPointOfSale.WebApi;
 using Xunit;
@@ -11,11 +12,23 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public ProductControllerTest()
         {
+            var buyNForXAmountConfigurationService = DependencyProvider.CreateBuyNForXAmountConfigurationService();
+            var buyNGetMAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
+            var buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService();
+            var productSpecialConfigurationServiceProvider = new ProductSpecialConfigurationServiceProvider(
+                buyNForXAmountConfigurationService,
+                buyNGetMAtXPercentOffConfigurationService,
+                buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService
+            );
             var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
             var productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
             var productService = DependencyProvider.CreateProductService();
-            var productSpecialConfigurationService = DependencyProvider.CreateProductSpecialConfigurationService();
-            _productController = new ProductController(productConfigurationService, productMarkdownConfigurationService, productService, productSpecialConfigurationService);
+            _productController = new ProductController(
+                productConfigurationService,
+                productMarkdownConfigurationService,
+                productService,
+                productSpecialConfigurationServiceProvider
+            );
         }
 
         [Fact]
@@ -29,7 +42,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             };
 
             var productDto = _productController.CreateProduct(args).Value;
-            
+
             productDto.Name.Should().Be(args.Name);
             productDto.RetailPrice.Should().Be(args.RetailPrice);
             productDto.SellByType.Should().Be(args.SellByType);

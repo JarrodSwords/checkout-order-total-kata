@@ -10,7 +10,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public abstract class IProductMarkdownConfigurationServiceTest
     {
-        protected readonly DateTime _now = DateTime.Now;
+        protected readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
         protected IProductMarkdownConfigurationService _productMarkdownConfigurationService;
 
         [Theory]
@@ -29,7 +29,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 
         public class UpsertProductMarkdownData : IEnumerable<object[]>
         {
-            private readonly DateTime _now = DateTime.Now;
+            private readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
 
             public IEnumerator<object[]> GetEnumerator()
             {

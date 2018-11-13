@@ -5,16 +5,19 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class BuyNForXAmountSpecial : Special
+    public partial class BuyNForXAmountSpecial : Special
     {
         public override string Description => $"buy {DiscountedItems} for {GroupSalePrice}";
         public int DiscountedItems { get; }
         public Money GroupSalePrice { get; }
         public override int ScannedItemsRequired => DiscountedItems;
 
-        public BuyNForXAmountSpecial() { }
-
-        public BuyNForXAmountSpecial(DateTime startTime, DateTime endTime, int discountedItems, Money groupSalePrice, int? limit = null) : base(startTime, endTime, limit)
+        private BuyNForXAmountSpecial(
+            ITemporal temporal,
+            int discountedItems,
+            Money groupSalePrice,
+            int? limit = null
+        ) : base(temporal, limit)
         {
             DiscountedItems = discountedItems;
             GroupSalePrice = groupSalePrice;

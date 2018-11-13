@@ -10,7 +10,9 @@ namespace PillarTechnology.GroceryPointOfSale.Test
     {
         public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit)
         {
-            return new BuyNGetMAtXPercentOffSpecial(_now.StartOfWeek(), _now.EndOfWeek(), preDiscountItems, discountedItems, percentOff, limit);
+            return new BuyNGetMAtXPercentOffSpecial.Factory(new BasicDateTimeProvider())
+                .Configure(discountedItems, _now.EndOfWeek(), percentOff, preDiscountItems, _now.StartOfWeek(), limit)
+                .CreateSpecial();
         }
 
         [Theory]

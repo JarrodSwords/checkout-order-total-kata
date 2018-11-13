@@ -11,6 +11,7 @@ namespace PillarTechnology.GroceryPointOfSale.Test
 {
     public class CreateSpecialArgsValidatorTest
     {
+        private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
         private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
         private CreateSpecialArgsValidator _validator;
 
@@ -28,11 +29,11 @@ namespace PillarTechnology.GroceryPointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.ProductName, "milk");
             _validator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
 
-            var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = DateTime.Now };
+            var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
             Action validate = () => _validator.ValidateAndThrow(args);
             validate.Should().Throw<ValidationException>("*Special start time is required*");
 
-            args.StartTime = DateTime.Now;
+            args.StartTime = _dateTimeProvider.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
         }
     }

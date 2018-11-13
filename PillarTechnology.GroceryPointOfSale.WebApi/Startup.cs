@@ -27,6 +27,14 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
 
             services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>())));
 
+            services.AddTransient<IMarkdownFactory, Markdown.Factory>();
+            services.AddTransient<BuyNForXAmountSpecial.Factory>();
+            services.AddTransient<BuyNGetMAtXPercentOffSpecial.Factory>();
+            services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory>();
+
+            services.AddTransient<IDateTimeProvider, BasicDateTimeProvider>();
+            services.AddTransient<ProductSpecialConfigurationServiceProvider>();
+
             services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());
             services.AddSingleton<IProductRepository>(new InMemoryProductRepository());
 
@@ -36,7 +44,9 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
 
             services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
             services.AddTransient<IProductMarkdownConfigurationService, ProductMarkdownConfigurationService>();
-            services.AddTransient<IProductSpecialConfigurationService, ProductSpecialConfigurationService>();
+            services.AddTransient<BuyNForXAmountConfigurationService>();
+            services.AddTransient<BuyNGetMAtXPercentOffConfigurationService>();
+            services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService>();
 
             services.AddTransient<RemoveScannedItemArgsValidator>();
             services.AddTransient<ScanItemArgsValidator>();

@@ -34,7 +34,7 @@ namespace PillarTechnology.GroceryPointOfSale.Domain
 
         public void ScannedItemsChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            Invoice = new InvoiceFactory(this).CreateInvoice();
+            Invoice = new Invoice.Factory(this).CreateInvoice();
         }
 
         private class ScannedItemIdGenerator

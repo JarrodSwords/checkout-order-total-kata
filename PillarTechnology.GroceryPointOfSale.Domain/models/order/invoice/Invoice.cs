@@ -4,13 +4,13 @@ using NodaMoney;
 
 namespace PillarTechnology.GroceryPointOfSale.Domain
 {
-    public class Invoice
+    public partial class Invoice
     {
         public long OrderId { get; }
         public IEnumerable<LineItem> LineItems { get; }
         public Money PreTaxTotal { get; }
 
-        public Invoice(long orderId, IEnumerable<LineItem> lineItems)
+        private Invoice(long orderId, IEnumerable<LineItem> lineItems)
         {
             OrderId = orderId;
             LineItems = lineItems;
