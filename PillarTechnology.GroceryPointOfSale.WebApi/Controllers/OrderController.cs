@@ -46,11 +46,16 @@ namespace PillarTechnology.GroceryPointOfSale.WebApi
             return _checkoutService.ScanWeightedItem(args);
         }
 
-        [Route("{orderId}/scannedItems")]
+        [Route("{orderId}/scannedItems/{scannedItemId}")]
         [HttpDelete]
-        public ActionResult<ScannedItemDto> RemoveScannedItem(long orderId, [FromBody] RemoveScannedItemArgs args)
+        public ActionResult<ScannedItemDto> RemoveScannedItem(long orderId, int scannedItemId)
         {
-            args.OrderId = orderId;
+            var args = new RemoveScannedItemArgs
+            {
+                OrderId = orderId,
+                ScannedItemId = scannedItemId
+            };
+
             return _checkoutService.RemoveScannedItem(args);
         }
     }
