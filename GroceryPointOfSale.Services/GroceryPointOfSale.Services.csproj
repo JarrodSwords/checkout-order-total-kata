@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.Domain\PillarTechnology.GroceryPointOfSale.Domain.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.Domain\GroceryPointOfSale.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

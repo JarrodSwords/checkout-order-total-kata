@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.Domain\PillarTechnology.GroceryPointOfSale.Domain.csproj" />
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.csproj" />
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.csproj" />
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.ApplicationServices\PillarTechnology.GroceryPointOfSale.ApplicationServices.csproj" />
-    <ProjectReference Include="..\PillarTechnology.GroceryPointOfSale.WebApi\PillarTechnology.GroceryPointOfSale.WebApi.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.Domain\GroceryPointOfSale.Domain.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.Implementations.Basic\GroceryPointOfSale.Implementations.Basic.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.Infrastructure.InMemory\GroceryPointOfSale.Infrastructure.InMemory.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.Services\GroceryPointOfSale.Services.csproj" />
+    <ProjectReference Include="..\GroceryPointOfSale.WebApi\GroceryPointOfSale.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

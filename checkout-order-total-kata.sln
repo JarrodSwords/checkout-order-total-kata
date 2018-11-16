@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.Test", "PillarTechnology.GroceryPointOfSale.Test\PillarTechnology.GroceryPointOfSale.Test.csproj", "{51C3B93C-DFC0-4B0F-87E2-FCE9063D4223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.Test", "GroceryPointOfSale.Test\GroceryPointOfSale.Test.csproj", "{51C3B93C-DFC0-4B0F-87E2-FCE9063D4223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.Domain", "PillarTechnology.GroceryPointOfSale.Domain\PillarTechnology.GroceryPointOfSale.Domain.csproj", "{995FE79A-C926-42A3-A355-E78500A3614F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.Domain", "GroceryPointOfSale.Domain\GroceryPointOfSale.Domain.csproj", "{995FE79A-C926-42A3-A355-E78500A3614F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory", "PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory\PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory.csproj", "{204B91F7-B50F-4888-A8D2-64AB30EB60A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.Infrastructure.InMemory", "GroceryPointOfSale.Infrastructure.InMemory\GroceryPointOfSale.Infrastructure.InMemory.csproj", "{204B91F7-B50F-4888-A8D2-64AB30EB60A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.ApplicationServices", "PillarTechnology.GroceryPointOfSale.ApplicationServices\PillarTechnology.GroceryPointOfSale.ApplicationServices.csproj", "{61E18CF3-1E7D-4F3F-BF68-E05B054D3777}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.Services", "GroceryPointOfSale.Services\GroceryPointOfSale.Services.csproj", "{61E18CF3-1E7D-4F3F-BF68-E05B054D3777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations", "PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations\PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations.csproj", "{232233AA-8AB3-449A-B373-BEBB03EF00FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.Implementations.Basic", "GroceryPointOfSale.Implementations.Basic\GroceryPointOfSale.Implementations.Basic.csproj", "{232233AA-8AB3-449A-B373-BEBB03EF00FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PillarTechnology.GroceryPointOfSale.WebApi", "PillarTechnology.GroceryPointOfSale.WebApi\PillarTechnology.GroceryPointOfSale.WebApi.csproj", "{1C5371FA-50FE-45FA-9BE1-DDE96250F014}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryPointOfSale.WebApi", "GroceryPointOfSale.WebApi\GroceryPointOfSale.WebApi.csproj", "{1C5371FA-50FE-45FA-9BE1-DDE96250F014}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
