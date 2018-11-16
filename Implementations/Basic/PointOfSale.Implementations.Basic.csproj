@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\PointOfSale.Domain.csproj" />
-    <ProjectReference Include="..\Services\PointOfSale.Services.csproj" />
+    <ProjectReference Include="..\..\Domain\PointOfSale.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\PointOfSale.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
