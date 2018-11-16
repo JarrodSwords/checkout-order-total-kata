@@ -1,0 +1,38 @@
+using AutoMapper;
+using PointOfSale.ApplicationServices;
+using PointOfSale.Domain;
+
+namespace PointOfSale.ApplicationServiceImplementations
+{
+    public class BuyNGetMAtXPercentOffConfigurationService : ProductSpecialConfigurationService
+    {
+        private readonly BuyNGetMAtXPercentOffSpecial.Factory _factory;
+
+        public BuyNGetMAtXPercentOffConfigurationService(
+            IMapper mapper,
+            IProductRepository productRepository,
+            BuyNGetMAtXPercentOffSpecial.Factory factory,
+            CreateBuyNGetMAtXPercentOffSpecialArgsValidator validator
+        ) : base(mapper, productRepository, validator)
+        {
+            _factory = factory;
+        }
+
+        public override ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args)
+        {
+            return _factory.Configure(
+                args.DiscountedItems.Value,
+                args.EndTime.Value,
+                args.PercentageOff.Value,
+                args.PreDiscountItems.Value,
+                args.StartTime.Value,
+                args.Limit
+            );
+        }
+
+        public override ISpecialDto CreateSpecialDto(Special special)
+        {
+            return _mapper.Map<BuyNGetMAtXPercentOffSpecialDto>(special);
+        }
+    }
+}
