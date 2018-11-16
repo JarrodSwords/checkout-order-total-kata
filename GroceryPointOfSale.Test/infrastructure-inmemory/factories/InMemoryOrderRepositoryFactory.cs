@@ -1,6 +1,6 @@
-using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;
+using GroceryPointOfSale.Infrastructure.InMemory;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class InMemoryOrderRepositoryFactory : RepositoryFactory<InMemoryOrderRepository>
     {

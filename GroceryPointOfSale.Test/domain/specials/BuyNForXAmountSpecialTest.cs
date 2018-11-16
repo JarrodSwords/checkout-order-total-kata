@@ -1,10 +1,10 @@
 using System.Linq;
 using FluentAssertions;
 using NodaMoney;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class BuyNForXAmountTest : SpecialTest
     {

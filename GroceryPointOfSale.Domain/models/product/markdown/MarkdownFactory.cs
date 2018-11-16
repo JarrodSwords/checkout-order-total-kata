@@ -1,7 +1,7 @@
 using System;
 using NodaMoney;
 
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     public partial class Markdown
     {

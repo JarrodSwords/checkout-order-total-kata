@@ -1,10 +1,10 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.ApplicationServiceImplementations;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.WebApi
+namespace GroceryPointOfSale.WebApi
 {
     [Route("api/[controller]")]
     [ApiController]

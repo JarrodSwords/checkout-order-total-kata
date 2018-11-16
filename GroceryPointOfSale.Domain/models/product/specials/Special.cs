@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NodaMoney;
 
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     public abstract partial class Special : ITemporal
     {

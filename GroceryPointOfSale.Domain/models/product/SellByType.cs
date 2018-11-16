@@ -1,4 +1,4 @@
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     public enum SellByType
     {

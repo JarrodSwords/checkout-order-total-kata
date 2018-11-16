@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
-using PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory;
+using GroceryPointOfSale.ApplicationServiceImplementations;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Infrastructure.InMemory;
 
-namespace PillarTechnology.GroceryPointOfSale.WebApi
+namespace GroceryPointOfSale.WebApi
 {
     public class Startup
     {

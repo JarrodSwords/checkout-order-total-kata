@@ -1,4 +1,4 @@
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class InMemoryOrderRepositoryTest : IOrderRepositoryTest
     {

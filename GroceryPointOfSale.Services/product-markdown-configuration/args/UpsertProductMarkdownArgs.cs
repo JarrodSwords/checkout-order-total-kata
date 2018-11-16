@@ -1,6 +1,6 @@
 using System;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
+namespace GroceryPointOfSale.ApplicationServices
 {
     public class UpsertProductMarkdownArgs
     {

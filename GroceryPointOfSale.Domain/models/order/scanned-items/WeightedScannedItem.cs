@@ -1,6 +1,6 @@
 using NodaMoney;
 
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     public class WeightedScannedItem : ScannedItem
     {

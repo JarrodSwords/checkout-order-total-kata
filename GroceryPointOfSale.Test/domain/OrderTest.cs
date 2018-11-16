@@ -1,9 +1,9 @@
 using System.Linq;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class OrderTest
     {

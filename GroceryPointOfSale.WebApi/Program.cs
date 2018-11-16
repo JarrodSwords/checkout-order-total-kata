@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace PillarTechnology.GroceryPointOfSale.WebApi
+namespace GroceryPointOfSale.WebApi
 {
     public class Program
     {

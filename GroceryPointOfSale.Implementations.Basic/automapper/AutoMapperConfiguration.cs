@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
+namespace GroceryPointOfSale.ApplicationServiceImplementations
 {
     /// <remarks>
     /// Mapping configuration taken from https://stackoverflow.com/a/49456783

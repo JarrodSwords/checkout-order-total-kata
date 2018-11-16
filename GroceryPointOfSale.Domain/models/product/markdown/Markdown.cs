@@ -1,7 +1,7 @@
 using System;
 using NodaMoney;
 
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     /// <summary>
     /// A flat discount

@@ -1,10 +1,10 @@
 using System;
 using AutoMapper;
 using FluentValidation;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
+namespace GroceryPointOfSale.ApplicationServiceImplementations
 {
     public abstract partial class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {

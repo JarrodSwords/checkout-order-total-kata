@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.ApplicationServices;
 
-namespace PillarTechnology.GroceryPointOfSale.WebApi
+namespace GroceryPointOfSale.WebApi
 {
     [Route("api/[controller]")]
     [ApiController]

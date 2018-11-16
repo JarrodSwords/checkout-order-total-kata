@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using FluentValidation;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
+namespace GroceryPointOfSale.ApplicationServiceImplementations
 {
     public static class IValidatorExtensions
     {

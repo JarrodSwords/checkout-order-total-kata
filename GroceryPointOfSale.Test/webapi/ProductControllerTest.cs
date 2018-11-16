@@ -1,10 +1,10 @@
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.WebApi;
+using GroceryPointOfSale.ApplicationServiceImplementations;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.WebApi;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class ProductControllerTest
     {

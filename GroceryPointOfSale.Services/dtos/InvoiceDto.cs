@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
+namespace GroceryPointOfSale.ApplicationServices
 {
     public class InvoiceDto
     {

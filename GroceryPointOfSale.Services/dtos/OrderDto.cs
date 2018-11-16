@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServices
+namespace GroceryPointOfSale.ApplicationServices
 {
     public class OrderDto
     {

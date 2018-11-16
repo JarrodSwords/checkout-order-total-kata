@@ -1,9 +1,9 @@
 using FluentAssertions;
 using NodaMoney;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public abstract class IProductRepositoryTest
     {

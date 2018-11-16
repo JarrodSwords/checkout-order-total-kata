@@ -1,6 +1,6 @@
 using System;
 
-namespace PillarTechnology.GroceryPointOfSale.Domain
+namespace GroceryPointOfSale.Domain
 {
     public class BasicTemporal : ITemporal
     {

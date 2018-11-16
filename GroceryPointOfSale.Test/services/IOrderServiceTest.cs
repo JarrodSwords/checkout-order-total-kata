@@ -1,8 +1,8 @@
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.ApplicationServices;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public abstract class IOrderServiceTest
     {

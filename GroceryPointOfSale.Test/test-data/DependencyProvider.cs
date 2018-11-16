@@ -1,9 +1,9 @@
 using AutoMapper;
-using PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.ApplicationServiceImplementations;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public class DependencyProvider
     {

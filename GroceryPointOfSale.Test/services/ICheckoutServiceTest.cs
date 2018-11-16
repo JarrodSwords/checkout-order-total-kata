@@ -1,10 +1,10 @@
 using System.Linq;
 using FluentAssertions;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
 using Xunit;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public abstract class ICheckoutServiceTest
     {

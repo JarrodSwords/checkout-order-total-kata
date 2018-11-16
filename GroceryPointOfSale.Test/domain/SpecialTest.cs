@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.Test
+namespace GroceryPointOfSale.Test
 {
     public abstract class SpecialTest
     {

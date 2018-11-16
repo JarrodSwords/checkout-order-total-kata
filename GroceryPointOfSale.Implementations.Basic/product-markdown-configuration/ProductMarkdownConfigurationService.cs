@@ -1,9 +1,9 @@
 using AutoMapper;
 using NodaMoney;
-using PillarTechnology.GroceryPointOfSale.ApplicationServices;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.ApplicationServices;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.ApplicationServiceImplementations
+namespace GroceryPointOfSale.ApplicationServiceImplementations
 {
     public class ProductMarkdownConfigurationService : IProductMarkdownConfigurationService
     {

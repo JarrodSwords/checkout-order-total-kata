@@ -8,14 +8,14 @@ From root directory:
 ```
 dotnet restore
 dotnet build
-dotnet test .\PillarTechnology.GroceryPointOfSale.Test\PillarTechnology.GroceryPointOfSale.Test.csproj
+dotnet test .\GroceryPointOfSale.Test\GroceryPointOfSale.Test.csproj
 ```
 
 ### Run the API and test with Postman
 
 1. Run the API.  From root directory:
 ```
-dotnet run -p .\PillarTechnology.GroceryPointOfSale.WebApi\
+dotnet run -p .\GroceryPointOfSale.WebApi\
 ```
 
 2. Execute [Postman](https://www.getpostman.com/).

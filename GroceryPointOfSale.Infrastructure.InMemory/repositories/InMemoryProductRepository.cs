@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PillarTechnology.GroceryPointOfSale.Domain;
+using GroceryPointOfSale.Domain;
 
-namespace PillarTechnology.GroceryPointOfSale.Infrastructure.InMemory
+namespace GroceryPointOfSale.Infrastructure.InMemory
 {
     public class InMemoryProductRepository : IProductRepository
     {
