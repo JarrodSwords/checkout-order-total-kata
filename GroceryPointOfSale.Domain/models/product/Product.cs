@@ -7,8 +7,8 @@ namespace GroceryPointOfSale.Domain
     /// </summary>
     public class Product
     {
-        public bool HasActiveMarkdown { get { return Markdown != null && Markdown.IsActive; } }
-        public bool HasActiveSpecial { get { return Special != null && Special.IsActive; } }
+        public bool HasActiveMarkdown => Markdown != null && Markdown.IsActive;
+        public bool HasActiveSpecial => Special != null && Special.IsActive;
         public Markdown Markdown { get; set; }
         public string Name { get; }
         public Money RetailPrice { get; set; }
