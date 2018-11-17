@@ -8,7 +8,7 @@ namespace PointOfSale.Test.Domain
 {
     public class BuyNForXAmountTest : SpecialTest
     {
-        private BuyNForXAmountSpecial.Factory _factory = new BuyNForXAmountSpecial.Factory(new BasicDateTimeProvider());
+        private BuyNForXAmountSpecial.Factory _factory = new BuyNForXAmountSpecial.Factory(DependencyProvider.CreateDateTimeProvider());
 
         [Theory]
         [InlineData(3, 0, 0)]

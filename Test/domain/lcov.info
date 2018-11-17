@@ -160,9 +160,9 @@ FN:10,System.Void PointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Mon
 FNDA:866,System.Void PointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money)
 DA:11,866
 DA:12,866
-DA:13,865
-DA:14,865
-DA:15,865
+DA:13,866
+DA:14,866
+DA:15,866
 LF:9
 LH:6
 BRF:0
@@ -313,8 +313,8 @@ FN:11,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.Produ
 FNDA:255,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.Product)
 DA:12,255
 DA:13,255
-DA:14,254
-DA:15,254
+DA:14,255
+DA:15,255
 LF:15
 LH:14
 BRF:0
@@ -447,7 +447,7 @@ FN:19,System.Void PointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Mone
 FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PointOfSale.Domain.SellByType,PointOfSale.Domain.Markdown)
 DA:20,105
 DA:21,105
-DA:22,104
+DA:22,105
 DA:23,105
 DA:24,105
 DA:25,105
@@ -461,16 +461,16 @@ FNH:9
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
 FN:7,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-FNDA:306,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-DA:8,306
+FNDA:307,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
+DA:8,307
 FN:8,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 FNDA:398,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 DA:9,398
 FN:33,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
-FNDA:102,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
-DA:34,102
-DA:35,102
-DA:37,102
+FNDA:103,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
+DA:34,103
+DA:35,103
+DA:37,103
 DA:38,2
 DA:40,101
 DA:41,77
@@ -482,9 +482,9 @@ BRDA:37,33,1,101
 BRDA:40,57,0,77
 BRDA:40,57,1,24
 FN:10,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
-FNDA:102,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
-DA:11,102
-DA:12,102
+FNDA:103,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
+DA:11,103
+DA:12,103
 DA:13,103
 DA:14,103
 DA:15,103
@@ -595,8 +595,8 @@ FN:9,System.String PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_Descript
 FNDA:72,System.String PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_Description()
 DA:10,72
 FN:10,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
-FNDA:498,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
-DA:11,498
+FNDA:497,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
+DA:11,497
 FN:11,System.Decimal PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_PercentageOff()
 FNDA:247,System.Decimal PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_PercentageOff()
 DA:12,247
@@ -739,8 +739,8 @@ FN:11,System.Boolean PointOfSale.Domain.Special::get_IsActive()
 FNDA:149,System.Boolean PointOfSale.Domain.Special::get_IsActive()
 DA:12,149
 FN:12,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
-FNDA:93,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
-DA:13,93
+FNDA:94,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
+DA:13,94
 FN:14,System.DateTime PointOfSale.Domain.Special::get_StartTime()
 FNDA:5,System.DateTime PointOfSale.Domain.Special::get_StartTime()
 DA:15,5
@@ -768,8 +768,8 @@ FN:7,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
 FNDA:98,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
 DA:8,98
 FN:8,System.Nullable`1<System.Int32> PointOfSale.Domain.SpecialFactory::get_Limit()
-FNDA:97,System.Nullable`1<System.Int32> PointOfSale.Domain.SpecialFactory::get_Limit()
-DA:9,97
+FNDA:98,System.Nullable`1<System.Int32> PointOfSale.Domain.SpecialFactory::get_Limit()
+DA:9,98
 FN:9,System.DateTime PointOfSale.Domain.SpecialFactory::get_StartTime()
 FNDA:98,System.DateTime PointOfSale.Domain.SpecialFactory::get_StartTime()
 DA:10,98

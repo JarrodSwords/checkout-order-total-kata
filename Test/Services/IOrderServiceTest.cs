@@ -2,7 +2,7 @@ using FluentAssertions;
 using PointOfSale.Services;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Services
 {
     public abstract class IOrderServiceTest
     {
@@ -12,7 +12,7 @@ namespace PointOfSale.Test
         public void FindOrder_ReturnsOrder()
         {
             var orderId = 1;
-            
+
             var orderDto = _orderService.FindOrder(orderId);
 
             orderDto.Id.Should().Be(orderId);

@@ -1,10 +1,10 @@
 using System.Linq;
 using FluentAssertions;
-using PointOfSale.Services;
 using PointOfSale.Domain;
+using PointOfSale.Services;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Services
 {
     public abstract class ICheckoutServiceTest
     {

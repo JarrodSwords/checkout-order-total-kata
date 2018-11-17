@@ -1,6 +1,7 @@
 using System;
 using FluentAssertions;
 using PointOfSale.Services;
+using PointOfSale.Test.Services;
 using Xunit;
 
 namespace PointOfSale.Test

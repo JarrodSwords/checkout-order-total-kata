@@ -22,7 +22,7 @@ namespace PointOfSale.Test.Domain
 
         public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit)
         {
-            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(new BasicDateTimeProvider())
+            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(DependencyProvider.CreateDateTimeProvider())
                 .Configure(discountedItems, _now.EndOfWeek(), percentOff, preDiscountItems, _now.StartOfWeek(), limit)
                 .CreateSpecial();
         }

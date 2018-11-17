@@ -8,7 +8,7 @@ namespace PointOfSale.Test.Domain
     {
         public static Markdown GetMarkdown(DateRange dateRange, decimal amountOffRetail = 0.5m)
         {
-            var dateTimeProvider = new BasicDateTimeProvider();
+            var dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
             var markdownFactory = new Markdown.Factory(dateTimeProvider);
             var now = dateTimeProvider.Now;
 

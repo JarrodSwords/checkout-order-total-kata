@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
-using PointOfSale.Services;
 using PointOfSale.Domain;
+using PointOfSale.Services;
+using PointOfSale.Test.Domain;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Services
 {
     public abstract class IProductConfigurationServiceTest
     {

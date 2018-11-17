@@ -6,7 +6,7 @@ namespace PointOfSale.Test.Domain
     {
         public static Special GetBuyNGetMAtXPercentOffSpecial(DateRange dateRange, int preDiscountItems = 2, int discountedItems = 1, decimal percentageOff = 0.5m)
         {
-            var dateTimeProvider = new BasicDateTimeProvider();
+            var dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
             var now = dateTimeProvider.Now;
 
             return new BuyNGetMAtXPercentOffSpecial.Factory(dateTimeProvider)

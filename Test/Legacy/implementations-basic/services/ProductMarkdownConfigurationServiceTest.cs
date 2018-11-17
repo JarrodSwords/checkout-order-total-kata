@@ -5,6 +5,7 @@ using FluentAssertions;
 using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
+using PointOfSale.Test.Services;
 
 namespace PointOfSale.Test
 {
