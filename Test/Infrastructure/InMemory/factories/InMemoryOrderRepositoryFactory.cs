@@ -1,4 +1,5 @@
 using PointOfSale.Infrastructure.InMemory;
+using PointOfSale.Test.Domain;
 
 namespace PointOfSale.Test.Infrastructure.InMemory
 {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PointOfSale.Domain;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public class OrderProvider : IEnumerable<object[]>
     {

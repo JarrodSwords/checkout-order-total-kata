@@ -3,7 +3,7 @@ using FluentAssertions;
 using PointOfSale.Domain;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public class OrderTest
     {

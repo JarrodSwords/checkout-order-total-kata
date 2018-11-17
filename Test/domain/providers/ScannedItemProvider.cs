@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PointOfSale.Domain;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public class ScannedItemProvider : IEnumerable<ScannedItem>
     {

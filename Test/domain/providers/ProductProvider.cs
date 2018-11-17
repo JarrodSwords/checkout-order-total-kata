@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NodaMoney;
 using PointOfSale.Domain;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public class ProductProvider : IEnumerable<object[]>
     {

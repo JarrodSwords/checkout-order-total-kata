@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using PointOfSale.Domain;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public abstract class SpecialTest
     {

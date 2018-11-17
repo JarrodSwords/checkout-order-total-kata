@@ -1,7 +1,7 @@
 using System;
 using PointOfSale.Domain;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Domain
 {
     public enum DateRange
     {
