@@ -2,9 +2,10 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
+using PointOfSale.Domain;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
-using PointOfSale.Domain;
+using PointOfSale.Test.Infrastructure.InMemory;
 using Xunit;
 
 namespace PointOfSale.Test

@@ -1,4 +1,4 @@
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Infrastructure.InMemory
 {
     public abstract class RepositoryFactory<T> where T : new()
     {

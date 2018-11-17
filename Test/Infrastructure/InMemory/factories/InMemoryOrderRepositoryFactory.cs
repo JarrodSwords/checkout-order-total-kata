@@ -1,6 +1,6 @@
 using PointOfSale.Infrastructure.InMemory;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Infrastructure.InMemory
 {
     public class InMemoryOrderRepositoryFactory : RepositoryFactory<InMemoryOrderRepository>
     {

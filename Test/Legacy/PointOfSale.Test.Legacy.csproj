@@ -26,6 +26,7 @@
     <ProjectReference Include="..\..\Services\PointOfSale.Services.csproj" />
     <ProjectReference Include="..\..\WebApi\PointOfSale.WebApi.csproj" />
     <ProjectReference Include="..\Domain\PointOfSale.Test.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\InMemory\PointOfSale.Test.Infrastructure.InMemory.csproj" />
   </ItemGroup>
 
 </Project>

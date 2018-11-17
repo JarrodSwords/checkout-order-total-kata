@@ -1,10 +1,10 @@
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Infrastructure.InMemory
 {
     public class InMemoryOrderRepositoryTest : IOrderRepositoryTest
     {
         public InMemoryOrderRepositoryTest()
         {
-            _orderRepository = DependencyProvider.CreateOrderRepository();
+            _orderRepository = new InMemoryOrderRepositoryFactory().CreateSeededRepository();
         }
     }
 }

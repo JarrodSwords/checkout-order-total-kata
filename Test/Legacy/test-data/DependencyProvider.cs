@@ -2,6 +2,7 @@ using AutoMapper;
 using PointOfSale.Domain;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
+using PointOfSale.Test.Infrastructure.InMemory;
 
 namespace PointOfSale.Test
 {
