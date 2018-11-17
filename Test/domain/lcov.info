@@ -1,9 +1,9 @@
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:191,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,191
+FNDA:192,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,192
 DA:9,192
-DA:10,191
+DA:10,192
 DA:11,192
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:16,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
@@ -423,17 +423,17 @@ DA:11,403
 BRDA:11,6,0,144
 BRDA:11,6,1,259
 FN:11,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-FNDA:1271,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-DA:12,1271
+FNDA:1274,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
+DA:12,1274
 FN:12,System.String PointOfSale.Domain.Product::get_Name()
 FNDA:870,System.String PointOfSale.Domain.Product::get_Name()
 DA:13,870
 FN:13,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-FNDA:893,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-DA:14,893
+FNDA:894,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
+DA:14,894
 FN:14,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-FNDA:143,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-DA:15,143
+FNDA:145,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
+DA:15,145
 FN:15,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:627,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:16,627
@@ -444,14 +444,14 @@ FN:17,System.Void PointOfSale.Domain.Product::.ctor()
 FNDA:0,System.Void PointOfSale.Domain.Product::.ctor()
 DA:18,0
 FN:19,System.Void PointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PointOfSale.Domain.SellByType,PointOfSale.Domain.Markdown)
-FNDA:104,System.Void PointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PointOfSale.Domain.SellByType,PointOfSale.Domain.Markdown)
-DA:20,104
-DA:21,104
-DA:22,104
-DA:23,104
-DA:24,104
-DA:25,103
-DA:26,102
+FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,NodaMoney.Money,PointOfSale.Domain.SellByType,PointOfSale.Domain.Markdown)
+DA:20,105
+DA:21,105
+DA:22,105
+DA:23,105
+DA:24,105
+DA:25,105
+DA:26,104
 LF:16
 LH:15
 BRF:4
@@ -467,9 +467,9 @@ FN:8,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 FNDA:397,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 DA:9,397
 FN:33,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
-FNDA:102,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
-DA:34,102
-DA:35,102
+FNDA:103,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
+DA:34,103
+DA:35,103
 DA:37,103
 DA:38,2
 DA:40,101
@@ -482,16 +482,16 @@ BRDA:37,33,1,101
 BRDA:40,57,0,77
 BRDA:40,57,1,24
 FN:10,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
-FNDA:102,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
-DA:11,102
+FNDA:103,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)
+DA:11,103
 DA:12,103
-DA:13,102
+DA:13,103
 DA:14,103
 DA:15,103
 FN:17,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
-FNDA:103,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
-DA:18,103
-DA:19,103
+FNDA:102,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
+DA:18,102
+DA:19,102
 DA:20,7
 DA:22,96
 DA:24,350
@@ -505,9 +505,9 @@ BRDA:19,51,0,7
 BRDA:19,51,1,96
 BRDA:24,298,1,82
 BRDA:26,126,0,7
-BRDA:26,126,1,74
+BRDA:26,126,1,75
 BRDA:26,196,0,3
-BRDA:26,196,1,78
+BRDA:26,196,1,79
 BRDA:18,14,1,79
 BRDA:24,298,0,93
 LF:27
@@ -610,10 +610,10 @@ FN:14,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_ScannedI
 FNDA:260,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_ScannedItemsRequired()
 DA:15,260
 FN:30,NodaMoney.Money PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::CalculateTotalDiscount(PointOfSale.Domain.Product)
-FNDA:157,NodaMoney.Money PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::CalculateTotalDiscount(PointOfSale.Domain.Product)
-DA:31,157
-DA:32,157
-DA:33,157
+FNDA:158,NodaMoney.Money PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::CalculateTotalDiscount(PointOfSale.Domain.Product)
+DA:31,158
+DA:32,158
+DA:33,158
 FN:35,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
 FNDA:67,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
 DA:36,67
@@ -820,12 +820,12 @@ DA:16,474
 BRDA:15,19,0,446
 BRDA:15,19,1,28
 FN:18,System.Void PointOfSale.Domain.BasicTemporal::.ctor(System.DateTime,System.DateTime)
-FNDA:95,System.Void PointOfSale.Domain.BasicTemporal::.ctor(System.DateTime,System.DateTime)
-DA:19,95
+FNDA:96,System.Void PointOfSale.Domain.BasicTemporal::.ctor(System.DateTime,System.DateTime)
+DA:19,96
 DA:20,96
 DA:21,96
 DA:22,96
-DA:23,95
+DA:23,96
 LF:11
 LH:11
 BRF:2
