@@ -6,7 +6,7 @@ namespace PointOfSale.Test
 {
     public abstract class SpecialTest
     {
-        protected DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
+        protected DateTime _now = new BasicDateTimeProvider().Now;
         protected IEnumerable<LineItem> _lineItems;
 
         protected virtual IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
