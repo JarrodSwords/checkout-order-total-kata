@@ -2,23 +2,23 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 
 namespace PointOfSale.Test
 {
-    public class CreateBuyNForXAmountSpecialArgsValidatorTest
+    public class CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest
     {
         private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
-        private IProductRepository _productRepository = DependencyProvider.CreateProductRepository();
-        private CreateBuyNForXAmountSpecialArgsValidator _validator;
+        private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
+        private CreateBuyNGetMAtXPercentOffSpecialArgsValidator _validator;
 
-        public CreateBuyNForXAmountSpecialArgsValidatorTest()
+        public CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNForXAmountSpecialArgsValidator(_productRepository, baseValidator);
+            _validator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -31,8 +31,11 @@ namespace PointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, (int?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, 0);
-            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, (decimal?) null);
-            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, 0);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, (decimal?) null);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 0);
+            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 101);
+            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, (int?) null);
+            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, 0);
 
             var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
             Action validate = () => _validator.ValidateAndThrow(args);
@@ -41,9 +44,8 @@ namespace PointOfSale.Test
             args.StartTime = _dateTimeProvider.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
 
-            args.ProductName = "lean ground beef";
             args.EndTime = _dateTimeProvider.Now;
-            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
+            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Weight sell by type*");
         }
     }
 }

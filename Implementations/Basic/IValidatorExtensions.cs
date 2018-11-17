@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using FluentValidation;
 
-namespace PointOfSale.ApplicationServiceImplementations
+namespace PointOfSale.Implementations.Basic
 {
     public static class IValidatorExtensions
     {

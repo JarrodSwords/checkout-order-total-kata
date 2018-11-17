@@ -1,4 +1,4 @@
-namespace PointOfSale.ApplicationServices
+namespace PointOfSale.Services
 {
     public class ScanItemArgs
     {

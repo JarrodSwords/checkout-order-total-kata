@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using PointOfSale.Domain;
 
-namespace PointOfSale.ApplicationServices
+namespace PointOfSale.Services
 {
     public class OrderDto
     {

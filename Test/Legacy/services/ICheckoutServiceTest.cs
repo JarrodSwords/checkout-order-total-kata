@@ -1,6 +1,6 @@
 using System.Linq;
 using FluentAssertions;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 

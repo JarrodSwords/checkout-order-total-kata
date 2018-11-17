@@ -1,38 +1,40 @@
 using System;
 using FluentAssertions;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 
 namespace PointOfSale.Test
 {
-    public class BuyNForXAmountConfigurationServiceTest 
+    public class BuyNGetMAtXPercentOffConfigurationServiceTest 
     {
         protected DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
-        protected BuyNForXAmountConfigurationService _service = DependencyProvider.CreateBuyNForXAmountConfigurationService();
+        protected BuyNGetMAtXPercentOffConfigurationService _service = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
 
         [Fact]
         public void CreateBuyNForXAmountSpecial_CreatesSpecial()
         {
             var args = new CreateSpecialArgs
             {
-                DiscountedItems = 3,
+                DiscountedItems = 1,
                 EndTime = _now.EndOfWeek(),
-                GroupSalePrice = 2m,
                 Limit = 6,
+                PercentageOff = 50m,
+                PreDiscountItems = 2,
                 ProductName = "can of soup",
                 StartTime = _now.StartOfWeek()
             };
 
             var productDto = _service.CreateSpecial(args);
-            var specialDto = (BuyNForXAmountSpecialDto) productDto.Special;
+            var specialDto = (BuyNGetMAtXPercentOffSpecialDto) productDto.Special;
 
             productDto.Name.Should().Be(args.ProductName);
             specialDto.DiscountedItems.Should().Be(args.DiscountedItems);
             specialDto.EndTime.Should().Be(args.EndTime.Value);
-            specialDto.GroupSalePrice.Should().Be(args.GroupSalePrice);
             specialDto.Limit.Should().Be(args.Limit);
+            specialDto.PercentageOff.Should().Be(args.PercentageOff);
+            specialDto.PreDiscountItems.Should().Be(args.PreDiscountItems);
             specialDto.StartTime.Should().Be(args.StartTime.Value);
         }
 
@@ -41,7 +43,7 @@ namespace PointOfSale.Test
         [InlineData("", "*Product name is required*")]
         [InlineData(" ", "*Product name is required*")]
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        public void CreateBuyNForXAmountSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
+        public void CreateBuyNGetMAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             var args = new CreateSpecialArgs { ProductName = productName };
 

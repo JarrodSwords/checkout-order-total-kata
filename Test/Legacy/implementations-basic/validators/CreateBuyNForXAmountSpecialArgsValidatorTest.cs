@@ -2,23 +2,23 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 
 namespace PointOfSale.Test
 {
-    public class CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest
+    public class CreateBuyNForXAmountSpecialArgsValidatorTest
     {
         private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
-        private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-        private CreateBuyNGetMAtXPercentOffSpecialArgsValidator _validator;
+        private IProductRepository _productRepository = DependencyProvider.CreateProductRepository();
+        private CreateBuyNForXAmountSpecialArgsValidator _validator;
 
-        public CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest()
+        public CreateBuyNForXAmountSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
+            _validator = new CreateBuyNForXAmountSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -31,11 +31,8 @@ namespace PointOfSale.Test
             _validator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, (int?) null);
             _validator.ShouldHaveValidationErrorFor(x => x.DiscountedItems, 0);
-            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, (decimal?) null);
-            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 0);
-            _validator.ShouldHaveValidationErrorFor(x => x.PercentageOff, 101);
-            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, (int?) null);
-            _validator.ShouldHaveValidationErrorFor(x => x.PreDiscountItems, 0);
+            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, (decimal?) null);
+            _validator.ShouldHaveValidationErrorFor(x => x.GroupSalePrice, 0);
 
             var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
             Action validate = () => _validator.ValidateAndThrow(args);

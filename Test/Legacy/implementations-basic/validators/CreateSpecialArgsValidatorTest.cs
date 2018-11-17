@@ -2,8 +2,8 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 

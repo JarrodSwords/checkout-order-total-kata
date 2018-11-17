@@ -1,9 +1,9 @@
 ﻿using System;
 using AutoMapper;
-using PointOfSale.ApplicationServices;
 using PointOfSale.Domain;
+using PointOfSale.Services;
 
-namespace PointOfSale.ApplicationServiceImplementations
+namespace PointOfSale.Implementations.Basic
 {
     public class CheckoutService : ICheckoutService
     {

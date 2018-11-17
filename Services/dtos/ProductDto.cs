@@ -1,6 +1,6 @@
 using PointOfSale.Domain;
 
-namespace PointOfSale.ApplicationServices
+namespace PointOfSale.Services
 {
     public class ProductDto
     {

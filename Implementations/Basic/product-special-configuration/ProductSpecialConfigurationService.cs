@@ -1,10 +1,10 @@
 using System;
 using AutoMapper;
 using FluentValidation;
-using PointOfSale.ApplicationServices;
 using PointOfSale.Domain;
+using PointOfSale.Services;
 
-namespace PointOfSale.ApplicationServiceImplementations
+namespace PointOfSale.Implementations.Basic
 {
     public abstract partial class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {

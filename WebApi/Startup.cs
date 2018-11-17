@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
 using PointOfSale.Domain;
+using PointOfSale.Implementations.Basic;
 using PointOfSale.Infrastructure.InMemory;
+using PointOfSale.Services;
 
 namespace PointOfSale.WebApi
 {

@@ -11,7 +11,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="fluentassertions" Version="5.4.2" />
+    <PackageReference Include="fluentassertions" Version="5.5.1" />
     <PackageReference Include="microsoft.aspnetcore.mvc" Version="2.1.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="nodamoney" Version="1.0.5" />
@@ -20,11 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\PointOfSale.Domain.csproj" />
-    <ProjectReference Include="..\Implementations\Basic\PointOfSale.Implementations.Basic.csproj" />
-    <ProjectReference Include="..\Infrastructure\InMemory\PointOfSale.Infrastructure.InMemory.csproj" />
-    <ProjectReference Include="..\Services\PointOfSale.Services.csproj" />
-    <ProjectReference Include="..\WebApi\PointOfSale.WebApi.csproj" />
+    <ProjectReference Include="..\..\Domain\PointOfSale.Domain.csproj" />
+    <ProjectReference Include="..\..\Implementations\Basic\PointOfSale.Implementations.Basic.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\InMemory\PointOfSale.Infrastructure.InMemory.csproj" />
+    <ProjectReference Include="..\..\Services\PointOfSale.Services.csproj" />
+    <ProjectReference Include="..\..\WebApi\PointOfSale.WebApi.csproj" />
+    <ProjectReference Include="..\Domain\PointOfSale.Test.Domain.csproj" />
   </ItemGroup>
 
 </Project>

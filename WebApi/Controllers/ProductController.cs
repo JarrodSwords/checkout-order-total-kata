@@ -1,8 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
 using PointOfSale.Domain;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 
 namespace PointOfSale.WebApi
 {
@@ -11,7 +11,7 @@ namespace PointOfSale.WebApi
     public class ProductController : ControllerBase
     {
         #region Dependencies
-        
+
         private readonly IProductConfigurationService _productConfigurationService;
         private readonly IProductMarkdownConfigurationService _productMarkdownConfigurationService;
         private readonly IProductService _productService;
@@ -65,7 +65,7 @@ namespace PointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateSpecial(string productName, [FromBody] CreateSpecialArgs args)
         {
-            var specialType = (SpecialType)Enum.Parse(typeof(SpecialType), args.SpecialType);
+            var specialType = (SpecialType) Enum.Parse(typeof(SpecialType), args.SpecialType);
             var productSpecialConfigurationService = _productSpecialConfigurationServiceProvider.GetConfigurationService(specialType);
 
             args.ProductName = productName;

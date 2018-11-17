@@ -1,5 +1,5 @@
 using FluentAssertions;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Services;
 using Xunit;
 
 namespace PointOfSale.Test

@@ -2,23 +2,23 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 
 namespace PointOfSale.Test
 {
-    public class CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest
+    public class CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest
     {
         private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
         private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
         private CreateBuyNGetMAtXPercentOffSpecialArgsValidator _validator;
 
-        public CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest()
+        public CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest()
         {
             var baseValidator = new CreateSpecialArgsValidator(_productRepository);
-            _validator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
+            _validator = new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
         }
 
         [Fact]
@@ -44,8 +44,9 @@ namespace PointOfSale.Test
             args.StartTime = _dateTimeProvider.Now;
             validate.Should().Throw<ValidationException>("*Special start time must be less than end time*");
 
+            args.ProductName = "lean ground beef";
             args.EndTime = _dateTimeProvider.Now;
-            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Weight sell by type*");
+            validate.Should().Throw<ValidationException>("*Special can only be applied to a product with the Unit sell by type*");
         }
     }
 }

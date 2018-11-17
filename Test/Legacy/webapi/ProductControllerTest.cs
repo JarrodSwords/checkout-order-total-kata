@@ -1,6 +1,6 @@
 using FluentAssertions;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 using PointOfSale.WebApi;
 using Xunit;
 

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Services;
 using PointOfSale.Domain;
 using Xunit;
 

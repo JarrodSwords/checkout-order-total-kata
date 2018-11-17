@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PointOfSale.ApplicationServices
+namespace PointOfSale.Services
 {
     public interface ISpecialDto
     {

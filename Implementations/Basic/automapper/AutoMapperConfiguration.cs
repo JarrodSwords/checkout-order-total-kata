@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
 
-namespace PointOfSale.ApplicationServiceImplementations
+namespace PointOfSale.Implementations.Basic
 {
     /// <remarks>
     /// Mapping configuration taken from https://stackoverflow.com/a/49456783

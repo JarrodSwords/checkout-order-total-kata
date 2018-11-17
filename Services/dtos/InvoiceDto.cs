@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PointOfSale.ApplicationServices
+namespace PointOfSale.Services
 {
     public class InvoiceDto
     {

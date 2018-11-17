@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PointOfSale.ApplicationServices;
+using PointOfSale.Services;
 
 namespace PointOfSale.WebApi
 {

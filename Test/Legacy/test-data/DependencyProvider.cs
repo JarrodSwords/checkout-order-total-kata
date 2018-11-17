@@ -1,7 +1,7 @@
 using AutoMapper;
-using PointOfSale.ApplicationServiceImplementations;
-using PointOfSale.ApplicationServices;
 using PointOfSale.Domain;
+using PointOfSale.Implementations.Basic;
+using PointOfSale.Services;
 
 namespace PointOfSale.Test
 {
@@ -56,7 +56,7 @@ namespace PointOfSale.Test
         {
             var productRepository = CreateProductRepository();
             var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
-            
+
             return new BuyNForXAmountConfigurationService(
                 CreateMapper(),
                 productRepository,
