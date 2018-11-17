@@ -2,12 +2,12 @@ using System;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.TestHelper;
+using PointOfSale.Domain;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
-using PointOfSale.Domain;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
     public class CreateBuyNForXAmountSpecialArgsValidatorTest
     {

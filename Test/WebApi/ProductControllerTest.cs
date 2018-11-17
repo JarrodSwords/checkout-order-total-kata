@@ -1,10 +1,11 @@
 using FluentAssertions;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
+using PointOfSale.Test.Implementations.Basic;
 using PointOfSale.WebApi;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.WebApi
 {
     public class ProductControllerTest
     {

@@ -1,6 +1,6 @@
 using PointOfSale.Test.Services;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
     public class OrderServiceTest : IOrderServiceTest
     {

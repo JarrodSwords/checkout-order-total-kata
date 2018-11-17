@@ -4,7 +4,7 @@ using PointOfSale.Services;
 using PointOfSale.Test.Services;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
     public class CheckoutServiceTest : ICheckoutServiceTest
     {

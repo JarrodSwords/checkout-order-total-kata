@@ -1,6 +1,6 @@
 <Project>
     <ItemGroup>
-        <TestProjects Include="**\*.csproj" />
+        <TestProjects Include="**\*.csproj;**\**\*.csproj" />
         <Watch Include="**\*.cs" />
     </ItemGroup>
 

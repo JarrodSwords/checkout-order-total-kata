@@ -1,16 +1,16 @@
 using System;
 using FluentAssertions;
+using PointOfSale.Domain;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
-using PointOfSale.Domain;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
-    public class BuyNGetMAtXPercentOffConfigurationServiceTest 
+    public class BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationServiceTest
     {
         protected DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
-        protected BuyNGetMAtXPercentOffConfigurationService _service = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
+        protected BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService _service = DependencyProvider.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService();
 
         [Fact]
         public void CreateBuyNForXAmountSpecial_CreatesSpecial()
@@ -22,7 +22,7 @@ namespace PointOfSale.Test
                 Limit = 6,
                 PercentageOff = 50m,
                 PreDiscountItems = 2,
-                ProductName = "can of soup",
+                ProductName = "lean ground beef",
                 StartTime = _now.StartOfWeek()
             };
 
@@ -43,7 +43,7 @@ namespace PointOfSale.Test
         [InlineData("", "*Product name is required*")]
         [InlineData(" ", "*Product name is required*")]
         [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        public void CreateBuyNGetMAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
+        public void CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             var args = new CreateSpecialArgs { ProductName = productName };
 

@@ -8,7 +8,7 @@ using PointOfSale.Services;
 using PointOfSale.Test.Infrastructure.InMemory;
 using Xunit;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
     public class CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest
     {

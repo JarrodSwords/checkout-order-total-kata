@@ -4,7 +4,7 @@ using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
 using PointOfSale.Test.Infrastructure.InMemory;
 
-namespace PointOfSale.Test
+namespace PointOfSale.Test.Implementations.Basic
 {
     public class DependencyProvider
     {
