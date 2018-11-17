@@ -1,0 +1,16 @@
+<Project>
+    <ItemGroup>
+        <TestProjects Include="**\Domain\PointOfSale.Test.Domain.csproj" />
+        <TestProjects Include="**\Infrastructure\InMemory\PointOfSale.Test.Infrastructure.InMemory.csproj" />
+        <TestProjects Include="**\Services\PointOfSale.Test.Services.csproj" />
+        <TestProjects Include="**\Implementations\Basic\PointOfSale.Test.Implementations.Basic.csproj" />
+        <TestProjects Include="**\WebApi\PointOfSale.Test.WebApi.csproj" />
+        <Watch Include="**\*.cs" />
+    </ItemGroup>
+
+    <Target Name="Test">
+        <MSBuild Targets="VSTest" Projects="@(TestProjects)" />
+    </Target>
+
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft.Common.targets" />
+</Project>
