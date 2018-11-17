@@ -11,6 +11,11 @@ dotnet build
 dotnet test .\Test\PointOfSale.Test.csproj
 ```
 
+Preferred test method:
+```
+dotnet watch -p .\Test\PointOfSale.Test.proj msbuild /t:Test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info -v:m
+```
+
 ### Run the API and test with Postman
 
 1. Run the API.  From root directory:
