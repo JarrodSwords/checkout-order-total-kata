@@ -27,7 +27,7 @@ BRH:0
 FNF:6
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\Invoice.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\Invoice.cs
 FN:8,System.Int64 PointOfSale.Domain.Invoice::get_OrderId()
 FNDA:0,System.Int64 PointOfSale.Domain.Invoice::get_OrderId()
 DA:9,0
@@ -62,7 +62,7 @@ BRH:0
 FNF:6
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\InvoiceFactory.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\InvoiceFactory.cs
 FN:10,PointOfSale.Domain.Order PointOfSale.Domain.Invoice/Factory::get_Order()
 FNDA:0,PointOfSale.Domain.Order PointOfSale.Domain.Invoice/Factory::get_Order()
 DA:11,0
@@ -143,7 +143,7 @@ BRH:0
 FNF:8
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\line-items\LineItem.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\LineItem.cs
 FN:6,System.String PointOfSale.Domain.LineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.LineItem::get_Description()
 DA:7,0
@@ -170,7 +170,7 @@ BRH:0
 FNF:5
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\line-items\MarkdownLineItem.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\MarkdownLineItem.cs
 FN:6,System.String PointOfSale.Domain.MarkdownLineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.MarkdownLineItem::get_Description()
 DA:7,0
@@ -190,7 +190,7 @@ BRH:0
 FNF:3
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\line-items\RetailLineItem.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\RetailLineItem.cs
 FN:6,System.Int32 PointOfSale.Domain.RetailLineItem::get_ScannedItemId()
 FNDA:0,System.Int32 PointOfSale.Domain.RetailLineItem::get_ScannedItemId()
 DA:7,0
@@ -207,7 +207,7 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\invoice\line-items\SpecialLineItem.cs
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\SpecialLineItem.cs
 FN:7,System.String PointOfSale.Domain.SpecialLineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.SpecialLineItem::get_Description()
 DA:8,0
@@ -1217,45 +1217,45 @@ FNF:1
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\product-configuration\args\UpsertProductArgs.cs
-FN:22,System.Nullable`1<System.Double> PointOfSale.Services.UpsertProductArgs::get_MassAmount()
+FN:4,System.Nullable`1<System.Double> PointOfSale.Services.UpsertProductArgs::get_MassAmount()
 FNDA:0,System.Nullable`1<System.Double> PointOfSale.Services.UpsertProductArgs::get_MassAmount()
-DA:23,0
-FN:23,System.String PointOfSale.Services.UpsertProductArgs::get_MassUnit()
+DA:5,0
+FN:5,System.String PointOfSale.Services.UpsertProductArgs::get_MassUnit()
 FNDA:0,System.String PointOfSale.Services.UpsertProductArgs::get_MassUnit()
-DA:24,0
-FN:24,System.String PointOfSale.Services.UpsertProductArgs::get_Name()
+DA:6,0
+FN:6,System.String PointOfSale.Services.UpsertProductArgs::get_Name()
 FNDA:0,System.String PointOfSale.Services.UpsertProductArgs::get_Name()
-DA:25,0
-FN:25,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPrice()
+DA:7,0
+FN:7,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPrice()
 FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPrice()
-DA:26,0
-FN:26,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPricePerUnit()
+DA:8,0
+FN:8,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPricePerUnit()
 FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPricePerUnit()
-DA:27,0
-FN:27,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
+DA:9,0
+FN:9,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
 FNDA:0,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
-DA:28,0
-FN:29,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
+DA:10,0
+FN:11,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
 FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
-DA:30,0
-FN:37,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:12,0
+FN:19,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
 FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+FN:34,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
+FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:35,0
+DA:36,0
+DA:37,0
 DA:38,0
 DA:39,0
 DA:40,0
 DA:41,0
 DA:42,0
-DA:43,0
-FN:52,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
-FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
-DA:53,0
-DA:54,0
-DA:55,0
-DA:56,0
-DA:57,0
-DA:58,0
-DA:59,0
-DA:60,0
 LF:21
 LH:0
 BRF:0

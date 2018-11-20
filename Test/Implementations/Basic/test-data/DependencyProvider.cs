@@ -33,10 +33,18 @@ namespace PointOfSale.Test.Implementations.Basic
         public static IProductConfigurationService CreateProductConfigurationService()
         {
             var mapper = CreateMapper();
-            var productFactoryProvider = new ProductFactoryProvider(mapper);
             var productRepository = CreateProductRepository();
-            var createProductArgsValidator = new CreateProductArgsValidator(productFactoryProvider, productRepository);
-            var updateProductArgsValidator = new UpdateProductArgsValidator(productFactoryProvider, productRepository);
+
+            var createProductNameValidator = new CreateProductNameValidator(productRepository);
+            var productFactoryProvider = new ProductFactoryProvider(mapper);
+            var sellByTypeValidator = new SellByTypeValidator(productFactoryProvider);
+            var retailPriceValidator = new RetailPriceValidator();
+            var iUpsertMassProductArgsValidator = new IUpsertMassProductArgsValidator();
+            var createProductArgsValidator = new CreateProductArgsValidator(createProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
+
+            var updateProductNameValidator = new UpdateProductNameValidator(productRepository);
+            var updateProductArgsValidator = new UpdateProductArgsValidator(updateProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
+
             return new ProductConfigurationService(productFactoryProvider, productRepository, createProductArgsValidator, updateProductArgsValidator);
         }
 

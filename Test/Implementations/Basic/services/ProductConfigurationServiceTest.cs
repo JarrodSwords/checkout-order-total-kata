@@ -17,10 +17,10 @@ namespace PointOfSale.Test.Implementations.Basic
         #region Create product
 
         [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("can of soup", "*Product name \"can of soup\" already exists*")]
+        [InlineData(null, "*'Product Name' should not be empty*")]
+        [InlineData("", "*'Product Name' should not be empty*")]
+        [InlineData(" ", "*'Product Name' should not be empty*")]
+        [InlineData("can of soup", "*'Product Name' \"can of soup\" already exists*")]
         public void CreateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs(productName, 1m, "eaches"));
@@ -29,8 +29,8 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Product retail price is required*")]
-        [InlineData(-1, "*Product retail price cannot be negative*")]
+        [InlineData(null, "*'Retail Price' must not be empty*")]
+        [InlineData(-1, "*'Retail Price' must be greater than or equal to '0'*")]
         public void CreateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "eaches"));
@@ -39,10 +39,10 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Product sell by type is required*")]
-        [InlineData("", "*Product sell by type is required*")]
-        [InlineData(" ", "*Product sell by type is required*")]
-        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: eaches, mass*")]
+        [InlineData(null, "*'Sell By Type' should not be empty*")]
+        [InlineData("", "*'Sell By Type' should not be empty*")]
+        [InlineData(" ", "*'Sell By Type' should not be empty*")]
+        [InlineData("volume", "*'Sell By Type' \"volume\" is not in: eaches, mass*")]
         public void CreateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));
@@ -55,10 +55,10 @@ namespace PointOfSale.Test.Implementations.Basic
         #region Update product
 
         [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
+        [InlineData(null, "*'Product Name' should not be empty*")]
+        [InlineData("", "*'Product Name' should not be empty*")]
+        [InlineData(" ", "*'Product Name' should not be empty*")]
+        [InlineData("milk", "*'Product Name' \"milk\" does not exist*")]
         public void UpdateProduct_WithInvalidName_ThrowsArgumentException(string productName, string message)
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs(productName, 1m, "eaches"));
@@ -67,8 +67,8 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Product retail price is required*")]
-        [InlineData(-1, "*Product retail price cannot be negative*")]
+        [InlineData(null, "*'Retail Price' must not be empty*")]
+        [InlineData(-1, "*'Retail Price' must be greater than or equal to '0'*")]
         public void UpdateProduct_WithInvalidRetailPrice_ThrowsArgumentException(double? retailPrice, string message)
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "eaches"));
@@ -77,10 +77,10 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Product sell by type is required*")]
-        [InlineData("", "*Product sell by type is required*")]
-        [InlineData(" ", "*Product sell by type is required*")]
-        [InlineData("Volume", "*Product sell by type \"Volume\" is not in: eaches, mass*")]
+        [InlineData(null, "*'Sell By Type' should not be empty*")]
+        [InlineData("", "*'Sell By Type' should not be empty*")]
+        [InlineData(" ", "*'Sell By Type' should not be empty*")]
+        [InlineData("volume", "*'Sell By Type' \"volume\" is not in: eaches, mass*")]
         public void UpdateProduct_WithInvalidSellByType_ThrowsArgumentException(string sellByType, string message)
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));

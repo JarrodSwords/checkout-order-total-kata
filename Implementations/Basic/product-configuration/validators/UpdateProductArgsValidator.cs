@@ -1,48 +1,19 @@
-using System;
-using System.Linq;
-using FluentValidation;
-using PointOfSale.Domain;
-using PointOfSale.Services;
-
 namespace PointOfSale.Implementations.Basic
 {
-    public class UpdateProductArgsValidator : AbstractValidator<UpsertProductArgs>
+    public class UpdateProductArgsValidator : UpsertProductArgsValidator
     {
-        private readonly IProductFactoryProvider _productFactoryProvider;
-        private readonly IProductRepository _productRepository;
-
-        public UpdateProductArgsValidator(IProductFactoryProvider productFactoryProvider, IProductRepository productRepository)
+        public UpdateProductArgsValidator(
+            UpdateProductNameValidator updateProductNameValidator,
+            SellByTypeValidator sellByTypeValidator,
+            RetailPriceValidator retailPriceValidator,
+            IUpsertMassProductArgsValidator iUpsertMassProductArgsValidator
+        ) : base(
+            sellByTypeValidator,
+            retailPriceValidator,
+            iUpsertMassProductArgsValidator
+        )
         {
-            _productFactoryProvider = productFactoryProvider;
-            _productRepository = productRepository;
-            CreateRules();
-        }
-
-        private void CreateRules()
-        {
-            var sellByTypes = _productFactoryProvider.GetSellByTypes();
-
-            RuleFor(x => x.Name).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Product name is required")
-                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist");
-
-            RuleFor(x => x.SellByType).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Product sell by type is required")
-                .Must(x => sellByTypes.Contains(x)).WithMessage($"Product sell by type \"{{PropertyValue}}\" is not in: {string.Join(", ", sellByTypes)}");
-
-            When(x => x.SellByType == "eaches", () =>
-            {
-                RuleFor(x => x.RetailPrice)
-                    .NotNull().WithMessage("Product retail price is required")
-                    .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
-            });
-
-            When(x => x.SellByType == "mass", () =>
-            {
-                RuleFor(x => x.RetailPricePerUnit)
-                    .NotNull().WithMessage("Product retail price per unit is required")
-                    .GreaterThanOrEqualTo(0).WithMessage("Product retail price per unit cannot be negative");
-            });
+            Include(updateProductNameValidator);
         }
     }
 }

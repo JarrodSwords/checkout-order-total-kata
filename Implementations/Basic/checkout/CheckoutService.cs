@@ -16,7 +16,14 @@ namespace PointOfSale.Implementations.Basic
         private ScanItemArgsValidator _scanItemArgsValidator;
         private ScanWeightedItemArgsValidator _scanWeightedItemArgsValidator;
 
-        public CheckoutService(IMapper mapper, IOrderRepository orderRepository, IProductRepository productRepository, RemoveScannedItemArgsValidator removeScannedItemArgsValidator, ScanItemArgsValidator scanItemArgsValidator, ScanWeightedItemArgsValidator scanWeightedItemArgsValidator)
+        public CheckoutService(
+            IMapper mapper,
+            IOrderRepository orderRepository,
+            IProductRepository productRepository,
+            RemoveScannedItemArgsValidator removeScannedItemArgsValidator,
+            ScanItemArgsValidator scanItemArgsValidator,
+            ScanWeightedItemArgsValidator scanWeightedItemArgsValidator
+        )
         {
             _mapper = mapper;
             _orderRepository = orderRepository;
