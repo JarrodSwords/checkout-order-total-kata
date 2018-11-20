@@ -13,7 +13,7 @@ namespace PointOfSale.Test.Implementations.Basic
     public class CreateSpecialArgsValidatorTest
     {
         private CreateSpecialArgsValidator _createSpecialArgsValidator = ValidatorProvider.CreateSpecialArgsValidator();
-        private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
+        private IDateTimeProvider _dateTimeProvider = DependencyProvider.DateTimeProvider();
 
         [Fact]
         public void CreateSpecialArgsValidator_ContainsCorrectValidationRules()

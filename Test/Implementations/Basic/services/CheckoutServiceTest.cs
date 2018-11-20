@@ -11,8 +11,8 @@ namespace PointOfSale.Test.Implementations.Basic
     {
         public CheckoutServiceTest()
         {
-            _orderRepository = DependencyProvider.CreateOrderRepository();
-            _checkoutService = DependencyProvider.CreateCheckoutService(_orderRepository);
+            _orderRepository = DependencyProvider.OrderRepository();
+            _checkoutService = DependencyProvider.CheckoutService(_orderRepository);
         }
 
         [Theory]

@@ -11,20 +11,20 @@ namespace PointOfSale.Implementations.Basic
         private readonly IValidator<CreateSpecialArgs> _createSpecialArgsValidator;
         protected readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly IProductFactoryProvider _productFactoryProvider;
+        private readonly IProductServiceProvider _productServiceProvider;
         private readonly ISpecialServiceProvider _specialServiceProvider;
 
         public ProductSpecialConfigurationService(
             IMapper mapper,
-            IProductFactoryProvider productFactoryProvider,
             IProductRepository productRepository,
+            IProductServiceProvider productServiceProvider,
             ISpecialServiceProvider specialServiceProvider,
             IValidator<CreateSpecialArgs> createSpecialArgsValidator
         )
         {
             _createSpecialArgsValidator = createSpecialArgsValidator;
             _mapper = mapper;
-            _productFactoryProvider = productFactoryProvider;
+            _productServiceProvider = productServiceProvider;
             _productRepository = productRepository;
             _specialServiceProvider = specialServiceProvider;
         }
@@ -44,7 +44,7 @@ namespace PointOfSale.Implementations.Basic
                 SellByType = persistedProduct.GetType() == typeof(EachesProduct) ? "eaches" : "mass"
             };
 
-            var productDto = _productFactoryProvider.GetFactory(dummy).CreateProductDto(persistedProduct);
+            var productDto = _productServiceProvider.GetService(dummy).CreateProductDto(persistedProduct);
             productDto.Special = specialService.ToDto(persistedProduct.Special);
             return productDto;
         }

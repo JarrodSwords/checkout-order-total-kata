@@ -15,9 +15,9 @@ namespace PointOfSale.Test.WebApi
         {
             _productController = new ProductController(
                 DependencyProvider.ProductConfigurationService(),
-                DependencyProvider.CreateProductMarkdownConfigurationService(),
+                DependencyProvider.ProductMarkdownConfigurationService(),
                 DependencyProvider.CreateProductService(),
-                DependencyProvider.CreateProductSpecialConfigurationService()
+                DependencyProvider.ProductSpecialConfigurationService()
             );
         }
 

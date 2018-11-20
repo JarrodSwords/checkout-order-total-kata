@@ -954,9 +954,9 @@ BRH:0
 FNF:4
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\factories\products\EachesProductFactory.cs
-FN:15,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductFactory::Create()
-FNDA:1,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductFactory::Create()
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\products\EachesProductService.cs
+FN:15,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductService::Create()
+FNDA:1,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductService::Create()
 DA:16,1
 DA:17,1
 DA:19,1
@@ -964,19 +964,19 @@ DA:20,1
 DA:21,1
 DA:22,1
 DA:23,1
-FN:25,PointOfSale.Services.ProductDto PointOfSale.Implementations.EachesProductFactory::CreateProductDto(PointOfSale.Domain.Product)
-FNDA:1,PointOfSale.Services.ProductDto PointOfSale.Implementations.EachesProductFactory::CreateProductDto(PointOfSale.Domain.Product)
+FN:25,PointOfSale.Services.ProductDto PointOfSale.Implementations.EachesProductService::CreateProductDto(PointOfSale.Domain.Product)
+FNDA:1,PointOfSale.Services.ProductDto PointOfSale.Implementations.EachesProductService::CreateProductDto(PointOfSale.Domain.Product)
 DA:26,1
-FN:28,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductFactory::UpdateProduct(PointOfSale.Domain.Product)
-FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductFactory::UpdateProduct(PointOfSale.Domain.Product)
+FN:28,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductService::UpdateProduct(PointOfSale.Domain.Product)
+FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.EachesProductService::UpdateProduct(PointOfSale.Domain.Product)
 DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
 DA:33,0
 DA:34,0
-FN:9,System.Void PointOfSale.Implementations.EachesProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
-FNDA:1,System.Void PointOfSale.Implementations.EachesProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+FN:9,System.Void PointOfSale.Implementations.EachesProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+FNDA:1,System.Void PointOfSale.Implementations.EachesProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
 DA:10,1
 DA:11,1
 DA:12,1
@@ -988,9 +988,9 @@ BRH:0
 FNF:4
 FNH:3
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\factories\products\MassProductFactory.cs
-FN:16,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductFactory::Create()
-FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductFactory::Create()
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\products\MassProductService.cs
+FN:16,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductService::Create()
+FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductService::Create()
 DA:17,0
 DA:18,0
 DA:19,0
@@ -1004,19 +1004,19 @@ BRDA:21,54,1,0
 BRDA:21,94,1,0
 BRDA:21,115,0,0
 BRDA:21,115,1,0
-FN:27,PointOfSale.Services.ProductDto PointOfSale.Implementations.MassProductFactory::CreateProductDto(PointOfSale.Domain.Product)
-FNDA:0,PointOfSale.Services.ProductDto PointOfSale.Implementations.MassProductFactory::CreateProductDto(PointOfSale.Domain.Product)
+FN:27,PointOfSale.Services.ProductDto PointOfSale.Implementations.MassProductService::CreateProductDto(PointOfSale.Domain.Product)
+FNDA:0,PointOfSale.Services.ProductDto PointOfSale.Implementations.MassProductService::CreateProductDto(PointOfSale.Domain.Product)
 DA:28,0
-FN:30,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductFactory::UpdateProduct(PointOfSale.Domain.Product)
-FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductFactory::UpdateProduct(PointOfSale.Domain.Product)
+FN:30,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductService::UpdateProduct(PointOfSale.Domain.Product)
+FNDA:0,PointOfSale.Domain.Product PointOfSale.Implementations.MassProductService::UpdateProduct(PointOfSale.Domain.Product)
 DA:31,0
 DA:32,0
 DA:33,0
 DA:34,0
 DA:35,0
 DA:36,0
-FN:10,System.Void PointOfSale.Implementations.MassProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
-FNDA:0,System.Void PointOfSale.Implementations.MassProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+FN:10,System.Void PointOfSale.Implementations.MassProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+FNDA:0,System.Void PointOfSale.Implementations.MassProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
 DA:11,0
 DA:12,0
 DA:13,0
@@ -1028,9 +1028,9 @@ BRH:0
 FNF:4
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\factories\products\ProductFactory.cs
-FN:11,System.Void PointOfSale.Implementations.ProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
-FNDA:1,System.Void PointOfSale.Implementations.ProductFactory::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\products\ProductService.cs
+FN:11,System.Void PointOfSale.Implementations.ProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
+FNDA:1,System.Void PointOfSale.Implementations.ProductService::.ctor(PointOfSale.Services.IProductNameArgs,AutoMapper.IMapper)
 DA:12,1
 DA:13,1
 DA:14,1
@@ -1043,125 +1043,15 @@ BRH:0
 FNF:1
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\factories\specials\SpecialService.cs
-FN:14,System.Void PointOfSale.Implementations.SpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-FNDA:0,System.Void PointOfSale.Implementations.SpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-DA:24,0
-FN:42,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNAtXAmountSpecialService::Create()
-FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNAtXAmountSpecialService::Create()
-DA:43,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:48,0
-DA:49,0
-DA:50,0
-DA:51,0
-DA:52,0
-DA:53,0
-DA:54,0
-FN:56,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNAtXAmountSpecialService::ToDto(PointOfSale.Domain.Special)
-FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNAtXAmountSpecialService::ToDto(PointOfSale.Domain.Special)
-DA:57,0
-FN:35,System.Void PointOfSale.Implementations.BuyNAtXAmountSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-FNDA:0,System.Void PointOfSale.Implementations.BuyNAtXAmountSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-FN:72,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::Create()
-FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::Create()
-DA:73,0
-DA:74,0
-DA:75,0
-DA:76,0
-DA:77,0
-DA:78,0
-DA:79,0
-DA:80,0
-DA:81,0
-DA:82,0
-DA:83,0
-DA:84,0
-DA:85,0
-FN:87,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
-FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
-DA:88,0
-FN:65,System.Void PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-FNDA:0,System.Void PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-DA:66,0
-DA:67,0
-DA:68,0
-DA:69,0
-DA:70,0
-FN:103,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::Create()
-FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::Create()
-DA:104,0
-DA:105,0
-DA:106,0
-DA:107,0
-DA:108,0
-DA:109,0
-DA:110,0
-DA:111,0
-DA:112,0
-DA:113,0
-DA:114,0
-DA:115,0
-DA:116,0
-FN:118,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
-FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
-DA:119,0
-FN:96,System.Void PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-FNDA:0,System.Void PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-DA:97,0
-DA:98,0
-DA:99,0
-DA:100,0
-DA:101,0
-FN:133,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.SpecialServiceProvider::get_SpecialTypes()
-FNDA:0,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.SpecialServiceProvider::get_SpecialTypes()
-DA:134,0
-FN:145,PointOfSale.Implementations.SpecialService PointOfSale.Implementations.SpecialServiceProvider::GetService(PointOfSale.Services.CreateSpecialArgs)
-FNDA:0,PointOfSale.Implementations.SpecialService PointOfSale.Implementations.SpecialServiceProvider::GetService(PointOfSale.Services.CreateSpecialArgs)
-DA:146,0
-FN:135,System.Void PointOfSale.Implementations.SpecialServiceProvider::.ctor(PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-FNDA:1,System.Void PointOfSale.Implementations.SpecialServiceProvider::.ctor(PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
-DA:136,1
-DA:137,1
-DA:138,1
-DA:139,1
-DA:140,1
-DA:141,1
-DA:142,1
-DA:143,1
-LF:76
-LH:8
-BRF:0
-BRH:0
-FNF:13
-FNH:1
-end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\providers\ProductFactoryProvider.cs
-FN:12,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::get_SellByTypes()
-FNDA:2,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::get_SellByTypes()
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\products\ProductServiceProvider.cs
+FN:12,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductServiceProvider::get_SellByTypes()
+FNDA:2,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductServiceProvider::get_SellByTypes()
 DA:13,2
-FN:24,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.UpsertProductArgs)
-FNDA:1,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.UpsertProductArgs)
+FN:24,PointOfSale.Implementations.ProductService PointOfSale.Implementations.ProductServiceProvider::GetService(PointOfSale.Services.UpsertProductArgs)
+FNDA:1,PointOfSale.Implementations.ProductService PointOfSale.Implementations.ProductServiceProvider::GetService(PointOfSale.Services.UpsertProductArgs)
 DA:25,1
-FN:14,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
-FNDA:4,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
+FN:14,System.Void PointOfSale.Implementations.ProductServiceProvider::.ctor(AutoMapper.IMapper)
+FNDA:4,System.Void PointOfSale.Implementations.ProductServiceProvider::.ctor(AutoMapper.IMapper)
 DA:15,4
 DA:16,4
 DA:17,4
@@ -1176,6 +1066,149 @@ BRF:0
 BRH:0
 FNF:3
 FNH:3
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\specials\BuyNAtXAmountSpecialService.cs
+FN:19,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNAtXAmountSpecialService::Create()
+FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNAtXAmountSpecialService::Create()
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:33,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNAtXAmountSpecialService::ToDto(PointOfSale.Domain.Special)
+FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNAtXAmountSpecialService::ToDto(PointOfSale.Domain.Special)
+DA:34,0
+FN:12,System.Void PointOfSale.Implementations.BuyNAtXAmountSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+FNDA:0,System.Void PointOfSale.Implementations.BuyNAtXAmountSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\specials\BuyNGetMAtXPercentOffSpecialService.cs
+FN:19,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::Create()
+FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::Create()
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+FN:34,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
+FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
+DA:35,0
+FN:12,System.Void PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+FNDA:0,System.Void PointOfSale.Implementations.BuyNGetMAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LF:19
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService.cs
+FN:19,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::Create()
+FNDA:0,PointOfSale.Domain.Special PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::Create()
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+FN:34,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
+FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::ToDto(PointOfSale.Domain.Special)
+DA:35,0
+FN:12,System.Void PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+FNDA:0,System.Void PointOfSale.Implementations.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LF:19
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\specials\SpecialService.cs
+FN:12,System.Void PointOfSale.Implementations.SpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+FNDA:0,System.Void PointOfSale.Implementations.SpecialService::.ctor(PointOfSale.Services.CreateSpecialArgs,PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\services\specials\SpecialServiceProvider.cs
+FN:13,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.SpecialServiceProvider::get_SpecialTypes()
+FNDA:0,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.SpecialServiceProvider::get_SpecialTypes()
+DA:14,0
+FN:26,PointOfSale.Implementations.SpecialService PointOfSale.Implementations.SpecialServiceProvider::GetService(PointOfSale.Services.CreateSpecialArgs)
+FNDA:0,PointOfSale.Implementations.SpecialService PointOfSale.Implementations.SpecialServiceProvider::GetService(PointOfSale.Services.CreateSpecialArgs)
+DA:27,0
+FN:15,System.Void PointOfSale.Implementations.SpecialServiceProvider::.ctor(PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+FNDA:1,System.Void PointOfSale.Implementations.SpecialServiceProvider::.ctor(PointOfSale.Domain.IDateTimeProvider,AutoMapper.IMapper)
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+DA:24,1
+LF:11
+LH:9
+BRF:0
+BRH:0
+FNF:3
+FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\automapper\AutoMapperConfiguration.cs
 FN:22,AutoMapper.IMapper PointOfSale.Implementations.Basic.Mapping::get_Mapper()
@@ -1434,8 +1467,8 @@ DA:48,0
 DA:49,0
 DA:50,0
 DA:51,0
-FN:16,System.Void PointOfSale.Implementations.Basic.ProductConfigurationService::.ctor(PointOfSale.Implementations.IProductFactoryProvider,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.Basic.CreateProductArgsValidator,PointOfSale.Implementations.Basic.UpdateProductArgsValidator)
-FNDA:1,System.Void PointOfSale.Implementations.Basic.ProductConfigurationService::.ctor(PointOfSale.Implementations.IProductFactoryProvider,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.Basic.CreateProductArgsValidator,PointOfSale.Implementations.Basic.UpdateProductArgsValidator)
+FN:16,System.Void PointOfSale.Implementations.Basic.ProductConfigurationService::.ctor(PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.IProductServiceProvider,PointOfSale.Implementations.Basic.CreateProductArgsValidator,PointOfSale.Implementations.Basic.UpdateProductArgsValidator)
+FNDA:1,System.Void PointOfSale.Implementations.Basic.ProductConfigurationService::.ctor(PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.IProductServiceProvider,PointOfSale.Implementations.Basic.CreateProductArgsValidator,PointOfSale.Implementations.Basic.UpdateProductArgsValidator)
 DA:17,1
 DA:18,1
 DA:19,1
@@ -1643,8 +1676,8 @@ DA:49,0
 DA:50,0
 BRDA:42,102,0,0
 BRDA:42,102,1,0
-FN:16,System.Void PointOfSale.Implementations.Basic.ProductSpecialConfigurationService::.ctor(AutoMapper.IMapper,PointOfSale.Implementations.IProductFactoryProvider,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.ISpecialServiceProvider,FluentValidation.IValidator`1<PointOfSale.Services.CreateSpecialArgs>)
-FNDA:1,System.Void PointOfSale.Implementations.Basic.ProductSpecialConfigurationService::.ctor(AutoMapper.IMapper,PointOfSale.Implementations.IProductFactoryProvider,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.ISpecialServiceProvider,FluentValidation.IValidator`1<PointOfSale.Services.CreateSpecialArgs>)
+FN:16,System.Void PointOfSale.Implementations.Basic.ProductSpecialConfigurationService::.ctor(AutoMapper.IMapper,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.IProductServiceProvider,PointOfSale.Implementations.ISpecialServiceProvider,FluentValidation.IValidator`1<PointOfSale.Services.CreateSpecialArgs>)
+FNDA:1,System.Void PointOfSale.Implementations.Basic.ProductSpecialConfigurationService::.ctor(AutoMapper.IMapper,PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.IProductServiceProvider,PointOfSale.Implementations.ISpecialServiceProvider,FluentValidation.IValidator`1<PointOfSale.Services.CreateSpecialArgs>)
 DA:17,1
 DA:18,1
 DA:19,1
@@ -1872,8 +1905,8 @@ FNF:1
 FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\validators\SellByTypeValidator.cs
-FN:8,System.Void PointOfSale.Implementations.Basic.SellByTypeValidator::.ctor(PointOfSale.Implementations.IProductFactoryProvider)
-FNDA:2,System.Void PointOfSale.Implementations.Basic.SellByTypeValidator::.ctor(PointOfSale.Implementations.IProductFactoryProvider)
+FN:8,System.Void PointOfSale.Implementations.Basic.SellByTypeValidator::.ctor(PointOfSale.Implementations.IProductServiceProvider)
+FNDA:2,System.Void PointOfSale.Implementations.Basic.SellByTypeValidator::.ctor(PointOfSale.Implementations.IProductServiceProvider)
 DA:9,2
 DA:10,2
 DA:11,2
@@ -3203,8 +3236,8 @@ FNF:7
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\test-data\DependencyProvider.cs
-FN:12,PointOfSale.Services.ICheckoutService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateCheckoutService(PointOfSale.Domain.IOrderRepository)
-FNDA:0,PointOfSale.Services.ICheckoutService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateCheckoutService(PointOfSale.Domain.IOrderRepository)
+FN:12,PointOfSale.Services.ICheckoutService PointOfSale.Test.Implementations.Basic.DependencyProvider::CheckoutService(PointOfSale.Domain.IOrderRepository)
+FNDA:0,PointOfSale.Services.ICheckoutService PointOfSale.Test.Implementations.Basic.DependencyProvider::CheckoutService(PointOfSale.Domain.IOrderRepository)
 DA:13,0
 DA:14,0
 DA:15,0
@@ -3212,19 +3245,19 @@ DA:16,0
 DA:17,0
 DA:19,0
 DA:20,0
-FN:21,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateDateTimeProvider()
-FNDA:1,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateDateTimeProvider()
+FN:21,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::DateTimeProvider()
+FNDA:1,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::DateTimeProvider()
 DA:22,1
-FN:23,AutoMapper.IMapper PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateMapper()
-FNDA:16,AutoMapper.IMapper PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateMapper()
+FN:23,AutoMapper.IMapper PointOfSale.Test.Implementations.Basic.DependencyProvider::Mapper()
+FNDA:16,AutoMapper.IMapper PointOfSale.Test.Implementations.Basic.DependencyProvider::Mapper()
 DA:24,16
 BRDA:24,6,0,1
 BRDA:24,6,1,8
-FN:25,PointOfSale.Domain.IOrderRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateOrderRepository()
-FNDA:0,PointOfSale.Domain.IOrderRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateOrderRepository()
+FN:25,PointOfSale.Domain.IOrderRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::OrderRepository()
+FNDA:0,PointOfSale.Domain.IOrderRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::OrderRepository()
 DA:26,0
-FN:28,PointOfSale.Services.IOrderService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateOrderService()
-FNDA:0,PointOfSale.Services.IOrderService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateOrderService()
+FN:28,PointOfSale.Services.IOrderService PointOfSale.Test.Implementations.Basic.DependencyProvider::OrderService()
+FNDA:0,PointOfSale.Services.IOrderService PointOfSale.Test.Implementations.Basic.DependencyProvider::OrderService()
 DA:29,0
 DA:30,0
 DA:31,0
@@ -3236,8 +3269,8 @@ DA:36,1
 DA:37,1
 DA:38,1
 DA:39,1
-FN:41,PointOfSale.Implementations.IProductFactoryProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductFactoryProvider()
-FNDA:4,PointOfSale.Implementations.IProductFactoryProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductFactoryProvider()
+FN:41,PointOfSale.Implementations.IProductServiceProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductFactoryProvider()
+FNDA:4,PointOfSale.Implementations.IProductServiceProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductFactoryProvider()
 DA:42,4
 FN:44,PointOfSale.Implementations.ISpecialServiceProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::SpecialServiceProvider()
 FNDA:1,PointOfSale.Implementations.ISpecialServiceProvider PointOfSale.Test.Implementations.Basic.DependencyProvider::SpecialServiceProvider()
@@ -3245,16 +3278,16 @@ DA:45,1
 DA:46,1
 DA:47,1
 DA:48,1
-FN:50,PointOfSale.Services.IProductMarkdownConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductMarkdownConfigurationService()
-FNDA:1,PointOfSale.Services.IProductMarkdownConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductMarkdownConfigurationService()
+FN:50,PointOfSale.Services.IProductMarkdownConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductMarkdownConfigurationService()
+FNDA:1,PointOfSale.Services.IProductMarkdownConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductMarkdownConfigurationService()
 DA:51,1
 DA:52,1
 DA:53,1
 DA:54,1
 DA:56,1
 DA:57,1
-FN:59,PointOfSale.Services.IProductSpecialConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductSpecialConfigurationService()
-FNDA:1,PointOfSale.Services.IProductSpecialConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductSpecialConfigurationService()
+FN:59,PointOfSale.Services.IProductSpecialConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductSpecialConfigurationService()
+FNDA:1,PointOfSale.Services.IProductSpecialConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::ProductSpecialConfigurationService()
 DA:60,1
 DA:61,1
 DA:62,1
@@ -3262,90 +3295,85 @@ DA:63,1
 DA:64,1
 DA:65,1
 DA:66,1
-FN:68,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductNameExistsValidator(PointOfSale.Domain.IProductRepository)
-FNDA:0,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductNameExistsValidator(PointOfSale.Domain.IProductRepository)
-DA:69,0
-BRDA:69,2,0,0
-BRDA:69,2,1,0
-FN:70,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
+FN:67,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
 FNDA:7,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
-DA:71,7
-FN:73,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
+DA:68,7
+FN:70,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
 FNDA:1,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
-DA:74,1
-DA:75,1
-DA:76,1
-FN:78,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateTemporalValidator()
-FNDA:1,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateTemporalValidator()
-DA:79,1
-LF:43
-LH:31
-BRF:4
+DA:71,1
+DA:72,1
+DA:73,1
+LF:41
+LH:30
+BRF:2
 BRH:2
-FNF:14
-FNH:10
+FNF:12
+FNH:9
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\test-data\ValidatorProvider.cs
-FN:9,PointOfSale.Implementations.Basic.CreateSpecialArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateSpecialArgsValidator(PointOfSale.Domain.IProductRepository)
-FNDA:1,PointOfSale.Implementations.Basic.CreateSpecialArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateSpecialArgsValidator(PointOfSale.Domain.IProductRepository)
+FN:9,PointOfSale.Implementations.Basic.CreateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateProductArgsValidator()
+FNDA:1,PointOfSale.Implementations.Basic.CreateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateProductArgsValidator()
 DA:10,1
 DA:11,1
+DA:12,1
 DA:13,1
 DA:14,1
 DA:15,1
-DA:16,1
-DA:17,1
+FN:17,PointOfSale.Implementations.Basic.CreateSpecialArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateSpecialArgsValidator(PointOfSale.Domain.IProductRepository)
+FNDA:1,PointOfSale.Implementations.Basic.CreateSpecialArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateSpecialArgsValidator(PointOfSale.Domain.IProductRepository)
 DA:18,1
 DA:19,1
-DA:20,1
 DA:21,1
 DA:22,1
 DA:23,1
-BRDA:11,3,0,1
-BRDA:11,3,1,1
-FN:25,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustExistValidator(PointOfSale.Domain.IProductRepository)
-FNDA:1,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustExistValidator(PointOfSale.Domain.IProductRepository)
+DA:24,1
+DA:25,1
 DA:26,1
-BRDA:26,2,0,1
-BRDA:26,2,1,1
-FN:28,PointOfSale.Implementations.Basic.ProductMustNotExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustNotExistValidator(PointOfSale.Domain.IProductRepository)
-FNDA:1,PointOfSale.Implementations.Basic.ProductMustNotExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustNotExistValidator(PointOfSale.Domain.IProductRepository)
+DA:27,1
+DA:28,1
 DA:29,1
-BRDA:29,2,0,1
-BRDA:29,2,1,1
-FN:31,PointOfSale.Implementations.Basic.SellByTypeValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::SellByTypeValidator(PointOfSale.Implementations.IProductFactoryProvider)
-FNDA:2,PointOfSale.Implementations.Basic.SellByTypeValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::SellByTypeValidator(PointOfSale.Implementations.IProductFactoryProvider)
-DA:32,2
-BRDA:32,2,0,2
-BRDA:32,2,1,2
-FN:34,PointOfSale.Implementations.Basic.IUpsertEachesProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertEachesProductArgsValidator()
+DA:30,1
+DA:31,1
+BRDA:19,3,0,1
+BRDA:19,3,1,1
+FN:33,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustExistValidator(PointOfSale.Domain.IProductRepository)
+FNDA:1,PointOfSale.Implementations.Basic.ProductMustExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustExistValidator(PointOfSale.Domain.IProductRepository)
+DA:34,1
+BRDA:34,2,0,1
+BRDA:34,2,1,1
+FN:36,PointOfSale.Implementations.Basic.ProductMustNotExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustNotExistValidator(PointOfSale.Domain.IProductRepository)
+FNDA:1,PointOfSale.Implementations.Basic.ProductMustNotExistValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::ProductMustNotExistValidator(PointOfSale.Domain.IProductRepository)
+DA:37,1
+BRDA:37,2,0,1
+BRDA:37,2,1,1
+FN:39,PointOfSale.Implementations.Basic.SellByTypeValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::SellByTypeValidator(PointOfSale.Implementations.IProductServiceProvider)
+FNDA:2,PointOfSale.Implementations.Basic.SellByTypeValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::SellByTypeValidator(PointOfSale.Implementations.IProductServiceProvider)
+DA:40,2
+BRDA:40,2,0,2
+BRDA:40,2,1,2
+FN:42,PointOfSale.Implementations.Basic.IUpsertEachesProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertEachesProductArgsValidator()
 FNDA:2,PointOfSale.Implementations.Basic.IUpsertEachesProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertEachesProductArgsValidator()
-DA:35,2
-FN:37,PointOfSale.Implementations.Basic.IUpsertMassProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertMassProductArgsValidator()
+DA:43,2
+FN:45,PointOfSale.Implementations.Basic.IUpsertMassProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertMassProductArgsValidator()
 FNDA:2,PointOfSale.Implementations.Basic.IUpsertMassProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::IUpsertMassProductArgsValidator()
-DA:38,2
-FN:40,PointOfSale.Implementations.Basic.CreateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateProductArgsValidator()
-FNDA:1,PointOfSale.Implementations.Basic.CreateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateProductArgsValidator()
-DA:41,1
-DA:42,1
-DA:43,1
-DA:44,1
-DA:45,1
-DA:46,1
-FN:48,PointOfSale.Implementations.Basic.UpdateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::UpdateProductArgsValidator()
-FNDA:1,PointOfSale.Implementations.Basic.UpdateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::UpdateProductArgsValidator()
+DA:46,2
+FN:48,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateTemporalValidator()
+FNDA:1,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::CreateTemporalValidator()
 DA:49,1
-DA:50,1
-DA:51,1
+FN:51,PointOfSale.Implementations.Basic.UpdateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::UpdateProductArgsValidator()
+FNDA:1,PointOfSale.Implementations.Basic.UpdateProductArgsValidator PointOfSale.Test.Implementations.Basic.ValidatorProvider::UpdateProductArgsValidator()
 DA:52,1
 DA:53,1
 DA:54,1
-LF:30
-LH:30
+DA:55,1
+DA:56,1
+DA:57,1
+LF:31
+LH:31
 BRF:8
 BRH:8
-FNF:8
-FNH:8
+FNF:9
+FNH:9
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateSpecialArgsValidatorTest.cs
 FN:19,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::CreateSpecialArgsValidator_ContainsCorrectValidationRules()

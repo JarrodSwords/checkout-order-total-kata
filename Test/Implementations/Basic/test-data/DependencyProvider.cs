@@ -9,73 +9,67 @@ namespace PointOfSale.Test.Implementations.Basic
 {
     public class DependencyProvider
     {
-        public static ICheckoutService CreateCheckoutService(IOrderRepository orderRepository)
+        public static ICheckoutService CheckoutService(IOrderRepository orderRepository)
         {
             var productRepository = CreateProductRepository();
             var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(orderRepository);
             var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
             var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
 
-            return new CheckoutService(CreateMapper(), orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
+            return new CheckoutService(Mapper(), orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
         }
 
-        public static IDateTimeProvider CreateDateTimeProvider() => new BasicDateTimeProvider();
+        public static IDateTimeProvider DateTimeProvider() => new BasicDateTimeProvider();
 
-        public static IMapper CreateMapper() => new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
+        public static IMapper Mapper() => new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>()));
 
-        public static IOrderRepository CreateOrderRepository() => new InMemoryOrderRepositoryFactory().CreateSeededRepository();
+        public static IOrderRepository OrderRepository() => new InMemoryOrderRepositoryFactory().CreateSeededRepository();
 
-        public static IOrderService CreateOrderService()
+        public static IOrderService OrderService()
         {
-            return new OrderService(CreateMapper(), CreateOrderRepository());
+            return new OrderService(Mapper(), OrderRepository());
         }
 
         public static IProductConfigurationService ProductConfigurationService() =>
             new ProductConfigurationService(
-                ProductFactoryProvider(),
                 CreateProductRepository(),
+                ProductFactoryProvider(),
                 ValidatorProvider.CreateProductArgsValidator(),
                 ValidatorProvider.UpdateProductArgsValidator()
             );
 
-        public static IProductFactoryProvider ProductFactoryProvider() =>
-            new ProductFactoryProvider(CreateMapper());
+        public static IProductServiceProvider ProductFactoryProvider() =>
+            new ProductServiceProvider(Mapper());
 
         public static ISpecialServiceProvider SpecialServiceProvider() =>
             new SpecialServiceProvider(
-                CreateDateTimeProvider(),
-                CreateMapper()
+                DateTimeProvider(),
+                Mapper()
             );
 
-        public static IProductMarkdownConfigurationService CreateProductMarkdownConfigurationService()
+        public static IProductMarkdownConfigurationService ProductMarkdownConfigurationService()
         {
             var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
             var productRepository = CreateProductRepository();
-            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository, CreateTemporalValidator());
+            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository, ValidatorProvider.CreateTemporalValidator());
 
-            return new ProductMarkdownConfigurationService(CreateMapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
+            return new ProductMarkdownConfigurationService(Mapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
         }
 
-        public static IProductSpecialConfigurationService CreateProductSpecialConfigurationService() =>
+        public static IProductSpecialConfigurationService ProductSpecialConfigurationService() =>
             new ProductSpecialConfigurationService(
-                CreateMapper(),
-                ProductFactoryProvider(),
+                Mapper(),
                 CreateProductRepository(),
+                ProductFactoryProvider(),
                 SpecialServiceProvider(),
                 ValidatorProvider.CreateSpecialArgsValidator()
             );
-
-        public static ProductMustExistValidator CreateProductNameExistsValidator(IProductRepository productRepository = null) =>
-            new ProductMustExistValidator(productRepository ?? CreateProductRepository());
 
         public static IProductRepository CreateProductRepository() => new InMemoryProductRepositoryFactory().CreateSeededRepository();
 
         public static IProductService CreateProductService()
         {
-            return new ProductService(CreateMapper(), CreateProductRepository());
+            return new PointOfSale.Implementations.Basic.ProductService(Mapper(), CreateProductRepository());
         }
-
-        public static TemporalValidator CreateTemporalValidator() =>
-            new TemporalValidator();
     }
 }

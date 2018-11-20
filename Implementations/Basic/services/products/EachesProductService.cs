@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using AutoMapper;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
 namespace PointOfSale.Implementations
 {
-    public class EachesProductFactory : ProductFactory
+    public class EachesProductService : ProductService
     {
-        public EachesProductFactory(IProductNameArgs args, IMapper mapper) : base(
+        public EachesProductService(IProductNameArgs args, IMapper mapper) : base(
             (IUpsertEachesProductArgs) args,
             mapper
         ) { }

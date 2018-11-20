@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using AutoMapper;
 using PointOfSale.Domain;
 using PointOfSale.Services;
@@ -6,9 +6,9 @@ using static PointOfSale.Domain.MassProduct;
 
 namespace PointOfSale.Implementations
 {
-    public class MassProductFactory : ProductFactory
+    public class MassProductService : ProductService
     {
-        public MassProductFactory(IProductNameArgs args, IMapper mapper) : base(
+        public MassProductService(IProductNameArgs args, IMapper mapper) : base(
             (IUpsertMassProductArgs) args,
             mapper
         ) { }

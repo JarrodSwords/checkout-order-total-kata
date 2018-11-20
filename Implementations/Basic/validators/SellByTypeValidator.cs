@@ -6,7 +6,7 @@ namespace PointOfSale.Implementations.Basic
 {
     public class SellByTypeValidator : AbstractValidator<ISellByTypeArgs>
     {
-        public SellByTypeValidator(IProductFactoryProvider productFactoryProvider)
+        public SellByTypeValidator(IProductServiceProvider productFactoryProvider)
         {
             var sellByTypes = productFactoryProvider.SellByTypes;
 

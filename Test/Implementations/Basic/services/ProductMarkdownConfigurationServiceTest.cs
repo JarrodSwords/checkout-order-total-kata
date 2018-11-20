@@ -14,7 +14,7 @@ namespace PointOfSale.Test.Implementations.Basic
     {
         public ProductMarkdownConfigurationServiceTest()
         {
-            _productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
+            _productMarkdownConfigurationService = DependencyProvider.ProductMarkdownConfigurationService();
         }
 
         [Theory]
@@ -51,7 +51,7 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
         {
-            private readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
+            private readonly DateTime _now = DependencyProvider.DateTimeProvider().Now;
 
             public IEnumerator<object[]> GetEnumerator()
             {

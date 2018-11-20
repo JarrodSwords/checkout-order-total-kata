@@ -6,6 +6,14 @@ namespace PointOfSale.Test.Implementations.Basic
 {
     public static class ValidatorProvider
     {
+        public static CreateProductArgsValidator CreateProductArgsValidator() =>
+            new CreateProductArgsValidator(
+                ProductMustNotExistValidator(),
+                SellByTypeValidator(),
+                IUpsertEachesProductArgsValidator(),
+                IUpsertMassProductArgsValidator()
+            );
+
         public static CreateSpecialArgsValidator CreateSpecialArgsValidator(IProductRepository productRepository = null)
         {
             productRepository = productRepository ?? DependencyProvider.CreateProductRepository();
@@ -28,7 +36,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static ProductMustNotExistValidator ProductMustNotExistValidator(IProductRepository productRepository = null) =>
             new ProductMustNotExistValidator(productRepository ?? DependencyProvider.CreateProductRepository());
 
-        public static SellByTypeValidator SellByTypeValidator(IProductFactoryProvider productFactoryProvider = null) =>
+        public static SellByTypeValidator SellByTypeValidator(IProductServiceProvider productFactoryProvider = null) =>
             new SellByTypeValidator(productFactoryProvider ?? DependencyProvider.ProductFactoryProvider());
 
         public static IUpsertEachesProductArgsValidator IUpsertEachesProductArgsValidator() =>
@@ -37,13 +45,8 @@ namespace PointOfSale.Test.Implementations.Basic
         public static IUpsertMassProductArgsValidator IUpsertMassProductArgsValidator() =>
             new IUpsertMassProductArgsValidator();
 
-        public static CreateProductArgsValidator CreateProductArgsValidator() =>
-            new CreateProductArgsValidator(
-                ProductMustNotExistValidator(),
-                SellByTypeValidator(),
-                IUpsertEachesProductArgsValidator(),
-                IUpsertMassProductArgsValidator()
-            );
+        public static TemporalValidator CreateTemporalValidator() =>
+            new TemporalValidator();
 
         public static UpdateProductArgsValidator UpdateProductArgsValidator() =>
             new UpdateProductArgsValidator(

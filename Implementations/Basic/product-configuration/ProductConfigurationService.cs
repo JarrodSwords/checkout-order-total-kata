@@ -9,19 +9,19 @@ namespace PointOfSale.Implementations.Basic
     {
         #region Dependencies
 
-        private readonly IProductFactoryProvider _productFactoryProvider;
         private readonly IProductRepository _productRepository;
+        private readonly IProductServiceProvider _productServiceProvider;
         private readonly CreateProductArgsValidator _createProductArgsValidator;
         private readonly UpdateProductArgsValidator _updateProductArgsValidator;
 
         public ProductConfigurationService(
-            IProductFactoryProvider productFactoryProvider,
             IProductRepository productRepository,
+            IProductServiceProvider productServiceProvider,
             CreateProductArgsValidator createProductArgsValidator,
             UpdateProductArgsValidator updateProductArgsValidator
         )
         {
-            _productFactoryProvider = productFactoryProvider;
+            _productServiceProvider = productServiceProvider;
             _productRepository = productRepository;
             _createProductArgsValidator = createProductArgsValidator;
             _updateProductArgsValidator = updateProductArgsValidator;
@@ -33,10 +33,10 @@ namespace PointOfSale.Implementations.Basic
         {
             _createProductArgsValidator.ValidateAndThrow(args);
 
-            var productFactory = _productFactoryProvider.GetFactory(args);
-            var product = productFactory.Create();
+            var productService = _productServiceProvider.GetService(args);
+            var product = productService.Create();
             product = _productRepository.CreateProduct(product);
-            return productFactory.CreateProductDto(product);
+            return productService.CreateProductDto(product);
         }
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
@@ -44,10 +44,10 @@ namespace PointOfSale.Implementations.Basic
             _updateProductArgsValidator.ValidateAndThrow(args);
 
             var product = _productRepository.FindProduct(args.ProductName);
-            var productFactory = _productFactoryProvider.GetFactory(args);
-            product = productFactory.UpdateProduct(product);
+            var productService = _productServiceProvider.GetService(args);
+            product = productService.UpdateProduct(product);
             product = _productRepository.UpdateProduct(product);
-            return productFactory.CreateProductDto(product);
+            return productService.CreateProductDto(product);
         }
     }
 }

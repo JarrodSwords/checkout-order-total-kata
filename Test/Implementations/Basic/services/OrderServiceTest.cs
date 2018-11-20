@@ -6,7 +6,7 @@ namespace PointOfSale.Test.Implementations.Basic
     {
         public OrderServiceTest()
         {
-            _orderService = DependencyProvider.CreateOrderService();
+            _orderService = DependencyProvider.OrderService();
         }
     }
 }
