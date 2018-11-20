@@ -6,10 +6,10 @@ namespace PointOfSale.Implementations
 {
     public abstract class ProductFactory : IFactory<Product>
     {
-        protected readonly IProductArgs _args;
+        protected readonly IProductNameArgs _args;
         protected readonly IMapper _mapper;
 
-        public ProductFactory(IProductArgs args, IMapper mapper)
+        public ProductFactory(IProductNameArgs args, IMapper mapper)
         {
             _args = args;
             _mapper = mapper;

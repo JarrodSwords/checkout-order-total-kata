@@ -7,6 +7,6 @@ namespace PointOfSale.Implementations
     {
         IEnumerable<string> SellByTypes { get; }
 
-        ProductFactory GetFactory(IProductArgs args);
+        ProductFactory GetFactory(UpsertProductArgs args);
     }
 }

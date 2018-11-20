@@ -1,6 +1,6 @@
 ﻿namespace PointOfSale.Services
 {
-    public interface IUpsertMassProductArgs : IProductArgs
+    public interface IUpsertMassProductArgs : IProductNameArgs, ISellByTypeArgs
     {
         double? MassAmount { get; set; }
         string MassUnit { get; set; }

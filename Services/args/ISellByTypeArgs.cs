@@ -1,8 +1,7 @@
 namespace PointOfSale.Services
 {
-    public interface IProductArgs
+    public interface ISellByTypeArgs
     {
-        string ProductName { get; set; }
         string SellByType { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public class ProductNameExistsValidator : AbstractValidator<IProductArgs>
+    public class ProductNameExistsValidator : AbstractValidator<IProductNameArgs>
     {
         public ProductNameExistsValidator(IProductRepository productRepository)
         {

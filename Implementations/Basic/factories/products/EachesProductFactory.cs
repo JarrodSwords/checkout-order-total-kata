@@ -7,7 +7,7 @@ namespace PointOfSale.Implementations
 {
     public class EachesProductFactory : ProductFactory
     {
-        public EachesProductFactory(IProductArgs args, IMapper mapper) : base(
+        public EachesProductFactory(IProductNameArgs args, IMapper mapper) : base(
             (IUpsertEachesProductArgs) args,
             mapper
         ) { }

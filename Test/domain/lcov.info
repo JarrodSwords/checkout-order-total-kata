@@ -1,10 +1,10 @@
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:191,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,191
+FNDA:192,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,192
 DA:9,192
-DA:10,191
-DA:11,190
+DA:10,192
+DA:11,192
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:16,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,16
@@ -560,8 +560,8 @@ FN:32,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:73,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:33,73
 FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-DA:35,105
+FNDA:104,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:35,104
 DA:36,105
 DA:37,105
 DA:38,105
@@ -576,15 +576,15 @@ FNH:12
 end_of_record
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
 FN:7,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-FNDA:142,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-DA:8,142
+FNDA:143,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
+DA:8,143
 FN:8,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 FNDA:200,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 DA:9,200
 FN:33,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 FNDA:45,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 DA:34,45
-DA:35,46
+DA:35,45
 DA:37,46
 DA:38,2
 DA:40,44
@@ -604,9 +604,9 @@ DA:13,46
 DA:14,46
 DA:15,46
 FN:17,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
-FNDA:46,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
-DA:18,46
-DA:19,46
+FNDA:45,System.Boolean PointOfSale.Domain.ProductSpecial/<CreateLineItems>d__7::MoveNext()
+DA:18,45
+DA:19,45
 DA:20,7
 DA:22,39
 DA:24,168
@@ -620,7 +620,7 @@ BRDA:19,51,0,7
 BRDA:19,51,1,39
 BRDA:24,298,1,48
 BRDA:26,126,0,7
-BRDA:26,126,1,41
+BRDA:26,126,1,40
 BRDA:26,196,0,3
 BRDA:26,196,1,45
 BRDA:18,14,1,45
@@ -915,8 +915,8 @@ FNH:5
 end_of_record
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicDateTimeProvider.cs
 FN:6,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
-FNDA:96,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
-DA:7,96
+FNDA:95,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
+DA:7,95
 LF:1
 LH:1
 BRF:0
