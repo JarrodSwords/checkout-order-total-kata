@@ -6,7 +6,7 @@ namespace PointOfSale.Domain
     {
         public DateTime EndTime { get; }
         public DateTime StartTime { get; }
-        
+
         public bool IsActive
         {
             get

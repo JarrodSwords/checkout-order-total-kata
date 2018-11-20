@@ -1,5 +1,4 @@
 using FluentValidation;
-using PointOfSale.Domain;
 using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic

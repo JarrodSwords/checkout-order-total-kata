@@ -1,4 +1,3 @@
-using AutoMapper;
 using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;

@@ -4,7 +4,6 @@ using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-
     public class UpsertProductMarkdownArgsValidator : AbstractValidator<UpsertProductMarkdownArgs>
     {
         public UpsertProductMarkdownArgsValidator(

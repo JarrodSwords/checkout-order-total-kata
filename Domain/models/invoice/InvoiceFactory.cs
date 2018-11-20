@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace PointOfSale.Domain
 {
-
     public partial class Invoice
     {
         public class Factory : IInvoiceFactory
