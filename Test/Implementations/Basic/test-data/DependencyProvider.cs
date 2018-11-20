@@ -42,7 +42,7 @@ namespace PointOfSale.Test.Implementations.Basic
             var iUpsertMassProductArgsValidator = new IUpsertMassProductArgsValidator();
             var createProductArgsValidator = new CreateProductArgsValidator(createProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
 
-            var updateProductNameValidator = new ProductNameExistsValidator(productRepository);
+            var updateProductNameValidator = CreateProductNameExistsValidator(productRepository);
             var updateProductArgsValidator = new UpdateProductArgsValidator(updateProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
 
             return new ProductConfigurationService(productFactoryProvider, productRepository, createProductArgsValidator, updateProductArgsValidator);
@@ -57,6 +57,9 @@ namespace PointOfSale.Test.Implementations.Basic
             return new ProductMarkdownConfigurationService(CreateMapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
         }
 
+        public static ProductNameExistsValidator CreateProductNameExistsValidator(IProductRepository productRepository = null) =>
+            new ProductNameExistsValidator(productRepository ?? CreateProductRepository());
+
         public static IProductRepository CreateProductRepository() => new InMemoryProductRepositoryFactory().CreateSeededRepository();
 
         public static IProductService CreateProductService()
@@ -70,7 +73,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static BuyNForXAmountConfigurationService CreateBuyNForXAmountConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
 
             return new BuyNForXAmountConfigurationService(
                 CreateMapper(),
@@ -83,7 +86,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static BuyNGetMAtXPercentOffConfigurationService CreateBuyNGetMAtXPercentOffConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
 
             return new BuyNGetMAtXPercentOffConfigurationService(
                 CreateMapper(),
@@ -96,7 +99,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
 
             return new BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
                 CreateMapper(),

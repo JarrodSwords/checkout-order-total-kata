@@ -18,7 +18,11 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest()
         {
-            var baseValidator = new CreateSpecialArgsValidator(_productRepository, DependencyProvider.CreateTemporalValidator());
+            var baseValidator = new CreateSpecialArgsValidator(
+                DependencyProvider.CreateProductNameExistsValidator(_productRepository),
+                DependencyProvider.CreateTemporalValidator()
+            );
+            
             _validator = new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(_productRepository, baseValidator);
         }
 

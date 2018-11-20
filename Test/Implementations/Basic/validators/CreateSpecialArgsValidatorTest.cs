@@ -18,7 +18,10 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public CreateSpecialArgsValidatorTest()
         {
-            _validator = new CreateSpecialArgsValidator(_productRepository, DependencyProvider.CreateTemporalValidator());
+            _validator = new CreateSpecialArgsValidator(
+                DependencyProvider.CreateProductNameExistsValidator(_productRepository),
+                DependencyProvider.CreateTemporalValidator()
+            );
         }
 
         [Fact]

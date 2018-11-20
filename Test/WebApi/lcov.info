@@ -1754,30 +1754,22 @@ FNF:2
 FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\product-special-configuration\validators\CreateSpecialArgsValidator.cs
-FN:21,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::CreateRules()
-FNDA:3,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::CreateRules()
-DA:22,3
-DA:23,3
-DA:24,3
-DA:25,3
-DA:26,3
-FN:10,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::.ctor(PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.Basic.TemporalValidator)
-FNDA:3,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::.ctor(PointOfSale.Domain.IProductRepository,PointOfSale.Implementations.Basic.TemporalValidator)
+FN:8,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::.ctor(PointOfSale.Implementations.Basic.ProductNameExistsValidator,PointOfSale.Implementations.Basic.TemporalValidator)
+FNDA:3,System.Void PointOfSale.Implementations.Basic.CreateSpecialArgsValidator::.ctor(PointOfSale.Implementations.Basic.ProductNameExistsValidator,PointOfSale.Implementations.Basic.TemporalValidator)
+DA:9,3
+DA:10,3
 DA:11,3
 DA:12,3
 DA:13,3
 DA:14,3
 DA:15,3
 DA:16,3
-DA:17,3
-DA:18,3
-DA:19,3
-LF:14
-LH:14
+LF:8
+LH:8
 BRF:0
 BRH:0
-FNF:2
-FNH:2
+FNF:1
+FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\validators\ProductNameDoesNotExistValidator.cs
 FN:8,System.Void PointOfSale.Implementations.Basic.ProductNameDoesNotExistValidator::.ctor(PointOfSale.Domain.IProductRepository)
@@ -1799,15 +1791,15 @@ FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\validators\ProductNameExistsValidator.cs
 FN:8,System.Void PointOfSale.Implementations.Basic.ProductNameExistsValidator::.ctor(PointOfSale.Domain.IProductRepository)
-FNDA:1,System.Void PointOfSale.Implementations.Basic.ProductNameExistsValidator::.ctor(PointOfSale.Domain.IProductRepository)
-DA:9,1
-DA:10,1
-DA:11,1
-DA:12,1
-DA:13,1
-DA:14,1
-DA:15,1
-DA:16,1
+FNDA:4,System.Void PointOfSale.Implementations.Basic.ProductNameExistsValidator::.ctor(PointOfSale.Domain.IProductRepository)
+DA:9,4
+DA:10,4
+DA:11,4
+DA:12,4
+DA:13,4
+DA:14,4
+DA:15,4
+DA:16,4
 LF:8
 LH:8
 BRF:0
@@ -3294,104 +3286,68 @@ DA:54,1
 DA:55,1
 DA:57,1
 DA:58,1
-FN:59,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
+FN:60,PointOfSale.Implementations.Basic.ProductNameExistsValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductNameExistsValidator(PointOfSale.Domain.IProductRepository)
+FNDA:4,PointOfSale.Implementations.Basic.ProductNameExistsValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductNameExistsValidator(PointOfSale.Domain.IProductRepository)
+DA:61,4
+BRDA:61,2,0,0
+BRDA:61,2,1,4
+FN:62,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
 FNDA:6,PointOfSale.Domain.IProductRepository PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductRepository()
-DA:60,6
-FN:62,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
+DA:63,6
+FN:65,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
 FNDA:1,PointOfSale.Services.IProductService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateProductService()
-DA:63,1
-DA:64,1
-DA:65,1
-FN:67,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateTemporalValidator()
+DA:66,1
+DA:67,1
+DA:68,1
+FN:70,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateTemporalValidator()
 FNDA:4,PointOfSale.Implementations.Basic.TemporalValidator PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateTemporalValidator()
-DA:68,4
-FN:70,PointOfSale.Implementations.Basic.BuyNForXAmountConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNForXAmountConfigurationService()
+DA:71,4
+FN:73,PointOfSale.Implementations.Basic.BuyNForXAmountConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNForXAmountConfigurationService()
 FNDA:1,PointOfSale.Implementations.Basic.BuyNForXAmountConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNForXAmountConfigurationService()
-DA:71,1
-DA:72,1
-DA:73,1
+DA:74,1
 DA:75,1
 DA:76,1
-DA:77,1
 DA:78,1
 DA:79,1
 DA:80,1
 DA:81,1
-FN:83,PointOfSale.Implementations.Basic.BuyNGetMAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMAtXPercentOffConfigurationService()
-FNDA:1,PointOfSale.Implementations.Basic.BuyNGetMAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMAtXPercentOffConfigurationService()
+DA:82,1
+DA:83,1
 DA:84,1
-DA:85,1
-DA:86,1
+FN:86,PointOfSale.Implementations.Basic.BuyNGetMAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMAtXPercentOffConfigurationService()
+FNDA:1,PointOfSale.Implementations.Basic.BuyNGetMAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMAtXPercentOffConfigurationService()
+DA:87,1
 DA:88,1
 DA:89,1
-DA:90,1
 DA:91,1
 DA:92,1
 DA:93,1
 DA:94,1
-FN:96,PointOfSale.Implementations.Basic.BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
-FNDA:1,PointOfSale.Implementations.Basic.BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
+DA:95,1
+DA:96,1
 DA:97,1
-DA:98,1
-DA:99,1
+FN:99,PointOfSale.Implementations.Basic.BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
+FNDA:1,PointOfSale.Implementations.Basic.BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService PointOfSale.Test.Implementations.Basic.DependencyProvider::CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
+DA:100,1
 DA:101,1
 DA:102,1
-DA:103,1
 DA:104,1
 DA:105,1
 DA:106,1
 DA:107,1
-LF:67
-LH:55
-BRF:2
-BRH:2
-FNF:13
-FNH:9
+DA:108,1
+DA:109,1
+DA:110,1
+LF:68
+LH:56
+BRF:4
+BRH:3
+FNF:14
+FNH:10
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateBuyNForXAmountSpecialArgsValidatorTest.cs
-FN:25,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
+FN:29,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
 FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:34,0
-DA:35,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:41,0
-DA:42,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-FN:13,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::.ctor()
-FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::.ctor()
-DA:14,0
-DA:15,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-LF:26
-LH:0
-BRF:0
-BRH:0
-FNF:2
-FNH:0
-end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest.cs
-FN:26,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
-FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
-DA:27,0
-DA:28,0
-DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
@@ -3411,15 +3367,18 @@ DA:48,0
 DA:49,0
 DA:50,0
 DA:51,0
-FN:14,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::.ctor()
-FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::.ctor()
+FN:13,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::.ctor()
+FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNForXAmountSpecialArgsValidatorTest::.ctor()
+DA:14,0
 DA:15,0
-DA:16,0
+DA:18,0
 DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
+DA:25,0
+DA:26,0
 LF:29
 LH:0
 BRF:0
@@ -3427,13 +3386,9 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest.cs
-FN:26,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
-FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest.cs
+FN:30,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
+FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
 DA:31,0
 DA:32,0
 DA:33,0
@@ -3443,14 +3398,62 @@ DA:36,0
 DA:37,0
 DA:38,0
 DA:39,0
+DA:40,0
 DA:41,0
 DA:42,0
 DA:43,0
 DA:45,0
 DA:46,0
-DA:48,0
+DA:47,0
 DA:49,0
 DA:50,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+FN:14,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::.ctor()
+FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMAtXPercentOffSpecialArgsValidatorTest::.ctor()
+DA:15,0
+DA:16,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:26,0
+DA:27,0
+LF:32
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest.cs
+FN:30,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
+FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::CreateBuyNForXAmountSpecialArgsValidator_ContainsCorrectValidationRules()
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:52,0
+DA:53,0
+DA:54,0
 FN:14,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::.ctor()
 FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidatorTest::.ctor()
 DA:15,0
@@ -3460,7 +3463,10 @@ DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
-LF:28
+DA:24,0
+DA:26,0
+DA:27,0
+LF:31
 LH:0
 BRF:0
 BRH:0
@@ -3468,20 +3474,20 @@ FNF:2
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Implementations\Basic\validators\CreateSpecialArgsValidatorTest.cs
-FN:25,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::CreateSpecialArgsValidator_ContainsCorrectValidationRules()
+FN:28,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::CreateSpecialArgsValidator_ContainsCorrectValidationRules()
 FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::CreateSpecialArgsValidator_ContainsCorrectValidationRules()
-DA:26,0
-DA:27,0
-DA:28,0
 DA:29,0
 DA:30,0
 DA:31,0
+DA:32,0
 DA:33,0
 DA:34,0
-DA:35,0
+DA:36,0
 DA:37,0
 DA:38,0
-DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
 FN:14,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::.ctor()
 FNDA:0,System.Void PointOfSale.Test.Implementations.Basic.CreateSpecialArgsValidatorTest::.ctor()
 DA:15,0
@@ -3490,7 +3496,10 @@ DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
-LF:18
+DA:23,0
+DA:24,0
+DA:25,0
+LF:21
 LH:0
 BRF:0
 BRH:0
