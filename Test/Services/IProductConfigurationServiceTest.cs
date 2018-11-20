@@ -33,7 +33,7 @@ namespace PointOfSale.Test.Services
 
             var persistedProductDto = _productConfigurationService.CreateProduct(args);
 
-            persistedProductDto.Name.Should().Be(args.Name);
+            persistedProductDto.Name.Should().Be(args.ProductName);
             // persistedProductDto.RetailPrice.Should().Be(args.RetailPrice);
             persistedProductDto.SellByType.Should().Be(args.SellByType);
         }
@@ -56,7 +56,7 @@ namespace PointOfSale.Test.Services
 
             var persistedProductDto = _productConfigurationService.UpdateProduct(args);
 
-            persistedProductDto.Name.Should().Be(args.Name);
+            persistedProductDto.Name.Should().Be(args.ProductName);
             // persistedProductDto.RetailPrice.Should().Be(args.RetailPrice);
             persistedProductDto.SellByType.Should().Be(args.SellByType);
         }

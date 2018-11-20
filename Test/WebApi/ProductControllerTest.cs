@@ -37,14 +37,14 @@ namespace PointOfSale.Test.WebApi
         {
             var args = new UpsertProductArgs
             {
-                Name = "something",
+                ProductName = "something",
                 RetailPrice = 1,
                 SellByType = "eaches"
             };
 
             var productDto = _productController.CreateProduct(args).Value;
 
-            productDto.Name.Should().Be(args.Name);
+            productDto.Name.Should().Be(args.ProductName);
             // productDto.RetailPrice.Should().Be(args.RetailPrice);
             productDto.SellByType.Should().Be(args.SellByType);
         }

@@ -4,7 +4,7 @@ namespace PointOfSale.Services
     {
         public double? MassAmount { get; set; }
         public string MassUnit { get; set; }
-        public string Name { get; set; }
+        public string ProductName { get; set; }
         public decimal? RetailPrice { get; set; }
         public decimal? RetailPricePerUnit { get; set; }
         public string SellByType { get; set; }
@@ -19,7 +19,7 @@ namespace PointOfSale.Services
         /// <param name="sellByType"></param>
         public UpsertProductArgs(string name, decimal? retailPrice, string sellByType)
         {
-            Name = name;
+            ProductName = name;
             RetailPrice = retailPrice;
             SellByType = sellByType;
         }
@@ -36,7 +36,7 @@ namespace PointOfSale.Services
         {
             MassAmount = massAmount;
             MassUnit = massUnit;
-            Name = name;
+            ProductName = name;
             RetailPricePerUnit = retailPricePerUnit;
             SellByType = sellByType;
         }

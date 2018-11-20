@@ -1,11 +1,11 @@
-using FluentValidation;
+﻿using FluentValidation;
 using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public class RetailPriceValidator : AbstractValidator<IUpsertEachesProductArgs>
+    public class IUpsertEachesProductArgsValidator : AbstractValidator<IUpsertEachesProductArgs>
     {
-        public RetailPriceValidator()
+        public IUpsertEachesProductArgsValidator()
         {
             RuleFor(x => x.RetailPrice)
                 .NotNull()

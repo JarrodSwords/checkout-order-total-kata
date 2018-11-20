@@ -42,7 +42,7 @@ namespace PointOfSale.Implementations.Basic
         {
             _updateProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
 
-            var product = _productRepository.FindProduct(args.Name);
+            var product = _productRepository.FindProduct(args.ProductName);
             var productFactory = _productFactoryProvider.GetFactory(args);
             product = productFactory.UpdateProduct(product);
             product = _productRepository.UpdateProduct(product);

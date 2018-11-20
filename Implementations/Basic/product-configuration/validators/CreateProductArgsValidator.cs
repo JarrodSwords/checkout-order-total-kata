@@ -3,13 +3,13 @@ namespace PointOfSale.Implementations.Basic
     public class CreateProductArgsValidator : UpsertProductArgsValidator
     {
         public CreateProductArgsValidator(
-            CreateProductNameValidator createProductNameValidator,
+            ProductNameDoesNotExistValidator createProductNameValidator,
             SellByTypeValidator sellByTypeValidator,
-            RetailPriceValidator retailPriceValidator,
+            IUpsertEachesProductArgsValidator iUpsertEachesProductArgsValidator,
             IUpsertMassProductArgsValidator iUpsertMassProductArgsValidator
         ) : base(
             sellByTypeValidator,
-            retailPriceValidator,
+            iUpsertEachesProductArgsValidator,
             iUpsertMassProductArgsValidator
         )
         {

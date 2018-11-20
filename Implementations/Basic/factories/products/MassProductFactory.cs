@@ -8,7 +8,7 @@ namespace PointOfSale.Implementations
 {
     public class MassProductFactory : ProductFactory
     {
-        public MassProductFactory(IUpsertProductArgs args, IMapper mapper) : base(
+        public MassProductFactory(IProductArgs args, IMapper mapper) : base(
             (IUpsertMassProductArgs) args,
             mapper
         ) { }
@@ -16,7 +16,7 @@ namespace PointOfSale.Implementations
         public override Product Create()
         {
             var args = (IUpsertMassProductArgs) _args;
-            var builder = new MassProductBuilder(args.Name, args.RetailPricePerUnit.Value);
+            var builder = new MassProductBuilder(args.ProductName, args.RetailPricePerUnit.Value);
 
             if ((args.MassAmount.HasValue && args.MassAmount > 0) && !String.IsNullOrWhiteSpace(args.MassUnit))
                 builder.SetMass(args.MassAmount.Value, args.MassUnit);

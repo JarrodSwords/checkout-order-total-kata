@@ -49,7 +49,7 @@ namespace PointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> UpdateProduct(string productName, [FromBody] UpsertProductArgs args)
         {
-            args.Name = productName;
+            args.ProductName = productName;
             return _productConfigurationService.UpdateProduct(args);
         }
 

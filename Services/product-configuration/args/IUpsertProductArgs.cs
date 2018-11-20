@@ -1,17 +1,11 @@
 namespace PointOfSale.Services
 {
-    public interface IUpsertProductArgs
-    {
-        string Name { get; set; }
-        string SellByType { get; set; }
-    }
-
-    public interface IUpsertEachesProductArgs : IUpsertProductArgs
+    public interface IUpsertEachesProductArgs : IProductArgs
     {
         decimal? RetailPrice { get; set; }
     }
 
-    public interface IUpsertMassProductArgs : IUpsertProductArgs
+    public interface IUpsertMassProductArgs : IProductArgs
     {
         double? MassAmount { get; set; }
         string MassUnit { get; set; }

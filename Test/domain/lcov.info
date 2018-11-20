@@ -1,8 +1,8 @@
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:192,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,192
-DA:9,192
+FNDA:190,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,190
+DA:9,190
 DA:10,191
 DA:11,191
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
@@ -12,8 +12,8 @@ FN:13,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfNextWeek(Sys
 FNDA:10,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfNextWeek(System.DateTime)
 DA:14,10
 FN:14,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
-FNDA:70,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
-DA:15,70
+FNDA:69,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
+DA:15,69
 FN:15,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfLastWeek(System.DateTime)
 FNDA:16,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfLastWeek(System.DateTime)
 DA:16,16
@@ -27,7 +27,7 @@ BRH:0
 FNF:6
 FNH:6
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\Invoice.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\Invoice.cs
 FN:8,System.Int64 PointOfSale.Domain.Invoice::get_OrderId()
 FNDA:0,System.Int64 PointOfSale.Domain.Invoice::get_OrderId()
 DA:9,0
@@ -62,7 +62,7 @@ BRH:2
 FNF:6
 FNH:3
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\InvoiceFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\InvoiceFactory.cs
 FN:10,PointOfSale.Domain.Order PointOfSale.Domain.Invoice/Factory::get_Order()
 FNDA:6,PointOfSale.Domain.Order PointOfSale.Domain.Invoice/Factory::get_Order()
 DA:11,6
@@ -143,7 +143,7 @@ BRH:18
 FNF:8
 FNH:8
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\LineItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\LineItem.cs
 FN:6,System.String PointOfSale.Domain.LineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.LineItem::get_Description()
 DA:7,0
@@ -170,7 +170,7 @@ BRH:0
 FNF:5
 FNH:2
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\MarkdownLineItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\MarkdownLineItem.cs
 FN:6,System.String PointOfSale.Domain.MarkdownLineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.MarkdownLineItem::get_Description()
 DA:7,0
@@ -190,7 +190,7 @@ BRH:0
 FNF:3
 FNH:2
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\RetailLineItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\RetailLineItem.cs
 FN:6,System.Int32 PointOfSale.Domain.RetailLineItem::get_ScannedItemId()
 FNDA:10,System.Int32 PointOfSale.Domain.RetailLineItem::get_ScannedItemId()
 DA:7,10
@@ -207,7 +207,7 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\SpecialLineItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\SpecialLineItem.cs
 FN:7,System.String PointOfSale.Domain.SpecialLineItem::get_Description()
 FNDA:0,System.String PointOfSale.Domain.SpecialLineItem::get_Description()
 DA:8,0
@@ -231,7 +231,7 @@ BRH:0
 FNF:4
 FNH:2
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\Order.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\Order.cs
 FN:9,System.Int64 PointOfSale.Domain.Order::get_Id()
 FNDA:5,System.Int64 PointOfSale.Domain.Order::get_Id()
 DA:10,5
@@ -253,8 +253,8 @@ DA:23,1
 DA:24,1
 DA:25,1
 FN:7,System.Void PointOfSale.Domain.Order::.ctor()
-FNDA:18,System.Void PointOfSale.Domain.Order::.ctor()
-DA:8,18
+FNDA:19,System.Void PointOfSale.Domain.Order::.ctor()
+DA:8,19
 FN:29,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 FNDA:125,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 DA:30,125
@@ -271,7 +271,7 @@ BRH:4
 FNF:6
 FNH:6
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItem.cs
 FN:6,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
 FNDA:837,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
 DA:7,837
@@ -310,7 +310,7 @@ BRH:0
 FNF:8
 FNH:7
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\WeightedScannedItem.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\WeightedScannedItem.cs
 FN:6,NodaMoney.Money PointOfSale.Domain.WeightedScannedItem::get_MarkdownDiscount()
 FNDA:0,NodaMoney.Money PointOfSale.Domain.WeightedScannedItem::get_MarkdownDiscount()
 DA:7,0
@@ -333,7 +333,7 @@ BRH:0
 FNF:4
 FNH:3
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\EachesProduct.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\EachesProduct.cs
 FN:4,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
 FNDA:77,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
 DA:5,77
@@ -341,8 +341,8 @@ DA:6,77
 DA:7,77
 DA:8,77
 DA:9,77
-DA:10,76
-DA:11,76
+DA:10,77
+DA:11,77
 DA:12,77
 LF:8
 LH:8
@@ -351,7 +351,7 @@ BRH:0
 FNF:1
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ISellableAsEaches.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ISellableAsEaches.cs
 FN:12,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::get_RetailPrice()
 FNDA:196,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::get_RetailPrice()
 DA:13,196
@@ -368,7 +368,7 @@ BRH:0
 FNF:3
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ISellableByMass.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ISellableByMass.cs
 FN:14,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
 FNDA:28,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
 DA:15,28
@@ -394,7 +394,7 @@ BRH:0
 FNF:6
 FNH:4
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\markdown\Markdown.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\markdown\Markdown.cs
 FN:14,NodaMoney.Money PointOfSale.Domain.Markdown::get_AmountOffRetail()
 FNDA:34,NodaMoney.Money PointOfSale.Domain.Markdown::get_AmountOffRetail()
 DA:15,34
@@ -424,7 +424,7 @@ BRH:0
 FNF:6
 FNH:4
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\markdown\MarkdownFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\markdown\MarkdownFactory.cs
 FN:10,NodaMoney.Money PointOfSale.Domain.Markdown/Factory::get_AmountOffRetail()
 FNDA:94,NodaMoney.Money PointOfSale.Domain.Markdown/Factory::get_AmountOffRetail()
 DA:11,94
@@ -460,7 +460,7 @@ BRH:0
 FNF:6
 FNH:6
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
 FN:8,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
 FNDA:28,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
 DA:9,28
@@ -521,7 +521,7 @@ BRH:0
 FNF:9
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\Product.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\Product.cs
 FN:13,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
 FNDA:76,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
 DA:14,76
@@ -562,11 +562,11 @@ DA:33,73
 FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
 FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
 DA:35,105
-DA:36,104
+DA:36,105
 DA:37,105
-DA:38,104
-DA:39,104
-DA:40,104
+DA:38,105
+DA:39,105
+DA:40,105
 LF:17
 LH:17
 BRF:4
@@ -574,13 +574,13 @@ BRH:4
 FNF:12
 FNH:12
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
 FN:7,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
 FNDA:144,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
 DA:8,144
 FN:8,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
-FNDA:199,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
-DA:9,199
+FNDA:201,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
+DA:9,201
 FN:33,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 FNDA:46,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 DA:34,46
@@ -632,7 +632,7 @@ BRH:13
 FNF:5
 FNH:5
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNForXAmountSpecial.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNForXAmountSpecial.cs
 FN:9,System.String PointOfSale.Domain.BuyNForXAmountSpecial::get_Description()
 FNDA:9,System.String PointOfSale.Domain.BuyNForXAmountSpecial::get_Description()
 DA:10,9
@@ -675,7 +675,7 @@ BRH:2
 FNF:7
 FNH:7
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNForXAmountSpecialFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNForXAmountSpecialFactory.cs
 FN:11,System.Int32 PointOfSale.Domain.BuyNForXAmountSpecial/Factory::get_DiscountedItems()
 FNDA:24,System.Int32 PointOfSale.Domain.BuyNForXAmountSpecial/Factory::get_DiscountedItems()
 DA:12,24
@@ -705,13 +705,13 @@ BRH:0
 FNF:5
 FNH:5
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMAtXPercentOffSpecial.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMAtXPercentOffSpecial.cs
 FN:9,System.String PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_Description()
 FNDA:40,System.String PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_Description()
 DA:10,40
 FN:10,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
-FNDA:236,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
-DA:11,236
+FNDA:235,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_DiscountedItems()
+DA:11,235
 FN:11,System.Decimal PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_PercentageOff()
 FNDA:125,System.Decimal PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::get_PercentageOff()
 DA:12,125
@@ -754,7 +754,7 @@ BRH:2
 FNF:9
 FNH:9
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMAtXPercentOffSpecialFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMAtXPercentOffSpecialFactory.cs
 FN:11,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial/Factory::get_DiscountedItems()
 FNDA:74,System.Int32 PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial/Factory::get_DiscountedItems()
 DA:12,74
@@ -788,7 +788,7 @@ BRH:0
 FNF:6
 FNH:6
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.cs
 FN:9,System.String PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::get_Description()
 FNDA:3,System.String PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::get_Description()
 DA:10,3
@@ -835,7 +835,7 @@ BRH:4
 FNF:5
 FNH:4
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory.cs
 FN:14,PointOfSale.Domain.Special PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial/Factory::CreateSpecial()
 FNDA:5,PointOfSale.Domain.Special PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial/Factory::CreateSpecial()
 DA:15,5
@@ -851,7 +851,7 @@ BRH:0
 FNF:2
 FNH:2
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\Special.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\Special.cs
 FN:10,System.DateTime PointOfSale.Domain.Special::get_EndTime()
 FNDA:7,System.DateTime PointOfSale.Domain.Special::get_EndTime()
 DA:11,7
@@ -859,8 +859,8 @@ FN:11,System.Boolean PointOfSale.Domain.Special::get_IsActive()
 FNDA:27,System.Boolean PointOfSale.Domain.Special::get_IsActive()
 DA:12,27
 FN:12,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
-FNDA:62,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
-DA:13,62
+FNDA:61,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
+DA:13,61
 FN:14,System.DateTime PointOfSale.Domain.Special::get_StartTime()
 FNDA:7,System.DateTime PointOfSale.Domain.Special::get_StartTime()
 DA:15,7
@@ -883,7 +883,7 @@ BRH:0
 FNF:6
 FNH:6
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\SpecialFactory.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\specials\SpecialFactory.cs
 FN:7,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
 FNDA:98,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
 DA:8,98
@@ -913,7 +913,7 @@ BRH:0
 FNF:5
 FNH:5
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicDateTimeProvider.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicDateTimeProvider.cs
 FN:6,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
 FNDA:96,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
 DA:7,96
@@ -924,7 +924,7 @@ BRH:0
 FNF:1
 FNH:1
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicTemporal.cs
+SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicTemporal.cs
 FN:6,System.DateTime PointOfSale.Domain.BasicTemporal::get_EndTime()
 FNDA:61,System.DateTime PointOfSale.Domain.BasicTemporal::get_EndTime()
 DA:7,61

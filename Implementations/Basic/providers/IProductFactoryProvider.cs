@@ -5,7 +5,7 @@ namespace PointOfSale.Implementations
 {
     public interface IProductFactoryProvider
     {
-        ProductFactory GetFactory(IUpsertProductArgs args);
+        ProductFactory GetFactory(IProductArgs args);
         IEnumerable<string> GetSellByTypes();
     }
 }

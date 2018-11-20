@@ -4,7 +4,7 @@ using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public class SellByTypeValidator : AbstractValidator<IUpsertProductArgs>
+    public class SellByTypeValidator : AbstractValidator<IProductArgs>
     {
         public SellByTypeValidator(IProductFactoryProvider productFactoryProvider)
         {

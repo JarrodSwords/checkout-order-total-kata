@@ -8,12 +8,12 @@ namespace PointOfSale.Implementations.Basic
     {
         public UpsertProductArgsValidator(
             SellByTypeValidator sellByTypeValidator,
-            RetailPriceValidator retailPriceValidator,
+            IUpsertEachesProductArgsValidator iUpsertEachesProductArgsValidator,
             IUpsertMassProductArgsValidator iUpsertMassProductArgsValidator
         )
         {
             Include(sellByTypeValidator);
-            When(x => x.SellByType == "eaches", () => Include(retailPriceValidator));
+            When(x => x.SellByType == "eaches", () => Include(iUpsertEachesProductArgsValidator));
             When(x => x.SellByType == "mass", () => Include(iUpsertMassProductArgsValidator));
         }
     }
