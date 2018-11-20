@@ -12,7 +12,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public ProductConfigurationServiceTest()
         {
             _productConfigurationService = DependencyProvider.ProductConfigurationService();
-            _productService = DependencyProvider.CreateProductService();
+            _productService = DependencyProvider.ProductService();
         }
 
         #region Create product

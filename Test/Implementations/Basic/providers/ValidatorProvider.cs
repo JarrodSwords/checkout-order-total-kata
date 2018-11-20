@@ -6,6 +6,9 @@ namespace PointOfSale.Test.Implementations.Basic
 {
     public static class ValidatorProvider
     {
+        public static AmountOffRetailValidator AmountOffRetailValidator() =>
+            new AmountOffRetailValidator();
+
         public static CreateProductArgsValidator CreateProductArgsValidator() =>
             new CreateProductArgsValidator(
                 ProductMustNotExistValidator(),
@@ -16,7 +19,7 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static CreateSpecialArgsValidator CreateSpecialArgsValidator(IProductRepository productRepository = null)
         {
-            productRepository = productRepository ?? DependencyProvider.CreateProductRepository();
+            productRepository = productRepository ?? DependencyProvider.ProductRepository();
 
             return new CreateSpecialArgsValidator(
                 new DiscountedItemsValidator(),
@@ -31,13 +34,13 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         public static ProductMustExistValidator ProductMustExistValidator(IProductRepository productRepository = null) =>
-            new ProductMustExistValidator(productRepository ?? DependencyProvider.CreateProductRepository());
+            new ProductMustExistValidator(productRepository ?? DependencyProvider.ProductRepository());
 
         public static ProductMustNotExistValidator ProductMustNotExistValidator(IProductRepository productRepository = null) =>
-            new ProductMustNotExistValidator(productRepository ?? DependencyProvider.CreateProductRepository());
+            new ProductMustNotExistValidator(productRepository ?? DependencyProvider.ProductRepository());
 
         public static SellByTypeValidator SellByTypeValidator(IProductServiceProvider productFactoryProvider = null) =>
-            new SellByTypeValidator(productFactoryProvider ?? DependencyProvider.ProductFactoryProvider());
+            new SellByTypeValidator(productFactoryProvider ?? DependencyProvider.ProductServiceProvider());
 
         public static IUpsertEachesProductArgsValidator IUpsertEachesProductArgsValidator() =>
             new IUpsertEachesProductArgsValidator();
@@ -45,7 +48,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static IUpsertMassProductArgsValidator IUpsertMassProductArgsValidator() =>
             new IUpsertMassProductArgsValidator();
 
-        public static TemporalValidator CreateTemporalValidator() =>
+        public static TemporalValidator TemporalValidator() =>
             new TemporalValidator();
 
         public static UpdateProductArgsValidator UpdateProductArgsValidator() =>
@@ -55,5 +58,18 @@ namespace PointOfSale.Test.Implementations.Basic
                 IUpsertEachesProductArgsValidator(),
                 IUpsertMassProductArgsValidator()
             );
+
+        public static UpsertProductMarkdownArgsValidator UpsertProductMarkdownArgsValidator(IProductRepository productRepository = null)
+        {
+            productRepository = productRepository ?? DependencyProvider.ProductRepository();
+
+            return new UpsertProductMarkdownArgsValidator(
+                AmountOffRetailValidator(),
+                ProductMustExistValidator(),
+                productRepository,
+                SellByTypeValidator(),
+                TemporalValidator()
+            );
+        }
     }
 }

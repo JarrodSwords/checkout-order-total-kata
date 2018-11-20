@@ -11,7 +11,7 @@ namespace PointOfSale.Test.Implementations.Basic
     {
         public static ICheckoutService CheckoutService(IOrderRepository orderRepository)
         {
-            var productRepository = CreateProductRepository();
+            var productRepository = ProductRepository();
             var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(orderRepository);
             var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
             var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
@@ -32,13 +32,13 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static IProductConfigurationService ProductConfigurationService() =>
             new ProductConfigurationService(
-                CreateProductRepository(),
-                ProductFactoryProvider(),
+                ProductRepository(),
+                ProductServiceProvider(),
                 ValidatorProvider.CreateProductArgsValidator(),
                 ValidatorProvider.UpdateProductArgsValidator()
             );
 
-        public static IProductServiceProvider ProductFactoryProvider() =>
+        public static IProductServiceProvider ProductServiceProvider() =>
             new ProductServiceProvider(Mapper());
 
         public static ISpecialServiceProvider SpecialServiceProvider() =>
@@ -50,26 +50,29 @@ namespace PointOfSale.Test.Implementations.Basic
         public static IProductMarkdownConfigurationService ProductMarkdownConfigurationService()
         {
             var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
-            var productRepository = CreateProductRepository();
-            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository, ValidatorProvider.CreateTemporalValidator());
+            var productRepository = ProductRepository();
 
-            return new ProductMarkdownConfigurationService(Mapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
+            return new ProductMarkdownConfigurationService(
+                Mapper(),
+                markdownFactory,
+                productRepository,
+                ValidatorProvider.UpsertProductMarkdownArgsValidator(productRepository)
+            );
         }
 
         public static IProductSpecialConfigurationService ProductSpecialConfigurationService() =>
             new ProductSpecialConfigurationService(
                 Mapper(),
-                CreateProductRepository(),
-                ProductFactoryProvider(),
+                ProductRepository(),
+                ProductServiceProvider(),
                 SpecialServiceProvider(),
                 ValidatorProvider.CreateSpecialArgsValidator()
             );
 
-        public static IProductRepository CreateProductRepository() => new InMemoryProductRepositoryFactory().CreateSeededRepository();
+        public static IProductRepository ProductRepository() =>
+            new InMemoryProductRepositoryFactory().CreateSeededRepository();
 
-        public static IProductService CreateProductService()
-        {
-            return new PointOfSale.Implementations.Basic.ProductService(Mapper(), CreateProductRepository());
-        }
+        public static IProductService ProductService() =>
+            new PointOfSale.Implementations.Basic.ProductService(Mapper(), ProductRepository());
     }
 }

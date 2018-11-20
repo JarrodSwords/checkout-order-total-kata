@@ -2,21 +2,21 @@ using System;
 
 namespace PointOfSale.Services
 {
-    public class UpsertProductMarkdownArgs : ITemporalArgs
+    public class UpsertProductMarkdownArgs : IAmountOffRetailArgs, IProductNameArgs, ISellByTypeArgs, ITemporalArgs
     {
         public decimal? AmountOffRetail { get; set; }
         public DateTime? EndTime { get; set; }
         public string ProductName { get; set; }
+        public string SellByType { get; set; }
         public DateTime? StartTime { get; set; }
 
-        public UpsertProductMarkdownArgs() { }
-
-        public UpsertProductMarkdownArgs(string productName, decimal? amountOffRetail, DateTime? startTime, DateTime? endTime)
+        public UpsertProductMarkdownArgs(decimal? amountOffRetail, DateTime? endTime, string productName, string sellByType, DateTime? startTime)
         {
-            ProductName = productName;
             AmountOffRetail = amountOffRetail;
-            StartTime = startTime;
             EndTime = endTime;
+            ProductName = productName;
+            SellByType = sellByType;
+            StartTime = startTime;
         }
     }
 }

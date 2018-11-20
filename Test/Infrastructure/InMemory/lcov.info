@@ -560,8 +560,8 @@ FN:32,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:0,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:33,0
 FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-DA:35,105
+FNDA:104,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:35,104
 DA:36,105
 DA:37,105
 DA:38,105

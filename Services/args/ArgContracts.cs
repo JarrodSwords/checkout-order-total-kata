@@ -2,6 +2,11 @@
 
 namespace PointOfSale.Services
 {
+    public interface IAmountOffRetailArgs
+    {
+        decimal? AmountOffRetail { get; set; }
+    }
+
     public interface IDiscountedItemsArgs
     {
         int? DiscountedItems { get; set; }
@@ -41,7 +46,7 @@ namespace PointOfSale.Services
     {
         string SpecialType { get; set; }
     }
-    
+
     public interface ITemporalArgs
     {
         DateTime? EndTime { get; set; }
