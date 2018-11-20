@@ -6,35 +6,47 @@ using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public abstract partial class ProductSpecialConfigurationService : IProductSpecialConfigurationService
+    public class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {
+        private readonly IValidator<CreateSpecialArgs> _createSpecialArgsValidator;
         protected readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private readonly IValidator<CreateSpecialArgs> _validator;
+        private readonly IProductServiceProvider _productServiceProvider;
+        private readonly ISpecialServiceProvider _specialServiceProvider;
 
-        public ProductSpecialConfigurationService(IMapper mapper, IProductRepository productRepository, IValidator<CreateSpecialArgs> validator)
+        public ProductSpecialConfigurationService(
+            IMapper mapper,
+            IProductRepository productRepository,
+            IProductServiceProvider productServiceProvider,
+            ISpecialServiceProvider specialServiceProvider,
+            IValidator<CreateSpecialArgs> createSpecialArgsValidator
+        )
         {
+            _createSpecialArgsValidator = createSpecialArgsValidator;
             _mapper = mapper;
+            _productServiceProvider = productServiceProvider;
             _productRepository = productRepository;
-            _validator = validator;
+            _specialServiceProvider = specialServiceProvider;
         }
 
         public ProductDto CreateSpecial(CreateSpecialArgs args)
         {
-            _validator.ValidateAndThrow<CreateSpecialArgs>(args);
+            _createSpecialArgsValidator.ValidateAndThrow(args);
 
             var product = _productRepository.FindProduct(args.ProductName);
-            var specialFactory = GetConfiguredSpecialFactory(args);
-            product.Special = specialFactory.CreateSpecial();
+            var specialService = _specialServiceProvider.GetService(args);
+
+            product.Special = specialService.Create();
 
             var persistedProduct = _productRepository.UpdateProduct(product);
+            var dummy = new UpsertProductArgs()
+            {
+                SellByType = persistedProduct.GetType() == typeof(EachesProduct) ? "eaches" : "mass"
+            };
 
-            var productDto = _mapper.Map<ProductDto>(persistedProduct);
-            productDto.Special = CreateSpecialDto(persistedProduct.Special);
+            var productDto = _productServiceProvider.GetService(dummy).ToDto(persistedProduct);
+            productDto.Special = specialService.ToDto(persistedProduct.Special);
             return productDto;
         }
-
-        public abstract ISpecialFactory GetConfiguredSpecialFactory(CreateSpecialArgs args);
-        public abstract ISpecialDto CreateSpecialDto(Special special);
     }
 }

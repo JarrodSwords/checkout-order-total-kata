@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 using PointOfSale.Test.Services;
@@ -13,50 +14,74 @@ namespace PointOfSale.Test.Implementations.Basic
     {
         public ProductMarkdownConfigurationServiceTest()
         {
-            _productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
+            _productMarkdownConfigurationService = DependencyProvider.ProductMarkdownConfigurationService();
         }
 
         [Theory]
-        [InlineData(null, "*Markdown product name is required*")]
-        [InlineData("", "*Markdown product name is required*")]
-        [InlineData(" ", "*Markdown product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
+        [InlineData(null, "*'Product name' should not be empty*")]
+        [InlineData("", "*'Product name' should not be empty*")]
+        [InlineData(" ", "*'Product name' should not be empty*")]
+        [InlineData("milk", "*'Product name' \"milk\" does not exist*")]
         public void UpsertProductMarkdown_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs(productName, 0.1m, _now.StartOfWeek(), _now.EndOfWeek()));
+            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(
+                new UpsertProductMarkdownArgs(
+                    0.1m,
+                    _now.EndOfWeek(),
+                    productName,
+                    "eaches",
+                    _now.StartOfWeek()
+                )
+            );
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
-        [InlineData(null, "*Markdown amount off retail is required*")]
-        [InlineData(0, "*Markdown amount off retail must be greater than zero*")]
-        [InlineData(10, "*Markdown amount off retail must be less than or equal to product retail price*")]
+        [InlineData(null, "*'Amount Off Retail' must not be empty*")]
+        [InlineData(0, "*'Amount Off Retail' must be greater than '0'*")]
+        [InlineData(10, "*Amount Off Retail must be less than or equal to 'Retail Price'*")]
         public void UpsertProductMarkdown_WithInvalidMarkdownAmountOffRetail_ThrowsArgumentException(double? amountOffRetail, string message)
         {
-            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", (decimal?) amountOffRetail, _now.StartOfWeek(), _now.EndOfWeek()));
+            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(
+                new UpsertProductMarkdownArgs(
+                    (decimal?) amountOffRetail,
+                    _now.EndOfWeek(),
+                    "can of soup",
+                    "eaches",
+                    _now.StartOfWeek()
+                )
+            );
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
         [ClassData(typeof(InvalidTimeRangeUpsertProductMarkdownData))]
         public void UpsertProductMarkdown_WithInvalidTimeRange_ThrowsArgumentException(DateTime? startTime, DateTime? endTime, string message)
         {
-            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", 0.1m, startTime, endTime));
+            Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(
+                new UpsertProductMarkdownArgs(
+                    0.1m,
+                    endTime,
+                    "can of soup",
+                    "eaches",
+                    startTime
+                )
+            );
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
         {
-            private readonly DateTime _now = DependencyProvider.CreateDateTimeProvider().Now;
+            private readonly DateTime _now = DependencyProvider.DateTimeProvider().Now;
 
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { null, _now.EndOfWeek(), "Markdown start time is required" };
-                yield return new object[] { _now.StartOfWeek(), null, "Markdown end time is required" };
-                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "Markdown start time must be less than end time" };
+                yield return new object[] { null, _now.EndOfWeek(), "*'Start Time' must not be empty*" };
+                yield return new object[] { _now.StartOfWeek(), null, "*'End Time' must not be empty*" };
+                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "*'Start Time' must precede 'End Time'*" };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

@@ -12,26 +12,20 @@ namespace PointOfSale.Test.Implementations.Basic
 {
     public class CreateSpecialArgsValidatorTest
     {
-        private IDateTimeProvider _dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
-        private IProductRepository _productRepository = new InMemoryProductRepositoryFactory().CreateSeededRepository();
-        private CreateSpecialArgsValidator _validator;
-
-        public CreateSpecialArgsValidatorTest()
-        {
-            _validator = new CreateSpecialArgsValidator(_productRepository);
-        }
+        private CreateSpecialArgsValidator _createSpecialArgsValidator = ValidatorProvider.CreateSpecialArgsValidator();
+        private IDateTimeProvider _dateTimeProvider = DependencyProvider.DateTimeProvider();
 
         [Fact]
         public void CreateSpecialArgsValidator_ContainsCorrectValidationRules()
         {
-            _validator.ShouldHaveValidationErrorFor(x => x.ProductName, null as string);
-            _validator.ShouldHaveValidationErrorFor(x => x.ProductName, "");
-            _validator.ShouldHaveValidationErrorFor(x => x.ProductName, " ");
-            _validator.ShouldHaveValidationErrorFor(x => x.ProductName, "milk");
-            _validator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
+            _createSpecialArgsValidator.ShouldHaveValidationErrorFor(x => x.ProductName, null as string);
+            _createSpecialArgsValidator.ShouldHaveValidationErrorFor(x => x.ProductName, "");
+            _createSpecialArgsValidator.ShouldHaveValidationErrorFor(x => x.ProductName, " ");
+            _createSpecialArgsValidator.ShouldHaveValidationErrorFor(x => x.ProductName, "milk");
+            _createSpecialArgsValidator.ShouldHaveValidationErrorFor(x => x.EndTime, (DateTime?) null);
 
             var args = new CreateSpecialArgs() { ProductName = "can of soup", EndTime = _dateTimeProvider.Now };
-            Action validate = () => _validator.ValidateAndThrow(args);
+            Action validate = () => _createSpecialArgsValidator.ValidateAndThrow(args);
             validate.Should().Throw<ValidationException>("*Special start time is required*");
 
             args.StartTime = _dateTimeProvider.Now;

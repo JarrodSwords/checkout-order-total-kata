@@ -29,7 +29,7 @@ namespace PointOfSale.Test.Domain
         [InlineData(2, 2, 12, 2, 8)]
         public void CreateLineItems_CreatesCorrectLineItemCount(int preDiscountItems, int discountedItems, int scannedItemCount, int expectedLineItemCount, int? limit = null)
         {
-            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
+            var product = new EachesProduct("test product", 1m);
             var special = CreateSpecial(preDiscountItems, discountedItems, 100, limit);
 
             CreateLineItems(product, special, scannedItemCount);
@@ -49,7 +49,7 @@ namespace PointOfSale.Test.Domain
         [InlineData(2, 2, 2, 50, 4, -2)]
         public virtual void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
         {
-            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
+            var product = new EachesProduct("test product", (decimal) retailPrice);
             var special = CreateSpecial(preDiscountItems, discountedItems, (decimal) percentageOff, null);
 
             CreateLineItems(product, special, scannedItemCount);
@@ -63,7 +63,7 @@ namespace PointOfSale.Test.Domain
         [InlineData(2, 0.5, 3, 1, 100, 5)]
         public void CreateLineItems_WithBetterMarkdown_CreatesZeroLineItems(double retailPrice, double markdown, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount)
         {
-            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit)
+            var product = new EachesProduct("test product", (decimal) retailPrice)
             {
                 Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal) markdown)
             };

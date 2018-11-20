@@ -17,8 +17,15 @@ namespace PointOfSale.Implementations.Basic
 
         public OrderDto FindOrder(long orderId)
         {
-            var product = _orderRepository.FindOrder(orderId);
-            return _mapper.Map<OrderDto>(product);
+            var order = _orderRepository.FindOrder(orderId);
+            return _mapper.Map<OrderDto>(order);
+        }
+
+        public InvoiceDto GetInvoice(long orderId)
+        {
+            var order = _orderRepository.FindOrder(orderId);
+            var invoice = new Invoice.Factory(order).CreateInvoice();
+            return _mapper.Map<InvoiceDto>(invoice);
         }
     }
 }

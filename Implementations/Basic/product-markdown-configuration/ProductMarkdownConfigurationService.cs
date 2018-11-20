@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using NodaMoney;
 using PointOfSale.Domain;
 using PointOfSale.Services;
@@ -26,7 +27,7 @@ namespace PointOfSale.Implementations.Basic
 
         public ProductDto UpsertProductMarkdown(UpsertProductMarkdownArgs args)
         {
-            _upsertProductMarkdownArgsValidator.ValidateAndThrow<UpsertProductMarkdownArgs>(args);
+            _upsertProductMarkdownArgsValidator.ValidateAndThrow(args);
 
             var product = _productRepository.FindProduct(args.ProductName);
             product.Markdown = _markdownFactory

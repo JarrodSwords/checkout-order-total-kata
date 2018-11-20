@@ -33,7 +33,6 @@ namespace PointOfSale.WebApi
             services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory>();
 
             services.AddTransient<IDateTimeProvider, BasicDateTimeProvider>();
-            services.AddTransient<ProductSpecialConfigurationServiceProvider>();
 
             services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());
             services.AddSingleton<IProductRepository>(new InMemoryProductRepository());
@@ -44,9 +43,6 @@ namespace PointOfSale.WebApi
 
             services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
             services.AddTransient<IProductMarkdownConfigurationService, ProductMarkdownConfigurationService>();
-            services.AddTransient<BuyNForXAmountConfigurationService>();
-            services.AddTransient<BuyNGetMAtXPercentOffConfigurationService>();
-            services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService>();
 
             services.AddTransient<RemoveScannedItemArgsValidator>();
             services.AddTransient<ScanItemArgsValidator>();
@@ -54,12 +50,7 @@ namespace PointOfSale.WebApi
 
             services.AddTransient<CreateProductArgsValidator>();
             services.AddTransient<UpdateProductArgsValidator>();
-
             services.AddTransient<UpsertProductMarkdownArgsValidator>();
-
-            services.AddTransient<CreateBuyNForXAmountSpecialArgsValidator>();
-            services.AddTransient<CreateBuyNGetMAtXPercentOffSpecialArgsValidator>();
-            services.AddTransient<CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator>();
             services.AddTransient<CreateSpecialArgsValidator>();
         }
 

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="nodamoney" Version="1.0.5" />
+    <PackageReference Include="unitsnet" Version="3.109.0" />
   </ItemGroup>
 
 </Project>

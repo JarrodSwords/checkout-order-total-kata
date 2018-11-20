@@ -5,7 +5,7 @@
         <TestProjects Include="**\Services\PointOfSale.Test.Services.csproj" />
         <TestProjects Include="**\Implementations\Basic\PointOfSale.Test.Implementations.Basic.csproj" />
         <TestProjects Include="**\WebApi\PointOfSale.Test.WebApi.csproj" />
-        <Watch Include="**\*.cs" />
+        <Watch Include="..\**\*.cs" />
     </ItemGroup>
 
     <Target Name="Test">

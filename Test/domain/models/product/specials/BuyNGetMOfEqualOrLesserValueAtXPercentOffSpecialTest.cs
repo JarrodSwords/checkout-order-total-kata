@@ -3,6 +3,8 @@ using System.Linq;
 using FluentAssertions;
 using NodaMoney;
 using PointOfSale.Domain;
+using UnitsNet;
+using UnitsNet.Units;
 using Xunit;
 
 namespace PointOfSale.Test.Domain
@@ -31,9 +33,16 @@ namespace PointOfSale.Test.Domain
         [InlineData(1, 1, 1, 100, 2, -0.5)]
         [InlineData(1, 2, 1, 50, 3, -0.25)]
         [InlineData(1, 3, 2, 50, 5, -0.75)]
-        public void CreateLineItems_CreatesCorrectLineItemTotalValue(double retailPrice, int preDiscountItems, int discountedItems, double percentageOff, int scannedItemCount, double expectedTotalValue)
+        public void CreateLineItems_CreatesCorrectLineItemTotalValue(
+            double retailPrice,
+            int preDiscountItems,
+            int discountedItems,
+            double percentageOff,
+            int scannedItemCount,
+            double expectedTotalValue
+        )
         {
-            var product = new Product("test product", Money.USDollar(retailPrice), SellByType.Unit);
+            var product = new MassProduct("test product", (decimal) retailPrice);
             var special = CreateSpecial(preDiscountItems, discountedItems, (decimal) percentageOff, null);
 
             CreateLineItems(product, special, scannedItemCount);

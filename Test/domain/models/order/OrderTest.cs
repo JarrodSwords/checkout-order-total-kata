@@ -10,15 +10,13 @@ namespace PointOfSale.Test.Domain
         private Order _order = OrderProvider.CreateOrderWithScannedItems();
 
         [Fact]
-        public void AddScannedItem_ScannedItemIsAddedToScannedItemsAndNewInvoiceIsCreated()
+        public void AddScannedItem_ScannedItemIsAddedToScannedItems()
         {
-            var invoice = _order.Invoice;
             var scannedItem = new ScannedItemProvider().GetScannedItem();
 
             _order.AddScannedItem(scannedItem);
 
             _order.ScannedItems.Should().Contain(scannedItem);
-            _order.Invoice.Should().NotBe(invoice);
         }
 
         [Fact]
@@ -32,15 +30,13 @@ namespace PointOfSale.Test.Domain
         }
 
         [Fact]
-        public void RemoveScannedItem_ScannedItemIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
+        public void RemoveScannedItem_ScannedItemIsRemovedFromScannedItems()
         {
-            var invoice = _order.Invoice;
             var itemId = _order.ScannedItems.Select(x => x.Id).First();
 
             var removedItem = _order.RemoveScannedItem(itemId);
 
             _order.ScannedItems.Should().NotContain(removedItem);
-            _order.Invoice.Should().NotBe(invoice);
         }
     }
 }

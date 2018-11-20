@@ -19,8 +19,8 @@ namespace PointOfSale.Implementations.Basic
             RuleFor(x => x.ProductName).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product name is required")
                 .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
-                .Must(x => _productRepository.FindProduct(x).SellByType == SellByType.Weight)
-                .WithMessage("Product name \"{PropertyValue}\" cannot be sold by weight");
+                .Must(x => _productRepository.FindProduct(x).GetType() == typeof(MassProduct))
+                .WithMessage("Product name \"{PropertyValue}\" cannot be sold by mass");
         }
     }
 }

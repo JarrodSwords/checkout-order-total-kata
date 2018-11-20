@@ -9,20 +9,20 @@ namespace PointOfSale.Test.Domain
     {
         public static ICollection<Product> Products => new List<Product>
         {
-            new Product("can of soup", Money.USDollar(0.5m), SellByType.Unit),
-            new Product("frozen pizza", Money.USDollar(3m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m)),
-            new Product("peanut butter", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m)),
-            new Product("jelly", Money.USDollar(2m), SellByType.Unit, MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m)),
-            new Product("lean ground beef", Money.USDollar(2m), SellByType.Weight),
-            new Product("honey ham", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m)),
-            new Product("sausage", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m)),
-            new Product("pepperoni", Money.USDollar(1.5m), SellByType.Weight, MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m))
+            new EachesProduct("can of soup", 0.5m),
+            new EachesProduct("frozen pizza", 3m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m) },
+            new EachesProduct("peanut butter", 2m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m) },
+            new EachesProduct("jelly", 2m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m) },
+            new MassProduct("lean ground beef", 2m),
+            new MassProduct("honey ham", 1.5m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.25m) },
+            new MassProduct("sausage", 1.5m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, 0.50m) },
+            new MassProduct("pepperoni", 1.5m) { Markdown = MarkdownProvider.GetMarkdown(DateRange.Future, 0.75m) }
         };
 
         public static ICollection<Product> GetOneOfEachProduct(decimal retailPriceAmount = 1m, decimal markdownAmount = 0.5m)
         {
-            var retailPrice = Money.USDollar(retailPriceAmount);
-            var markdown = Money.USDollar(markdownAmount);
+            var retailPrice = retailPriceAmount;
+            var markdown = markdownAmount;
 
             /// <remarks>
             /// code:
@@ -33,39 +33,39 @@ namespace PointOfSale.Test.Domain
             /// </remarks>
             return new List<Product>
             {
-                new Product("E", retailPrice, SellByType.Unit),
-                new Product("E M", retailPrice, SellByType.Unit)
+                new EachesProduct("E", retailPrice),
+                new EachesProduct("E M", retailPrice)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, markdownAmount)
                 },
-                new Product("E nM", retailPrice, SellByType.Unit)
+                new EachesProduct("E nM", retailPrice)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, markdownAmount)
                 },
-                new Product("E S", retailPrice, SellByType.Unit)
+                new EachesProduct("E S", retailPrice)
                 {
                     Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active)
                 },
-                new Product("E nS", retailPrice, SellByType.Unit)
+                new EachesProduct("E nS", retailPrice)
                 {
                     Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired)
                 },
-                new Product("W", retailPrice, SellByType.Weight),
-                new Product("W M", retailPrice, SellByType.Weight)
+                new MassProduct("W", retailPrice),
+                new MassProduct("W M", retailPrice)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, markdownAmount)
                 },
-                new Product("W nM", retailPrice, SellByType.Weight)
+                new MassProduct("W nM", retailPrice)
                 {
                     Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired, markdownAmount)
                 },
-                new Product("W S", retailPrice, SellByType.Weight)
+                new MassProduct("W S", retailPrice)
                 {
-                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active)
+                    Special = SpecialProvider.GetBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateRange.Active)
                 },
-                new Product("W nS", retailPrice, SellByType.Weight)
+                new MassProduct("W nS", retailPrice)
                 {
-                    Special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Expired)
+                    Special = SpecialProvider.GetBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateRange.Expired)
                 }
             };
         }

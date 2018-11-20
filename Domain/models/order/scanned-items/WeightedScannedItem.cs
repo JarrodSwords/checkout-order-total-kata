@@ -6,7 +6,7 @@ namespace PointOfSale.Domain
     {
         public override Money MarkdownDiscount => Product.Markdown.AmountOffRetail * Weight;
         public decimal Weight { get; }
-        public override Money RetailPrice => Product.RetailPrice * Weight;
+        public override Money RetailPrice => Product.RetailPricePerUnit * Weight;
 
         public WeightedScannedItem(Product product, decimal weight) : base(product)
         {

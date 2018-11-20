@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
@@ -8,14 +9,19 @@ namespace PointOfSale.Implementations.Basic
     {
         #region Dependencies
 
-        private readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
-        private CreateProductArgsValidator _createProductArgsValidator;
-        private UpdateProductArgsValidator _updateProductArgsValidator;
+        private readonly IProductServiceProvider _productServiceProvider;
+        private readonly CreateProductArgsValidator _createProductArgsValidator;
+        private readonly UpdateProductArgsValidator _updateProductArgsValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, CreateProductArgsValidator createProductArgsValidator, UpdateProductArgsValidator updateProductArgsValidator)
+        public ProductConfigurationService(
+            IProductRepository productRepository,
+            IProductServiceProvider productServiceProvider,
+            CreateProductArgsValidator createProductArgsValidator,
+            UpdateProductArgsValidator updateProductArgsValidator
+        )
         {
-            _mapper = mapper;
+            _productServiceProvider = productServiceProvider;
             _productRepository = productRepository;
             _createProductArgsValidator = createProductArgsValidator;
             _updateProductArgsValidator = updateProductArgsValidator;
@@ -25,23 +31,23 @@ namespace PointOfSale.Implementations.Basic
 
         public ProductDto CreateProduct(UpsertProductArgs args)
         {
-            _createProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
+            _createProductArgsValidator.ValidateAndThrow(args);
 
-            var product = _mapper.Map<Product>(args);
-            var persistedProduct = _productRepository.CreateProduct(product);
-
-            return _mapper.Map<ProductDto>(persistedProduct);
+            var productService = _productServiceProvider.GetService(args);
+            var product = productService.Create();
+            product = _productRepository.CreateProduct(product);
+            return productService.ToDto(product);
         }
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
         {
-            _updateProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
+            _updateProductArgsValidator.ValidateAndThrow(args);
 
-            var product = _productRepository.FindProduct(args.Name);
-            _mapper.Map<UpsertProductArgs, Product>(args, product);
-            var persistedProduct = _productRepository.UpdateProduct(product);
-
-            return _mapper.Map<ProductDto>(persistedProduct);
+            var product = _productRepository.FindProduct(args.ProductName);
+            var productService = _productServiceProvider.GetService(args);
+            product = productService.Update(product);
+            product = _productRepository.UpdateProduct(product);
+            return productService.ToDto(product);
         }
     }
 }

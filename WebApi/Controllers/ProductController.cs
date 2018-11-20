@@ -1,7 +1,4 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSale.Domain;
-using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
 
 namespace PointOfSale.WebApi
@@ -15,19 +12,19 @@ namespace PointOfSale.WebApi
         private readonly IProductConfigurationService _productConfigurationService;
         private readonly IProductMarkdownConfigurationService _productMarkdownConfigurationService;
         private readonly IProductService _productService;
-        private readonly ProductSpecialConfigurationServiceProvider _productSpecialConfigurationServiceProvider;
+        private readonly IProductSpecialConfigurationService _productSpecialConfigurationService;
 
         public ProductController(
             IProductConfigurationService productConfigurationService,
             IProductMarkdownConfigurationService productMarkdownConfigurationService,
             IProductService productService,
-            ProductSpecialConfigurationServiceProvider productSpecialConfigurationServiceProvider
+            IProductSpecialConfigurationService productSpecialConfigurationService
         )
         {
             _productConfigurationService = productConfigurationService;
             _productMarkdownConfigurationService = productMarkdownConfigurationService;
             _productService = productService;
-            _productSpecialConfigurationServiceProvider = productSpecialConfigurationServiceProvider;
+            _productSpecialConfigurationService = productSpecialConfigurationService;
         }
 
         #endregion Dependencies
@@ -49,7 +46,7 @@ namespace PointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> UpdateProduct(string productName, [FromBody] UpsertProductArgs args)
         {
-            args.Name = productName;
+            args.ProductName = productName;
             return _productConfigurationService.UpdateProduct(args);
         }
 
@@ -65,11 +62,8 @@ namespace PointOfSale.WebApi
         [HttpPut]
         public ActionResult<ProductDto> CreateSpecial(string productName, [FromBody] CreateSpecialArgs args)
         {
-            var specialType = (SpecialType) Enum.Parse(typeof(SpecialType), args.SpecialType);
-            var productSpecialConfigurationService = _productSpecialConfigurationServiceProvider.GetConfigurationService(specialType);
-
             args.ProductName = productName;
-            return productSpecialConfigurationService.CreateSpecial(args);
+            return _productSpecialConfigurationService.CreateSpecial(args);
         }
     }
 }

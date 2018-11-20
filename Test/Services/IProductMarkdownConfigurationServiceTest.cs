@@ -16,9 +16,9 @@ namespace PointOfSale.Test.Services
 
         [Theory]
         [ClassData(typeof(UpsertProductMarkdownData))]
-        public void UpsertProductMarkdown_UpsertsProductMarkdown(string productName, decimal amountOffRetail, DateTime? startTime, DateTime? endTime)
+        public void UpsertProductMarkdown_UpsertsProductMarkdown(decimal amountOffRetail, DateTime? endTime, string productName, string sellByType, DateTime? startTime)
         {
-            var args = new UpsertProductMarkdownArgs(productName, amountOffRetail, startTime, endTime);
+            var args = new UpsertProductMarkdownArgs(amountOffRetail, endTime, productName, sellByType, startTime);
 
             var persistedProduct = _productMarkdownConfigurationService.UpsertProductMarkdown(args);
 
@@ -34,8 +34,8 @@ namespace PointOfSale.Test.Services
 
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { "can of soup", 0.1m, _now.StartOfWeek(), _now.EndOfWeek() };
-                yield return new object[] { "lean ground beef", 0.1m, _now.StartOfWeek(), _now.EndOfWeek() };
+                yield return new object[] { 0.1m, _now.EndOfWeek(), "can of soup", "eaches", _now.StartOfWeek() };
+                yield return new object[] { 0.1m, _now.EndOfWeek(), "lean ground beef", "mass", _now.StartOfWeek() };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
