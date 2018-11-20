@@ -335,12 +335,12 @@ FNH:1
 end_of_record
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\EachesProduct.cs
 FN:4,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-FNDA:53,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-DA:5,53
-DA:6,53
-DA:7,53
-DA:8,53
-DA:9,53
+FNDA:52,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
+DA:5,52
+DA:6,52
+DA:7,52
+DA:8,52
+DA:9,52
 DA:10,53
 DA:11,53
 DA:12,53

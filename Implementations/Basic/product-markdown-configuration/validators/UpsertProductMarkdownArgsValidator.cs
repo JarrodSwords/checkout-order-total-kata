@@ -8,10 +8,14 @@ namespace PointOfSale.Implementations.Basic
     {
         private readonly IProductRepository _productRepository;
 
-        public UpsertProductMarkdownArgsValidator(IProductRepository productRepository)
+        public UpsertProductMarkdownArgsValidator(
+            IProductRepository productRepository,
+            TemporalValidator temporalValidator
+        )
         {
             _productRepository = productRepository;
             CreateRules();
+            Include(temporalValidator);
         }
 
         private void CreateRules()
@@ -34,11 +38,6 @@ namespace PointOfSale.Implementations.Basic
                         })
                         .WithMessage("Markdown amount off retail must be less than or equal to product retail price");
                 });
-
-            RuleFor(x => x.StartTime).NotNull().WithMessage("Markdown start time is required")
-                .LessThan(x => x.EndTime).When(x => x.EndTime != null).WithMessage("Markdown start time must be less than end time");
-
-            RuleFor(x => x.EndTime).NotNull().WithMessage("Markdown end time is required");
         }
     }
 }

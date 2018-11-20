@@ -1264,33 +1264,31 @@ FNF:9
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\product-markdown-configuration\args\UpsertProductMarkdownArgs.cs
-FN:6,System.String PointOfSale.Services.UpsertProductMarkdownArgs::get_ProductName()
-FNDA:0,System.String PointOfSale.Services.UpsertProductMarkdownArgs::get_ProductName()
-DA:7,0
-FN:7,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductMarkdownArgs::get_AmountOffRetail()
+FN:6,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductMarkdownArgs::get_AmountOffRetail()
 FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductMarkdownArgs::get_AmountOffRetail()
-DA:8,0
-FN:8,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_StartTime()
-FNDA:0,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_StartTime()
-DA:9,0
-FN:9,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_EndTime()
+DA:7,0
+FN:7,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_EndTime()
 FNDA:0,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_EndTime()
+DA:8,0
+FN:8,System.String PointOfSale.Services.UpsertProductMarkdownArgs::get_ProductName()
+FNDA:0,System.String PointOfSale.Services.UpsertProductMarkdownArgs::get_ProductName()
+DA:9,0
+FN:9,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_StartTime()
+FNDA:0,System.Nullable`1<System.DateTime> PointOfSale.Services.UpsertProductMarkdownArgs::get_StartTime()
 DA:10,0
 FN:11,System.Void PointOfSale.Services.UpsertProductMarkdownArgs::.ctor()
 FNDA:0,System.Void PointOfSale.Services.UpsertProductMarkdownArgs::.ctor()
 DA:12,0
-DA:13,0
-DA:14,0
-FN:15,System.Void PointOfSale.Services.UpsertProductMarkdownArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.Nullable`1<System.DateTime>,System.Nullable`1<System.DateTime>)
+FN:13,System.Void PointOfSale.Services.UpsertProductMarkdownArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.Nullable`1<System.DateTime>,System.Nullable`1<System.DateTime>)
 FNDA:0,System.Void PointOfSale.Services.UpsertProductMarkdownArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.Nullable`1<System.DateTime>,System.Nullable`1<System.DateTime>)
+DA:14,0
+DA:15,0
 DA:16,0
 DA:17,0
 DA:18,0
 DA:19,0
 DA:20,0
-DA:21,0
-DA:22,0
-LF:14
+LF:12
 LH:0
 BRF:0
 BRH:0

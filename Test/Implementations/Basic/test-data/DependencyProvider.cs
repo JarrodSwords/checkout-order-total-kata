@@ -52,7 +52,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
             var productRepository = CreateProductRepository();
-            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository);
+            var upsertProductMarkdownArgsValidator = new UpsertProductMarkdownArgsValidator(productRepository, CreateTemporalValidator());
 
             return new ProductMarkdownConfigurationService(CreateMapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
         }
@@ -64,10 +64,13 @@ namespace PointOfSale.Test.Implementations.Basic
             return new ProductService(CreateMapper(), CreateProductRepository());
         }
 
+        public static TemporalValidator CreateTemporalValidator() =>
+            new TemporalValidator();
+
         public static BuyNForXAmountConfigurationService CreateBuyNForXAmountConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
 
             return new BuyNForXAmountConfigurationService(
                 CreateMapper(),
@@ -80,7 +83,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static BuyNGetMAtXPercentOffConfigurationService CreateBuyNGetMAtXPercentOffConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
 
             return new BuyNGetMAtXPercentOffConfigurationService(
                 CreateMapper(),
@@ -93,7 +96,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public static BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
         {
             var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository);
+            var createSpecialArgsValidator = new CreateSpecialArgsValidator(productRepository, CreateTemporalValidator());
 
             return new BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
                 CreateMapper(),

@@ -55,9 +55,9 @@ namespace PointOfSale.Test.Implementations.Basic
 
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { null, _now.EndOfWeek(), "*Markdown start time is required*" };
-                yield return new object[] { _now.StartOfWeek(), null, "*Markdown end time is required*" };
-                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "*Markdown start time must be less than end time*" };
+                yield return new object[] { null, _now.EndOfWeek(), "*'Start Time' must not be empty*" };
+                yield return new object[] { _now.StartOfWeek(), null, "*'End Time' must not be empty*" };
+                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "*'Start Time' must precede 'End Time'*" };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

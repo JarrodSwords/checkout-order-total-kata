@@ -2,16 +2,14 @@ using System;
 
 namespace PointOfSale.Services
 {
-    public class UpsertProductMarkdownArgs
+    public class UpsertProductMarkdownArgs : ITemporalArgs
     {
-        public string ProductName { get; set; }
         public decimal? AmountOffRetail { get; set; }
-        public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
+        public string ProductName { get; set; }
+        public DateTime? StartTime { get; set; }
 
-        public UpsertProductMarkdownArgs()
-        { 
-        }
+        public UpsertProductMarkdownArgs() { }
 
         public UpsertProductMarkdownArgs(string productName, decimal? amountOffRetail, DateTime? startTime, DateTime? endTime)
         {

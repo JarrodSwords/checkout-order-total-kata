@@ -2,7 +2,7 @@ using System;
 
 namespace PointOfSale.Services
 {
-    public class CreateSpecialArgs : ICreateBuyNForXAmountSpecialArgs, ICreateBuyNGetMAtXPercentOffSpecialArgs
+    public class CreateSpecialArgs : ICreateBuyNForXAmountSpecialArgs, ICreateBuyNGetMAtXPercentOffSpecialArgs, ITemporalArgs
     {
         public int? DiscountedItems { get; set; }
         public DateTime? EndTime { get; set; }

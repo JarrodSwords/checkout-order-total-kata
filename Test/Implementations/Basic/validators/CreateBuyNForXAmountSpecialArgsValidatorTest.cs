@@ -17,7 +17,7 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public CreateBuyNForXAmountSpecialArgsValidatorTest()
         {
-            var baseValidator = new CreateSpecialArgsValidator(_productRepository);
+            var baseValidator = new CreateSpecialArgsValidator(_productRepository, DependencyProvider.CreateTemporalValidator());
             _validator = new CreateBuyNForXAmountSpecialArgsValidator(_productRepository, baseValidator);
         }
 
