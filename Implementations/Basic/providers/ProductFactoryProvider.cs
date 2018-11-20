@@ -12,13 +12,15 @@ namespace PointOfSale.Implementations
         public ProductFactoryProvider(IMapper mapper)
         {
             _factories = new Dictionary<string, Func<IUpsertProductArgs, ProductFactory>>
-            {
-                { "Unit", args => new EachesProductFactory(args, mapper) },
-                { "Weight", args => new MassProductFactory(args, mapper) }
+            { { "eaches", args => new EachesProductFactory(args, mapper) },
+                { "mass", args => new MassProductFactory(args, mapper) }
             };
         }
 
         public ProductFactory GetFactory(IUpsertProductArgs args) =>
             _factories[args.SellByType](args);
+
+        public IEnumerable<string> GetSellByTypes() =>
+            _factories.Keys;
     }
 }

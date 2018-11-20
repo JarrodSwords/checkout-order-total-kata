@@ -16,8 +16,8 @@ namespace PointOfSale.Test.Services
         protected IProductService _productService;
 
         [Theory]
-        [InlineData("milk", 1.99, null, "Unit")]
-        [InlineData("turkey", null, 1.5, "Weight")]
+        [InlineData("milk", 1.99, null, "eaches")]
+        [InlineData("turkey", null, 1.5, "mass")]
         public void CreateProduct_CreatesPersistedProduct(
             string productName,
             double? retailPrice,
@@ -27,7 +27,7 @@ namespace PointOfSale.Test.Services
             string massUnit = ""
         )
         {
-            var args = sellByType == "Unit" ?
+            var args = sellByType == "eaches" ?
                 new UpsertProductArgs(productName, (decimal) retailPrice, sellByType) :
                 new UpsertProductArgs(massAmount, massUnit, productName, (decimal) retailPriceByUnit, sellByType);
 
@@ -39,8 +39,8 @@ namespace PointOfSale.Test.Services
         }
 
         [Theory]
-        [InlineData("can of soup", 0.99, null, "Unit")]
-        [InlineData("lean ground beef", null, 2.5, "Weight")]
+        [InlineData("can of soup", 0.99, null, "eaches")]
+        [InlineData("lean ground beef", null, 2.5, "mass")]
         public void UpdateProduct_UpdatesNonIdentityFieldsInPersistedProduct(
             string productName,
             double? retailPrice,
@@ -50,7 +50,7 @@ namespace PointOfSale.Test.Services
             string massUnit = ""
         )
         {
-            var args = sellByType == "Unit" ?
+            var args = sellByType == "eaches" ?
                 new UpsertProductArgs(productName, (decimal) retailPrice, sellByType) :
                 new UpsertProductArgs(massAmount, massUnit, productName, (decimal) retailPriceByUnit, sellByType);
 

@@ -29,7 +29,7 @@ namespace PointOfSale.Test.Implementations.Basic
         [InlineData("", "Product name is required")]
         [InlineData(" ", "Product name is required")]
         [InlineData("milk", "Product name \"milk\" does not exist")]
-        [InlineData("lean ground beef", "Product name \"lean ground beef\" cannot be sold by unit")]
+        [InlineData("lean ground beef", "Product name \"lean ground beef\" cannot be sold as eaches")]
         public void ScanItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             Action scanItem = () => _checkoutService.ScanItem(new ScanItemArgs(1, productName));
@@ -42,7 +42,7 @@ namespace PointOfSale.Test.Implementations.Basic
         [InlineData("", "Product name is required")]
         [InlineData(" ", "Product name is required")]
         [InlineData("milk", "Product name \"milk\" does not exist")]
-        [InlineData("can of soup", "Product name \"can of soup\" cannot be sold by weight")]
+        [InlineData("can of soup", "Product name \"can of soup\" cannot be sold by mass")]
         public void ScanWeightedItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             Action scanItem = () => _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(1, productName, 1m));

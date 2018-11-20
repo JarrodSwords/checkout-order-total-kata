@@ -568,25 +568,22 @@ DA:30,0
 FN:30,System.Void PointOfSale.Domain.Product::set_RetailPricePerUnit(NodaMoney.Money)
 FNDA:0,System.Void PointOfSale.Domain.Product::set_RetailPricePerUnit(NodaMoney.Money)
 DA:31,0
-FN:32,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-FNDA:0,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-DA:33,0
-FN:33,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
+FN:32,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:0,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
-DA:34,0
-FN:35,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:33,0
+FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
 FNDA:0,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:35,0
 DA:36,0
 DA:37,0
 DA:38,0
 DA:39,0
 DA:40,0
-DA:41,0
-LF:18
+LF:17
 LH:0
 BRF:4
 BRH:0
-FNF:13
+FNF:12
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs

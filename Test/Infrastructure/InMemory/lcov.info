@@ -566,27 +566,24 @@ FN:29,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPricePerUnit()
 FNDA:24,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPricePerUnit()
 DA:30,24
 FN:30,System.Void PointOfSale.Domain.Product::set_RetailPricePerUnit(NodaMoney.Money)
-FNDA:56,System.Void PointOfSale.Domain.Product::set_RetailPricePerUnit(NodaMoney.Money)
-DA:31,56
-FN:32,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-FNDA:0,PointOfSale.Domain.SellByType PointOfSale.Domain.Product::get_SellByType()
-DA:33,0
-FN:33,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
+FNDA:55,System.Void PointOfSale.Domain.Product::set_RetailPricePerUnit(NodaMoney.Money)
+DA:31,55
+FN:32,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:73,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
-DA:34,73
-FN:35,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:33,73
+FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
 FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:35,105
 DA:36,105
 DA:37,105
 DA:38,105
 DA:39,105
 DA:40,105
-DA:41,105
-LF:18
+LF:17
 LH:16
 BRF:4
 BRH:3
-FNF:13
+FNF:12
 FNH:11
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs

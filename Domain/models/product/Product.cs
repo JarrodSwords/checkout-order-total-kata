@@ -30,7 +30,6 @@ namespace PointOfSale.Domain
             get => _sellableByMass.RetailPricePerUnit;
             set => _sellableByMass.RetailPricePerUnit = value;
         }
-        public SellByType SellByType { get; set; }
         public Special Special { get; set; }
 
         public Product(string name, ISellableAsEaches sellableAsEaches, ISellableByMass sellableByMass)

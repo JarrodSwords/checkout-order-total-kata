@@ -39,7 +39,7 @@ namespace PointOfSale.Test.WebApi
             {
                 Name = "something",
                 RetailPrice = 1,
-                SellByType = "Unit"
+                SellByType = "eaches"
             };
 
             var productDto = _productController.CreateProduct(args).Value;

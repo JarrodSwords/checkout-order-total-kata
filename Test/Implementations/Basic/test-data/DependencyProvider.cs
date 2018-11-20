@@ -35,8 +35,8 @@ namespace PointOfSale.Test.Implementations.Basic
             var mapper = CreateMapper();
             var productFactoryProvider = new ProductFactoryProvider(mapper);
             var productRepository = CreateProductRepository();
-            var createProductArgsValidator = new CreateProductArgsValidator(productRepository);
-            var updateProductArgsValidator = new UpdateProductArgsValidator(productRepository);
+            var createProductArgsValidator = new CreateProductArgsValidator(productFactoryProvider, productRepository);
+            var updateProductArgsValidator = new UpdateProductArgsValidator(productFactoryProvider, productRepository);
             return new ProductConfigurationService(productFactoryProvider, productRepository, createProductArgsValidator, updateProductArgsValidator);
         }
 
