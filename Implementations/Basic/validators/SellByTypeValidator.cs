@@ -8,9 +8,10 @@ namespace PointOfSale.Implementations.Basic
     {
         public SellByTypeValidator(IProductFactoryProvider productFactoryProvider)
         {
-            var sellByTypes = productFactoryProvider.GetSellByTypes();
+            var sellByTypes = productFactoryProvider.SellByTypes;
 
-            RuleFor(x => x.SellByType).Cascade(CascadeMode.StopOnFirstFailure)
+            RuleFor(x => x.SellByType)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty()
                 .Must(x => sellByTypes.Contains(x))
                 .WithMessage($"'{{PropertyName}}' \"{{PropertyValue}}\" is not in: {string.Join(", ", sellByTypes)}");

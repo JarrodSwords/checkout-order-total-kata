@@ -1044,21 +1044,21 @@ FNF:1
 FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Implementations\Basic\providers\ProductFactoryProvider.cs
-FN:20,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.IProductArgs)
-FNDA:1,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.IProductArgs)
-DA:21,1
-FN:23,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::GetSellByTypes()
-FNDA:1,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::GetSellByTypes()
-DA:24,1
-FN:11,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
-FNDA:1,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
-DA:12,1
+FN:12,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::get_SellByTypes()
+FNDA:1,System.Collections.Generic.IEnumerable`1<System.String> PointOfSale.Implementations.ProductFactoryProvider::get_SellByTypes()
 DA:13,1
-DA:14,1
-DA:15,2
+FN:23,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.IProductArgs)
+FNDA:1,PointOfSale.Implementations.ProductFactory PointOfSale.Implementations.ProductFactoryProvider::GetFactory(PointOfSale.Services.IProductArgs)
+DA:24,1
+FN:14,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
+FNDA:1,System.Void PointOfSale.Implementations.ProductFactoryProvider::.ctor(AutoMapper.IMapper)
+DA:15,1
 DA:16,1
 DA:17,1
-DA:18,1
+DA:18,2
+DA:19,1
+DA:20,1
+DA:21,1
 LF:9
 LH:9
 BRF:0
@@ -1843,11 +1843,12 @@ DA:10,1
 DA:11,1
 DA:13,1
 DA:14,1
-DA:15,2
-DA:16,1
+DA:15,1
+DA:16,2
 DA:17,1
-LF:8
-LH:8
+DA:18,1
+LF:9
+LH:9
 BRF:0
 BRH:0
 FNF:1
