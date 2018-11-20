@@ -1,10 +1,10 @@
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:155,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,155
+FNDA:156,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,156
 DA:9,156
-DA:10,155
-DA:11,155
+DA:10,156
+DA:11,156
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:26,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,26
@@ -373,8 +373,8 @@ FN:14,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
 FNDA:52,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
 DA:15,52
 FN:15,NodaMoney.Money PointOfSale.Domain.SellableByMass::get_RetailPricePerUnit()
-FNDA:59,NodaMoney.Money PointOfSale.Domain.SellableByMass::get_RetailPricePerUnit()
-DA:16,59
+FNDA:60,NodaMoney.Money PointOfSale.Domain.SellableByMass::get_RetailPricePerUnit()
+DA:16,60
 FN:22,UnitsNet.Mass PointOfSale.Domain.NotSellableByMass::get_Mass()
 FNDA:0,UnitsNet.Mass PointOfSale.Domain.NotSellableByMass::get_Mass()
 DA:23,0
@@ -411,12 +411,12 @@ FN:25,System.String PointOfSale.Domain.Markdown::ToString()
 FNDA:0,System.String PointOfSale.Domain.Markdown::ToString()
 DA:26,0
 FN:19,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,PointOfSale.Domain.ITemporal)
-FNDA:77,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,PointOfSale.Domain.ITemporal)
-DA:20,77
+FNDA:78,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,PointOfSale.Domain.ITemporal)
+DA:20,78
 DA:21,78
 DA:22,78
-DA:23,77
-DA:24,77
+DA:23,78
+DA:24,78
 LF:10
 LH:5
 BRF:0
@@ -446,7 +446,7 @@ FN:29,PointOfSale.Domain.Markdown PointOfSale.Domain.Markdown/Factory::CreateMar
 FNDA:78,PointOfSale.Domain.Markdown PointOfSale.Domain.Markdown/Factory::CreateMarkdown()
 DA:30,78
 DA:31,78
-DA:32,77
+DA:32,78
 FN:14,System.Void PointOfSale.Domain.Markdown/Factory::.ctor(PointOfSale.Domain.IDateTimeProvider)
 FNDA:78,System.Void PointOfSale.Domain.Markdown/Factory::.ctor(PointOfSale.Domain.IDateTimeProvider)
 DA:15,78
@@ -462,16 +462,16 @@ FNH:6
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
 FN:8,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-FNDA:51,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-DA:9,51
-DA:10,51
-DA:11,51
-DA:12,51
-DA:13,51
-DA:14,51
-DA:15,51
+FNDA:52,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
+DA:9,52
+DA:10,52
+DA:11,52
+DA:12,52
+DA:13,52
+DA:14,52
+DA:15,52
 DA:16,52
-DA:17,51
+DA:17,52
 FN:18,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 FNDA:0,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 DA:19,0
@@ -533,8 +533,8 @@ DA:15,0
 BRDA:15,6,0,0
 BRDA:15,6,1,0
 FN:15,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-FNDA:77,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-DA:16,77
+FNDA:78,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
+DA:16,78
 FN:18,UnitsNet.Mass PointOfSale.Domain.Product::get_Mass()
 FNDA:0,UnitsNet.Mass PointOfSale.Domain.Product::get_Mass()
 DA:19,0
@@ -560,13 +560,13 @@ FN:32,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:0,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:33,0
 FN:34,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-FNDA:104,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
-DA:35,104
-DA:36,104
-DA:37,104
+FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.ISellableAsEaches,PointOfSale.Domain.ISellableByMass)
+DA:35,105
+DA:36,105
+DA:37,105
 DA:38,105
 DA:39,105
-DA:40,104
+DA:40,105
 LF:17
 LH:13
 BRF:4
@@ -1385,9 +1385,9 @@ FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\providers\DateRange.cs
 FN:15,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
-FNDA:77,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
-DA:16,77
-DA:17,77
+FNDA:78,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
+DA:16,78
+DA:17,78
 DA:20,26
 DA:22,26
 DA:25,26
@@ -1403,7 +1403,7 @@ DA:31,78
 DA:34,26
 DA:36,26
 DA:39,26
-DA:41,77
+DA:41,78
 BRDA:31,4,2,26
 BRDA:31,4,3,26
 BRDA:31,4,0,26
@@ -1436,7 +1436,7 @@ DA:13,78
 DA:15,78
 DA:16,78
 DA:17,78
-DA:18,77
+DA:18,78
 LF:8
 LH:8
 BRF:0

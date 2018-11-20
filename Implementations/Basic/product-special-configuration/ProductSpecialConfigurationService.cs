@@ -44,7 +44,7 @@ namespace PointOfSale.Implementations.Basic
                 SellByType = persistedProduct.GetType() == typeof(EachesProduct) ? "eaches" : "mass"
             };
 
-            var productDto = _productServiceProvider.GetService(dummy).CreateProductDto(persistedProduct);
+            var productDto = _productServiceProvider.GetService(dummy).ToDto(persistedProduct);
             productDto.Special = specialService.ToDto(persistedProduct.Special);
             return productDto;
         }

@@ -7,10 +7,7 @@ namespace PointOfSale.Implementations
 {
     public class EachesProductService : ProductService
     {
-        public EachesProductService(IProductNameArgs args, IMapper mapper) : base(
-            (IUpsertEachesProductArgs) args,
-            mapper
-        ) { }
+        public EachesProductService(UpsertProductArgs args, IMapper mapper) : base(args, mapper) { }
 
         public override Product Create()
         {
@@ -22,10 +19,10 @@ namespace PointOfSale.Implementations
             );
         }
 
-        public override ProductDto CreateProductDto(Product product) =>
-            _mapper.Map<EachesProductDto>(product);
+        public override ProductDto ToDto(Product product) =>
+            _mapper.Map<EachesProductDto>((EachesProduct) product);
 
-        public override Product UpdateProduct(Product product)
+        public override Product Update(Product product)
         {
             var eachesProduct = Create();
             eachesProduct.Markdown = product.Markdown;

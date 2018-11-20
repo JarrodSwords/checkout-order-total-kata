@@ -8,10 +8,7 @@ namespace PointOfSale.Implementations
 {
     public class MassProductService : ProductService
     {
-        public MassProductService(IProductNameArgs args, IMapper mapper) : base(
-            (IUpsertMassProductArgs) args,
-            mapper
-        ) { }
+        public MassProductService(UpsertProductArgs args, IMapper mapper) : base(args, mapper) { }
 
         public override Product Create()
         {
@@ -24,10 +21,10 @@ namespace PointOfSale.Implementations
             return builder.Build();
         }
 
-        public override ProductDto CreateProductDto(Product product) =>
-            _mapper.Map<MassProductDto>(product);
+        public override ProductDto ToDto(Product product) =>
+            _mapper.Map<MassProductDto>((MassProduct) product);
 
-        public override Product UpdateProduct(Product product)
+        public override Product Update(Product product)
         {
             var massProduct = Create();
             massProduct.Markdown = product.Markdown;

@@ -36,7 +36,7 @@ namespace PointOfSale.Implementations.Basic
             var productService = _productServiceProvider.GetService(args);
             var product = productService.Create();
             product = _productRepository.CreateProduct(product);
-            return productService.CreateProductDto(product);
+            return productService.ToDto(product);
         }
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
@@ -45,9 +45,9 @@ namespace PointOfSale.Implementations.Basic
 
             var product = _productRepository.FindProduct(args.ProductName);
             var productService = _productServiceProvider.GetService(args);
-            product = productService.UpdateProduct(product);
+            product = productService.Update(product);
             product = _productRepository.UpdateProduct(product);
-            return productService.CreateProductDto(product);
+            return productService.ToDto(product);
         }
     }
 }
