@@ -232,38 +232,38 @@ FNF:4
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\Order.cs
-FN:11,System.Int64 PointOfSale.Domain.Order::get_Id()
+FN:9,System.Int64 PointOfSale.Domain.Order::get_Id()
 FNDA:0,System.Int64 PointOfSale.Domain.Order::get_Id()
-DA:12,0
-FN:12,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem> PointOfSale.Domain.Order::get_ScannedItems()
+DA:10,0
+FN:10,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem> PointOfSale.Domain.Order::get_ScannedItems()
 FNDA:0,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem> PointOfSale.Domain.Order::get_ScannedItems()
-DA:13,0
-FN:15,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
+DA:11,0
+FN:13,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
 FNDA:0,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
+DA:14,0
+DA:15,0
 DA:16,0
 DA:17,0
 DA:18,0
-DA:19,0
-DA:20,0
-FN:22,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
+FN:20,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
 FNDA:0,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
+DA:21,0
+DA:22,0
 DA:23,0
 DA:24,0
 DA:25,0
-DA:26,0
-DA:27,0
-FN:9,System.Void PointOfSale.Domain.Order::.ctor()
+FN:7,System.Void PointOfSale.Domain.Order::.ctor()
 FNDA:0,System.Void PointOfSale.Domain.Order::.ctor()
-DA:10,0
-FN:31,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
+DA:8,0
+FN:29,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 FNDA:0,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
+DA:30,0
+DA:31,0
 DA:32,0
-DA:33,0
-DA:34,0
-BRDA:33,7,0,0
-BRDA:33,16,0,0
-BRDA:33,16,1,0
-BRDA:33,7,1,0
+BRDA:31,7,0,0
+BRDA:31,16,0,0
+BRDA:31,16,1,0
+BRDA:31,7,1,0
 LF:16
 LH:0
 BRF:4
