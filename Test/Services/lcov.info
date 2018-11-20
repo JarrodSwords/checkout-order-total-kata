@@ -238,49 +238,37 @@ DA:12,0
 FN:12,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem> PointOfSale.Domain.Order::get_ScannedItems()
 FNDA:0,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem> PointOfSale.Domain.Order::get_ScannedItems()
 DA:13,0
-FN:13,PointOfSale.Domain.Invoice PointOfSale.Domain.Order::get_Invoice()
-FNDA:0,PointOfSale.Domain.Invoice PointOfSale.Domain.Order::get_Invoice()
-DA:14,0
-FN:21,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
+FN:15,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
 FNDA:0,PointOfSale.Domain.Order PointOfSale.Domain.Order::AddScannedItem(PointOfSale.Domain.ScannedItem)
-DA:22,0
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-FN:28,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
-FNDA:0,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
-DA:29,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-FN:35,System.Void PointOfSale.Domain.Order::ScannedItemsChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-FNDA:0,System.Void PointOfSale.Domain.Order::ScannedItemsChanged(System.Object,System.Collections.Specialized.NotifyCollectionChangedEventArgs)
-DA:36,0
-DA:37,0
-DA:38,0
-FN:9,System.Void PointOfSale.Domain.Order::.ctor()
-FNDA:0,System.Void PointOfSale.Domain.Order::.ctor()
-DA:10,0
 DA:16,0
 DA:17,0
 DA:18,0
 DA:19,0
-FN:42,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
+DA:20,0
+FN:22,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
+FNDA:0,PointOfSale.Domain.ScannedItem PointOfSale.Domain.Order::RemoveScannedItem(System.Int32)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+FN:9,System.Void PointOfSale.Domain.Order::.ctor()
+FNDA:0,System.Void PointOfSale.Domain.Order::.ctor()
+DA:10,0
+FN:31,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 FNDA:0,System.Int32 PointOfSale.Domain.Order/ScannedItemIdGenerator::Next(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
-DA:43,0
-DA:44,0
-DA:45,0
-BRDA:44,7,0,0
-BRDA:44,16,0,0
-BRDA:44,16,1,0
-BRDA:44,7,1,0
-LF:24
+DA:32,0
+DA:33,0
+DA:34,0
+BRDA:33,7,0,0
+BRDA:33,16,0,0
+BRDA:33,16,1,0
+BRDA:33,7,1,0
+LF:16
 LH:0
 BRF:4
 BRH:0
-FNF:8
+FNF:6
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItem.cs
@@ -1164,14 +1152,11 @@ DA:8,0
 FN:8,System.Collections.Generic.IEnumerable`1<PointOfSale.Services.ScannedItemDto> PointOfSale.Services.OrderDto::get_ScannedItems()
 FNDA:0,System.Collections.Generic.IEnumerable`1<PointOfSale.Services.ScannedItemDto> PointOfSale.Services.OrderDto::get_ScannedItems()
 DA:9,0
-FN:9,PointOfSale.Services.InvoiceDto PointOfSale.Services.OrderDto::get_Invoice()
-FNDA:0,PointOfSale.Services.InvoiceDto PointOfSale.Services.OrderDto::get_Invoice()
-DA:10,0
-LF:3
+LF:2
 LH:0
 BRF:0
 BRH:0
-FNF:3
+FNF:2
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\dtos\ProductDto.cs
@@ -1434,68 +1419,69 @@ DA:87,0
 DA:88,0
 DA:89,0
 DA:91,0
-DA:92,0
-FN:98,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateProductMarkdownLineItems_CreatesOneMarkdownLineItemPerScannedItem(System.Int32)
+DA:93,0
+DA:94,0
+FN:100,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateProductMarkdownLineItems_CreatesOneMarkdownLineItemPerScannedItem(System.Int32)
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateProductMarkdownLineItems_CreatesOneMarkdownLineItemPerScannedItem(System.Int32)
-DA:99,0
-DA:100,0
 DA:101,0
 DA:102,0
 DA:103,0
+DA:104,0
 DA:105,0
 DA:107,0
 DA:109,0
-DA:110,0
 DA:111,0
 DA:112,0
-BRDA:109,78,0,0
-BRDA:109,78,1,0
-BRDA:111,159,0,0
-BRDA:111,159,1,0
-FN:115,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateRetailLineItems_CreatesOneRetailLineItemPerScannedItem()
+DA:113,0
+DA:114,0
+BRDA:111,78,0,0
+BRDA:111,78,1,0
+BRDA:113,159,0,0
+BRDA:113,159,1,0
+FN:117,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateRetailLineItems_CreatesOneRetailLineItemPerScannedItem()
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateRetailLineItems_CreatesOneRetailLineItemPerScannedItem()
-DA:116,0
-DA:117,0
 DA:118,0
+DA:119,0
 DA:120,0
-DA:121,0
 DA:122,0
 DA:123,0
-BRDA:120,32,0,0
-BRDA:120,32,1,0
-BRDA:122,113,0,0
-BRDA:122,113,1,0
+DA:124,0
+DA:125,0
+BRDA:122,32,0,0
+BRDA:122,32,1,0
+BRDA:124,113,0,0
+BRDA:124,113,1,0
 FN:11,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::.ctor()
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::.ctor()
 DA:12,0
-FN:127,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<InvalidDiscountProducts>d__9::MoveNext()
+FN:129,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<InvalidDiscountProducts>d__9::MoveNext()
 FNDA:0,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<InvalidDiscountProducts>d__9::MoveNext()
-DA:128,0
-DA:129,0
 DA:130,0
+DA:131,0
 DA:132,0
-DA:133,0
+DA:134,0
 DA:135,0
-DA:136,0
+DA:137,0
 DA:138,0
-DA:139,0
 DA:140,0
-FN:142,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<SpecialsAndExpectedLineItems>d__10::MoveNext()
+DA:141,0
+DA:142,0
+FN:144,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<SpecialsAndExpectedLineItems>d__10::MoveNext()
 FNDA:0,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<SpecialsAndExpectedLineItems>d__10::MoveNext()
-DA:143,0
-DA:144,0
 DA:145,0
 DA:146,0
-FN:148,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<MarkdownsSpecialsAndExpectedLineItems>d__11::MoveNext()
+DA:147,0
+DA:148,0
+FN:150,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<MarkdownsSpecialsAndExpectedLineItems>d__11::MoveNext()
 FNDA:0,System.Boolean PointOfSale.Test.Domain.InvoiceFactoryTest/<MarkdownsSpecialsAndExpectedLineItems>d__11::MoveNext()
-DA:149,0
-DA:150,0
 DA:151,0
+DA:152,0
 DA:153,0
-DA:154,0
 DA:155,0
 DA:156,0
-LF:90
+DA:157,0
+DA:158,0
+LF:91
 LH:0
 BRF:22
 BRH:0
@@ -1503,37 +1489,33 @@ FNF:12
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\models\order\OrderTest.cs
-FN:13,System.Void PointOfSale.Test.Domain.OrderTest::AddScannedItem_ScannedItemIsAddedToScannedItemsAndNewInvoiceIsCreated()
-FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::AddScannedItem_ScannedItemIsAddedToScannedItemsAndNewInvoiceIsCreated()
+FN:13,System.Void PointOfSale.Test.Domain.OrderTest::AddScannedItem_ScannedItemIsAddedToScannedItems()
+FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::AddScannedItem_ScannedItemIsAddedToScannedItems()
 DA:14,0
 DA:15,0
-DA:16,0
-DA:18,0
+DA:17,0
+DA:19,0
 DA:20,0
-DA:21,0
-DA:22,0
-FN:25,System.Void PointOfSale.Test.Domain.OrderTest::AddMultipleScannedItems_AllScannedItemIdsAreUnique()
+FN:23,System.Void PointOfSale.Test.Domain.OrderTest::AddMultipleScannedItems_AllScannedItemIdsAreUnique()
 FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::AddMultipleScannedItems_AllScannedItemIdsAreUnique()
-DA:26,0
+DA:24,0
+DA:25,0
 DA:27,0
 DA:29,0
-DA:31,0
-DA:32,0
-FN:35,System.Void PointOfSale.Test.Domain.OrderTest::RemoveScannedItem_ScannedItemIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
-FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::RemoveScannedItem_ScannedItemIsRemovedFromScannedItemsAndNewInvoiceIsCreated()
-DA:36,0
+DA:30,0
+FN:33,System.Void PointOfSale.Test.Domain.OrderTest::RemoveScannedItem_ScannedItemIsRemovedFromScannedItems()
+FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::RemoveScannedItem_ScannedItemIsRemovedFromScannedItems()
+DA:34,0
+DA:35,0
 DA:37,0
-DA:38,0
+DA:39,0
 DA:40,0
-DA:42,0
-DA:43,0
-DA:44,0
-BRDA:38,30,0,0
-BRDA:38,30,1,0
+BRDA:35,18,0,0
+BRDA:35,18,1,0
 FN:9,System.Void PointOfSale.Test.Domain.OrderTest::.ctor()
 FNDA:0,System.Void PointOfSale.Test.Domain.OrderTest::.ctor()
 DA:10,0
-LF:20
+LF:16
 LH:0
 BRF:2
 BRH:0

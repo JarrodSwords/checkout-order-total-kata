@@ -88,7 +88,9 @@ namespace PointOfSale.Test.Domain
             PopulateOrder(product3, product3Count);
             PopulateOrder(product4, product4Count);
 
-            _order.Invoice.PreTaxTotal.Amount.Should().Be((decimal) expectedTotal);
+            var invoice = new Invoice.Factory(_order).CreateInvoice();
+
+            invoice.PreTaxTotal.Amount.Should().Be((decimal) expectedTotal);
         }
 
         [Theory]

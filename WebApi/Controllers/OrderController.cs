@@ -27,7 +27,7 @@ namespace PointOfSale.WebApi
         [HttpGet]
         public ActionResult<decimal> GetOrderPreTaxTotal(long orderId)
         {
-            return _orderService.FindOrder(orderId).Invoice.PreTaxTotal;
+            return _orderService.GetInvoice(orderId).PreTaxTotal;
         }
 
         [Route("{orderId}/scannedItems")]
