@@ -23,7 +23,7 @@ namespace PointOfSale.Test.Domain
 
             foreach (var product in ProductProvider.Products)
             {
-                if (product.SellByType == SellByType.Unit)
+                if (product.GetType() == typeof(EachesProduct))
                 {
                     _scannedItems.Add(new ScannedItem(product));
                     continue;

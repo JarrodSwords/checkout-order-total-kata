@@ -1,5 +1,6 @@
 using AutoMapper;
 using PointOfSale.Domain;
+using PointOfSale.Implementations;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
 using PointOfSale.Test.Infrastructure.InMemory;
@@ -31,10 +32,12 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static IProductConfigurationService CreateProductConfigurationService()
         {
+            var mapper = CreateMapper();
+            var productFactoryProvider = new ProductFactoryProvider(mapper);
             var productRepository = CreateProductRepository();
             var createProductArgsValidator = new CreateProductArgsValidator(productRepository);
             var updateProductArgsValidator = new UpdateProductArgsValidator(productRepository);
-            return new ProductConfigurationService(CreateMapper(), productRepository, createProductArgsValidator, updateProductArgsValidator);
+            return new ProductConfigurationService(productFactoryProvider, productRepository, createProductArgsValidator, updateProductArgsValidator);
         }
 
         public static IProductMarkdownConfigurationService CreateProductMarkdownConfigurationService()

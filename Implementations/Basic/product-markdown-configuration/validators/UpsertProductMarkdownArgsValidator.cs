@@ -21,10 +21,17 @@ namespace PointOfSale.Implementations.Basic
                 .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
                 .DependentRules(() =>
                 {
-                    RuleFor(x => x.AmountOffRetail)
+                    RuleFor(x => x.AmountOffRetail).Cascade(CascadeMode.StopOnFirstFailure)
                         .NotNull().WithMessage("Markdown amount off retail is required")
                         .GreaterThan(0).WithMessage("Markdown amount off retail must be greater than zero")
-                        .LessThanOrEqualTo(x => _productRepository.FindProduct(x.ProductName).RetailPrice.Amount)
+                        .Must((args, x) =>
+                        {
+                            var product = _productRepository.FindProduct(args.ProductName);
+
+                            return product.GetType() == typeof(EachesProduct) ?
+                                x.Value <= product.RetailPrice :
+                                x.Value <= product.RetailPricePerUnit;
+                        })
                         .WithMessage("Markdown amount off retail must be less than or equal to product retail price");
                 });
 

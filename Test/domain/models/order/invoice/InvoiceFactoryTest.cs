@@ -14,7 +14,12 @@ namespace PointOfSale.Test.Domain
         private void AddFullSetOfScannedItemsToOrder()
         {
             foreach (var product in ProductProvider.GetOneOfEachProduct())
-                _order.AddScannedItem(new ScannedItem(product));
+            {
+                if (product.GetType() == typeof(EachesProduct))
+                    _order.AddScannedItem(new ScannedItem(product));
+                else
+                    _order.AddScannedItem(new WeightedScannedItem(product, 1));
+            }
         }
 
         private void PopulateOrder(Product product, int scannedItemCount)
@@ -37,7 +42,7 @@ namespace PointOfSale.Test.Domain
         [MemberData(nameof(SpecialsAndExpectedLineItems))]
         public void CreateProductDiscountLineItems_CreatesSpecialLineItems(decimal retailPrice, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
         {
-            var product = new Product("product with special", Money.USDollar(retailPrice), SellByType.Unit) { Special = special };
+            var product = new EachesProduct("product with special", retailPrice) { Special = special };
 
             PopulateOrder(product, scannedItemCount);
             var discountLineItems = Invoice.Factory.CreateProductDiscountLineItems(product, _order.ScannedItems);
@@ -51,7 +56,7 @@ namespace PointOfSale.Test.Domain
         [MemberData(nameof(MarkdownsSpecialsAndExpectedLineItems))]
         public void CreateProductDiscountLineItems_CreatesMarkdownLineItems(Markdown markdown, Special special, int scannedItemCount, int expectedLineItemCount, decimal expectedValue)
         {
-            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit)
+            var product = new EachesProduct("test product", 1m)
             {
                 Markdown = markdown,
                 Special = special
@@ -73,17 +78,17 @@ namespace PointOfSale.Test.Domain
             var markdown = MarkdownProvider.GetMarkdown(DateRange.Active, 0.10m);
             var special = SpecialProvider.GetBuyNGetMAtXPercentOffSpecial(DateRange.Active, 2, 1, 50m);
 
-            var product1 = new Product("product", Money.USDollar(1m), SellByType.Unit);
-            var product2 = new Product("product with markdown", Money.USDollar(1m), SellByType.Unit) { Markdown = markdown };
-            var product3 = new Product("product with special", Money.USDollar(1m), SellByType.Unit) { Special = special };
-            var product4 = new Product("product with markdown and special", Money.USDollar(1m), SellByType.Unit) { Markdown = markdown, Special = special };
+            var product1 = new EachesProduct("product", 1m);
+            var product2 = new EachesProduct("product with markdown", 1m) { Markdown = markdown };
+            var product3 = new EachesProduct("product with special", 1m) { Special = special };
+            var product4 = new EachesProduct("product with markdown and special", 1m) { Markdown = markdown, Special = special };
 
             PopulateOrder(product1, product1Count);
             PopulateOrder(product2, product2Count);
             PopulateOrder(product3, product3Count);
             PopulateOrder(product4, product4Count);
 
-            _order.Invoice.PreTaxTotal.Amount.Should().Be((decimal)expectedTotal);
+            _order.Invoice.PreTaxTotal.Amount.Should().Be((decimal) expectedTotal);
         }
 
         [Theory]
@@ -92,7 +97,7 @@ namespace PointOfSale.Test.Domain
         [InlineData(10)]
         public void CreateProductMarkdownLineItems_CreatesOneMarkdownLineItemPerScannedItem(int scannedItemCount)
         {
-            var product = new Product("product with markdown", Money.USDollar(1m), SellByType.Unit)
+            var product = new EachesProduct("product with markdown", 1m)
             {
                 Markdown = MarkdownProvider.GetMarkdown(DateRange.Active)
             };
@@ -121,7 +126,7 @@ namespace PointOfSale.Test.Domain
 
         public static IEnumerable<object[]> InvalidDiscountProducts()
         {
-            var product = new Product("test product", Money.USDollar(1m), SellByType.Unit);
+            var product = new EachesProduct("test product", 1m);
             yield return new object[] { product };
 
             product.Markdown = MarkdownProvider.GetMarkdown(DateRange.Expired);

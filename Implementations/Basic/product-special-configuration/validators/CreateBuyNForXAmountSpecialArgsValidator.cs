@@ -20,7 +20,7 @@ namespace PointOfSale.Implementations.Basic
             RuleFor(x => x.ProductName).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product name is required")
                 .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
-                .Must(x => _productRepository.FindProduct(x).SellByType == SellByType.Unit)
+                .Must(x => _productRepository.FindProduct(x).GetType() == typeof(EachesProduct))
                 .WithMessage("Special can only be applied to a product with the Unit sell by type");
 
             RuleFor(x => x.DiscountedItems)

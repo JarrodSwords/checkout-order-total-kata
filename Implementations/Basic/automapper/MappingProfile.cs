@@ -13,6 +13,10 @@ namespace PointOfSale.Implementations.Basic
             CreateMap<Markdown, MarkdownDto>();
             CreateMap<UpsertProductArgs, Product>();
             CreateMap<UpsertProductMarkdownArgs, Markdown>();
+            CreateMap<EachesProduct, EachesProductDto>()
+                .ForMember(d => d.SellByType, o => o.MapFrom(s => "Unit"));
+            CreateMap<MassProduct, MassProductDto>()
+                .ForMember(d => d.SellByType, o => o.MapFrom(s => "Weight"));
         }
     }
 }

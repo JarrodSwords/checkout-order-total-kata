@@ -17,6 +17,11 @@ namespace PointOfSale.Domain
             int? limit = null
         ) : base(temporal, preDiscountItems, discountedItems, percentageOff, limit) { }
 
+        public override Money CalculateTotalDiscount(Product product)
+        {
+            return 0;
+        }
+
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
             return scannedItems.OrderByDescending(x => ((WeightedScannedItem) x).Weight)

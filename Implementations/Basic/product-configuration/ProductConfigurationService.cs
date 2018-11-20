@@ -8,14 +8,19 @@ namespace PointOfSale.Implementations.Basic
     {
         #region Dependencies
 
-        private readonly IMapper _mapper;
+        private readonly IProductFactoryProvider _productFactoryProvider;
         private readonly IProductRepository _productRepository;
-        private CreateProductArgsValidator _createProductArgsValidator;
-        private UpdateProductArgsValidator _updateProductArgsValidator;
+        private readonly CreateProductArgsValidator _createProductArgsValidator;
+        private readonly UpdateProductArgsValidator _updateProductArgsValidator;
 
-        public ProductConfigurationService(IMapper mapper, IProductRepository productRepository, CreateProductArgsValidator createProductArgsValidator, UpdateProductArgsValidator updateProductArgsValidator)
+        public ProductConfigurationService(
+            IProductFactoryProvider productFactoryProvider,
+            IProductRepository productRepository,
+            CreateProductArgsValidator createProductArgsValidator,
+            UpdateProductArgsValidator updateProductArgsValidator
+        )
         {
-            _mapper = mapper;
+            _productFactoryProvider = productFactoryProvider;
             _productRepository = productRepository;
             _createProductArgsValidator = createProductArgsValidator;
             _updateProductArgsValidator = updateProductArgsValidator;
@@ -27,10 +32,10 @@ namespace PointOfSale.Implementations.Basic
         {
             _createProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
 
-            var product = _mapper.Map<Product>(args);
-            var persistedProduct = _productRepository.CreateProduct(product);
-
-            return _mapper.Map<ProductDto>(persistedProduct);
+            var productFactory = _productFactoryProvider.GetFactory(args);
+            var product = productFactory.Create();
+            product = _productRepository.CreateProduct(product);
+            return productFactory.CreateProductDto(product);
         }
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
@@ -38,10 +43,10 @@ namespace PointOfSale.Implementations.Basic
             _updateProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
 
             var product = _productRepository.FindProduct(args.Name);
-            _mapper.Map<UpsertProductArgs, Product>(args, product);
-            var persistedProduct = _productRepository.UpdateProduct(product);
-
-            return _mapper.Map<ProductDto>(persistedProduct);
+            var productFactory = _productFactoryProvider.GetFactory(args);
+            product = productFactory.UpdateProduct(product);
+            product = _productRepository.UpdateProduct(product);
+            return productFactory.CreateProductDto(product);
         }
     }
 }

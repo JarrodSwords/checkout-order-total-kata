@@ -24,13 +24,23 @@ namespace PointOfSale.Implementations.Basic
                 .NotEmpty().WithMessage("Product name is required")
                 .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist");
 
-            RuleFor(x => x.RetailPrice).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("Product retail price is required")
-                .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
-
             RuleFor(x => x.SellByType).Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Product sell by type is required")
                 .Must(x => sellByTypes.Contains(x)).WithMessage($"Product sell by type \"{{PropertyValue}}\" is not in: {string.Join(", ", sellByTypes)}");
+                
+            When(x => x.SellByType == "Unit", () =>
+            {
+                RuleFor(x => x.RetailPrice)
+                    .NotNull().WithMessage("Product retail price is required")
+                    .GreaterThanOrEqualTo(0).WithMessage("Product retail price cannot be negative");
+            });
+
+            When(x => x.SellByType == "Weight", () =>
+            {
+                RuleFor(x => x.RetailPricePerUnit)
+                    .NotNull().WithMessage("Product retail price per unit is required")
+                    .GreaterThanOrEqualTo(0).WithMessage("Product retail price per unit cannot be negative");
+            });
         }
     }
 }
