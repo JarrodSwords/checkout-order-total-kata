@@ -7,15 +7,16 @@ namespace PointOfSale.Implementations
 {
     public class ProductFactoryProvider : IProductFactoryProvider
     {
-        private IDictionary<string, Func<IProductNameArgs, ProductFactory>> _factories;
+        private IDictionary<string, Func<UpsertProductArgs, ProductFactory>> _factories;
 
         public IEnumerable<string> SellByTypes =>
             _factories.Keys;
 
         public ProductFactoryProvider(IMapper mapper)
         {
-            _factories = new Dictionary<string, Func<IProductNameArgs, ProductFactory>>
-            { { "eaches", args => new EachesProductFactory(args, mapper) },
+            _factories = new Dictionary<string, Func<UpsertProductArgs, ProductFactory>>
+            { 
+                { "eaches", args => new EachesProductFactory(args, mapper) },
                 { "mass", args => new MassProductFactory(args, mapper) }
             };
         }

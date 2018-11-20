@@ -13,22 +13,11 @@ namespace PointOfSale.Test.WebApi
 
         public ProductControllerTest()
         {
-            var buyNForXAmountConfigurationService = DependencyProvider.CreateBuyNForXAmountConfigurationService();
-            var buyNGetMAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMAtXPercentOffConfigurationService();
-            var buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService = DependencyProvider.CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService();
-            var productSpecialConfigurationServiceProvider = new ProductSpecialConfigurationServiceProvider(
-                buyNForXAmountConfigurationService,
-                buyNGetMAtXPercentOffConfigurationService,
-                buyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService
-            );
-            var productConfigurationService = DependencyProvider.CreateProductConfigurationService();
-            var productMarkdownConfigurationService = DependencyProvider.CreateProductMarkdownConfigurationService();
-            var productService = DependencyProvider.CreateProductService();
             _productController = new ProductController(
-                productConfigurationService,
-                productMarkdownConfigurationService,
-                productService,
-                productSpecialConfigurationServiceProvider
+                DependencyProvider.ProductConfigurationService(),
+                DependencyProvider.CreateProductMarkdownConfigurationService(),
+                DependencyProvider.CreateProductService(),
+                DependencyProvider.CreateProductSpecialConfigurationService()
             );
         }
 

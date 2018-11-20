@@ -7,12 +7,39 @@ namespace PointOfSale.Implementations.Basic
     public class CreateSpecialArgsValidator : AbstractValidator<CreateSpecialArgs>
     {
         public CreateSpecialArgsValidator(
-            ProductNameExistsValidator productNameExistsValidator,
+            DiscountedItemsValidator discountedItemsValidator,
+            GroupSalePriceValidator groupSalePriceValidator,
+            IsEachesProductValidator isEachesProductValidator,
+            IsMassProductValidator isMassProductValidator,
+            PercentageOffValidator percentageOffValidator,
+            PreDiscountItemsValidator preDiscountItemsValidator,
+            ProductMustExistValidator productMustExistValidator,
             TemporalValidator temporalValidator
         )
         {
-            Include(productNameExistsValidator);
+            Include(discountedItemsValidator);
+            Include(productMustExistValidator);
             Include(temporalValidator);
+
+            When(x => x.SpecialType == "BuyNForXAmount", () =>
+            {
+                Include(groupSalePriceValidator);
+                Include(isEachesProductValidator);
+            });
+
+            When(x => x.SpecialType == "BuyNGetMAtXPercentOff", () =>
+            {
+                Include(isEachesProductValidator);
+                Include(percentageOffValidator);
+                Include(preDiscountItemsValidator);
+            });
+
+            When(x => x.SpecialType == "BuyNGetMOfEqualOrLesserValueAtXPercentOff", () =>
+            {
+                Include(isMassProductValidator);
+                Include(percentageOffValidator);
+                Include(preDiscountItemsValidator);
+            });
         }
     }
 }

@@ -30,23 +30,22 @@ namespace PointOfSale.Test.Implementations.Basic
             return new OrderService(CreateMapper(), CreateOrderRepository());
         }
 
-        public static IProductConfigurationService CreateProductConfigurationService()
-        {
-            var mapper = CreateMapper();
-            var productRepository = CreateProductRepository();
+        public static IProductConfigurationService ProductConfigurationService() =>
+            new ProductConfigurationService(
+                ProductFactoryProvider(),
+                CreateProductRepository(),
+                ValidatorProvider.CreateProductArgsValidator(),
+                ValidatorProvider.UpdateProductArgsValidator()
+            );
 
-            var createProductNameValidator = new ProductNameDoesNotExistValidator(productRepository);
-            var productFactoryProvider = new ProductFactoryProvider(mapper);
-            var sellByTypeValidator = new SellByTypeValidator(productFactoryProvider);
-            var retailPriceValidator = new IUpsertEachesProductArgsValidator();
-            var iUpsertMassProductArgsValidator = new IUpsertMassProductArgsValidator();
-            var createProductArgsValidator = new CreateProductArgsValidator(createProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
+        public static IProductFactoryProvider ProductFactoryProvider() =>
+            new ProductFactoryProvider(CreateMapper());
 
-            var updateProductNameValidator = CreateProductNameExistsValidator(productRepository);
-            var updateProductArgsValidator = new UpdateProductArgsValidator(updateProductNameValidator, sellByTypeValidator, retailPriceValidator, iUpsertMassProductArgsValidator);
-
-            return new ProductConfigurationService(productFactoryProvider, productRepository, createProductArgsValidator, updateProductArgsValidator);
-        }
+        public static ISpecialServiceProvider SpecialServiceProvider() =>
+            new SpecialServiceProvider(
+                CreateDateTimeProvider(),
+                CreateMapper()
+            );
 
         public static IProductMarkdownConfigurationService CreateProductMarkdownConfigurationService()
         {
@@ -57,8 +56,17 @@ namespace PointOfSale.Test.Implementations.Basic
             return new ProductMarkdownConfigurationService(CreateMapper(), markdownFactory, productRepository, upsertProductMarkdownArgsValidator);
         }
 
-        public static ProductNameExistsValidator CreateProductNameExistsValidator(IProductRepository productRepository = null) =>
-            new ProductNameExistsValidator(productRepository ?? CreateProductRepository());
+        public static IProductSpecialConfigurationService CreateProductSpecialConfigurationService() =>
+            new ProductSpecialConfigurationService(
+                CreateMapper(),
+                ProductFactoryProvider(),
+                CreateProductRepository(),
+                SpecialServiceProvider(),
+                ValidatorProvider.CreateSpecialArgsValidator()
+            );
+
+        public static ProductMustExistValidator CreateProductNameExistsValidator(IProductRepository productRepository = null) =>
+            new ProductMustExistValidator(productRepository ?? CreateProductRepository());
 
         public static IProductRepository CreateProductRepository() => new InMemoryProductRepositoryFactory().CreateSeededRepository();
 
@@ -69,44 +77,5 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static TemporalValidator CreateTemporalValidator() =>
             new TemporalValidator();
-
-        public static BuyNForXAmountConfigurationService CreateBuyNForXAmountConfigurationService()
-        {
-            var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
-
-            return new BuyNForXAmountConfigurationService(
-                CreateMapper(),
-                productRepository,
-                new BuyNForXAmountSpecial.Factory(new BasicDateTimeProvider()),
-                new CreateBuyNForXAmountSpecialArgsValidator(productRepository, createSpecialArgsValidator)
-            );
-        }
-
-        public static BuyNGetMAtXPercentOffConfigurationService CreateBuyNGetMAtXPercentOffConfigurationService()
-        {
-            var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
-
-            return new BuyNGetMAtXPercentOffConfigurationService(
-                CreateMapper(),
-                productRepository,
-                new BuyNGetMAtXPercentOffSpecial.Factory(new BasicDateTimeProvider()),
-                new CreateBuyNGetMAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator)
-            );
-        }
-
-        public static BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService()
-        {
-            var productRepository = CreateProductRepository();
-            var createSpecialArgsValidator = new CreateSpecialArgsValidator(CreateProductNameExistsValidator(productRepository), CreateTemporalValidator());
-
-            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffConfigurationService(
-                CreateMapper(),
-                productRepository,
-                new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(new BasicDateTimeProvider()),
-                new CreateBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialArgsValidator(productRepository, createSpecialArgsValidator)
-            );
-        }
     }
 }

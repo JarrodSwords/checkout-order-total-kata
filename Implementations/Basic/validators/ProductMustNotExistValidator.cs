@@ -4,9 +4,9 @@ using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public class ProductNameDoesNotExistValidator : AbstractValidator<IProductNameArgs>
+    public class ProductMustNotExistValidator : AbstractValidator<IProductNameArgs>
     {
-        public ProductNameDoesNotExistValidator(IProductRepository productRepository)
+        public ProductMustNotExistValidator(IProductRepository productRepository)
         {
             RuleFor(x => x.ProductName)
                 .Cascade(CascadeMode.StopOnFirstFailure)
