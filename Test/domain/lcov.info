@@ -1,10 +1,10 @@
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:192,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,192
+FNDA:191,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,191
 DA:9,192
-DA:10,192
-DA:11,192
+DA:10,191
+DA:11,191
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:16,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,16
@@ -523,8 +523,8 @@ FNH:1
 end_of_record
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\Product.cs
 FN:13,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
-FNDA:76,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
-DA:14,76
+FNDA:75,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
+DA:14,75
 BRDA:14,6,0,23
 BRDA:14,6,1,53
 FN:14,System.Boolean PointOfSale.Domain.Product::get_HasActiveSpecial()
@@ -564,7 +564,7 @@ FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale
 DA:35,105
 DA:36,105
 DA:37,105
-DA:38,104
+DA:38,105
 DA:39,105
 DA:40,105
 LF:17
@@ -576,8 +576,8 @@ FNH:12
 end_of_record
 SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
 FN:7,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-FNDA:143,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
-DA:8,143
+FNDA:142,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
+DA:8,142
 FN:8,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 FNDA:200,PointOfSale.Domain.Special PointOfSale.Domain.ProductSpecial::get_Special()
 DA:9,200
@@ -585,15 +585,15 @@ FN:33,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 FNDA:46,System.Boolean PointOfSale.Domain.ProductSpecial::GetIsBestDiscount()
 DA:34,46
 DA:35,46
-DA:37,45
+DA:37,46
 DA:38,2
-DA:40,44
+DA:40,43
 DA:41,35
 DA:43,9
 DA:45,9
 DA:46,46
 BRDA:37,33,0,2
-BRDA:37,33,1,44
+BRDA:37,33,1,43
 BRDA:40,57,0,35
 BRDA:40,57,1,9
 FN:10,System.Void PointOfSale.Domain.ProductSpecial::.ctor(PointOfSale.Domain.Product,PointOfSale.Domain.Special)

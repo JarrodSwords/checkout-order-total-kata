@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FluentAssertions;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 using PointOfSale.Test.Services;
@@ -25,7 +26,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs(productName, 0.1m, _now.StartOfWeek(), _now.EndOfWeek()));
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -36,7 +37,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", (decimal?) amountOffRetail, _now.StartOfWeek(), _now.EndOfWeek()));
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -45,7 +46,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action upsertMarkdown = () => _productMarkdownConfigurationService.UpsertProductMarkdown(new UpsertProductMarkdownArgs("can of soup", 0.1m, startTime, endTime));
 
-            upsertMarkdown.Should().Throw<ArgumentException>().WithMessage(message);
+            upsertMarkdown.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         public class InvalidTimeRangeUpsertProductMarkdownData : IEnumerable<object[]>
@@ -54,9 +55,9 @@ namespace PointOfSale.Test.Implementations.Basic
 
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return new object[] { null, _now.EndOfWeek(), "Markdown start time is required" };
-                yield return new object[] { _now.StartOfWeek(), null, "Markdown end time is required" };
-                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "Markdown start time must be less than end time" };
+                yield return new object[] { null, _now.EndOfWeek(), "*Markdown start time is required*" };
+                yield return new object[] { _now.StartOfWeek(), null, "*Markdown end time is required*" };
+                yield return new object[] { _now.EndOfWeek(), _now.StartOfWeek(), "*Markdown start time must be less than end time*" };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

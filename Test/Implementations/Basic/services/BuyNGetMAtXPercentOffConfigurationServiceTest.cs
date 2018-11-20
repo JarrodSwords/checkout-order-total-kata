@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
@@ -49,7 +50,7 @@ namespace PointOfSale.Test.Implementations.Basic
 
             Action createSpecial = () => _service.CreateSpecial(args);
 
-            createSpecial.Should().Throw<ArgumentException>(message);
+            createSpecial.Should().Throw<ValidationException>(message);
         }
     }
 }

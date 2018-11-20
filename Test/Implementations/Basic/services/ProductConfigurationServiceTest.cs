@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using FluentValidation;
 using PointOfSale.Services;
 using PointOfSale.Test.Services;
 using Xunit;
@@ -25,7 +26,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs(productName, 1m, "eaches"));
 
-            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -35,7 +36,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "eaches"));
 
-            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -47,7 +48,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action createProduct = () => _productConfigurationService.CreateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));
 
-            createProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            createProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         #endregion Create product
@@ -63,7 +64,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs(productName, 1m, "eaches"));
 
-            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            updateProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -73,7 +74,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", (decimal?) retailPrice, "eaches"));
 
-            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            updateProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
@@ -85,7 +86,7 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             Action updateProduct = () => _productConfigurationService.UpdateProduct(new UpsertProductArgs("milk", 1.99m, sellByType));
 
-            updateProduct.Should().Throw<ArgumentException>().WithMessage(message);
+            updateProduct.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         #endregion Update product

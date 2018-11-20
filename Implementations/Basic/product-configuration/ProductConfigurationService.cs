@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
@@ -30,7 +31,7 @@ namespace PointOfSale.Implementations.Basic
 
         public ProductDto CreateProduct(UpsertProductArgs args)
         {
-            _createProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
+            _createProductArgsValidator.ValidateAndThrow(args);
 
             var productFactory = _productFactoryProvider.GetFactory(args);
             var product = productFactory.Create();
@@ -40,7 +41,7 @@ namespace PointOfSale.Implementations.Basic
 
         public ProductDto UpdateProduct(UpsertProductArgs args)
         {
-            _updateProductArgsValidator.ValidateAndThrow<UpsertProductArgs>(args);
+            _updateProductArgsValidator.ValidateAndThrow(args);
 
             var product = _productRepository.FindProduct(args.ProductName);
             var productFactory = _productFactoryProvider.GetFactory(args);

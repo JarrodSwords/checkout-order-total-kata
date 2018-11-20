@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
@@ -37,7 +38,7 @@ namespace PointOfSale.Implementations.Basic
 
         public ScannedItemDto RemoveScannedItem(RemoveScannedItemArgs args)
         {
-            _removeScannedItemArgsValidator.ValidateAndThrow<RemoveScannedItemArgs>(args);
+            _removeScannedItemArgsValidator.ValidateAndThrow(args);
 
             var order = _orderRepository.FindOrder(args.OrderId.Value);
 
