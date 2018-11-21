@@ -23,7 +23,7 @@ namespace PointOfSale.Domain
 
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
-            return scannedItems.OrderByDescending(x => ((WeightedScannedItem) x).Weight)
+            return scannedItems.OrderByDescending(x => ((ScannedItemWithMass) x).Mass)
                 .Skip(ScannedItemsRequired * skipMultiplier)
                 .Take(ScannedItemsRequired)
                 .Select(x => x.Id);
@@ -32,7 +32,7 @@ namespace PointOfSale.Domain
         public override LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
         {
             var itemsInSpecial = scannedItems
-                .OrderByDescending(x => ((WeightedScannedItem) x).Weight)
+                .OrderByDescending(x => ((ScannedItemWithMass) x).Mass)
                 .Skip(ScannedItemsRequired * skipMultiplier)
                 .Take(ScannedItemsRequired)
                 .ToList();

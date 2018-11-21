@@ -1,17 +1,29 @@
 using NodaMoney;
+using UnitsNet;
 
 namespace PointOfSale.Domain
 {
-    public class ScannedItem
+    public abstract class ScannedItem : IScannable
     {
-        public int Id { get; set; }
-        public virtual Money MarkdownDiscount => -Product.Markdown.AmountOffRetail;
-        public Product Product { get; }
-        public virtual Money RetailPrice => Product.RetailPrice;
+        private readonly IScannable _scannable;
 
-        public ScannedItem(Product product)
+        public int Id { get; set; }
+
+        public Money MarkdownDiscount =>
+            _scannable.MarkdownDiscount;
+
+        public Mass Mass =>
+            _scannable.Mass;
+
+        public Product Product =>
+            _scannable.Product;
+
+        public Money RetailPrice =>
+            _scannable.RetailPrice;
+
+        public ScannedItem(IScannable scannable)
         {
-            Product = product;
+            _scannable = scannable;
         }
 
         public virtual LineItem CreateMarkdownLineItem()
@@ -23,7 +35,5 @@ namespace PointOfSale.Domain
         {
             return new RetailLineItem(Product.Name, RetailPrice, Id);
         }
-
-        public override string ToString() => $"Id: {Id}, Product: {Product.Name}";
     }
 }

@@ -3,6 +3,7 @@ using AutoMapper;
 using FluentValidation;
 using PointOfSale.Domain;
 using PointOfSale.Services;
+using UnitsNet;
 
 namespace PointOfSale.Implementations.Basic
 {
@@ -42,24 +43,38 @@ namespace PointOfSale.Implementations.Basic
 
             var order = _orderRepository.FindOrder(args.OrderId.Value);
 
-            var removedItem = _mapper.Map<ScannedItemDto>(order.RemoveScannedItem(args.ScannedItemId.Value));
+            var removedItem = _mapper.Map<ScannedItemDto>(
+                order.RemoveScannedItem(args.ScannedItemId.Value)
+            );
             _orderRepository.UpdateOrder(order);
 
             return removedItem;
         }
 
-        public ScannedItemDto ScanItem(ScanItemArgs args)
+        public ScannedItemAsEachesDto ScanItem(ScanItemArgs args)
         {
             _scanItemArgsValidator.ValidateAndThrow<ScanItemArgs>(args);
 
-            return _mapper.Map<ScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new ScannedItem(product)));
+            return _mapper.Map<ScannedItemAsEachesDto>(
+                ScanItem(
+                    args.OrderId.Value,
+                    args.ProductName,
+                    product => new ScannedItemAsEaches(product)
+                )
+            );
         }
 
-        public ScannedItemDto ScanWeightedItem(ScanWeightedItemArgs args)
+        public ScannedItemWithMassDto ScanWeightedItem(ScanWeightedItemArgs args)
         {
             _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return _mapper.Map<WeightedScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new WeightedScannedItem(product, args.MassAmount.Value)));
+            return _mapper.Map<ScannedItemWithMassDto>(
+                ScanItem(
+                    args.OrderId.Value,
+                    args.ProductName,
+                    product => new ScannedItemWithMass(args.MassAmount.Value, args.MassUnit, product)
+                )
+            );
         }
 
         private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)

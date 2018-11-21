@@ -18,7 +18,7 @@ namespace PointOfSale.Test.Domain
             for (var i = 0; i < count; i++)
             {
                 weight += 0.5m;
-                yield return new WeightedScannedItem(product, weight) { Id = i + 1 };
+                yield return new ScannedItemWithMass(weight, "Pound", product) { Id = i + 1 };
             }
         }
 

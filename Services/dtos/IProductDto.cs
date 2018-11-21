@@ -23,7 +23,7 @@ namespace PointOfSale.Services
         public decimal RetailPrice { get; set; }
     }
 
-    public class MassDto
+    public interface IMassDto
     {
         double Amount { get; set; }
         string Unit { get; set; }
@@ -31,6 +31,6 @@ namespace PointOfSale.Services
 
     public class MassProductDto : ProductDto
     {
-        public MassDto Mass { get; set; }
+        public IMassDto Mass { get; set; }
     }
 }
