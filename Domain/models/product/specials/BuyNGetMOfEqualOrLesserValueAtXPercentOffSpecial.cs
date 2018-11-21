@@ -38,7 +38,7 @@ namespace PointOfSale.Domain
                 .ToList();
 
             var discountedItems = itemsInSpecial.Skip(PreDiscountItems).ToList();
-            var totalDiscount = Money.USDollar(discountedItems.Sum(x => -(x.RetailPrice * Multiplier).Amount));
+            var totalDiscount = Money.USDollar(discountedItems.Sum(x => -(x.SalePrice * Multiplier).Amount));
 
             return new SpecialLineItem(product.Name, totalDiscount, discountedItems.Select(x => x.Id), Description);
         }

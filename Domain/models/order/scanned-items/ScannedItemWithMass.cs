@@ -7,10 +7,11 @@ namespace PointOfSale.Domain
     public class ScannedItemWithMass : ScannedItem
     {
         public ScannedItemWithMass(decimal massAmount, string massUnit, Product product) : base(
-            new ScannableWithMass(
+            new MassLineItemFactory(
                 new Mass((double) massAmount, (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)),
                 product
-            )
+            ),
+            product
         ) { }
     }
 }

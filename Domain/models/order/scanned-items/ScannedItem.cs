@@ -3,37 +3,31 @@ using UnitsNet;
 
 namespace PointOfSale.Domain
 {
-    public abstract class ScannedItem : IScannable
+    public abstract class ScannedItem : ILineItemFactory
     {
-        private readonly IScannable _scannable;
+        private int _id;
+        private readonly ILineItemFactory _lineItemFactory;
 
-        public int Id { get; set; }
-
-        public Money MarkdownDiscount =>
-            _scannable.MarkdownDiscount;
-
-        public Mass Mass =>
-            _scannable.Mass;
-
-        public Product Product =>
-            _scannable.Product;
-
-        public Money RetailPrice =>
-            _scannable.RetailPrice;
-
-        public ScannedItem(IScannable scannable)
+        public int Id
         {
-            _scannable = scannable;
+            get => _id;
+            set
+            {
+                _id = value;
+                _lineItemFactory.Id = value;
+            }
+        }
+        public Mass Mass => _lineItemFactory.Mass;
+        public Product Product { get; }
+        public Money SalePrice => _lineItemFactory.SalePrice;
+
+        public ScannedItem(ILineItemFactory lineItemFactory, Product product)
+        {
+            _lineItemFactory = lineItemFactory;
+            Product = product;
         }
 
-        public virtual LineItem CreateMarkdownLineItem()
-        {
-            return new MarkdownLineItem(Product.Name, MarkdownDiscount, Id);
-        }
-
-        public LineItem CreateRetailLineItem()
-        {
-            return new RetailLineItem(Product.Name, RetailPrice, Id);
-        }
+        public MarkdownLineItem CreateMarkdownLineItem() => _lineItemFactory.CreateMarkdownLineItem();
+        public RetailLineItem CreateRetailLineItem() => _lineItemFactory.CreateRetailLineItem();
     }
 }
