@@ -3,7 +3,7 @@
     public interface ICheckoutService
     {
         ScannedItemDto RemoveScannedItem(RemoveScannedItemArgs args);
-        ScannedItemDto ScanItem(ScanItemArgs args);
-        ScannedItemDto ScanWeightedItem(ScanWeightedItemArgs args);
+        ScannedItemAsEachesDto ScanItem(ScanItemArgs args);
+        ScannedItemWithMassDto ScanWeightedItem(ScanWeightedItemArgs args);
     }
 }

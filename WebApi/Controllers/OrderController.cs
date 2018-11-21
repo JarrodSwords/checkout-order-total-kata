@@ -32,7 +32,7 @@ namespace PointOfSale.WebApi
 
         [Route("{orderId}/scannedItems")]
         [HttpPost]
-        public ActionResult<ScannedItemDto> AddScannedItem(long orderId, [FromBody] ScanItemArgs args)
+        public ActionResult<IScannedItemDto> AddScannedItem(long orderId, [FromBody] ScanItemArgs args)
         {
             args.OrderId = orderId;
             return _checkoutService.ScanItem(args);
@@ -40,7 +40,7 @@ namespace PointOfSale.WebApi
 
         [Route("{orderId}/weightedScannedItems")]
         [HttpPost]
-        public ActionResult<ScannedItemDto> AddWeightedScannedItem(long orderId, [FromBody] ScanWeightedItemArgs args)
+        public ActionResult<IScannedItemDto> AddWeightedScannedItem(long orderId, [FromBody] ScanWeightedItemArgs args)
         {
             args.OrderId = orderId;
             return _checkoutService.ScanWeightedItem(args);
@@ -48,7 +48,7 @@ namespace PointOfSale.WebApi
 
         [Route("{orderId}/scannedItems/{scannedItemId}")]
         [HttpDelete]
-        public ActionResult<ScannedItemDto> RemoveScannedItem(long orderId, int scannedItemId)
+        public ActionResult<IScannedItemDto> RemoveScannedItem(long orderId, int scannedItemId)
         {
             var args = new RemoveScannedItemArgs
             {

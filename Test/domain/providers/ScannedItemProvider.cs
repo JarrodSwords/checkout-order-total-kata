@@ -25,11 +25,11 @@ namespace PointOfSale.Test.Domain
             {
                 if (product.GetType() == typeof(EachesProduct))
                 {
-                    _scannedItems.Add(new ScannedItem(product));
+                    _scannedItems.Add(new ScannedItemAsEaches(product));
                     continue;
                 }
 
-                _scannedItems.Add(new WeightedScannedItem(product, weight));
+                _scannedItems.Add(new ScannedItemWithMass(weight, "Pound", product));
                 weight += weightIncrement;
             }
         }

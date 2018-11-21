@@ -1,29 +1,33 @@
 using NodaMoney;
+using UnitsNet;
 
 namespace PointOfSale.Domain
 {
-    public class ScannedItem
+    public abstract class ScannedItem : ILineItemFactory
     {
-        public int Id { get; set; }
-        public virtual Money MarkdownDiscount => -Product.Markdown.AmountOffRetail;
-        public Product Product { get; }
-        public virtual Money RetailPrice => Product.RetailPrice;
+        private int _id;
+        private readonly ILineItemFactory _lineItemFactory;
 
-        public ScannedItem(Product product)
+        public int Id
         {
+            get => _id;
+            set
+            {
+                _id = value;
+                _lineItemFactory.Id = value;
+            }
+        }
+        public Mass Mass => _lineItemFactory.Mass;
+        public Product Product { get; }
+        public Money SalePrice => _lineItemFactory.SalePrice;
+
+        public ScannedItem(ILineItemFactory lineItemFactory, Product product)
+        {
+            _lineItemFactory = lineItemFactory;
             Product = product;
         }
 
-        public virtual LineItem CreateMarkdownLineItem()
-        {
-            return new MarkdownLineItem(Product.Name, MarkdownDiscount, Id);
-        }
-
-        public LineItem CreateRetailLineItem()
-        {
-            return new RetailLineItem(Product.Name, RetailPrice, Id);
-        }
-
-        public override string ToString() => $"Id: {Id}, Product: {Product.Name}";
+        public MarkdownLineItem CreateMarkdownLineItem() => _lineItemFactory.CreateMarkdownLineItem();
+        public RetailLineItem CreateRetailLineItem() => _lineItemFactory.CreateRetailLineItem();
     }
 }
