@@ -6,25 +6,15 @@ namespace PointOfSale.Domain
 {
     public class MassProduct : Product
     {
-        public MassProduct(string name, decimal retailPricePerUnit) : base(
+        public MassProduct(string name, decimal retailPrice) : base(
             name,
-            new NotSellableAsEaches(),
-            new SellableByMass()
-        )
-        {
-            Mass = new Mass(1, MassUnit.Pound);
-            RetailPricePerUnit = retailPricePerUnit;
-        }
+            new SellableByMass(retailPrice)
+        ) { }
 
-        public MassProduct(string name, decimal retailPricePerUnit, double massAmount, string massUnit) : base(
+        public MassProduct(string name, decimal retailPrice, double massAmount, string massUnit) : base(
             name,
-            new NotSellableAsEaches(),
-            new SellableByMass()
-        )
-        {
-            Mass = new Mass(massAmount, (MassUnit) Enum.Parse(typeof(MassUnit), massUnit));
-            RetailPricePerUnit = retailPricePerUnit;
-        }
+            new SellableByMass(retailPrice, massAmount, massUnit)
+        ) { }
 
         public class MassProductBuilder
         {

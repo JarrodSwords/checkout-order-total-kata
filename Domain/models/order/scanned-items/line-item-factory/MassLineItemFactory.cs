@@ -6,7 +6,7 @@ namespace PointOfSale.Domain
     public class MassLineItemFactory : LineItemFactory
     {
         public override Mass Mass { get; }
-        public override Money SalePrice => Product.RetailPricePerUnit * (decimal) Mass.Value;
+        public override Money SalePrice => Product.GetSalePrice(Mass);
 
         public MassLineItemFactory(Mass mass, Product product) : base(product)
         {
