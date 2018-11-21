@@ -48,6 +48,16 @@ namespace PointOfSale.Test.Implementations.Basic
         public static ProductMustNotExistValidator ProductMustNotExistValidator(IProductRepository productRepository = null) =>
             new ProductMustNotExistValidator(productRepository ?? DependencyProvider.ProductRepository());
 
+        public static RemoveScannedItemArgsValidator RemoveScannedItemArgsValidator(IOrderRepository orderRepository = null)
+        {
+            orderRepository = orderRepository ?? DependencyProvider.OrderRepository();
+
+            return new RemoveScannedItemArgsValidator(
+                orderRepository,
+                OrderMustExistValidator(orderRepository)
+            );
+        }
+
         public static ScanItemArgsValidator ScanItemArgsValidator(
                 IOrderRepository orderRepository = null,
                 IProductRepository productRepository = null

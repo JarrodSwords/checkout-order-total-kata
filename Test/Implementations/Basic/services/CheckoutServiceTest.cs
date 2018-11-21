@@ -16,11 +16,13 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Scanned item id is required*")]
-        [InlineData(0, "*Scanned item id \"0\" does not exist*")]
-        public void RemoveScannedItem_WithInvalidProductName_ThrowsArgumentException(int? itemId, string message)
+        [InlineData(null, "*'Scanned Item Id' must not be empty*")]
+        [InlineData(0, "*Scanned Item Id \"0\" does not exist*")]
+        public void RemoveScannedItem_WithInvalidProductName_ThrowsArgumentException(int? scannedItemId, string message)
         {
-            Action scanItem = () => _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(1, itemId));
+            Action scanItem = () => _checkoutService.RemoveScannedItem(
+                new RemoveScannedItemArgs { OrderId = 1, ScannedItemId = scannedItemId }
+            );
 
             scanItem.Should().Throw<ValidationException>().WithMessage(message);
         }

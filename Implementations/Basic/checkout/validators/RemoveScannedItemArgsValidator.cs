@@ -7,20 +7,20 @@ namespace PointOfSale.Implementations.Basic
 {
     public class RemoveScannedItemArgsValidator : AbstractValidator<RemoveScannedItemArgs>
     {
-        private IOrderRepository _orderRepository;
-
-        public RemoveScannedItemArgsValidator(IOrderRepository orderRepository)
+        public RemoveScannedItemArgsValidator(
+            IOrderRepository orderRepository,
+            OrderMustExistValidator orderMustExistValidator
+        )
         {
-            _orderRepository = orderRepository;
-            CreateRules();
-        }
+            Include(orderMustExistValidator);
 
-        private void CreateRules()
-        {
-            RuleFor(x => x.ScannedItemId).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotNull().WithMessage("Scanned item id is required")
-                .Must((args, x) => _orderRepository.FindOrder(args.OrderId.Value).ScannedItems.Select(y => y.Id).Contains(x.Value))
-                .WithMessage("Scanned item id \"{PropertyValue}\" does not exist");
+            RuleFor(x => x.ScannedItemId)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotNull()
+                .Must((args, x) =>
+                    orderRepository.FindOrder(args.OrderId.Value).ScannedItems.Select(y => y.Id).Contains(x.Value)
+                )
+                .WithMessage("{PropertyName} \"{PropertyValue}\" does not exist");
         }
     }
 }

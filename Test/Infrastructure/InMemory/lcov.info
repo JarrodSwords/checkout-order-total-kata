@@ -2,9 +2,9 @@ SF:d:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.c
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
 FNDA:156,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
 DA:8,156
-DA:9,156
-DA:10,156
-DA:11,156
+DA:9,155
+DA:10,155
+DA:11,155
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:26,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,26
@@ -1436,9 +1436,9 @@ DA:10,78
 DA:11,78
 DA:12,78
 DA:13,78
-DA:15,77
-DA:16,77
-DA:17,77
+DA:15,78
+DA:16,78
+DA:17,78
 DA:18,78
 LF:8
 LH:8

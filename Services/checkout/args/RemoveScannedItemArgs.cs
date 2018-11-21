@@ -1,16 +1,8 @@
 namespace PointOfSale.Services
 {
-    public class RemoveScannedItemArgs
+    public class RemoveScannedItemArgs : IOrderIdArgs, IScannedItemIdArgs
     {
         public long? OrderId { get; set; }
         public int? ScannedItemId { get; set; }
-
-        public RemoveScannedItemArgs() { }
-
-        public RemoveScannedItemArgs(long? orderId, int? scannedItemId)
-        {
-            OrderId = orderId;
-            ScannedItemId = scannedItemId;
-        }
     }
 }

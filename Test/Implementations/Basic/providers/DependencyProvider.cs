@@ -12,13 +12,12 @@ namespace PointOfSale.Test.Implementations.Basic
         public static ICheckoutService CheckoutService(IOrderRepository orderRepository)
         {
             var productRepository = ProductRepository();
-            var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(orderRepository);
 
             return new CheckoutService(
                 Mapper(),
                 orderRepository,
                 productRepository,
-                removeScannedItemArgsValidator,
+                ValidatorProvider.RemoveScannedItemArgsValidator(orderRepository),
                 ValidatorProvider.ScanItemArgsValidator(orderRepository, productRepository),
                 ValidatorProvider.ScanWeightedItemArgsValidator(orderRepository, productRepository)
             );

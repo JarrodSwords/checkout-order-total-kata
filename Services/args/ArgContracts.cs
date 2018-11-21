@@ -48,6 +48,11 @@ namespace PointOfSale.Services
         string ProductName { get; set; }
     }
 
+    public interface IScannedItemIdArgs
+    {
+        int? ScannedItemId { get; set; }
+    }
+
     public interface ISellByTypeArgs
     {
         string SellByType { get; set; }

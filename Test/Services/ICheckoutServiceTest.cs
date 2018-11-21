@@ -19,7 +19,9 @@ namespace PointOfSale.Test.Services
             var itemId = 1;
             var scannedItemToRemove = order.ScannedItems.Single(x => x.Id == itemId);
 
-            var removedScannedItem = _checkoutService.RemoveScannedItem(new RemoveScannedItemArgs(orderId, itemId));
+            var removedScannedItem = _checkoutService.RemoveScannedItem(
+                new RemoveScannedItemArgs { OrderId = orderId, ScannedItemId = itemId }
+            );
 
             var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
             persistedScannedItems.Should().NotContain(scannedItemToRemove.Id);
