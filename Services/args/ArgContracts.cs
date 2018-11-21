@@ -22,6 +22,17 @@ namespace PointOfSale.Services
         int? Limit { get; set; }
     }
 
+    public interface IMassArgs
+    {
+        decimal? MassAmount { get; set; }
+        string MassUnit { get; set; }
+    }
+
+    public interface IOrderIdArgs
+    {
+        long? OrderId { get; set; }
+    }
+
     public interface IPercentageOffArgs
     {
         decimal? PercentageOff { get; set; }

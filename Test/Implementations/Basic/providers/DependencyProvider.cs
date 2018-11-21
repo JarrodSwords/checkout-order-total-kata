@@ -13,10 +13,15 @@ namespace PointOfSale.Test.Implementations.Basic
         {
             var productRepository = ProductRepository();
             var removeScannedItemArgsValidator = new RemoveScannedItemArgsValidator(orderRepository);
-            var scanItemArgsValidator = new ScanItemArgsValidator(productRepository);
-            var scanWeightedItemArgsValidator = new ScanWeightedItemArgsValidator(productRepository);
 
-            return new CheckoutService(Mapper(), orderRepository, productRepository, removeScannedItemArgsValidator, scanItemArgsValidator, scanWeightedItemArgsValidator);
+            return new CheckoutService(
+                Mapper(),
+                orderRepository,
+                productRepository,
+                removeScannedItemArgsValidator,
+                ValidatorProvider.ScanItemArgsValidator(orderRepository, productRepository),
+                ValidatorProvider.ScanWeightedItemArgsValidator(orderRepository, productRepository)
+            );
         }
 
         public static IDateTimeProvider DateTimeProvider() => new BasicDateTimeProvider();

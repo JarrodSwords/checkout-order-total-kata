@@ -29,7 +29,9 @@ namespace PointOfSale.Test.Services
         public void ScanItem_ScannedItemIsAddedToPersistedOrder()
         {
             var orderId = 1;
-            var scannedItem = _checkoutService.ScanItem(new ScanItemArgs(orderId, "can of soup"));
+            var scannedItem = _checkoutService.ScanItem(
+                new ScanItemArgs { OrderId = orderId, ProductName = "can of soup" }
+            );
 
             var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
             persistedScannedItems.Should().Contain(scannedItem.Id);
@@ -39,7 +41,9 @@ namespace PointOfSale.Test.Services
         public void ScanWeightedItem_WeightedItemIsAddedToPersistedOrder()
         {
             var orderId = 1;
-            var scannedItem = _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(orderId, "lean ground beef", 1m));
+            var scannedItem = _checkoutService.ScanWeightedItem(
+                new ScanWeightedItemArgs { OrderId = orderId, ProductName = "lean ground beef", MassAmount = 1m }
+            );
 
             var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);
             persistedScannedItems.Should().Contain(scannedItem.Id);

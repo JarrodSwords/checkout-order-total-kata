@@ -59,7 +59,7 @@ namespace PointOfSale.Implementations.Basic
         {
             _scanWeightedItemArgsValidator.ValidateAndThrow<ScanWeightedItemArgs>(args);
 
-            return _mapper.Map<WeightedScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new WeightedScannedItem(product, args.Weight.Value)));
+            return _mapper.Map<WeightedScannedItemDto>(ScanItem(args.OrderId.Value, args.ProductName, product => new WeightedScannedItem(product, args.MassAmount.Value)));
         }
 
         private ScannedItem ScanItem(long orderId, string productName, Func<Product, ScannedItem> createScannedItem)

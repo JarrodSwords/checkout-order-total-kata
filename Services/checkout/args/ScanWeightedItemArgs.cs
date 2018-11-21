@@ -1,18 +1,10 @@
 namespace PointOfSale.Services
 {
-    public class ScanWeightedItemArgs
+    public class ScanWeightedItemArgs : IMassArgs, IOrderIdArgs, IProductNameArgs
     {
+        public decimal? MassAmount { get; set; }
+        public string MassUnit { get; set; }
         public long? OrderId { get; set; }
         public string ProductName { get; set; }
-        public decimal? Weight { get; set; }
-
-        public ScanWeightedItemArgs() { }
-
-        public ScanWeightedItemArgs(long? orderId, string productName, decimal? weight)
-        {
-            OrderId = orderId;
-            ProductName = productName;
-            Weight = weight;
-        }
     }
 }

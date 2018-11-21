@@ -6,21 +6,15 @@ namespace PointOfSale.Implementations.Basic
 {
     public class ScanItemArgsValidator : AbstractValidator<ScanItemArgs>
     {
-        private IProductRepository _productRepository;
-
-        public ScanItemArgsValidator(IProductRepository productRepository)
+        public ScanItemArgsValidator(
+            IsEachesProductValidator isEachesProductValidator,
+            OrderMustExistValidator orderMustExistValidator,
+            ProductMustExistValidator productMustExistValidator
+        )
         {
-            _productRepository = productRepository;
-            CreateRules();
-        }
-
-        private void CreateRules()
-        {
-            RuleFor(x => x.ProductName).Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("Product name is required")
-                .Must(x => _productRepository.Exists(x)).WithMessage("Product name \"{PropertyValue}\" does not exist")
-                .Must(x => _productRepository.FindProduct(x).GetType() == typeof(EachesProduct))
-                .WithMessage("Product name \"{PropertyValue}\" cannot be sold as eaches");
+            Include(isEachesProductValidator);
+            Include(orderMustExistValidator);
+            Include(productMustExistValidator);
         }
     }
 }

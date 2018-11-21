@@ -19,6 +19,9 @@ namespace PointOfSale.Infrastructure.InMemory
             return FindOrder(order.Id);
         }
 
+        public bool Exists(long orderId) =>
+            _orders.Any(x => x.Id == orderId);
+
         public Order FindOrder(long orderId)
         {
             return _orders.First(x => x.Id == orderId);

@@ -26,27 +26,31 @@ namespace PointOfSale.Test.Implementations.Basic
         }
 
         [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        [InlineData("lean ground beef", "*Product name \"lean ground beef\" cannot be sold as eaches*")]
+        [InlineData(null, "*'Product Name' should not be empty*")]
+        [InlineData("", "*'Product Name' should not be empty*")]
+        [InlineData(" ", "*'Product Name' should not be empty*")]
+        [InlineData("milk", "*'Product Name' \"milk\" does not exist*")]
+        [InlineData("lean ground beef", "*Product Name must correspond to an eaches product*")]
         public void ScanItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            Action scanItem = () => _checkoutService.ScanItem(new ScanItemArgs(1, productName));
+            Action scanItem = () => _checkoutService.ScanItem(
+                new ScanItemArgs { OrderId = 1, ProductName = productName }
+            );
 
             scanItem.Should().Throw<ValidationException>().WithMessage(message);
         }
 
         [Theory]
-        [InlineData(null, "*Product name is required*")]
-        [InlineData("", "*Product name is required*")]
-        [InlineData(" ", "*Product name is required*")]
-        [InlineData("milk", "*Product name \"milk\" does not exist*")]
-        [InlineData("can of soup", "*Product name \"can of soup\" cannot be sold by mass*")]
+        [InlineData(null, "*'Product Name' should not be empty*")]
+        [InlineData("", "*'Product Name' should not be empty*")]
+        [InlineData(" ", "*'Product Name' should not be empty*")]
+        [InlineData("milk", "*'Product Name' \"milk\" does not exist*")]
+        [InlineData("can of soup", "*Product Name must correspond to a mass product*")]
         public void ScanWeightedItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
-            Action scanItem = () => _checkoutService.ScanWeightedItem(new ScanWeightedItemArgs(1, productName, 1m));
+            Action scanItem = () => _checkoutService.ScanWeightedItem(
+                new ScanWeightedItemArgs { OrderId = 1, ProductName = productName, MassAmount = 1m }
+            );
 
             scanItem.Should().Throw<ValidationException>().WithMessage(message);
         }
