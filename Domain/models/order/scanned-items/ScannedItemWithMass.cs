@@ -6,9 +6,9 @@ namespace PointOfSale.Domain
 {
     public class ScannedItemWithMass : ScannedItem
     {
-        public ScannedItemWithMass(decimal massAmount, string massUnit, Product product) : base(
+        public ScannedItemWithMass(double massAmount, string massUnit, Product product) : base(
             new MassLineItemFactory(
-                new Mass((double) massAmount, (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)),
+                new Mass(massAmount, (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)),
                 product
             ),
             product

@@ -461,8 +461,8 @@ FNF:1
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItemWithMass.cs
-FN:8,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Decimal,System.String,PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Decimal,System.String,PointOfSale.Domain.Product)
+FN:8,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
+FNDA:0,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
 DA:9,0
 DA:10,0
 DA:11,0
@@ -1088,8 +1088,8 @@ FNF:2
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\checkout\args\ScanWeightedItemArgs.cs
-FN:4,System.Nullable`1<System.Decimal> PointOfSale.Services.ScanWeightedItemArgs::get_MassAmount()
-FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.ScanWeightedItemArgs::get_MassAmount()
+FN:4,System.Nullable`1<System.Double> PointOfSale.Services.ScanWeightedItemArgs::get_MassAmount()
+FNDA:0,System.Nullable`1<System.Double> PointOfSale.Services.ScanWeightedItemArgs::get_MassAmount()
 DA:5,0
 FN:5,System.String PointOfSale.Services.ScanWeightedItemArgs::get_MassUnit()
 FNDA:0,System.String PointOfSale.Services.ScanWeightedItemArgs::get_MassUnit()
@@ -1125,24 +1125,24 @@ FNF:3
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\dtos\IProductDto.cs
-FN:14,PointOfSale.Services.MarkdownDto PointOfSale.Services.ProductDto::get_Markdown()
+FN:15,PointOfSale.Services.MarkdownDto PointOfSale.Services.ProductDto::get_Markdown()
 FNDA:0,PointOfSale.Services.MarkdownDto PointOfSale.Services.ProductDto::get_Markdown()
-DA:15,0
-FN:15,System.String PointOfSale.Services.ProductDto::get_Name()
-FNDA:0,System.String PointOfSale.Services.ProductDto::get_Name()
 DA:16,0
-FN:16,System.String PointOfSale.Services.ProductDto::get_SellByType()
-FNDA:0,System.String PointOfSale.Services.ProductDto::get_SellByType()
+FN:16,System.String PointOfSale.Services.ProductDto::get_Name()
+FNDA:0,System.String PointOfSale.Services.ProductDto::get_Name()
 DA:17,0
-FN:17,PointOfSale.Services.ISpecialDto PointOfSale.Services.ProductDto::get_Special()
-FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Services.ProductDto::get_Special()
+FN:17,System.Decimal PointOfSale.Services.ProductDto::get_RetailPrice()
+FNDA:0,System.Decimal PointOfSale.Services.ProductDto::get_RetailPrice()
 DA:18,0
-FN:22,System.Decimal PointOfSale.Services.EachesProductDto::get_RetailPrice()
-FNDA:0,System.Decimal PointOfSale.Services.EachesProductDto::get_RetailPrice()
-DA:23,0
-FN:33,PointOfSale.Services.IMassDto PointOfSale.Services.MassProductDto::get_Mass()
+FN:18,System.String PointOfSale.Services.ProductDto::get_SellByType()
+FNDA:0,System.String PointOfSale.Services.ProductDto::get_SellByType()
+DA:19,0
+FN:19,PointOfSale.Services.ISpecialDto PointOfSale.Services.ProductDto::get_Special()
+FNDA:0,PointOfSale.Services.ISpecialDto PointOfSale.Services.ProductDto::get_Special()
+DA:20,0
+FN:35,PointOfSale.Services.IMassDto PointOfSale.Services.MassProductDto::get_Mass()
 FNDA:0,PointOfSale.Services.IMassDto PointOfSale.Services.MassProductDto::get_Mass()
-DA:34,0
+DA:36,0
 LF:6
 LH:0
 BRF:0
@@ -1317,25 +1317,23 @@ DA:7,0
 FN:7,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPrice()
 FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPrice()
 DA:8,0
-FN:8,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPricePerUnit()
-FNDA:0,System.Nullable`1<System.Decimal> PointOfSale.Services.UpsertProductArgs::get_RetailPricePerUnit()
-DA:9,0
-FN:9,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
+FN:8,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
 FNDA:0,System.String PointOfSale.Services.UpsertProductArgs::get_SellByType()
-DA:10,0
-FN:11,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
+DA:9,0
+FN:10,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
 FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor()
-DA:12,0
-FN:19,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:11,0
+FN:18,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
 FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
 DA:24,0
-DA:25,0
-FN:34,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
+FN:33,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
 FNDA:0,System.Void PointOfSale.Services.UpsertProductArgs::.ctor(System.Nullable`1<System.Double>,System.String,System.String,System.Nullable`1<System.Decimal>,System.String)
+DA:34,0
 DA:35,0
 DA:36,0
 DA:37,0
@@ -1343,12 +1341,11 @@ DA:38,0
 DA:39,0
 DA:40,0
 DA:41,0
-DA:42,0
-LF:21
+LF:20
 LH:0
 BRF:0
 BRH:0
-FNF:9
+FNF:8
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Services\product-markdown-configuration\args\UpsertProductMarkdownArgs.cs
@@ -1441,10 +1438,10 @@ DA:19,0
 DA:21,0
 DA:22,0
 DA:23,0
-BRDA:16,118,1,0
+BRDA:16,122,1,0
 BRDA:18,61,0,0
 BRDA:18,61,1,0
-BRDA:16,118,0,0
+BRDA:16,122,0,0
 FN:25,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 DA:26,0
@@ -1741,9 +1738,9 @@ DA:21,0
 DA:22,0
 DA:23,0
 BRDA:15,14,0,0
-BRDA:18,173,1,0
+BRDA:18,171,1,0
 BRDA:15,14,1,0
-BRDA:18,173,0,0
+BRDA:18,171,0,0
 LF:20
 LH:0
 BRF:6
@@ -1965,10 +1962,10 @@ DA:32,0
 DA:33,0
 DA:34,0
 DA:35,0
-BRDA:24,134,1,0
-BRDA:26,72,0,0
-BRDA:26,72,1,0
-BRDA:24,134,0,0
+BRDA:24,126,1,0
+BRDA:26,68,0,0
+BRDA:26,68,1,0
+BRDA:24,126,0,0
 FN:37,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 FNDA:0,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 DA:38,0

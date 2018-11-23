@@ -13,11 +13,11 @@ namespace PointOfSale.Test.Domain
     {
         protected override IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
         {
-            var weight = 0m;
+            double weight = 0;
 
             for (var i = 0; i < count; i++)
             {
-                weight += 0.5m;
+                weight += 0.5;
                 yield return new ScannedItemWithMass(weight, "Pound", product) { Id = i + 1 };
             }
         }

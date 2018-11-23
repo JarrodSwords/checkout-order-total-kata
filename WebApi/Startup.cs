@@ -39,9 +39,27 @@ namespace PointOfSale.WebApi
             services.AddTransient<ICheckoutService, CheckoutService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductServiceProvider, ProductServiceProvider>();
+            services.AddTransient<ISpecialServiceProvider, SpecialServiceProvider>();
 
             services.AddTransient<IProductConfigurationService, ProductConfigurationService>();
             services.AddTransient<IProductMarkdownConfigurationService, ProductMarkdownConfigurationService>();
+            services.AddTransient<IProductSpecialConfigurationService, ProductSpecialConfigurationService>();
+
+            services.AddTransient<AmountOffRetailValidator>();
+            services.AddTransient<DiscountedItemsValidator>();
+            services.AddTransient<GroupSalePriceValidator>();
+            services.AddTransient<IsEachesProductValidator>();
+            services.AddTransient<IsMassProductValidator>();
+            services.AddTransient<LimitValidator>();
+            services.AddTransient<OrderMustExistValidator>();
+            services.AddTransient<PercentageOffValidator>();
+            services.AddTransient<PreDiscountItemsValidator>();
+            services.AddTransient<ProductMustExistValidator>();
+            services.AddTransient<ProductMustNotExistValidator>();
+            services.AddTransient<MassValidator>();
+            services.AddTransient<SellByTypeValidator>();
+            services.AddTransient<TemporalValidator>();
 
             services.AddTransient<RemoveScannedItemArgsValidator>();
             services.AddTransient<ScanItemArgsValidator>();

@@ -7,7 +7,7 @@ namespace PointOfSale.Implementations.Basic
 {
     public class ProductSpecialConfigurationService : IProductSpecialConfigurationService
     {
-        private readonly IValidator<CreateSpecialArgs> _createSpecialArgsValidator;
+        private readonly CreateSpecialArgsValidator _createSpecialArgsValidator;
         protected readonly IMapper _mapper;
         private readonly IProductRepository _productRepository;
         private readonly IProductServiceProvider _productServiceProvider;
@@ -18,7 +18,7 @@ namespace PointOfSale.Implementations.Basic
             IProductRepository productRepository,
             IProductServiceProvider productServiceProvider,
             ISpecialServiceProvider specialServiceProvider,
-            IValidator<CreateSpecialArgs> createSpecialArgsValidator
+            CreateSpecialArgsValidator createSpecialArgsValidator
         )
         {
             _createSpecialArgsValidator = createSpecialArgsValidator;

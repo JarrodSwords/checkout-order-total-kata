@@ -461,8 +461,8 @@ FNF:1
 FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItemWithMass.cs
-FN:8,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Decimal,System.String,PointOfSale.Domain.Product)
-FNDA:12,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Decimal,System.String,PointOfSale.Domain.Product)
+FN:8,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
+FNDA:12,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
 DA:9,12
 DA:10,12
 DA:11,12
@@ -484,7 +484,7 @@ DA:5,53
 DA:6,53
 DA:7,53
 DA:8,53
-DA:9,157
+DA:9,159
 LF:5
 LH:5
 BRF:0
@@ -599,7 +599,7 @@ DA:35,105
 DA:36,105
 DA:37,105
 DA:38,105
-DA:39,104
+DA:39,105
 LF:20
 LH:10
 BRF:4
@@ -1153,10 +1153,10 @@ DA:19,0
 DA:21,0
 DA:22,0
 DA:23,0
-BRDA:16,118,1,0
+BRDA:16,122,1,0
 BRDA:18,61,0,0
 BRDA:18,61,1,0
-BRDA:16,118,0,0
+BRDA:16,122,0,0
 FN:25,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 DA:26,0
@@ -1453,9 +1453,9 @@ DA:21,0
 DA:22,0
 DA:23,0
 BRDA:15,14,0,0
-BRDA:18,173,1,0
+BRDA:18,171,1,0
 BRDA:15,14,1,0
-BRDA:18,173,0,0
+BRDA:18,171,0,0
 LF:20
 LH:0
 BRF:6
@@ -1676,10 +1676,10 @@ DA:32,12
 DA:33,12
 DA:34,12
 DA:35,3
-BRDA:24,134,1,24
-BRDA:26,72,0,12
-BRDA:26,72,1,12
-BRDA:24,134,0,3
+BRDA:24,126,1,24
+BRDA:26,68,0,12
+BRDA:26,68,1,12
+BRDA:24,126,0,3
 FN:37,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 FNDA:1,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 DA:38,1

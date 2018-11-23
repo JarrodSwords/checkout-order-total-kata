@@ -4,11 +4,11 @@ using FluentValidation;
 using PointOfSale.Services;
 using UnitsNet.Units;
 
-namespace PointOfSale.Domain
+namespace PointOfSale.Implementations.Basic
 {
-    public class ScannedMassValidator : AbstractValidator<IMassArgs>
+    public class MassValidator : AbstractValidator<IMassArgs>
     {
-        public ScannedMassValidator()
+        public MassValidator()
         {
             ValidatorOptions.CascadeMode = CascadeMode.StopOnFirstFailure;
 

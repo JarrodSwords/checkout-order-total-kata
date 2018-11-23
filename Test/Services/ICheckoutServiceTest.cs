@@ -44,7 +44,7 @@ namespace PointOfSale.Test.Services
         {
             var orderId = 1;
             var scannedItem = _checkoutService.ScanWeightedItem(
-                new ScanWeightedItemArgs { OrderId = orderId, ProductName = "lean ground beef", MassAmount = 1m, MassUnit = "Pound" }
+                new ScanWeightedItemArgs { OrderId = orderId, ProductName = "lean ground beef", MassAmount = 1, MassUnit = "Pound" }
             );
 
             var persistedScannedItems = _orderRepository.FindOrder(orderId).ScannedItems.Select(x => x.Id);

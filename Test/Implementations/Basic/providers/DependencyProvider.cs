@@ -1,6 +1,5 @@
 using AutoMapper;
 using PointOfSale.Domain;
-using PointOfSale.Implementations;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
 using PointOfSale.Test.Infrastructure.InMemory;

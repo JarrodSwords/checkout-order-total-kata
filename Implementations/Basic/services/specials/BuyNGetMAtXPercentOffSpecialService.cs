@@ -2,7 +2,7 @@ using AutoMapper;
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
-namespace PointOfSale.Implementations
+namespace PointOfSale.Implementations.Basic
 {
     public class BuyNGetMAtXPercentOffSpecialService : SpecialService
     {

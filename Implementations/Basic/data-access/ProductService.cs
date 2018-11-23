@@ -18,7 +18,9 @@ namespace PointOfSale.Implementations.Basic
         public ProductDto FindProduct(string productName)
         {
             var product = _productRepository.FindProduct(productName);
-            return _mapper.Map<ProductDto>(product);
+            return product.GetType() == typeof(EachesProduct) ?
+                (ProductDto) _mapper.Map<EachesProductDto>(product) :
+                (ProductDto) _mapper.Map<MassProductDto>(product);
         }
     }
 }

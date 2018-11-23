@@ -11,10 +11,10 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static CreateProductArgsValidator CreateProductArgsValidator() =>
             new CreateProductArgsValidator(
+                MassValidator(),
                 ProductMustNotExistValidator(),
-                SellByTypeValidator(),
-                IUpsertEachesProductArgsValidator(),
-                IUpsertMassProductArgsValidator()
+                RetailPriceValidator(),
+                SellByTypeValidator()
             );
 
         public static CreateSpecialArgsValidator CreateSpecialArgsValidator(IProductRepository productRepository = null)
@@ -68,8 +68,11 @@ namespace PointOfSale.Test.Implementations.Basic
                 ProductMustExistValidator()
             );
 
-        public static ScannedMassValidator ScannedMassValidator() =>
-            new ScannedMassValidator();
+        public static MassValidator MassValidator() =>
+            new MassValidator();
+
+        public static RetailPriceValidator RetailPriceValidator() =>
+            new RetailPriceValidator();
 
         public static ScanWeightedItemArgsValidator ScanWeightedItemArgsValidator(
                 IOrderRepository orderRepository = null,
@@ -79,27 +82,21 @@ namespace PointOfSale.Test.Implementations.Basic
                 IsMassProductValidator(productRepository ?? DependencyProvider.ProductRepository()),
                 OrderMustExistValidator(orderRepository ?? DependencyProvider.OrderRepository()),
                 ProductMustExistValidator(),
-                ScannedMassValidator()
+                MassValidator()
             );
 
         public static SellByTypeValidator SellByTypeValidator(IProductServiceProvider productFactoryProvider = null) =>
             new SellByTypeValidator(productFactoryProvider ?? DependencyProvider.ProductServiceProvider());
-
-        public static IUpsertEachesProductArgsValidator IUpsertEachesProductArgsValidator() =>
-            new IUpsertEachesProductArgsValidator();
-
-        public static IUpsertMassProductArgsValidator IUpsertMassProductArgsValidator() =>
-            new IUpsertMassProductArgsValidator();
 
         public static TemporalValidator TemporalValidator() =>
             new TemporalValidator();
 
         public static UpdateProductArgsValidator UpdateProductArgsValidator() =>
             new UpdateProductArgsValidator(
+                MassValidator(),
                 ProductMustExistValidator(),
-                SellByTypeValidator(),
-                IUpsertEachesProductArgsValidator(),
-                IUpsertMassProductArgsValidator()
+                RetailPriceValidator(),
+                SellByTypeValidator()
             );
 
         public static UpsertProductMarkdownArgsValidator UpsertProductMarkdownArgsValidator(IProductRepository productRepository = null) =>

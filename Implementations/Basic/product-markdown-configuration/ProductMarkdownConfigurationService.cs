@@ -35,7 +35,9 @@ namespace PointOfSale.Implementations.Basic
 
             var persistedProduct = _productRepository.UpdateProduct(product);
 
-            return _mapper.Map<ProductDto>(persistedProduct);
+            return persistedProduct.GetType() == typeof(EachesProduct) ?
+                (ProductDto) _mapper.Map<EachesProductDto>(persistedProduct) :
+                (ProductDto) _mapper.Map<MassProductDto>(persistedProduct);
         }
     }
 }
