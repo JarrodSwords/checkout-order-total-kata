@@ -23,7 +23,7 @@ namespace PointOfSale.Domain
 
             public override Special CreateSpecial()
             {
-                return new BuyNForXAmountSpecial(new BasicTemporal(EndTime, StartTime), DiscountedItems, GroupSalePrice, Limit);
+                return new BuyNForXAmountSpecial(new Temporal(EndTime, StartTime), DiscountedItems, GroupSalePrice, Limit);
             }
         }
     }

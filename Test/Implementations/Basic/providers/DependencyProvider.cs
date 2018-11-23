@@ -53,12 +53,10 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static IProductMarkdownConfigurationService ProductMarkdownConfigurationService()
         {
-            var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
             var productRepository = ProductRepository();
 
             return new ProductMarkdownConfigurationService(
                 Mapper(),
-                markdownFactory,
                 productRepository,
                 ValidatorProvider.UpsertProductMarkdownArgsValidator(productRepository)
             );

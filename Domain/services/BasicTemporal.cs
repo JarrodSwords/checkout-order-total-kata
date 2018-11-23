@@ -2,7 +2,7 @@ using System;
 
 namespace PointOfSale.Domain
 {
-    public class BasicTemporal : ITemporal
+    public class Temporal : ITemporal
     {
         public DateTime EndTime { get; }
         public DateTime StartTime { get; }
@@ -16,7 +16,7 @@ namespace PointOfSale.Domain
             }
         }
 
-        public BasicTemporal(DateTime endTime, DateTime startTime)
+        public Temporal(DateTime endTime, DateTime startTime)
         {
             EndTime = endTime;
             StartTime = startTime;

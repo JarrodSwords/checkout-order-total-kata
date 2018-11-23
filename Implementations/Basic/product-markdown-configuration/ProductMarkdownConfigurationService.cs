@@ -9,18 +9,15 @@ namespace PointOfSale.Implementations.Basic
     public class ProductMarkdownConfigurationService : IProductMarkdownConfigurationService
     {
         private readonly IMapper _mapper;
-        private readonly IMarkdownFactory _markdownFactory;
         private readonly IProductRepository _productRepository;
         private UpsertProductMarkdownArgsValidator _upsertProductMarkdownArgsValidator;
 
         public ProductMarkdownConfigurationService(
             IMapper mapper,
-            IMarkdownFactory markdownFactory,
             IProductRepository productRepository,
             UpsertProductMarkdownArgsValidator upsertProductMarkdownArgsValidator)
         {
             _mapper = mapper;
-            _markdownFactory = markdownFactory;
             _productRepository = productRepository;
             _upsertProductMarkdownArgsValidator = upsertProductMarkdownArgsValidator;
         }
@@ -30,13 +27,11 @@ namespace PointOfSale.Implementations.Basic
             _upsertProductMarkdownArgsValidator.ValidateAndThrow(args);
 
             var product = _productRepository.FindProduct(args.ProductName);
-            product.Markdown = _markdownFactory
-                .Configure(
-                    Money.USDollar(args.AmountOffRetail.Value),
-                    args.EndTime.Value,
-                    args.StartTime.Value
-                )
-                .CreateMarkdown();
+            product.Markdown = new Markdown(
+                Money.USDollar(args.AmountOffRetail.Value),
+                args.EndTime.Value,
+                args.StartTime.Value
+            );
 
             var persistedProduct = _productRepository.UpdateProduct(product);
 

@@ -8,7 +8,7 @@ namespace PointOfSale.Domain
 
             public override Special CreateSpecial()
             {
-                return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(new BasicTemporal(EndTime, StartTime), PreDiscountItems, DiscountedItems, PercentageOff, Limit);
+                return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(new Temporal(EndTime, StartTime), PreDiscountItems, DiscountedItems, PercentageOff, Limit);
             }
         }
     }

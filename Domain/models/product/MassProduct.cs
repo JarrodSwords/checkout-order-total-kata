@@ -8,11 +8,13 @@ namespace PointOfSale.Domain
     {
         public MassProduct(string name, decimal retailPrice) : base(
             name,
+            new MarkdownableWithMass(),
             new SellableByMass(retailPrice)
         ) { }
 
         public MassProduct(string name, decimal retailPrice, double massAmount, string massUnit) : base(
             name,
+            new MarkdownableWithMass(massAmount, massUnit),
             new SellableByMass(retailPrice, massAmount, massUnit)
         ) { }
 

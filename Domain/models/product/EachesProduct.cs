@@ -4,6 +4,7 @@ namespace PointOfSale.Domain
     {
         public EachesProduct(string name, decimal retailPrice) : base(
             name,
+            new MarkdownableAsEaches(),
             new SellableAsEaches(retailPrice)
         ) { }
     }
