@@ -12,7 +12,7 @@ namespace PointOfSale.Test.Domain
         protected virtual IEnumerable<ScannedItem> CreateScannedItems(Product product, int count)
         {
             for (var i = 0; i < count; i++)
-                yield return new ScannedItemAsEaches(product) { Id = i + 1 };
+                yield return new EachesScannedItem((EachesProduct) product) { Id = i + 1 };
         }
 
         protected void CreateLineItems(Product product, Special special, int scannedItemCount)

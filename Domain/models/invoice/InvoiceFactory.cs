@@ -61,10 +61,8 @@ namespace PointOfSale.Domain
                 return productSpecial.CreateLineItems(scannedItems);
             }
 
-            public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems)
-            {
-                return scannedItems.Select(x => x.CreateRetailLineItem());
-            }
+            public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems) =>
+                scannedItems.Select(x => x.CreateRetailLineItem());
         }
     }
 }

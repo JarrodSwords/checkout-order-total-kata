@@ -5,27 +5,17 @@ using UnitsNet.Units;
 
 namespace PointOfSale.Domain
 {
-    public class SellableByMass : Sellable
+    public class SellableByMass : ISellable
     {
-        public override Mass Mass { get; set; }
+        public Mass Mass { get; }
+        public MassProduct MassProduct { get; }
 
-        public SellableByMass(Money retailPrice) : base(retailPrice)
+        public SellableByMass(Mass mass, MassProduct massProduct)
         {
-            Mass = new Mass(1, MassUnit.Pound);
+            Mass = mass;
+            MassProduct = massProduct;
         }
 
-        public SellableByMass(Money retailPrice, double massAmount, string massUnit) : base(retailPrice)
-        {
-            Mass = new Mass(
-                massAmount,
-                (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)
-            );
-        }
-
-        public override Money GetSalePrice() =>
-            throw new NotImplementedException();
-
-        public override Money GetSalePrice(Mass mass) =>
-            RetailPrice * (decimal) (mass / Mass);
+        public Money GetSalePrice() => MassProduct.RetailPrice * (decimal) (Mass / MassProduct.Mass);
     }
 }

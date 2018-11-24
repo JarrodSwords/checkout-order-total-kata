@@ -126,17 +126,15 @@ DA:62,0
 FN:64,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.LineItem> PointOfSale.Domain.Invoice/Factory::CreateRetailLineItems(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 FNDA:0,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.LineItem> PointOfSale.Domain.Invoice/Factory::CreateRetailLineItems(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>)
 DA:65,0
-DA:66,0
-DA:67,0
-BRDA:66,8,0,0
-BRDA:66,8,1,0
+BRDA:65,7,0,0
+BRDA:65,7,1,0
 FN:11,System.Void PointOfSale.Domain.Invoice/Factory::.ctor(PointOfSale.Domain.Order)
 FNDA:0,System.Void PointOfSale.Domain.Invoice/Factory::.ctor(PointOfSale.Domain.Order)
 DA:12,0
 DA:13,0
 DA:14,0
 DA:15,0
-LF:39
+LF:37
 LH:0
 BRF:18
 BRH:0
@@ -153,9 +151,6 @@ DA:8,0
 FN:8,NodaMoney.Money PointOfSale.Domain.LineItem::get_SalePrice()
 FNDA:0,NodaMoney.Money PointOfSale.Domain.LineItem::get_SalePrice()
 DA:9,0
-FN:16,System.String PointOfSale.Domain.LineItem::ToString()
-FNDA:0,System.String PointOfSale.Domain.LineItem::ToString()
-DA:17,0
 FN:10,System.Void PointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money)
 FNDA:0,System.Void PointOfSale.Domain.LineItem::.ctor(System.String,NodaMoney.Money)
 DA:11,0
@@ -163,11 +158,11 @@ DA:12,0
 DA:13,0
 DA:14,0
 DA:15,0
-LF:9
+LF:8
 LH:0
 BRF:0
 BRH:0
-FNF:5
+FNF:4
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\invoice\line-items\MarkdownLineItem.cs
@@ -231,47 +226,6 @@ BRH:0
 FNF:4
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\markdown\IMarkdownable.cs
-FN:17,PointOfSale.Domain.Markdown PointOfSale.Domain.Markdownable::get_Markdown()
-FNDA:49,PointOfSale.Domain.Markdown PointOfSale.Domain.Markdownable::get_Markdown()
-DA:18,49
-FN:27,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice()
-DA:28,0
-FN:30,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice(UnitsNet.Mass)
-DA:31,0
-FN:35,UnitsNet.Mass PointOfSale.Domain.MarkdownableWithMass::get_Mass()
-FNDA:32,UnitsNet.Mass PointOfSale.Domain.MarkdownableWithMass::get_Mass()
-DA:36,32
-FN:51,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice()
-DA:52,0
-FN:54,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice(UnitsNet.Mass)
-DA:55,0
-FN:37,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor()
-FNDA:32,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor()
-DA:38,32
-DA:39,32
-DA:40,32
-DA:41,32
-FN:42,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(System.Double,System.String)
-FNDA:0,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(System.Double,System.String)
-DA:43,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:48,0
-DA:49,0
-LF:17
-LH:6
-BRF:0
-BRH:0
-FNF:8
-FNH:3
-end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\markdown\Markdown.cs
 FN:14,NodaMoney.Money PointOfSale.Domain.Markdown::get_AmountOffRetail()
 FNDA:0,NodaMoney.Money PointOfSale.Domain.Markdown::get_AmountOffRetail()
@@ -298,6 +252,60 @@ BRF:0
 BRH:0
 FNF:5
 FNH:1
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\markdown\MarkdownableAsEaches.cs
+FN:6,PointOfSale.Domain.EachesProduct PointOfSale.Domain.MarkdownableAsEaches::get_EachesProduct()
+FNDA:0,PointOfSale.Domain.EachesProduct PointOfSale.Domain.MarkdownableAsEaches::get_EachesProduct()
+DA:7,0
+FN:14,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice()
+FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableAsEaches::GetMarkdownSalePrice()
+DA:15,0
+FN:8,System.Void PointOfSale.Domain.MarkdownableAsEaches::.ctor(PointOfSale.Domain.EachesProduct)
+FNDA:0,System.Void PointOfSale.Domain.MarkdownableAsEaches::.ctor(PointOfSale.Domain.EachesProduct)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\markdown\MarkdownableWithMass.cs
+FN:9,UnitsNet.Mass PointOfSale.Domain.MarkdownableWithMass::get_Mass()
+FNDA:0,UnitsNet.Mass PointOfSale.Domain.MarkdownableWithMass::get_Mass()
+DA:10,0
+FN:10,PointOfSale.Domain.MassProduct PointOfSale.Domain.MarkdownableWithMass::get_MassProduct()
+FNDA:0,PointOfSale.Domain.MassProduct PointOfSale.Domain.MarkdownableWithMass::get_MassProduct()
+DA:11,0
+FN:28,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice()
+FNDA:0,NodaMoney.Money PointOfSale.Domain.MarkdownableWithMass::GetMarkdownSalePrice()
+DA:29,0
+FN:12,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(PointOfSale.Domain.MassProduct)
+FNDA:0,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(PointOfSale.Domain.MassProduct)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:18,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(PointOfSale.Domain.MassProduct,System.Double,System.String)
+FNDA:0,System.Void PointOfSale.Domain.MarkdownableWithMass::.ctor(PointOfSale.Domain.MassProduct,System.Double,System.String)
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+LF:16
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\Order.cs
 FN:9,System.Int64 PointOfSale.Domain.Order::get_Id()
@@ -339,273 +347,201 @@ BRH:0
 FNF:6
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\line-item-factory\EachesLineItemFactory.cs
-FN:8,UnitsNet.Mass PointOfSale.Domain.EachesLineItemFactory::get_Mass()
-FNDA:0,UnitsNet.Mass PointOfSale.Domain.EachesLineItemFactory::get_Mass()
-DA:9,0
-FN:9,NodaMoney.Money PointOfSale.Domain.EachesLineItemFactory::get_SalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.EachesLineItemFactory::get_SalePrice()
-DA:10,0
-FN:14,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.EachesLineItemFactory::CreateMarkdownLineItem()
-FNDA:0,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.EachesLineItemFactory::CreateMarkdownLineItem()
-DA:15,0
-FN:11,System.Void PointOfSale.Domain.EachesLineItemFactory::.ctor(PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.EachesLineItemFactory::.ctor(PointOfSale.Domain.Product)
-DA:12,0
-LF:4
-LH:0
-BRF:0
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\line-item-factory\LineItemFactory.cs
-FN:7,System.Int32 PointOfSale.Domain.LineItemFactory::get_Id()
-FNDA:0,System.Int32 PointOfSale.Domain.LineItemFactory::get_Id()
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\EachesScannedItem.cs
+FN:4,System.Void PointOfSale.Domain.EachesScannedItem::.ctor(PointOfSale.Domain.EachesProduct)
+FNDA:0,System.Void PointOfSale.Domain.EachesScannedItem::.ctor(PointOfSale.Domain.EachesProduct)
+DA:5,0
+DA:6,0
+DA:7,0
 DA:8,0
-FN:10,PointOfSale.Domain.Product PointOfSale.Domain.LineItemFactory::get_Product()
-FNDA:0,PointOfSale.Domain.Product PointOfSale.Domain.LineItemFactory::get_Product()
-DA:11,0
-FN:19,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.LineItemFactory::CreateRetailLineItem()
-FNDA:0,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.LineItemFactory::CreateRetailLineItem()
-DA:20,0
-FN:12,System.Void PointOfSale.Domain.LineItemFactory::.ctor(PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.LineItemFactory::.ctor(PointOfSale.Domain.Product)
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
-LF:7
-LH:0
-BRF:0
-BRH:0
-FNF:4
-FNH:0
-end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\line-item-factory\MassLineItemFactory.cs
-FN:7,UnitsNet.Mass PointOfSale.Domain.MassLineItemFactory::get_Mass()
-FNDA:0,UnitsNet.Mass PointOfSale.Domain.MassLineItemFactory::get_Mass()
-DA:8,0
-FN:8,NodaMoney.Money PointOfSale.Domain.MassLineItemFactory::get_SalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.MassLineItemFactory::get_SalePrice()
 DA:9,0
-FN:16,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.MassLineItemFactory::CreateMarkdownLineItem()
-FNDA:0,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.MassLineItemFactory::CreateMarkdownLineItem()
-DA:17,0
-DA:18,0
-DA:19,0
-FN:10,System.Void PointOfSale.Domain.MassLineItemFactory::.ctor(UnitsNet.Mass,PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.MassLineItemFactory::.ctor(UnitsNet.Mass,PointOfSale.Domain.Product)
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
-LF:9
+LF:5
 LH:0
 BRF:0
 BRH:0
-FNF:4
+FNF:1
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItem.cs
-FN:12,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
-FNDA:0,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
-DA:13,0
-FN:14,System.Void PointOfSale.Domain.ScannedItem::set_Id(System.Int32)
-FNDA:0,System.Void PointOfSale.Domain.ScannedItem::set_Id(System.Int32)
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\MassScannedItem.cs
+FN:10,UnitsNet.Mass PointOfSale.Domain.MassScannedItem::get_Mass()
+FNDA:0,UnitsNet.Mass PointOfSale.Domain.MassScannedItem::get_Mass()
+DA:11,0
+FN:13,System.Void PointOfSale.Domain.MassScannedItem::.ctor(System.Double,System.String,PointOfSale.Domain.MassProduct)
+FNDA:0,System.Void PointOfSale.Domain.MassScannedItem::.ctor(System.Double,System.String,PointOfSale.Domain.MassProduct)
+DA:14,0
 DA:15,0
 DA:16,0
 DA:17,0
 DA:18,0
-FN:19,UnitsNet.Mass PointOfSale.Domain.ScannedItem::get_Mass()
-FNDA:0,UnitsNet.Mass PointOfSale.Domain.ScannedItem::get_Mass()
+DA:19,0
 DA:20,0
-FN:20,PointOfSale.Domain.Product PointOfSale.Domain.ScannedItem::get_Product()
-FNDA:0,PointOfSale.Domain.Product PointOfSale.Domain.ScannedItem::get_Product()
 DA:21,0
-FN:21,NodaMoney.Money PointOfSale.Domain.ScannedItem::get_SalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.ScannedItem::get_SalePrice()
 DA:22,0
-FN:29,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.ScannedItem::CreateMarkdownLineItem()
-FNDA:0,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.ScannedItem::CreateMarkdownLineItem()
-DA:30,0
-FN:30,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.ScannedItem::CreateRetailLineItem()
-FNDA:0,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.ScannedItem::CreateRetailLineItem()
-DA:31,0
-FN:23,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.ILineItemFactory,PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.ILineItemFactory,PointOfSale.Domain.Product)
+DA:23,0
 DA:24,0
 DA:25,0
 DA:26,0
 DA:27,0
 DA:28,0
-LF:15
+LF:16
 LH:0
 BRF:0
 BRH:0
-FNF:8
+FNF:2
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItemAsEaches.cs
-FN:4,System.Void PointOfSale.Domain.ScannedItemAsEaches::.ctor(PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.ScannedItemAsEaches::.ctor(PointOfSale.Domain.Product)
-DA:5,0
-DA:6,0
-DA:7,0
-DA:8,0
-LF:4
-LH:0
-BRF:0
-BRH:0
-FNF:1
-FNH:0
-end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItemWithMass.cs
-FN:8,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
-FNDA:0,System.Void PointOfSale.Domain.ScannedItemWithMass::.ctor(System.Double,System.String,PointOfSale.Domain.Product)
-DA:9,0
-DA:10,0
+SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\order\scanned-items\ScannedItem.cs
+FN:10,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
+FNDA:0,System.Int32 PointOfSale.Domain.ScannedItem::get_Id()
 DA:11,0
+FN:11,PointOfSale.Domain.Product PointOfSale.Domain.ScannedItem::get_Product()
+FNDA:0,PointOfSale.Domain.Product PointOfSale.Domain.ScannedItem::get_Product()
 DA:12,0
-DA:13,0
-DA:14,0
+FN:14,PointOfSale.Domain.Markdown PointOfSale.Domain.ScannedItem::get_Markdown()
+FNDA:0,PointOfSale.Domain.Markdown PointOfSale.Domain.ScannedItem::get_Markdown()
 DA:15,0
-LF:7
+FN:15,System.Void PointOfSale.Domain.ScannedItem::set_Markdown(PointOfSale.Domain.Markdown)
+FNDA:0,System.Void PointOfSale.Domain.ScannedItem::set_Markdown(PointOfSale.Domain.Markdown)
+DA:16,0
+FN:26,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.ScannedItem::CreateRetailLineItem()
+FNDA:0,PointOfSale.Domain.RetailLineItem PointOfSale.Domain.ScannedItem::CreateRetailLineItem()
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:33,NodaMoney.Money PointOfSale.Domain.ScannedItem::GetMarkdownSalePrice()
+FNDA:0,NodaMoney.Money PointOfSale.Domain.ScannedItem::GetMarkdownSalePrice()
+DA:34,0
+FN:36,NodaMoney.Money PointOfSale.Domain.ScannedItem::GetSalePrice()
+FNDA:0,NodaMoney.Money PointOfSale.Domain.ScannedItem::GetSalePrice()
+DA:37,0
+FN:39,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.ScannedItem::CreateMarkdownLineItem()
+FNDA:0,PointOfSale.Domain.MarkdownLineItem PointOfSale.Domain.ScannedItem::CreateMarkdownLineItem()
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+FN:18,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.IMarkdownable,PointOfSale.Domain.Product,PointOfSale.Domain.ISellable)
+FNDA:0,System.Void PointOfSale.Domain.ScannedItem::.ctor(PointOfSale.Domain.IMarkdownable,PointOfSale.Domain.Product,PointOfSale.Domain.ISellable)
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+LF:22
 LH:0
 BRF:0
 BRH:0
-FNF:1
+FNF:9
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\EachesProduct.cs
 FN:4,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-FNDA:33,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-DA:5,33
-DA:6,33
-DA:7,33
-DA:8,33
-DA:9,99
-LF:5
-LH:5
+FNDA:99,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
+DA:5,99
+LF:1
+LH:1
 BRF:0
 BRH:0
 FNF:1
 FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
-FN:8,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-FNDA:32,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
+FN:8,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
+FNDA:32,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
 DA:9,32
-DA:10,32
+FN:10,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
+FNDA:32,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
 DA:11,32
 DA:12,32
-DA:13,96
-FN:14,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
+DA:13,32
+DA:14,32
+FN:15,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 FNDA:0,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
-DA:15,0
 DA:16,0
 DA:17,0
 DA:18,0
 DA:19,0
-FN:22,System.Double PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassAmount()
+DA:20,0
+DA:21,0
+DA:22,0
+FN:25,System.Double PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassAmount()
 FNDA:0,System.Double PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassAmount()
-DA:23,0
-FN:23,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassUnit()
-FNDA:0,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassUnit()
-DA:24,0
-FN:24,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_Name()
-FNDA:0,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_Name()
-DA:25,0
-FN:25,System.Decimal PointOfSale.Domain.MassProduct/MassProductBuilder::get_RetailPricePerUnit()
-FNDA:0,System.Decimal PointOfSale.Domain.MassProduct/MassProductBuilder::get_RetailPricePerUnit()
 DA:26,0
-FN:34,PointOfSale.Domain.MassProduct/MassProductBuilder PointOfSale.Domain.MassProduct/MassProductBuilder::SetMass(System.Double,System.String)
+FN:26,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassUnit()
+FNDA:0,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_MassUnit()
+DA:27,0
+FN:27,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_Name()
+FNDA:0,System.String PointOfSale.Domain.MassProduct/MassProductBuilder::get_Name()
+DA:28,0
+FN:28,System.Decimal PointOfSale.Domain.MassProduct/MassProductBuilder::get_RetailPrice()
+FNDA:0,System.Decimal PointOfSale.Domain.MassProduct/MassProductBuilder::get_RetailPrice()
+DA:29,0
+FN:37,PointOfSale.Domain.MassProduct/MassProductBuilder PointOfSale.Domain.MassProduct/MassProductBuilder::SetMass(System.Double,System.String)
 FNDA:0,PointOfSale.Domain.MassProduct/MassProductBuilder PointOfSale.Domain.MassProduct/MassProductBuilder::SetMass(System.Double,System.String)
-DA:35,0
-DA:36,0
-DA:37,0
 DA:38,0
 DA:39,0
-FN:41,PointOfSale.Domain.MassProduct PointOfSale.Domain.MassProduct/MassProductBuilder::Build()
-FNDA:0,PointOfSale.Domain.MassProduct PointOfSale.Domain.MassProduct/MassProductBuilder::Build()
+DA:40,0
+DA:41,0
 DA:42,0
-DA:43,0
-DA:44,0
-FN:27,System.Void PointOfSale.Domain.MassProduct/MassProductBuilder::.ctor(System.String,System.Decimal)
+FN:44,PointOfSale.Domain.MassProduct PointOfSale.Domain.MassProduct/MassProductBuilder::Build()
+FNDA:0,PointOfSale.Domain.MassProduct PointOfSale.Domain.MassProduct/MassProductBuilder::Build()
+DA:45,0
+DA:46,0
+DA:47,0
+FN:30,System.Void PointOfSale.Domain.MassProduct/MassProductBuilder::.ctor(System.String,System.Decimal)
 FNDA:0,System.Void PointOfSale.Domain.MassProduct/MassProductBuilder::.ctor(System.String,System.Decimal)
-DA:28,0
-DA:29,0
-DA:30,0
 DA:31,0
 DA:32,0
-LF:27
+DA:33,0
+DA:34,0
+DA:35,0
+LF:29
 LH:5
 BRF:0
 BRH:0
-FNF:9
-FNH:1
+FNF:10
+FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\Product.cs
-FN:13,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
+FN:10,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
 FNDA:0,System.Boolean PointOfSale.Domain.Product::get_HasActiveMarkdown()
-DA:14,0
-BRDA:14,6,0,0
-BRDA:14,6,1,0
-FN:14,System.Boolean PointOfSale.Domain.Product::get_HasActiveSpecial()
+DA:11,0
+BRDA:11,6,0,0
+BRDA:11,6,1,0
+FN:11,System.Boolean PointOfSale.Domain.Product::get_HasActiveSpecial()
 FNDA:0,System.Boolean PointOfSale.Domain.Product::get_HasActiveSpecial()
-DA:15,0
-BRDA:15,6,0,0
-BRDA:15,6,1,0
-FN:17,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-FNDA:1,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-DA:18,1
-FN:18,System.Void PointOfSale.Domain.Product::set_Markdown(PointOfSale.Domain.Markdown)
-FNDA:48,System.Void PointOfSale.Domain.Product::set_Markdown(PointOfSale.Domain.Markdown)
-DA:19,48
-FN:22,UnitsNet.Mass PointOfSale.Domain.Product::get_Mass()
-FNDA:0,UnitsNet.Mass PointOfSale.Domain.Product::get_Mass()
-DA:23,0
-FN:23,System.Void PointOfSale.Domain.Product::set_Mass(UnitsNet.Mass)
-FNDA:0,System.Void PointOfSale.Domain.Product::set_Mass(UnitsNet.Mass)
-DA:24,0
-FN:25,System.String PointOfSale.Domain.Product::get_Name()
+DA:12,0
+BRDA:12,6,0,0
+BRDA:12,6,1,0
+FN:12,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
+FNDA:49,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
+DA:13,49
+FN:13,System.String PointOfSale.Domain.Product::get_Name()
 FNDA:371,System.String PointOfSale.Domain.Product::get_Name()
-DA:26,371
-FN:28,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-FNDA:1,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-DA:29,1
-FN:29,System.Void PointOfSale.Domain.Product::set_RetailPrice(NodaMoney.Money)
-FNDA:0,System.Void PointOfSale.Domain.Product::set_RetailPrice(NodaMoney.Money)
-DA:30,0
-FN:31,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
+DA:14,371
+FN:14,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
+FNDA:66,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
+DA:15,66
+FN:15,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:1,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
-DA:32,1
-FN:41,NodaMoney.Money PointOfSale.Domain.Product::GetMarkdownSalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.Product::GetMarkdownSalePrice()
-DA:42,0
-FN:44,NodaMoney.Money PointOfSale.Domain.Product::GetMarkdownSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.Product::GetMarkdownSalePrice(UnitsNet.Mass)
-DA:45,0
-FN:47,NodaMoney.Money PointOfSale.Domain.Product::GetSalePrice()
-FNDA:0,NodaMoney.Money PointOfSale.Domain.Product::GetSalePrice()
-DA:48,0
-FN:50,NodaMoney.Money PointOfSale.Domain.Product::GetSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.Product::GetSalePrice(UnitsNet.Mass)
-DA:51,0
-FN:33,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.IMarkdownable,PointOfSale.Domain.ISellable)
-FNDA:65,System.Void PointOfSale.Domain.Product::.ctor(System.String,PointOfSale.Domain.IMarkdownable,PointOfSale.Domain.ISellable)
-DA:34,65
-DA:35,65
-DA:36,65
-DA:37,65
-DA:38,65
-DA:39,65
-LF:20
-LH:11
+DA:16,1
+FN:17,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
+FNDA:65,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
+DA:18,65
+DA:19,65
+DA:20,65
+DA:21,65
+DA:22,65
+LF:11
+LH:9
 BRF:4
 BRH:0
-FNF:15
-FNH:6
+FNF:7
+FNH:5
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\ProductSpecial.cs
 FN:7,PointOfSale.Domain.Product PointOfSale.Domain.ProductSpecial::get_Product()
@@ -947,77 +883,49 @@ BRH:0
 FNF:5
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\sellable\Sellable.cs
-FN:8,NodaMoney.Money PointOfSale.Domain.Sellable::get_RetailPrice()
-FNDA:66,NodaMoney.Money PointOfSale.Domain.Sellable::get_RetailPrice()
-DA:9,66
-FN:10,System.Void PointOfSale.Domain.Sellable::.ctor(NodaMoney.Money)
-FNDA:65,System.Void PointOfSale.Domain.Sellable::.ctor(NodaMoney.Money)
-DA:11,65
-DA:12,65
-DA:13,65
-DA:14,65
-LF:5
-LH:5
-BRF:0
-BRH:0
-FNF:2
-FNH:2
-end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\sellable\SellableAsEaches.cs
-FN:10,UnitsNet.Mass PointOfSale.Domain.SellableAsEaches::get_Mass()
-FNDA:0,UnitsNet.Mass PointOfSale.Domain.SellableAsEaches::get_Mass()
-DA:11,0
-FN:11,System.Void PointOfSale.Domain.SellableAsEaches::set_Mass(UnitsNet.Mass)
-FNDA:0,System.Void PointOfSale.Domain.SellableAsEaches::set_Mass(UnitsNet.Mass)
-DA:12,0
-FN:16,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::GetSalePrice()
+FN:8,PointOfSale.Domain.EachesProduct PointOfSale.Domain.SellableAsEaches::get_EachesProduct()
+FNDA:0,PointOfSale.Domain.EachesProduct PointOfSale.Domain.SellableAsEaches::get_EachesProduct()
+DA:9,0
+FN:15,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::GetSalePrice()
 FNDA:0,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::GetSalePrice()
-DA:17,0
-FN:19,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::GetSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.SellableAsEaches::GetSalePrice(UnitsNet.Mass)
-DA:20,0
-FN:14,System.Void PointOfSale.Domain.SellableAsEaches::.ctor(NodaMoney.Money)
-FNDA:99,System.Void PointOfSale.Domain.SellableAsEaches::.ctor(NodaMoney.Money)
-DA:15,99
-LF:5
-LH:1
+DA:16,0
+FN:10,System.Void PointOfSale.Domain.SellableAsEaches::.ctor(PointOfSale.Domain.EachesProduct)
+FNDA:0,System.Void PointOfSale.Domain.SellableAsEaches::.ctor(PointOfSale.Domain.EachesProduct)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+LF:6
+LH:0
 BRF:0
 BRH:0
-FNF:5
-FNH:1
+FNF:3
+FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\sellable\SellableByMass.cs
 FN:9,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
-FNDA:32,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
-DA:10,32
-FN:25,NodaMoney.Money PointOfSale.Domain.SellableByMass::GetSalePrice()
+FNDA:0,UnitsNet.Mass PointOfSale.Domain.SellableByMass::get_Mass()
+DA:10,0
+FN:10,PointOfSale.Domain.MassProduct PointOfSale.Domain.SellableByMass::get_MassProduct()
+FNDA:0,PointOfSale.Domain.MassProduct PointOfSale.Domain.SellableByMass::get_MassProduct()
+DA:11,0
+FN:18,NodaMoney.Money PointOfSale.Domain.SellableByMass::GetSalePrice()
 FNDA:0,NodaMoney.Money PointOfSale.Domain.SellableByMass::GetSalePrice()
-DA:26,0
-FN:28,NodaMoney.Money PointOfSale.Domain.SellableByMass::GetSalePrice(UnitsNet.Mass)
-FNDA:0,NodaMoney.Money PointOfSale.Domain.SellableByMass::GetSalePrice(UnitsNet.Mass)
-DA:29,0
-FN:11,System.Void PointOfSale.Domain.SellableByMass::.ctor(NodaMoney.Money)
-FNDA:32,System.Void PointOfSale.Domain.SellableByMass::.ctor(NodaMoney.Money)
-DA:12,32
-DA:13,32
-DA:14,32
-DA:15,32
-FN:16,System.Void PointOfSale.Domain.SellableByMass::.ctor(NodaMoney.Money,System.Double,System.String)
-FNDA:0,System.Void PointOfSale.Domain.SellableByMass::.ctor(NodaMoney.Money,System.Double,System.String)
-DA:17,0
-DA:18,0
 DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-LF:14
-LH:5
+FN:12,System.Void PointOfSale.Domain.SellableByMass::.ctor(UnitsNet.Mass,PointOfSale.Domain.MassProduct)
+FNDA:0,System.Void PointOfSale.Domain.SellableByMass::.ctor(UnitsNet.Mass,PointOfSale.Domain.MassProduct)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LF:8
+LH:0
 BRF:0
 BRH:0
-FNF:5
-FNH:2
+FNF:4
+FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicDateTimeProvider.cs
 FN:6,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
@@ -2547,18 +2455,18 @@ DA:19,0
 DA:21,0
 DA:22,0
 DA:23,0
-BRDA:16,122,1,0
+BRDA:16,132,1,0
 BRDA:18,61,0,0
 BRDA:18,61,1,0
-BRDA:16,122,0,0
+BRDA:16,132,0,0
 FN:25,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::PopulateOrder(PointOfSale.Domain.Product,System.Int32)
 DA:26,0
 DA:27,0
 DA:28,0
 DA:29,0
-BRDA:27,33,1,0
-BRDA:27,33,0,0
+BRDA:27,38,1,0
+BRDA:27,38,0,0
 FN:33,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateProductDiscountLineItems_WithInvalidDiscounts_CreatesZeroLineItems(PointOfSale.Domain.Product)
 FNDA:0,System.Void PointOfSale.Test.Domain.InvoiceFactoryTest::CreateProductDiscountLineItems_WithInvalidDiscounts_CreatesZeroLineItems(PointOfSale.Domain.Product)
 DA:34,0
@@ -2847,9 +2755,9 @@ DA:21,0
 DA:22,0
 DA:23,0
 BRDA:15,14,0,0
-BRDA:18,171,1,0
+BRDA:18,176,1,0
 BRDA:15,14,1,0
-BRDA:18,171,0,0
+BRDA:18,176,0,0
 LF:20
 LH:0
 BRF:6
@@ -2875,9 +2783,9 @@ DA:14,0
 DA:15,0
 DA:16,0
 BRDA:13,14,0,0
-BRDA:14,121,1,0
+BRDA:14,126,1,0
 BRDA:13,14,1,0
-BRDA:14,121,0,0
+BRDA:14,126,0,0
 LF:10
 LH:0
 BRF:4
@@ -3071,10 +2979,10 @@ DA:32,0
 DA:33,0
 DA:34,0
 DA:35,0
-BRDA:24,126,1,0
+BRDA:24,136,1,0
 BRDA:26,68,0,0
 BRDA:26,68,1,0
-BRDA:24,126,0,0
+BRDA:24,136,0,0
 FN:37,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 FNDA:0,PointOfSale.Domain.ScannedItem PointOfSale.Test.Domain.ScannedItemProvider::GetScannedItem()
 DA:38,0

@@ -4,19 +4,15 @@ using UnitsNet;
 
 namespace PointOfSale.Domain
 {
-    public class SellableAsEaches : Sellable
+    public class SellableAsEaches : ISellable
     {
-        public override Mass Mass
+        public EachesProduct EachesProduct { get; }
+
+        public SellableAsEaches(EachesProduct eachesProduct)
         {
-            get => throw new NotImplementedException();
-            set => throw new NotImplementedException();
+            EachesProduct = eachesProduct;
         }
 
-        public SellableAsEaches(Money retailPrice) : base(retailPrice) { }
-
-        public override Money GetSalePrice() => RetailPrice;
-
-        public override Money GetSalePrice(Mass mass) =>
-            throw new NotImplementedException();
+        public Money GetSalePrice() => EachesProduct.RetailPrice;
     }
 }

@@ -13,7 +13,5 @@ namespace PointOfSale.Domain
             ProductName = productName;
             SalePrice = salePrice;
         }
-
-        public override string ToString() => $"{Description} - {SalePrice}";
     }
 }

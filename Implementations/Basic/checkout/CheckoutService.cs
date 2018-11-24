@@ -59,7 +59,7 @@ namespace PointOfSale.Implementations.Basic
                 ScanItem(
                     args.OrderId.Value,
                     args.ProductName,
-                    product => new ScannedItemAsEaches(product)
+                    product => new EachesScannedItem((EachesProduct) product)
                 )
             );
         }
@@ -72,7 +72,7 @@ namespace PointOfSale.Implementations.Basic
                 ScanItem(
                     args.OrderId.Value,
                     args.ProductName,
-                    product => new ScannedItemWithMass(args.MassAmount.Value, args.MassUnit, product)
+                    product => new MassScannedItem(args.MassAmount.Value, args.MassUnit, (MassProduct) product)
                 )
             );
         }

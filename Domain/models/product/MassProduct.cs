@@ -6,29 +6,32 @@ namespace PointOfSale.Domain
 {
     public class MassProduct : Product
     {
-        public MassProduct(string name, decimal retailPrice) : base(
-            name,
-            new MarkdownableWithMass(),
-            new SellableByMass(retailPrice)
-        ) { }
+        public Mass Mass { get; set; }
 
-        public MassProduct(string name, decimal retailPrice, double massAmount, string massUnit) : base(
-            name,
-            new MarkdownableWithMass(massAmount, massUnit),
-            new SellableByMass(retailPrice, massAmount, massUnit)
-        ) { }
+        public MassProduct(string name, decimal retailPrice) : base(name, retailPrice)
+        {
+            Mass = new Mass(1, MassUnit.Pound);
+        }
+
+        public MassProduct(string name, decimal retailPrice, double massAmount, string massUnit) : base(name, retailPrice)
+        {
+            Mass = new Mass(
+                massAmount,
+                (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)
+            );
+        }
 
         public class MassProductBuilder
         {
             public double MassAmount { get; set; }
             public string MassUnit { get; set; }
             public string Name { get; set; }
-            public decimal RetailPricePerUnit { get; set; }
+            public decimal RetailPrice { get; set; }
 
-            public MassProductBuilder(string name, decimal retailPricePerUnit)
+            public MassProductBuilder(string name, decimal retailPrice)
             {
                 Name = name;
-                RetailPricePerUnit = retailPricePerUnit;
+                RetailPrice = retailPrice;
             }
 
             public MassProductBuilder SetMass(double massAmount, string massUnit)
@@ -40,7 +43,7 @@ namespace PointOfSale.Domain
 
             public MassProduct Build()
             {
-                return new MassProduct(Name, RetailPricePerUnit);
+                return new MassProduct(Name, RetailPrice);
             }
         }
     }
