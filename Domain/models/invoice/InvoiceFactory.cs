@@ -50,10 +50,8 @@ namespace PointOfSale.Domain
                 return lineItems;
             }
 
-            public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems)
-            {
-                return scannedItems.Select(x => x.CreateMarkdownLineItem());
-            }
+            public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems) =>
+                scannedItems.Select(x => x.CreateMarkdownLineItem());
 
             public static IEnumerable<LineItem> CreateProductSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
             {
