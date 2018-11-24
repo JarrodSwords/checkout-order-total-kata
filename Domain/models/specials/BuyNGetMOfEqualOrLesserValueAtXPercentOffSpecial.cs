@@ -35,27 +35,5 @@ namespace PointOfSale.Domain
 
             return totalDiscount;
         }
-
-        public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
-        {
-            return scannedItems.OrderByDescending(x => ((MassScannedItem) x).Mass)
-                .Skip(ScannedItemsRequired * skipMultiplier)
-                .Take(ScannedItemsRequired)
-                .Select(x => x.Id);
-        }
-
-        public override LineItem CreateLineItem(Product product, IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
-        {
-            var itemsInSpecial = scannedItems
-                .OrderByDescending(x => ((MassScannedItem) x).Mass)
-                .Skip(ScannedItemsRequired * skipMultiplier)
-                .Take(ScannedItemsRequired)
-                .ToList();
-
-            var discountedItems = itemsInSpecial.Skip(PreDiscountItems).ToList();
-            var totalDiscount = Money.USDollar(discountedItems.Sum(x => -(x.GetSalePrice() * Multiplier).Amount));
-
-            return new SpecialLineItem(product.Name, totalDiscount, discountedItems.Select(x => x.Id), Description);
-        }
     }
 }

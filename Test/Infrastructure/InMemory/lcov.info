@@ -4,7 +4,7 @@ FNDA:156,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(Syst
 DA:8,156
 DA:9,156
 DA:10,156
-DA:11,155
+DA:11,156
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:26,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,26
@@ -353,13 +353,13 @@ FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
 FN:8,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
-FNDA:50,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
-DA:9,50
+FNDA:52,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
+DA:9,52
 FN:10,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-FNDA:51,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-DA:11,51
-DA:12,51
-DA:13,51
+FNDA:52,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
+DA:11,52
+DA:12,52
+DA:13,52
 DA:14,52
 FN:15,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 FNDA:0,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
@@ -426,18 +426,18 @@ FN:13,System.String PointOfSale.Domain.Product::get_Name()
 FNDA:538,System.String PointOfSale.Domain.Product::get_Name()
 DA:14,538
 FN:14,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-FNDA:119,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-DA:15,119
+FNDA:121,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
+DA:15,121
 FN:15,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:0,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:16,0
 FN:17,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
 FNDA:105,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
 DA:18,105
-DA:19,104
-DA:20,104
-DA:21,104
-DA:22,104
+DA:19,105
+DA:20,105
+DA:21,105
+DA:22,105
 LF:11
 LH:8
 BRF:4
@@ -594,16 +594,6 @@ DA:27,0
 DA:28,0
 DA:29,0
 DA:30,0
-FN:32,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNForXAmountSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-FNDA:0,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNForXAmountSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-DA:33,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:38,0
-BRDA:34,32,0,0
-BRDA:34,32,1,0
 FN:18,System.Void PointOfSale.Domain.BuyNForXAmountSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,NodaMoney.Money,System.Nullable`1<System.Int32>)
 FNDA:0,System.Void PointOfSale.Domain.BuyNForXAmountSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,NodaMoney.Money,System.Nullable`1<System.Int32>)
 DA:19,0
@@ -611,11 +601,11 @@ DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
-LF:20
+LF:14
 LH:0
-BRF:2
+BRF:0
 BRH:0
-FNF:7
+FNF:6
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\BuyNForXAmountSpecialFactory.cs
@@ -673,16 +663,6 @@ DA:30,0
 DA:31,0
 DA:32,0
 DA:33,0
-FN:35,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-FNDA:0,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
-BRDA:37,32,0,0
-BRDA:37,32,1,0
 FN:21,System.Void PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,System.Int32,System.Decimal,System.Nullable`1<System.Int32>)
 FNDA:0,System.Void PointOfSale.Domain.BuyNGetMAtXPercentOffSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,System.Int32,System.Decimal,System.Nullable`1<System.Int32>)
 DA:22,0
@@ -691,11 +671,11 @@ DA:24,0
 DA:25,0
 DA:26,0
 DA:27,0
-LF:22
+LF:16
 LH:0
-BRF:2
+BRF:0
 BRH:0
-FNF:9
+FNF:8
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\BuyNGetMAtXPercentOffSpecialFactory.cs
@@ -754,42 +734,14 @@ DA:36,0
 DA:37,0
 BRDA:23,175,1,0
 BRDA:23,175,0,0
-FN:39,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-FNDA:0,System.Collections.Generic.IEnumerable`1<System.Int32> PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::GetScannedItemIds(System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-DA:40,0
-DA:41,0
-DA:42,0
-DA:43,0
-DA:44,0
-DA:45,0
-BRDA:41,8,0,0
-BRDA:41,8,1,0
-BRDA:41,68,0,0
-BRDA:41,68,1,0
-FN:47,PointOfSale.Domain.LineItem PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::CreateLineItem(PointOfSale.Domain.Product,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-FNDA:0,PointOfSale.Domain.LineItem PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::CreateLineItem(PointOfSale.Domain.Product,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-DA:48,0
-DA:49,0
-DA:50,0
-DA:51,0
-DA:52,0
-DA:53,0
-DA:55,0
-DA:56,0
-DA:58,0
-DA:59,0
-BRDA:49,8,0,0
-BRDA:49,8,1,0
-BRDA:58,124,0,0
-BRDA:58,124,1,0
 FN:16,System.Void PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,System.Int32,System.Decimal,System.Nullable`1<System.Int32>)
 FNDA:0,System.Void PointOfSale.Domain.BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial::.ctor(PointOfSale.Domain.ITemporal,System.Int32,System.Int32,System.Decimal,System.Nullable`1<System.Int32>)
 DA:17,0
-LF:32
+LF:16
 LH:0
-BRF:10
+BRF:2
 BRH:0
-FNF:5
+FNF:3
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecialFactory.cs
@@ -809,39 +761,42 @@ FNF:2
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\Special.cs
-FN:16,System.DateTime PointOfSale.Domain.Special::get_EndTime()
+FN:11,System.DateTime PointOfSale.Domain.Special::get_EndTime()
 FNDA:0,System.DateTime PointOfSale.Domain.Special::get_EndTime()
-DA:17,0
-FN:17,System.Boolean PointOfSale.Domain.Special::get_IsActive()
+DA:12,0
+FN:12,System.Boolean PointOfSale.Domain.Special::get_IsActive()
 FNDA:0,System.Boolean PointOfSale.Domain.Special::get_IsActive()
-DA:18,0
-FN:18,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
+DA:13,0
+FN:13,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
 FNDA:0,System.Nullable`1<System.Int32> PointOfSale.Domain.Special::get_Limit()
-DA:19,0
-FN:20,System.DateTime PointOfSale.Domain.Special::get_StartTime()
+DA:14,0
+FN:15,System.DateTime PointOfSale.Domain.Special::get_StartTime()
 FNDA:0,System.DateTime PointOfSale.Domain.Special::get_StartTime()
-DA:21,0
-FN:31,PointOfSale.Domain.LineItem PointOfSale.Domain.Special::CreateLineItem(PointOfSale.Domain.Product,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-FNDA:0,PointOfSale.Domain.LineItem PointOfSale.Domain.Special::CreateLineItem(PointOfSale.Domain.Product,System.Collections.Generic.IEnumerable`1<PointOfSale.Domain.ScannedItem>,System.Int32)
-DA:32,0
-DA:33,0
-DA:34,0
-FN:22,System.Void PointOfSale.Domain.Special::.ctor(PointOfSale.Domain.ITemporal,System.Nullable`1<System.Int32>)
+DA:16,0
+FN:17,System.Void PointOfSale.Domain.Special::.ctor(PointOfSale.Domain.ITemporal,System.Nullable`1<System.Int32>)
 FNDA:0,System.Void PointOfSale.Domain.Special::.ctor(PointOfSale.Domain.ITemporal,System.Nullable`1<System.Int32>)
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+FN:58,System.Int32 PointOfSale.Domain.Special/<>c::<CreateLineItems>b__16_0(PointOfSale.Domain.ScannedItem)
+FNDA:0,System.Int32 PointOfSale.Domain.Special/<>c::<CreateLineItems>b__16_0(PointOfSale.Domain.ScannedItem)
+DA:59,0
+FN:26,System.Boolean PointOfSale.Domain.Special/<CreateLineItems>d__16::MoveNext()
+FNDA:0,System.Boolean PointOfSale.Domain.Special/<CreateLineItems>d__16::MoveNext()
 DA:27,0
-FN:66,System.Int32 PointOfSale.Domain.Special/<>c::<CreateLineItems>b__18_0(PointOfSale.Domain.ScannedItem)
-FNDA:0,System.Int32 PointOfSale.Domain.Special/<>c::<CreateLineItems>b__18_0(PointOfSale.Domain.ScannedItem)
-DA:67,0
-FN:38,System.Boolean PointOfSale.Domain.Special/<CreateLineItems>d__18::MoveNext()
-FNDA:0,System.Boolean PointOfSale.Domain.Special/<CreateLineItems>d__18::MoveNext()
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:35,0
+DA:36,0
+DA:38,0
 DA:39,0
 DA:40,0
 DA:41,0
-DA:43,0
+DA:42,0
 DA:44,0
 DA:46,0
 DA:47,0
@@ -850,38 +805,35 @@ DA:50,0
 DA:51,0
 DA:52,0
 DA:53,0
-DA:55,0
+DA:54,0
+DA:56,0
 DA:57,0
 DA:58,0
 DA:60,0
 DA:61,0
 DA:62,0
 DA:63,0
-DA:64,0
-DA:65,0
-DA:68,0
-DA:69,0
-BRDA:39,14,0,0
-BRDA:40,51,0,0
-BRDA:40,51,1,0
-BRDA:46,127,0,0
-BRDA:46,127,1,0
-BRDA:49,552,1,0
-BRDA:57,285,1,0
-BRDA:60,307,0,0
-BRDA:63,379,1,0
-BRDA:60,307,1,0
-BRDA:67,429,0,0
-BRDA:67,429,1,0
-BRDA:39,14,1,0
-BRDA:57,285,0,0
-BRDA:63,379,0,0
-BRDA:49,552,0,0
-LF:36
+BRDA:27,14,0,0
+BRDA:28,51,0,0
+BRDA:28,51,1,0
+BRDA:35,127,0,0
+BRDA:35,127,1,0
+BRDA:38,552,1,0
+BRDA:46,285,1,0
+BRDA:49,307,0,0
+BRDA:52,379,1,0
+BRDA:49,307,1,0
+BRDA:56,429,0,0
+BRDA:56,429,1,0
+BRDA:27,14,1,0
+BRDA:46,285,0,0
+BRDA:52,379,0,0
+BRDA:38,552,0,0
+LF:38
 LH:0
 BRF:16
 BRH:0
-FNF:8
+FNF:7
 FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\SpecialFactory.cs
@@ -1386,15 +1338,15 @@ SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\providers\DateR
 FN:15,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
 FNDA:78,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
 DA:16,78
-DA:17,77
+DA:17,78
 DA:20,26
 DA:22,26
-DA:25,25
+DA:25,26
 DA:27,78
 BRDA:17,4,2,26
 BRDA:17,4,3,26
-BRDA:17,4,0,25
-BRDA:17,4,1,25
+BRDA:17,4,0,26
+BRDA:17,4,1,26
 FN:29,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetEnd(PointOfSale.Test.Domain.DateRange,System.DateTime)
 FNDA:78,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetEnd(PointOfSale.Test.Domain.DateRange,System.DateTime)
 DA:30,78
@@ -1402,7 +1354,7 @@ DA:31,78
 DA:34,26
 DA:36,26
 DA:39,26
-DA:41,77
+DA:41,78
 BRDA:31,4,2,26
 BRDA:31,4,3,26
 BRDA:31,4,0,26

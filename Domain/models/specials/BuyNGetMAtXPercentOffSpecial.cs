@@ -31,13 +31,5 @@ namespace PointOfSale.Domain
             var product = scannedItems.First().Product;
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
         }
-
-        public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
-        {
-            return scannedItems
-                .Skip(ScannedItemsRequired * skipMultiplier)
-                .Take(ScannedItemsRequired)
-                .Select(x => x.Id);
-        }
     }
 }

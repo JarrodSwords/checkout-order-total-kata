@@ -28,13 +28,5 @@ namespace PointOfSale.Domain
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
             return GroupSalePrice - totalRetailPrice;
         }
-
-        public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
-        {
-            return scannedItems
-                .Skip(ScannedItemsRequired * skipMultiplier)
-                .Take(ScannedItemsRequired)
-                .Select(x => x.Id);
-        }
     }
 }
