@@ -26,8 +26,9 @@ namespace PointOfSale.Domain
             PercentageOff = percentageOff;
         }
 
-        public override Money CalculateTotalDiscount(Product product)
+        public override Money CalculateTotalDiscount(IEnumerable<ScannedItem> scannedItems)
         {
+            var product = scannedItems.First().Product;
             return -Money.USDollar(DiscountedItems * product.RetailPrice.Amount * Multiplier);
         }
 

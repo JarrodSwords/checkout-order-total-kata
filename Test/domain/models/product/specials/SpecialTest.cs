@@ -15,12 +15,10 @@ namespace PointOfSale.Test.Domain
                 yield return new EachesScannedItem((EachesProduct) product) { Id = i + 1 };
         }
 
-        protected void CreateLineItems(Product product, Special special, int scannedItemCount)
+        protected void CreateLineItems(Product product, int scannedItemCount)
         {
             var scannedItems = CreateScannedItems(product, scannedItemCount);
-            var productSpecial = new ProductSpecial(product, special);
-
-            _lineItems = productSpecial.CreateLineItems(scannedItems);
+            _lineItems = product.Special.CreateLineItems(scannedItems);
         }
     }
 }

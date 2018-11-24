@@ -22,8 +22,9 @@ namespace PointOfSale.Domain
             GroupSalePrice = groupSalePrice;
         }
 
-        public override Money CalculateTotalDiscount(Product product)
+        public override Money CalculateTotalDiscount(IEnumerable<ScannedItem> scannedItems)
         {
+            var product = scannedItems.First().Product;
             var totalRetailPrice = product.RetailPrice * DiscountedItems;
             return GroupSalePrice - totalRetailPrice;
         }

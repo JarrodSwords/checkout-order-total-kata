@@ -19,11 +19,11 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", 1m);
 
-            var special = _factory
+            product.Special = _factory
                 .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar(1.5m), _now.StartOfWeek(), limit)
                 .CreateSpecial();
 
-            CreateLineItems(product, special, scannedItemCount);
+            CreateLineItems(product, scannedItemCount);
 
             _lineItems.Count().Should().Be(expectedLineItemCount);
         }
@@ -36,11 +36,11 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", 1m);
 
-            var special = _factory
+            product.Special = _factory
                 .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
                 .CreateSpecial();
 
-            CreateLineItems(product, special, scannedItemCount);
+            CreateLineItems(product, scannedItemCount);
 
             var totalValue = Money.USDollar(_lineItems.Sum(x => x.SalePrice.Amount));
             totalValue.Should().BeEquivalentTo(Money.USDollar(expectedTotalValue));
@@ -57,11 +57,11 @@ namespace PointOfSale.Test.Domain
                 Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal) markdown)
             };
 
-            var special = _factory
+            product.Special = _factory
                 .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
                 .CreateSpecial();
 
-            CreateLineItems(product, special, scannedItemCount);
+            CreateLineItems(product, scannedItemCount);
 
             _lineItems.Count().Should().Be(0);
         }
@@ -73,11 +73,11 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", (decimal) retailPrice);
 
-            var special = _factory
+            product.Special = _factory
                 .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
                 .CreateSpecial();
 
-            CreateLineItems(product, special, scannedItemCount);
+            CreateLineItems(product, scannedItemCount);
 
             _lineItems.Count().Should().Be(0);
         }

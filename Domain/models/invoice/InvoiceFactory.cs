@@ -38,7 +38,7 @@ namespace PointOfSale.Domain
                     return lineItems;
 
                 if (product.HasActiveSpecial)
-                    lineItems.AddRange(CreateProductSpecialLineItems(product, scannedItems));
+                    lineItems.AddRange(CreateProductSpecialLineItems(scannedItems));
 
                 if (product.HasActiveMarkdown)
                 {
@@ -53,10 +53,10 @@ namespace PointOfSale.Domain
             public static IEnumerable<LineItem> CreateProductMarkdownLineItems(IEnumerable<ScannedItem> scannedItems) =>
                 scannedItems.Select(x => x.CreateMarkdownLineItem());
 
-            public static IEnumerable<LineItem> CreateProductSpecialLineItems(Product product, IEnumerable<ScannedItem> scannedItems)
+            public static IEnumerable<LineItem> CreateProductSpecialLineItems(IEnumerable<ScannedItem> scannedItems)
             {
-                var productSpecial = new ProductSpecial(product, product.Special);
-                return productSpecial.CreateLineItems(scannedItems);
+                var product = scannedItems.First().Product;
+                return product.Special.CreateLineItems(scannedItems);
             }
 
             public static IEnumerable<LineItem> CreateRetailLineItems(IEnumerable<ScannedItem> scannedItems) =>

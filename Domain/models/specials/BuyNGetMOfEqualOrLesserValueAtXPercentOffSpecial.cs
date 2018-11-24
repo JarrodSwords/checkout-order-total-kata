@@ -16,9 +16,24 @@ namespace PointOfSale.Domain
             int? limit = null
         ) : base(temporal, preDiscountItems, discountedItems, percentageOff, limit) { }
 
-        public override Money CalculateTotalDiscount(Product product)
+        public override Money CalculateTotalDiscount(IEnumerable<ScannedItem> scannedItems)
         {
-            return 0;
+            Money totalDiscount = 0;
+
+            foreach (var scannedItem in scannedItems.Skip(PreDiscountItems))
+            {
+                var scannedMass = ((MassScannedItem) scannedItem).Mass;
+                var soldByMass = ((MassProduct) scannedItem.Product).Mass;
+
+                var discountRetailPrice = scannedItem.Product.RetailPrice * ((100 - PercentageOff) / 100);
+                var massMultiplier = (decimal) (scannedMass / soldByMass);
+                var retailPrice = scannedItem.GetSalePrice();
+                var discountPrice = discountRetailPrice * massMultiplier;
+
+                totalDiscount += discountPrice - retailPrice;
+            }
+
+            return totalDiscount;
         }
 
         public override IEnumerable<int> GetScannedItemIds(IEnumerable<ScannedItem> scannedItems, int skipMultiplier)
