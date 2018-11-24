@@ -2,9 +2,9 @@
 using PointOfSale.Domain;
 using PointOfSale.Services;
 
-namespace PointOfSale.Implementations
+namespace PointOfSale.Implementations.Basic
 {
-    public class EachesProductService : ProductService
+    public class EachesProductService : ProductHelperService
     {
         public EachesProductService(UpsertProductArgs args, IMapper mapper) : base(args, mapper) { }
 

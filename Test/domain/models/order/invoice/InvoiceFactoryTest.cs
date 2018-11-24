@@ -16,16 +16,16 @@ namespace PointOfSale.Test.Domain
             foreach (var product in ProductProvider.GetOneOfEachProduct())
             {
                 if (product.GetType() == typeof(EachesProduct))
-                    _order.AddScannedItem(new ScannedItemAsEaches(product));
+                    _order.AddScannedItem(new EachesScannedItem((EachesProduct) product));
                 else
-                    _order.AddScannedItem(new ScannedItemWithMass(1, "Pound", product));
+                    _order.AddScannedItem(new MassScannedItem(1, "Pound", (MassProduct) product));
             }
         }
 
         private void PopulateOrder(Product product, int scannedItemCount)
         {
             for (var i = 0; i < scannedItemCount; i++)
-                _order.AddScannedItem(new ScannedItemAsEaches(product));
+                _order.AddScannedItem(new EachesScannedItem((EachesProduct) product));
         }
 
         [Theory]

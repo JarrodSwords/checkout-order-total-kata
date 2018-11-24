@@ -1,12 +1,11 @@
 namespace PointOfSale.Services
 {
-    public class UpsertProductArgs : IProductNameArgs, ISellByTypeArgs, IUpsertEachesProductArgs, IUpsertMassProductArgs
+    public class UpsertProductArgs : IUpsertEachesProductArgs, IUpsertMassProductArgs
     {
         public double? MassAmount { get; set; }
         public string MassUnit { get; set; }
         public string ProductName { get; set; }
         public decimal? RetailPrice { get; set; }
-        public decimal? RetailPricePerUnit { get; set; }
         public string SellByType { get; set; }
 
         public UpsertProductArgs() { }
@@ -32,12 +31,12 @@ namespace PointOfSale.Services
         /// <param name="name"></param>
         /// <param name="retailPricePerUnit"></param>
         /// <param name="sellByType"></param>
-        public UpsertProductArgs(double? massAmount, string massUnit, string name, decimal? retailPricePerUnit, string sellByType)
+        public UpsertProductArgs(double? massAmount, string massUnit, string name, decimal? retailPrice, string sellByType)
         {
             MassAmount = massAmount;
             MassUnit = massUnit;
             ProductName = name;
-            RetailPricePerUnit = retailPricePerUnit;
+            RetailPrice = retailPrice;
             SellByType = sellByType;
         }
     }

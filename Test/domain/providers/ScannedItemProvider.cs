@@ -18,18 +18,18 @@ namespace PointOfSale.Test.Domain
 
         private void CreateScannedItems()
         {
-            var weight = 0.5m;
-            var weightIncrement = 0.5m;
+            var weight = 0.5;
+            var weightIncrement = 0.5;
 
             foreach (var product in ProductProvider.Products)
             {
                 if (product.GetType() == typeof(EachesProduct))
                 {
-                    _scannedItems.Add(new ScannedItemAsEaches(product));
+                    _scannedItems.Add(new EachesScannedItem((EachesProduct) product));
                     continue;
                 }
 
-                _scannedItems.Add(new ScannedItemWithMass(weight, "Pound", product));
+                _scannedItems.Add(new MassScannedItem(weight, "Pound", (MassProduct) product));
                 weight += weightIncrement;
             }
         }

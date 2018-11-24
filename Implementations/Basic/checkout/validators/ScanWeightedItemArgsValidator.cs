@@ -10,7 +10,7 @@ namespace PointOfSale.Implementations.Basic
             IsMassProductValidator isMassProductValidator,
             OrderMustExistValidator orderMustExistValidator,
             ProductMustExistValidator productMustExistValidator,
-            ScannedMassValidator scannedMassValidator
+            MassValidator scannedMassValidator
         )
         {
             Include(isMassProductValidator);

@@ -51,7 +51,7 @@ namespace PointOfSale.Test.Implementations.Basic
         public void ScanWeightedItem_WithInvalidProductName_ThrowsArgumentException(string productName, string message)
         {
             Action scanItem = () => _checkoutService.ScanWeightedItem(
-                new ScanWeightedItemArgs { OrderId = 1, ProductName = productName, MassAmount = 1m }
+                new ScanWeightedItemArgs { OrderId = 1, ProductName = productName, MassAmount = 1 }
             );
 
             scanItem.Should().Throw<ValidationException>().WithMessage(message);

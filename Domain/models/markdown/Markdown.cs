@@ -9,7 +9,7 @@ namespace PointOfSale.Domain
     /// <remarks>
     /// Value object; immutable;
     /// </remarks>
-    public partial class Markdown : ITemporal
+    public class Markdown : ITemporal
     {
         private readonly ITemporal _temporal;
         public Money AmountOffRetail { get; }
@@ -17,12 +17,10 @@ namespace PointOfSale.Domain
         public bool IsActive => _temporal.IsActive;
         public DateTime StartTime => _temporal.StartTime;
 
-        private Markdown(Money amountOffRetail, ITemporal temporal)
+        public Markdown(Money amountOffRetail, DateTime endTime, DateTime startTime)
         {
             AmountOffRetail = amountOffRetail;
-            _temporal = temporal;
+            _temporal = new Temporal(endTime, startTime);
         }
-
-        public override string ToString() => $"{AmountOffRetail}; {IsActive}";
     }
 }

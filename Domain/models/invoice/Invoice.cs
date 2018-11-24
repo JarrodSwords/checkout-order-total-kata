@@ -17,11 +17,7 @@ namespace PointOfSale.Domain
             PreTaxTotal = CalculatePreTaxTotal(lineItems);
         }
 
-        public static Money CalculatePreTaxTotal(IEnumerable<LineItem> lineItems)
-        {
-            return Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
-        }
-
-        public override string ToString() => $"Order: {OrderId}; Pre-tax total: {PreTaxTotal}";
+        public static Money CalculatePreTaxTotal(IEnumerable<LineItem> lineItems) =>
+            Money.USDollar(lineItems.Sum(x => x.SalePrice.Amount));
     }
 }

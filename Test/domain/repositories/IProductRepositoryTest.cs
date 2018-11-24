@@ -25,21 +25,11 @@ namespace PointOfSale.Test.Domain
             var retailPrice = Money.USDollar(0.89m);
 
             var product = _productRepository.FindProduct(productName);
-
-            if (product.GetType() == typeof(EachesProduct))
-                product.RetailPrice = retailPrice;
-            else
-                product.RetailPricePerUnit = retailPrice;
-
+            product.RetailPrice = retailPrice;
             _productRepository.UpdateProduct(product);
 
             var persistedProduct = _productRepository.FindProduct(product.Name);
-
-            if (product.GetType() == typeof(EachesProduct))
-                persistedProduct.RetailPrice.Should().Be(retailPrice);
-            else
-                persistedProduct.RetailPricePerUnit.Should().Be(retailPrice);
-
+            persistedProduct.RetailPrice.Should().Be(retailPrice);
         }
     }
 }

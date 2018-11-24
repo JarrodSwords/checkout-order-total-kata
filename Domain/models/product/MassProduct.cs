@@ -6,24 +6,19 @@ namespace PointOfSale.Domain
 {
     public class MassProduct : Product
     {
-        public MassProduct(string name, decimal retailPricePerUnit) : base(
-            name,
-            new NotSellableAsEaches(),
-            new SellableByMass()
-        )
+        public Mass Mass { get; set; }
+
+        public MassProduct(string name, decimal retailPrice) : base(name, retailPrice)
         {
             Mass = new Mass(1, MassUnit.Pound);
-            RetailPricePerUnit = retailPricePerUnit;
         }
 
-        public MassProduct(string name, decimal retailPricePerUnit, double massAmount, string massUnit) : base(
-            name,
-            new NotSellableAsEaches(),
-            new SellableByMass()
-        )
+        public MassProduct(string name, decimal retailPrice, double massAmount, string massUnit) : base(name, retailPrice)
         {
-            Mass = new Mass(massAmount, (MassUnit) Enum.Parse(typeof(MassUnit), massUnit));
-            RetailPricePerUnit = retailPricePerUnit;
+            Mass = new Mass(
+                massAmount,
+                (MassUnit) Enum.Parse(typeof(MassUnit), massUnit)
+            );
         }
 
         public class MassProductBuilder
@@ -31,12 +26,12 @@ namespace PointOfSale.Domain
             public double MassAmount { get; set; }
             public string MassUnit { get; set; }
             public string Name { get; set; }
-            public decimal RetailPricePerUnit { get; set; }
+            public decimal RetailPrice { get; set; }
 
-            public MassProductBuilder(string name, decimal retailPricePerUnit)
+            public MassProductBuilder(string name, decimal retailPrice)
             {
                 Name = name;
-                RetailPricePerUnit = retailPricePerUnit;
+                RetailPrice = retailPrice;
             }
 
             public MassProductBuilder SetMass(double massAmount, string massUnit)
@@ -48,7 +43,7 @@ namespace PointOfSale.Domain
 
             public MassProduct Build()
             {
-                return new MassProduct(Name, RetailPricePerUnit);
+                return new MassProduct(Name, RetailPrice);
             }
         }
     }

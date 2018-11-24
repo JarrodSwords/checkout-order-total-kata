@@ -1,7 +1,6 @@
 namespace PointOfSale.Services
 {
-    public interface IUpsertEachesProductArgs : IProductNameArgs, ISellByTypeArgs
+    public interface IUpsertEachesProductArgs : IProductNameArgs, IRetailPriceArgs, ISellByTypeArgs
     {
-        decimal? RetailPrice { get; set; }
     }
 }

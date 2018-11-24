@@ -6,14 +6,17 @@ namespace PointOfSale.Implementations.Basic
     public abstract class UpsertProductArgsValidator : AbstractValidator<UpsertProductArgs>
     {
         public UpsertProductArgsValidator(
-            SellByTypeValidator sellByTypeValidator,
-            IUpsertEachesProductArgsValidator iUpsertEachesProductArgsValidator,
-            IUpsertMassProductArgsValidator iUpsertMassProductArgsValidator
+            MassValidator massValidator,
+            RetailPriceValidator retailPriceValidator,
+            SellByTypeValidator sellByTypeValidator
         )
         {
+            Include(retailPriceValidator);
             Include(sellByTypeValidator);
-            When(x => x.SellByType == "eaches", () => Include(iUpsertEachesProductArgsValidator));
-            When(x => x.SellByType == "mass", () => Include(iUpsertMassProductArgsValidator));
+            // When(
+            //     x => x.SellByType == "mass",
+            //     () => Include(massValidator)
+            // );
         }
     }
 }

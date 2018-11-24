@@ -25,13 +25,7 @@ namespace PointOfSale.Implementations.Basic
             {
                 RuleFor(x => x.AmountOffRetail)
                     .Must((args, x) => x <= productRepository.FindProduct(args.ProductName).RetailPrice)
-                    .WithMessage("{PropertyName} must be less than or equal to 'Retail Price'")
-                    .When(x => x.SellByType == "eaches");
-
-                RuleFor(x => x.AmountOffRetail)
-                    .Must((args, x) => x <= productRepository.FindProduct(args.ProductName).RetailPricePerUnit)
-                    .WithMessage("{PropertyName} must be less than or equal to 'Retail Price Per Unit'")
-                    .When(x => x.SellByType == "mass");
+                    .WithMessage("{PropertyName} must be less than or equal to 'Retail Price'");
             });
         }
     }

@@ -1,6 +1,5 @@
 using AutoMapper;
 using PointOfSale.Domain;
-using PointOfSale.Implementations;
 using PointOfSale.Implementations.Basic;
 using PointOfSale.Services;
 using PointOfSale.Test.Infrastructure.InMemory;
@@ -53,12 +52,10 @@ namespace PointOfSale.Test.Implementations.Basic
 
         public static IProductMarkdownConfigurationService ProductMarkdownConfigurationService()
         {
-            var markdownFactory = new Markdown.Factory(new BasicDateTimeProvider());
             var productRepository = ProductRepository();
 
             return new ProductMarkdownConfigurationService(
                 Mapper(),
-                markdownFactory,
                 productRepository,
                 ValidatorProvider.UpsertProductMarkdownArgsValidator(productRepository)
             );

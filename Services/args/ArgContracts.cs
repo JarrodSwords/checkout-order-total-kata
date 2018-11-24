@@ -24,7 +24,7 @@ namespace PointOfSale.Services
 
     public interface IMassArgs
     {
-        decimal? MassAmount { get; set; }
+        double? MassAmount { get; set; }
         string MassUnit { get; set; }
     }
 
@@ -46,6 +46,11 @@ namespace PointOfSale.Services
     public interface IProductNameArgs
     {
         string ProductName { get; set; }
+    }
+
+    public interface IRetailPriceArgs
+    {
+        decimal? RetailPrice { get; set; }
     }
 
     public interface IScannedItemIdArgs

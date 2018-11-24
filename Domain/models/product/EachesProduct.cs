@@ -2,13 +2,6 @@ namespace PointOfSale.Domain
 {
     public class EachesProduct : Product
     {
-        public EachesProduct(string name, decimal retailPrice) : base(
-            name,
-            new SellableAsEaches(),
-            new NotSellableByMass()
-        )
-        {
-            RetailPrice = retailPrice;
-        }
+        public EachesProduct(string name, decimal retailPrice) : base(name, retailPrice) { }
     }
 }

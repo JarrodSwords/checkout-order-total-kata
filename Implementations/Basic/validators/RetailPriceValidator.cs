@@ -1,13 +1,14 @@
-﻿using FluentValidation;
+using FluentValidation;
 using PointOfSale.Services;
 
 namespace PointOfSale.Implementations.Basic
 {
-    public class IUpsertEachesProductArgsValidator : AbstractValidator<IUpsertEachesProductArgs>
+    public class RetailPriceValidator : AbstractValidator<IRetailPriceArgs>
     {
-        public IUpsertEachesProductArgsValidator()
+        public RetailPriceValidator()
         {
             RuleFor(x => x.RetailPrice)
+                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
                 .GreaterThanOrEqualTo(0);
         }
