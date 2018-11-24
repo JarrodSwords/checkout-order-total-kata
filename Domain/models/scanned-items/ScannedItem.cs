@@ -10,11 +10,6 @@ namespace PointOfSale.Domain
 
         public int Id { get; set; }
         public Product Product { get; }
-        public Markdown Markdown
-        {
-            get => Product.Markdown;
-            set => Product.Markdown = value;
-        }
 
         public ScannedItem(IMarkdownable markdownable, Product product, ISellable sellable)
         {
@@ -22,6 +17,13 @@ namespace PointOfSale.Domain
             Product = product;
             _sellable = sellable;
         }
+
+        public MarkdownLineItem CreateMarkdownLineItem() =>
+            new MarkdownLineItem(
+                Product.Name,
+                GetMarkdownSalePrice(),
+                Id
+            );
 
         public RetailLineItem CreateRetailLineItem() =>
             new RetailLineItem(
@@ -35,12 +37,5 @@ namespace PointOfSale.Domain
 
         public Money GetSalePrice() =>
             _sellable.GetSalePrice();
-
-        public MarkdownLineItem CreateMarkdownLineItem() =>
-            new MarkdownLineItem(
-                Product.Name,
-                GetMarkdownSalePrice(),
-                Id
-            );
     }
 }
