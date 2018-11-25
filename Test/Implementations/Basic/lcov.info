@@ -1,19 +1,19 @@
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\DateTimeExtensions.cs
 FN:7,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-FNDA:2205,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
-DA:8,2205
+FNDA:2204,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfWeek(System.DateTime)
+DA:8,2204
 DA:9,2204
-DA:10,2204
-DA:11,2203
+DA:10,2205
+DA:11,2204
 FN:12,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 FNDA:364,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfLastWeek(System.DateTime)
 DA:13,364
 FN:13,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfNextWeek(System.DateTime)
-FNDA:363,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfNextWeek(System.DateTime)
-DA:14,363
+FNDA:364,System.DateTime PointOfSale.Domain.DateTimeExtensions::StartOfNextWeek(System.DateTime)
+DA:14,364
 FN:14,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
-FNDA:375,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
-DA:15,375
+FNDA:374,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfWeek(System.DateTime)
+DA:15,374
 FN:15,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfLastWeek(System.DateTime)
 FNDA:364,System.DateTime PointOfSale.Domain.DateTimeExtensions::EndOfLastWeek(System.DateTime)
 DA:16,364
@@ -233,11 +233,11 @@ FN:17,System.DateTime PointOfSale.Domain.Markdown::get_StartTime()
 FNDA:8,System.DateTime PointOfSale.Domain.Markdown::get_StartTime()
 DA:18,8
 FN:19,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,System.DateTime,System.DateTime)
-FNDA:1092,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,System.DateTime,System.DateTime)
-DA:20,1092
+FNDA:1093,System.Void PointOfSale.Domain.Markdown::.ctor(NodaMoney.Money,System.DateTime,System.DateTime)
+DA:20,1093
 DA:21,1093
 DA:22,1094
-DA:23,1094
+DA:23,1093
 DA:24,1092
 LF:9
 LH:8
@@ -342,8 +342,8 @@ FNH:6
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\EachesProduct.cs
 FN:4,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-FNDA:2180,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
-DA:5,2180
+FNDA:2177,System.Void PointOfSale.Domain.EachesProduct::.ctor(System.String,System.Decimal)
+DA:5,2177
 LF:1
 LH:1
 BRF:0
@@ -353,14 +353,14 @@ FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\product\MassProduct.cs
 FN:8,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
-FNDA:730,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
-DA:9,730
+FNDA:731,UnitsNet.Mass PointOfSale.Domain.MassProduct::get_Mass()
+DA:9,731
 FN:10,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-FNDA:729,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
-DA:11,729
-DA:12,729
-DA:13,729
-DA:14,729
+FNDA:728,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal)
+DA:11,728
+DA:12,727
+DA:13,728
+DA:14,727
 FN:15,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 FNDA:0,System.Void PointOfSale.Domain.MassProduct::.ctor(System.String,System.Decimal,System.Double,System.String)
 DA:16,0
@@ -420,24 +420,24 @@ DA:12,0
 BRDA:12,6,0,0
 BRDA:12,6,1,0
 FN:12,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-FNDA:1113,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
-DA:13,1113
+FNDA:1114,PointOfSale.Domain.Markdown PointOfSale.Domain.Product::get_Markdown()
+DA:13,1114
 FN:13,System.String PointOfSale.Domain.Product::get_Name()
-FNDA:7666,System.String PointOfSale.Domain.Product::get_Name()
-DA:14,7666
+FNDA:7673,System.String PointOfSale.Domain.Product::get_Name()
+DA:14,7673
 FN:14,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-FNDA:1481,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
-DA:15,1481
+FNDA:1479,NodaMoney.Money PointOfSale.Domain.Product::get_RetailPrice()
+DA:15,1479
 FN:15,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 FNDA:21,PointOfSale.Domain.Special PointOfSale.Domain.Product::get_Special()
 DA:16,21
 FN:17,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
 FNDA:1455,System.Void PointOfSale.Domain.Product::.ctor(System.String,System.Decimal)
 DA:18,1455
-DA:19,1457
-DA:20,1458
-DA:21,1457
-DA:22,1457
+DA:19,1455
+DA:20,1455
+DA:21,1456
+DA:22,1453
 LF:11
 LH:9
 BRF:4
@@ -756,40 +756,10 @@ BRH:0
 FNF:7
 FNH:0
 end_of_record
-SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\models\specials\SpecialFactory.cs
-FN:7,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
-FNDA:0,System.DateTime PointOfSale.Domain.SpecialFactory::get_EndTime()
-DA:8,0
-FN:8,System.Nullable`1<System.Int32> PointOfSale.Domain.SpecialFactory::get_Limit()
-FNDA:0,System.Nullable`1<System.Int32> PointOfSale.Domain.SpecialFactory::get_Limit()
-DA:9,0
-FN:9,System.DateTime PointOfSale.Domain.SpecialFactory::get_StartTime()
-FNDA:0,System.DateTime PointOfSale.Domain.SpecialFactory::get_StartTime()
-DA:10,0
-FN:17,System.Void PointOfSale.Domain.SpecialFactory::Configure(System.DateTime,System.DateTime,System.Nullable`1<System.Int32>)
-FNDA:0,System.Void PointOfSale.Domain.SpecialFactory::Configure(System.DateTime,System.DateTime,System.Nullable`1<System.Int32>)
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-FN:11,System.Void PointOfSale.Domain.SpecialFactory::.ctor(PointOfSale.Domain.IDateTimeProvider)
-FNDA:0,System.Void PointOfSale.Domain.SpecialFactory::.ctor(PointOfSale.Domain.IDateTimeProvider)
-DA:12,0
-DA:13,0
-DA:14,0
-DA:15,0
-LF:12
-LH:0
-BRF:0
-BRH:0
-FNF:5
-FNH:0
-end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Domain\services\BasicDateTimeProvider.cs
 FN:6,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
-FNDA:1128,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
-DA:7,1128
+FNDA:1125,System.DateTime PointOfSale.Domain.BasicDateTimeProvider::get_Now()
+DA:7,1125
 LF:1
 LH:1
 BRF:0
@@ -813,9 +783,9 @@ DA:16,0
 BRDA:15,19,0,0
 BRDA:15,19,1,0
 FN:18,System.Void PointOfSale.Domain.Temporal::.ctor(System.DateTime,System.DateTime)
-FNDA:1092,System.Void PointOfSale.Domain.Temporal::.ctor(System.DateTime,System.DateTime)
-DA:19,1092
-DA:20,1092
+FNDA:1093,System.Void PointOfSale.Domain.Temporal::.ctor(System.DateTime,System.DateTime)
+DA:19,1093
+DA:20,1093
 DA:21,1093
 DA:22,1093
 DA:23,1092
@@ -876,8 +846,8 @@ DA:11,136
 DA:12,136
 DA:13,136
 DA:14,136
-DA:15,136
-DA:16,136
+DA:15,135
+DA:16,135
 DA:18,136
 DA:19,272
 DA:21,136
@@ -887,19 +857,19 @@ DA:25,272
 DA:27,136
 DA:28,272
 DA:30,136
-DA:31,272
+DA:31,271
 DA:33,136
 DA:34,272
-DA:35,272
+DA:35,271
 DA:36,136
 BRDA:18,112,0,1
-BRDA:18,112,1,136
+BRDA:18,112,1,135
 BRDA:21,212,0,1
 BRDA:21,212,1,136
 BRDA:24,312,0,1
 BRDA:24,312,1,136
 BRDA:27,412,0,1
-BRDA:27,412,1,136
+BRDA:27,412,1,135
 BRDA:30,512,0,1
 BRDA:30,512,1,136
 BRDA:33,612,0,1
@@ -1899,20 +1869,20 @@ FNH:6
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Infrastructure\InMemory\repositories\InMemoryProductRepository.cs
 FN:11,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PointOfSale.Domain.Product)
-FNDA:1327,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PointOfSale.Domain.Product)
-DA:12,1327
-DA:13,1327
-DA:14,1327
-DA:15,1325
+FNDA:1328,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::CreateProduct(PointOfSale.Domain.Product)
+DA:12,1328
+DA:13,1328
+DA:14,1329
+DA:15,1326
 FN:17,System.Boolean PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::Exists(System.String)
 FNDA:60,System.Boolean PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::Exists(System.String)
 DA:18,60
 DA:19,365
 DA:20,60
 FN:22,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
-FNDA:1348,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
-DA:23,1348
-DA:24,7376
+FNDA:1351,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::FindProduct(System.String)
+DA:23,1351
+DA:24,7368
 DA:25,1348
 FN:27,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::UpdateProduct(PointOfSale.Domain.Product)
 FNDA:4,PointOfSale.Domain.Product PointOfSale.Infrastructure.InMemory.InMemoryProductRepository::UpdateProduct(PointOfSale.Domain.Product)
@@ -2660,25 +2630,25 @@ FNH:0
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\providers\DateRange.cs
 FN:15,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
-FNDA:1091,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
-DA:16,1091
+FNDA:1090,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetStart(PointOfSale.Test.Domain.DateRange,System.DateTime)
+DA:16,1090
 DA:17,1091
-DA:20,363
+DA:20,364
 DA:22,364
 DA:25,364
-DA:27,1090
+DA:27,1091
 BRDA:17,4,2,364
 BRDA:17,4,3,364
 BRDA:17,4,0,364
 BRDA:17,4,1,364
 FN:29,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetEnd(PointOfSale.Test.Domain.DateRange,System.DateTime)
-FNDA:1092,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetEnd(PointOfSale.Test.Domain.DateRange,System.DateTime)
-DA:30,1092
-DA:31,1092
+FNDA:1090,System.DateTime PointOfSale.Test.Domain.DateRangeExtensions::GetEnd(PointOfSale.Test.Domain.DateRange,System.DateTime)
+DA:30,1090
+DA:31,1090
 DA:34,364
 DA:36,364
 DA:39,364
-DA:41,1092
+DA:41,1090
 BRDA:31,4,2,364
 BRDA:31,4,3,364
 BRDA:31,4,0,364
@@ -2692,8 +2662,8 @@ FNH:2
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\providers\DependencyProvider.cs
 FN:6,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Domain.DependencyProvider::CreateDateTimeProvider()
-FNDA:1127,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Domain.DependencyProvider::CreateDateTimeProvider()
-DA:7,1127
+FNDA:1125,PointOfSale.Domain.IDateTimeProvider PointOfSale.Test.Domain.DependencyProvider::CreateDateTimeProvider()
+DA:7,1125
 LF:1
 LH:1
 BRF:0
@@ -2703,15 +2673,15 @@ FNH:1
 end_of_record
 SF:D:\git\PillarTechnology\checkout-order-total-kata\Test\Domain\providers\MarkdownProvider.cs
 FN:9,PointOfSale.Domain.Markdown PointOfSale.Test.Domain.MarkdownProvider::GetMarkdown(PointOfSale.Test.Domain.DateRange,System.Decimal)
-FNDA:1090,PointOfSale.Domain.Markdown PointOfSale.Test.Domain.MarkdownProvider::GetMarkdown(PointOfSale.Test.Domain.DateRange,System.Decimal)
-DA:10,1090
-DA:11,1090
-DA:12,1090
-DA:14,1088
-DA:15,1088
-DA:16,1088
-DA:17,1088
-DA:18,1088
+FNDA:1089,PointOfSale.Domain.Markdown PointOfSale.Test.Domain.MarkdownProvider::GetMarkdown(PointOfSale.Test.Domain.DateRange,System.Decimal)
+DA:10,1089
+DA:11,1088
+DA:12,1087
+DA:14,1087
+DA:15,1087
+DA:16,1087
+DA:17,1087
+DA:18,1087
 DA:19,1090
 LF:9
 LH:9
@@ -2993,9 +2963,9 @@ FN:8,System.Void PointOfSale.Test.Infrastructure.InMemory.InMemoryProductReposit
 FNDA:166,System.Void PointOfSale.Test.Infrastructure.InMemory.InMemoryProductRepositoryFactory::Seed(PointOfSale.Infrastructure.InMemory.InMemoryProductRepository&)
 DA:9,166
 DA:10,3144
-DA:11,1323
-DA:12,165
-BRDA:10,37,1,1324
+DA:11,1328
+DA:12,166
+BRDA:10,37,1,1327
 BRDA:10,37,0,165
 LF:4
 LH:4
@@ -3009,14 +2979,14 @@ FN:5,T PointOfSale.Test.Infrastructure.InMemory.RepositoryFactory`1::CreateEmpty
 FNDA:182,T PointOfSale.Test.Infrastructure.InMemory.RepositoryFactory`1::CreateEmptyRepository()
 DA:6,182
 DA:7,182
-DA:8,181
+DA:8,182
 FN:10,T PointOfSale.Test.Infrastructure.InMemory.RepositoryFactory`1::CreateSeededRepository()
 FNDA:182,T PointOfSale.Test.Infrastructure.InMemory.RepositoryFactory`1::CreateSeededRepository()
 DA:11,182
 DA:12,182
-DA:13,181
-DA:14,181
-DA:15,181
+DA:13,182
+DA:14,182
+DA:15,182
 LF:8
 LH:8
 BRF:0
