@@ -8,12 +8,15 @@ namespace PointOfSale.Test.Domain
 {
     public class BuyNGetMAtXPercentOffSpecialTest : SpecialTest
     {
-        public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit)
-        {
-            return new BuyNGetMAtXPercentOffSpecial.Factory(DependencyProvider.CreateDateTimeProvider())
-                .Configure(discountedItems, _now.EndOfWeek(), percentOff, preDiscountItems, _now.StartOfWeek(), limit)
-                .CreateSpecial();
-        }
+        public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit) =>
+            new BuyNGetMAtXPercentOffSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                percentOff,
+                preDiscountItems,
+                _now.StartOfWeek(),
+                limit
+            );
 
         [Theory]
         [InlineData(1, 1, 0, 0)]

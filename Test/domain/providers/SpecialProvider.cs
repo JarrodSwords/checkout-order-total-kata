@@ -9,9 +9,13 @@ namespace PointOfSale.Test.Domain
             var dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
             var now = dateTimeProvider.Now;
 
-            return new BuyNGetMAtXPercentOffSpecial.Factory(dateTimeProvider)
-                .Configure(discountedItems, dateRange.GetEnd(now), percentageOff, preDiscountItems, dateRange.GetStart(now))
-                .CreateSpecial();
+            return new BuyNGetMAtXPercentOffSpecial(
+                discountedItems,
+                dateRange.GetEnd(now),
+                percentageOff,
+                preDiscountItems,
+                dateRange.GetStart(now)
+            );
         }
 
         public static Special GetBuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(DateRange dateRange, int preDiscountItems = 2, int discountedItems = 1, decimal percentageOff = 0.5m)
@@ -19,9 +23,13 @@ namespace PointOfSale.Test.Domain
             var dateTimeProvider = DependencyProvider.CreateDateTimeProvider();
             var now = dateTimeProvider.Now;
 
-            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(dateTimeProvider)
-                .Configure(discountedItems, dateRange.GetEnd(now), percentageOff, preDiscountItems, dateRange.GetStart(now))
-                .CreateSpecial();
+            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(
+                discountedItems,
+                dateRange.GetEnd(now),
+                percentageOff,
+                preDiscountItems,
+                dateRange.GetStart(now)
+            );
         }
     }
 }

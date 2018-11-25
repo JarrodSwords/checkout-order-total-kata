@@ -8,8 +8,6 @@ namespace PointOfSale.Test.Domain
 {
     public class BuyNForXAmountTest : SpecialTest
     {
-        private BuyNForXAmountSpecial.Factory _factory = new BuyNForXAmountSpecial.Factory(DependencyProvider.CreateDateTimeProvider());
-
         [Theory]
         [InlineData(3, 0, 0)]
         [InlineData(3, 3, 1)]
@@ -19,9 +17,13 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", 1m);
 
-            product.Special = _factory
-                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar(1.5m), _now.StartOfWeek(), limit)
-                .CreateSpecial();
+            product.Special = new BuyNForXAmountSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                Money.USDollar(1.5m),
+                _now.StartOfWeek(),
+                limit
+            );
 
             CreateLineItems(product, scannedItemCount);
 
@@ -36,9 +38,12 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", 1m);
 
-            product.Special = _factory
-                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
-                .CreateSpecial();
+            product.Special = new BuyNForXAmountSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                Money.USDollar((decimal) groupSalePrice),
+                _now.StartOfWeek()
+            );
 
             CreateLineItems(product, scannedItemCount);
 
@@ -57,9 +62,12 @@ namespace PointOfSale.Test.Domain
                 Markdown = MarkdownProvider.GetMarkdown(DateRange.Active, (decimal) markdown)
             };
 
-            product.Special = _factory
-                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
-                .CreateSpecial();
+            product.Special = new BuyNForXAmountSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                Money.USDollar((decimal) groupSalePrice),
+                _now.StartOfWeek()
+            );
 
             CreateLineItems(product, scannedItemCount);
 
@@ -73,9 +81,12 @@ namespace PointOfSale.Test.Domain
         {
             var product = new EachesProduct("test product", (decimal) retailPrice);
 
-            product.Special = _factory
-                .Configure(discountedItems, _now.EndOfWeek(), Money.USDollar((decimal) groupSalePrice), _now.StartOfWeek())
-                .CreateSpecial();
+            product.Special = new BuyNForXAmountSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                Money.USDollar((decimal) groupSalePrice),
+                _now.StartOfWeek()
+            );
 
             CreateLineItems(product, scannedItemCount);
 

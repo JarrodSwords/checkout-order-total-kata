@@ -19,15 +19,13 @@ namespace PointOfSale.Implementations.Basic
         public override Special Create()
         {
             var args = (ICreateBuyNAtXAmountSpecialArgs) _args;
-            return new BuyNForXAmountSpecial.Factory(_dateTimeProvider)
-                .Configure(
-                    _args.DiscountedItems.Value,
-                    _args.EndTime.Value,
-                    _args.GroupSalePrice.Value,
-                    _args.StartTime.Value,
-                    _args.Limit
-                )
-                .CreateSpecial();
+            return new BuyNForXAmountSpecial(
+                _args.DiscountedItems.Value,
+                _args.EndTime.Value,
+                _args.GroupSalePrice.Value,
+                _args.StartTime.Value,
+                _args.Limit
+            );
         }
 
         public override ISpecialDto ToDto(Special special) =>

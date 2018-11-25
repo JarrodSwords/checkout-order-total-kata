@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NodaMoney;
@@ -11,12 +12,13 @@ namespace PointOfSale.Domain
         public Money GroupSalePrice { get; }
         public override int ScannedItemsRequired => DiscountedItems;
 
-        private BuyNForXAmountSpecial(
-            ITemporal temporal,
+        public BuyNForXAmountSpecial(
             int discountedItems,
+            DateTime endTime,
             Money groupSalePrice,
+            DateTime startTime,
             int? limit = null
-        ) : base(temporal, limit)
+        ) : base(endTime, startTime, limit)
         {
             DiscountedItems = discountedItems;
             GroupSalePrice = groupSalePrice;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NodaMoney;
@@ -13,13 +14,14 @@ namespace PointOfSale.Domain
         public int PreDiscountItems { get; }
         public override int ScannedItemsRequired => PreDiscountItems + DiscountedItems;
 
-        protected BuyNGetMAtXPercentOffSpecial(
-            ITemporal temporal,
-            int preDiscountItems,
+        public BuyNGetMAtXPercentOffSpecial(
             int discountedItems,
+            DateTime endTime,
             decimal percentageOff,
+            int preDiscountItems,
+            DateTime startTime,
             int? limit = null
-        ) : base(temporal, limit)
+        ) : base(endTime, startTime, limit)
         {
             PreDiscountItems = preDiscountItems;
             DiscountedItems = discountedItems;

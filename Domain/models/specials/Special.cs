@@ -15,9 +15,9 @@ namespace PointOfSale.Domain
         public abstract int ScannedItemsRequired { get; }
         public DateTime StartTime => _temporal.StartTime;
 
-        protected Special(ITemporal temporal, int? limit = null)
+        protected Special(DateTime endTime, DateTime startTime, int? limit = null)
         {
-            _temporal = temporal;
+            _temporal = new Temporal(endTime, startTime);
             Limit = limit;
         }
 

@@ -19,12 +19,15 @@ namespace PointOfSale.Test.Domain
                 yield return new MassScannedItem(weight, "Pound", (MassProduct) product) { Id = i + 1 };
         }
 
-        public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit)
-        {
-            return new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory(DependencyProvider.CreateDateTimeProvider())
-                .Configure(discountedItems, _now.EndOfWeek(), percentOff, preDiscountItems, _now.StartOfWeek(), limit)
-                .CreateSpecial();
-        }
+        public Special CreateSpecial(int preDiscountItems, int discountedItems, decimal percentOff, int? limit) =>
+            new BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(
+                discountedItems,
+                _now.EndOfWeek(),
+                percentOff,
+                preDiscountItems,
+                _now.StartOfWeek(),
+                limit
+            );
 
         [Theory]
         [InlineData(1, 1, 1, 100, 2, -1)]

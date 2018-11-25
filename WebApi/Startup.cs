@@ -27,10 +27,6 @@ namespace PointOfSale.WebApi
 
             services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>())));
 
-            services.AddTransient<BuyNForXAmountSpecial.Factory>();
-            services.AddTransient<BuyNGetMAtXPercentOffSpecial.Factory>();
-            services.AddTransient<BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial.Factory>();
-
             services.AddTransient<IDateTimeProvider, BasicDateTimeProvider>();
 
             services.AddSingleton<IOrderRepository>(new InMemoryOrderRepository());

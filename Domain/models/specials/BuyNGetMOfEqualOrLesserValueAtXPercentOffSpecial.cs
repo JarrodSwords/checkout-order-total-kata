@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NodaMoney;
@@ -9,12 +10,13 @@ namespace PointOfSale.Domain
         public override string Description => $"buy {PreDiscountItems} get {DiscountedItems} of equal or lesser value at {Multiplier:P} off";
 
         public BuyNGetMOfEqualOrLesserValueAtXPercentOffSpecial(
-            ITemporal temporal,
-            int preDiscountItems,
             int discountedItems,
+            DateTime endTime,
             decimal percentageOff,
+            int preDiscountItems,
+            DateTime startTime,
             int? limit = null
-        ) : base(temporal, preDiscountItems, discountedItems, percentageOff, limit) { }
+        ) : base(discountedItems, endTime, percentageOff, preDiscountItems, startTime, limit) { }
 
         public override Money CalculateTotalDiscount(IEnumerable<ScannedItem> scannedItems)
         {
